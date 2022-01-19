@@ -19,6 +19,8 @@
             <input type="reset" value="Reset">
         </form>
         <a href="create.jsp">Sign up</a>
+        <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/event_manage/login-google&response_type=code
+    &client_id=204854685230-fpsjm98drnflpsignj0bqlb2122a5h7n.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
         <br>${sessionScope.mess}
     </body>
 </html>
