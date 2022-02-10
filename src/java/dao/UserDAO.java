@@ -46,7 +46,7 @@ public class UserDAO {
                     return new UserDTO(fullName, email, roleID, status);
                 }
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException | NamingException e) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             if (rs != null) {

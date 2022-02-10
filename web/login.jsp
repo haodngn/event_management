@@ -21,7 +21,7 @@
                 <form action="MainController" method="POST" id="form">
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" name="txtUsername" required/>
+                        <input type="text" name="txtEmail" required/>
                         <span class="input-label">Username</span>
                     </div>
                     <div class="input-field">
@@ -30,7 +30,7 @@
                         <input type="password" name="txtPassword" required/>
                     </div>
                     <div class="btn-field">
-                        <input type="submit" class="btn" value="Login"/>
+                        <input type="submit" class="btn" value="Login" name="btnAction"/>
                         <input type="reset" class="btn" value="Reset">
                     </div>
                 </form>
