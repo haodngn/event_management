@@ -8,9 +8,11 @@ package controller;
 import dao.UserDAO;
 import dto.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +34,7 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SUCCESS = "home_page.jsp";
+    private static final String SUCCESS = "SearchEventController";
     private static final String ERROR = "login.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +53,7 @@ public class LoginController extends HttpServlet {
             } else {
                 ses.setAttribute("mess", "Cannot find account");
             }
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             response.sendRedirect(url);
