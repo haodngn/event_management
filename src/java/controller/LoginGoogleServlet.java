@@ -7,7 +7,16 @@ package controller;
 
 import common.GooglePojo;
 import common.GoogleUtils;
+import dao.UserDAO;
+import dto.UserDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import javax.mail.MessagingException;
+import org.apache.log4j.Logger;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +31,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
-
+    private static final Logger LOGGER = Logger.getLogger(LoginGoogleServlet.class);
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,25 +41,62 @@ public class LoginGoogleServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SUCCESS = "SearchEventController";
+    private static final String SUCCESS = "student_home_page.jsp";
     private static final String ERROR = "login.jsp";
+    
+    private final String DEFAULT_PASSWORD = "123456";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String code = request.getParameter("code");
-        HttpSession session = request.getSession();
-        if (code == null || code.isEmpty()) {
-            RequestDispatcher dis = request.getRequestDispatcher(ERROR);
-            dis.forward(request, response);
-        } else {
-            String accessToken = GoogleUtils.getToken(code);
-            GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-            session.setAttribute("id", googlePojo.getId());
-            session.setAttribute("name", googlePojo.getName());
-            session.setAttribute("email", googlePojo.getEmail());
-            RequestDispatcher dis = request.getRequestDispatcher(SUCCESS);
-            dis.forward(request, response);
+        PrintWriter out = response.getWriter();
+        
+        String url = ERROR;
+        
+        try {
+            String code = request.getParameter("code");
+            HttpSession session = request.getSession();
+            if (code == null || code.isEmpty()) {
+                RequestDispatcher dis = request.getRequestDispatcher(ERROR);
+                dis.forward(request, response);
+            } else {
+                String accessToken = GoogleUtils.getToken(code);
+                GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
+                String name = null;
+                String email = googlePojo.getEmail();
+                String picture = googlePojo.getPicture();
+                String password = DEFAULT_PASSWORD;
+
+                //get name
+                if(googlePojo.getName() == null){
+                    name = googlePojo.getEmail().split("@")[0];
+                }
+
+                UserDAO dao = new UserDAO();
+                UserDTO user = dao.checkLogin(email, password);
+                
+                if(user == null){
+                    dao.createAccount(name, email, password, 1, picture);
+                }
+                session.setAttribute("USER", user);
+                
+                url = SUCCESS;
+
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            LOGGER.error("NoSuchAlgorithmException at GoogleLoginServlet: "+ex);
+        } catch (SQLException ex) {
+            LOGGER.error("SQLException at GoogleLoginServlet: "+ex);
+        } catch (NamingException ex) {
+            LOGGER.error("NamingException at GoogleLoginServlet: "+ex);
+        } catch (ClassNotFoundException ex) {
+            LOGGER.error("ClassNotFoundException at GoogleLoginServlet: "+ex);
+        } catch (MessagingException ex) {
+            LOGGER.error("MessagingException at GoogleLoginServlet: "+ex);
+        }finally{
+            response.sendRedirect(url);
+            out.close();
         }
+        
     }
 
 
