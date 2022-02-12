@@ -14,20 +14,21 @@
     </head>
     <body>
         <form action="MainController" method="POST">
-            <input type="text" name="txtSpeaker" value="${param.txtSpeaker}" placeholder="Speaker"/>
-            <input type="text" name="txtEventName" value="${param.txtEventName}" placeholder="EventName"/>
-            <input type="text" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/>
-            <input type="text" name="txtEndDate" value="${param.txtSpeaker}" placeholder="txtEndDate"/>
-            <input type="text" name="registerDate" value="${param.txtSpeaker}" placeholder="registerDate"/>
-            <input type="text" name="txtExpirationDate" value="${param.txtSpeaker}" placeholder="txtExpirationDate"/>
-            <input type="text" name="txtStudentCount" value="${param.txtSpeaker}" placeholder="txtStudentCount"/>
-            <input type="text" name="txtDescription" value="${param.txtSpeaker}" placeholder="txtDescription"/>
-            <input type="text" name="txtLocation" value="${param.txtSpeaker}" placeholder="txtLocation"/>
-            <input type="text" name="txtPostedBy" value="${param.txtSpeaker}" placeholder="txtPostedBy"/>
-            <input type="text" name="txtPostId" value="${param.txtSpeaker}" placeholder="txtPostId"/>
+            <input type="text" name="txtSpeaker" value="${param.txtSpeaker}" placeholder="Speaker"/></br>
+            <input type="text" name="txtEventName" value="${param.txtEventName}" placeholder="EventName"/></br>
+            <input type="text" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/></br>
+            <input type="text" name="txtEndDate" value="${param.txtSpeaker}" placeholder="txtEndDate"/></br>
+            <input type="text" name="registerDate" value="${param.txtSpeaker}" placeholder="registerDate"/></br>
+            <input type="text" name="txtExpirationDate" value="${param.txtSpeaker}" placeholder="txtExpirationDate"/></br>
+            <input type="text" name="txtStudentCount" value="${param.txtSpeaker}" placeholder="txtStudentCount"/></br>
+            <input type="text" name="txtDescription" value="${param.txtSpeaker}" placeholder="txtDescription"/></br>
+            <input type="text" name="txtLocation" value="${param.txtSpeaker}" placeholder="txtLocation"/></br>
+            <input type="text" name="txtPostedBy" value="${param.txtSpeaker}" placeholder="txtPostedBy"/></br>
+            <input type="text" name="txtPostId" value="${param.txtSpeaker}" placeholder="txtPostId"/></br>
             
             <input type="submit" value="Create" name="btnAction" />
         </form>
+            
             <c:if test="${not empty CREATE_SUCCESS}">
                 <h1>${CREATE_SUCCESS}</h1>
             </c:if>

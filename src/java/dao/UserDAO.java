@@ -13,8 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.naming.NamingException;
 import utils.DBHelper;
+import utils.JavaMailUtils;
 
 /**
  *
@@ -60,6 +62,42 @@ public class UserDAO {
             }
         }
         return null;
+    }
+    
+    public boolean createAccount(String name, 
+            String email, 
+            String password, 
+            int roleID, 
+            String ProfilePicture) throws SQLException, ClassNotFoundException, NamingException, MessagingException{
+        
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            String sql = "insert into Account(Name, Email, Password, ProfilePicture, Role_id, Status) "
+                    + "values(?, ?, ?, ?, ?, 'active')";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, name);
+            stm.setString(2, email);
+            stm.setString(3, password);
+            stm.setString(4, ProfilePicture);
+            stm.setInt(5, roleID);
+            
+            int row = stm.executeUpdate();
+            if(row > 0){
+//                JavaMailUtils.sendMail(email, code);
+                check = true;
+            }
+        } finally {
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return check;
     }
     
 }

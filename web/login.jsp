@@ -22,7 +22,7 @@
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input type="text" name="txtEmail" required/>
-                        <span class="input-label">Username</span>
+                        <span class="input-label">Email</span>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>

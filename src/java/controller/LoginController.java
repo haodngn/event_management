@@ -34,7 +34,8 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SUCCESS = "SearchEventController";
+    private static final String EVENT_DEP_PAGE = "SearchEventController";
+    private static final String ADMIN_PAGE = "admin_home_page.jsp";
     private static final String ERROR = "login.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -48,10 +49,15 @@ public class LoginController extends HttpServlet {
             UserDTO us = dao.checkLogin(userID, password);
             HttpSession ses = request.getSession();
             if (us != null) {
-                url = SUCCESS;
+                if(us.getRoleID() == 2){ // if role is event_dep
+                    url = EVENT_DEP_PAGE;
+                } else if(us.getRoleID() == 3){
+                    url = ADMIN_PAGE;
+                }
                 ses.setAttribute("USER", us);
+                
             } else {
-                ses.setAttribute("mess", "Cannot find account");
+                ses.setAttribute("mess", "Email or Password incorrect !!");
             }
         } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);

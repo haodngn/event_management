@@ -19,8 +19,9 @@ public class UserDTO {
     Boolean gender;
     int roleID;
     String ProfilePicture;
+    String status;
 
-    public UserDTO(int userID, String name, String email, String password, String phoneNumber, Boolean gender, int roleID, String ProfilePicture) {
+    public UserDTO(int userID, String name, String email, String password, String phoneNumber, Boolean gender, int roleID, String ProfilePicture, String status) {
         this.userID = userID;
         this.name = name;
         this.email = email;
@@ -29,6 +30,7 @@ public class UserDTO {
         this.gender = gender;
         this.roleID = roleID;
         this.ProfilePicture = ProfilePicture;
+        this.status = status;
     }
 
     public UserDTO(String name, String email, int roleID, String ProfilePicture) {
