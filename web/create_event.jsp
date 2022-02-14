@@ -13,18 +13,49 @@
         <title>Create</title>
     </head>
     <body>
+        <c:set value="${requestScope.CREATE_ERR}" var="err"/>
         <form action="MainController" method="POST">
+            speaker 
             <input type="text" name="txtSpeaker" value="${param.txtSpeaker}" placeholder="Speaker"/></br>
+            <c:if test="${not empty err.speakerLength}">
+                <font color="red">
+                    ${err.speakerLength}<br/>
+                </font>
+            </c:if>
+            Event name 
             <input type="text" name="txtEventName" value="${param.txtEventName}" placeholder="EventName"/></br>
-            <input type="text" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/></br>
-            <input type="text" name="txtEndDate" value="${param.txtSpeaker}" placeholder="txtEndDate"/></br>
-            <input type="text" name="registerDate" value="${param.txtSpeaker}" placeholder="registerDate"/></br>
-            <input type="text" name="txtExpirationDate" value="${param.txtSpeaker}" placeholder="txtExpirationDate"/></br>
-            <input type="text" name="txtStudentCount" value="${param.txtSpeaker}" placeholder="txtStudentCount"/></br>
-            <input type="text" name="txtDescription" value="${param.txtSpeaker}" placeholder="txtDescription"/></br>
-            <input type="text" name="txtLocation" value="${param.txtSpeaker}" placeholder="txtLocation"/></br>
-            <input type="text" name="txtPostedBy" value="${param.txtSpeaker}" placeholder="txtPostedBy"/></br>
-            <input type="text" name="txtPostId" value="${param.txtSpeaker}" placeholder="txtPostId"/></br>
+            <c:if test="${not empty err.nameLength}">
+                <font color="red">
+                    ${err.nameLength}<br/>
+                </font>
+            </c:if>
+            Occur Date 
+            <input type="date" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/></br>
+            End Date 
+            <input type="date" name="txtEndDate" value="${param.txtEndDate}" placeholder="txtEndDate"/></br>
+            register Date 
+            <input type="date" name="registerDate" value="${param.registerDate}" placeholder="registerDate"/></br>
+            Expiration Date 
+            <input type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" placeholder="txtExpirationDate"/></br>
+            
+            Description
+            <input type="text" name="txtDescription" value="${param.txtDescription}" placeholder="txtDescription"/></br>
+            <c:if test="${not empty err.desLength}">
+                <font color="red">
+                    ${err.desLength}<br/>
+                </font>
+            </c:if>
+            Location
+            <input type="text" name="txtLocation" value="${param.txtLocation}" placeholder="txtLocation"/></br>
+            <c:if test="${not empty err.locationLength}">
+                <font color="red">
+                    ${err.locationLength}<br/>
+                </font>
+            </c:if>
+            Posted By 
+            <input type="number" name="txtPostedBy" value="${param.txtPostedBy}" placeholder="txtPostedBy"/></br>
+            Post Id 
+            <input type="number" name="txtPostId" value="${param.txtPostId}" placeholder="txtPostId"/></br>
             
             <input type="submit" value="Create" name="btnAction" />
         </form>

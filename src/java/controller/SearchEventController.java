@@ -51,7 +51,7 @@ public class SearchEventController extends HttpServlet {
         if(index != null){
             pageIndex = Integer.parseInt(index);
         }
-        int countPage = 0;
+        int countPage = 1;
         
         String url = HOME_PAGE;
         
