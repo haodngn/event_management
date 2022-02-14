@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
-import tinnt.error.CreateEventError;
+//import tinnt.error.CreateEventError;
+import dto.EventErrorDTO;
 
 /**
  *
@@ -57,7 +58,7 @@ public class CreateEventController extends HttpServlet {
         int post_by = Integer.parseInt(request.getParameter("txtPostedBy"));
         int postId = Integer.parseInt(request.getParameter("txtPostId"));
         
-        CreateEventError err = new CreateEventError();
+        EventErrorDTO err = new EventErrorDTO();
         boolean foundErr = false;
         try {
             if(speaker.length() < 2 || speaker.length() > 50){
