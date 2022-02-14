@@ -185,4 +185,34 @@ public class EventDAO implements Serializable{
         return check;
     }
     
+    public boolean updateEvent(EventDTO dto) throws ClassNotFoundException, SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean update = false;
+        String sql = "update Event set  Speaker = ?, EventName = ?, OccurDate = ?, EndDate = ?, RegisterDate = ?, ExpirationDate = ?, Description = ?, Location = ? where ID = ?  ";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            
+            stm.setString(1, dto.getSpeaker());
+            stm.setString(2, dto.getEventName());
+            stm.setString(3, dto.getOccurDate());
+            stm.setString(4, dto.getEnddate());
+            stm.setString(5, dto.getRegisterDate());
+            stm.setString(6, dto.getExpirationDate());
+            stm.setString(7, dto.getDescription());
+            stm.setString(8, dto.getLoaction());
+            stm.setInt(9, dto.getId());
+            update = stm.executeUpdate()>0;
+        } finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return update;
+    }
+    
 }
