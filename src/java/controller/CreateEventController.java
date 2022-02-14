@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -78,11 +80,47 @@ public class CreateEventController extends HttpServlet {
                 err.setLocationLength("Field is required 2 - 20 character !!");
             }
             
-//            if(speaker == null || eventName == null || occurDate == null || endDate == null || registerDate == null || expirationDate == null
-//                    ||description == null || location == null || postId == 0 || post_by == 0){
-//                foundErr = true;
-//                err.setIsEmpty("Field is empty !");
-//            }
+            //conver string to date(util) to compare
+            Date occur = new SimpleDateFormat("MM-dd-yyyy").parse(occurDate);
+            Date exp = new SimpleDateFormat("MM-dd-yyyy").parse(expirationDate);
+            Date regist = new SimpleDateFormat("MM-dd-yyyy").parse(registerDate);
+            Date end = new SimpleDateFormat("MM-dd-yyyy").parse(endDate);
+            
+            //expirationDate < RegisterDate
+            if(exp.before(regist)){ 
+                foundErr = true;
+                err.setExpDateCheck("Expiration date must after Register date !!");
+            }
+            
+            //RegisterDate > ExpirationDate
+            if(regist.after(exp)){
+                foundErr = true;
+                err.setRegisterDateCheck("Register date must before Expiration date !!");
+            }
+            
+            //Occur Date > End date
+            if(occur.after(end)){
+                foundErr = true;
+                err.setOccurDateCheck("Occur date must before End date !!");
+            }
+            
+            //End date < Occur Date
+            if(end.before(occur)){
+                foundErr = true;
+                err.setEndDateCheck("End date must after Occur date !!");
+            }
+            
+            //Occur Date < Exp Date
+            if(occur.before(exp)){
+                foundErr = true;
+                err.setOccurDateCheck("Occur date must after Expiration date !!");
+            }
+            
+            //Exp Date > Occur Date
+            if(exp.after(occur)){
+                foundErr = true;
+                err.setExpDateCheck("Expiration date must before Occur date !!");
+            }
 
             
             if(foundErr){

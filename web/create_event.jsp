@@ -31,12 +31,32 @@
             </c:if>
             Occur Date 
             <input type="date" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/></br>
+            <c:if test="${not empty err.occurDateCheck}">
+                <font color="red">
+                    ${err.occurDateCheck}<br/>
+                </font>
+            </c:if>
             End Date 
             <input type="date" name="txtEndDate" value="${param.txtEndDate}" placeholder="txtEndDate"/></br>
+            <c:if test="${not empty err.endDateCheck}">
+                <font color="red">
+                    ${err.endDateCheck}<br/>
+                </font>
+            </c:if>
             register Date 
             <input type="date" name="registerDate" value="${param.registerDate}" placeholder="registerDate"/></br>
+            <c:if test="${not empty err.registerDateCheck}">
+                <font color="red">
+                    ${err.registerDateCheck}<br/>
+                </font>
+            </c:if>
             Expiration Date 
             <input type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" placeholder="txtExpirationDate"/></br>
+            <c:if test="${not empty err.expDateCheck}">
+                <font color="red">
+                    ${err.expDateCheck}<br/>
+                </font>
+            </c:if>
             
             Description
             <input type="text" name="txtDescription" value="${param.txtDescription}" placeholder="txtDescription"/></br>
