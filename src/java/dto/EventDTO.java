@@ -17,7 +17,7 @@ public class EventDTO implements Serializable{
     private String speaker;
     private String eventName;
     private String occurDate;
-    private String enđate;
+    private String endDate;
     private String registerDate;
     private String expirationDate;
     private int studentCount;
@@ -30,12 +30,12 @@ public class EventDTO implements Serializable{
     public EventDTO() {
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String enđate, String registerDate, String expirationDate, int studentCount, String description, String loaction, int prosted_by, int postId, boolean status) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String loaction, int prosted_by, int postId, boolean status) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
         this.occurDate = occurDate;
-        this.enđate = enđate;
+        this.endDate = endDate;
         this.registerDate = registerDate;
         this.expirationDate = expirationDate;
         this.studentCount = studentCount;
@@ -87,12 +87,12 @@ public class EventDTO implements Serializable{
         this.occurDate = occurDate;
     }
 
-    public String getEnđate() {
-        return enđate;
+    public String getendDate() {
+        return endDate;
     }
 
-    public void setEnđate(String enđate) {
-        this.enđate = enđate;
+    public void setendDate(String enđate) {
+        this.endDate = enđate;
     }
 
     public String getRegisterDate() {
