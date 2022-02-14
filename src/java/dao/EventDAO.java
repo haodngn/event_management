@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
@@ -138,7 +137,7 @@ public class EventDAO implements Serializable{
         }
     }
     
-    public boolean createEvent(int id, String speaker, String eventName,
+    public boolean createEvent(String speaker, String eventName,
             String occurDate, String enddate, String registerDate,
             String expirationDate, int studentCount, String description,
             String loaction, int prosted_by, int postId) throws SQLException, ClassNotFoundException, NamingException, ParseException{
@@ -147,9 +146,9 @@ public class EventDAO implements Serializable{
         PreparedStatement stm = null;
         boolean check = false;
         try {
-            String sql = "insert into Event(ID, Speaker, EventName, Description, EndDate, ExpirationDate, Location, OccurDate, Post_id,"
+            String sql = "insert into Event(Speaker, EventName, Description, EndDate, ExpirationDate, Location, OccurDate, Post_id,"
                     + "Posted_by, RegisterDate, StudentCount, Status) "
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,1)";
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,1)";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             
@@ -158,18 +157,18 @@ public class EventDAO implements Serializable{
             Date register= Date.valueOf(registerDate); 
             Date expiration= Date.valueOf(expirationDate); 
             
-            stm.setInt(1, id);
-            stm.setString(2, speaker);
-            stm.setString(3, eventName);
-            stm.setString(4, description);
-            stm.setDate(5, end);
-            stm.setDate(6, expiration);
-            stm.setString(7, loaction);
-            stm.setDate(8, occur);
-            stm.setInt(9, prosted_by);
-            stm.setInt(10, postId);
-            stm.setDate(11, register);
-            stm.setInt(12, studentCount);
+           
+            stm.setString(1, speaker);
+            stm.setString(2, eventName);
+            stm.setString(3, description);
+            stm.setDate(4, end);
+            stm.setDate(5, expiration);
+            stm.setString(6, loaction);
+            stm.setDate(7, occur);
+            stm.setInt(8, prosted_by);
+            stm.setInt(9, postId);
+            stm.setDate(10, register);
+            stm.setInt(11, studentCount);
             
             int row = stm.executeUpdate();
             if(row > 0){

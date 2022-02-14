@@ -13,6 +13,10 @@ import java.io.Serializable;
  */
 public class CreateEventError implements Serializable{
     private String isEmpty;
+    private String speakerLength;
+    private String nameLength;
+    private String desLength;
+    private String locationLength;
 
     public String getIsEmpty() {
         return isEmpty;
@@ -20,6 +24,38 @@ public class CreateEventError implements Serializable{
 
     public void setIsEmpty(String isEmpty) {
         this.isEmpty = isEmpty;
+    }
+
+    public String getSpeakerLength() {
+        return speakerLength;
+    }
+
+    public void setSpeakerLength(String speakerLength) {
+        this.speakerLength = speakerLength;
+    }
+
+    public String getNameLength() {
+        return nameLength;
+    }
+
+    public void setNameLength(String nameLength) {
+        this.nameLength = nameLength;
+    }
+
+    public String getDesLength() {
+        return desLength;
+    }
+
+    public void setDesLength(String desLength) {
+        this.desLength = desLength;
+    }
+
+    public String getLocationLength() {
+        return locationLength;
+    }
+
+    public void setLocationLength(String locationLength) {
+        this.locationLength = locationLength;
     }
     
 }
