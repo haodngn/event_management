@@ -17,6 +17,10 @@ public class CreateEventError implements Serializable{
     private String nameLength;
     private String desLength;
     private String locationLength;
+    private String registerDateCheck;
+    private String expDateCheck;
+    private String occurDateCheck;
+    private String endDateCheck;
 
     public String getIsEmpty() {
         return isEmpty;
@@ -56,6 +60,38 @@ public class CreateEventError implements Serializable{
 
     public void setLocationLength(String locationLength) {
         this.locationLength = locationLength;
+    }
+
+    public String getRegisterDateCheck() {
+        return registerDateCheck;
+    }
+
+    public void setRegisterDateCheck(String registerDateCheck) {
+        this.registerDateCheck = registerDateCheck;
+    }
+
+    public String getExpDateCheck() {
+        return expDateCheck;
+    }
+
+    public void setExpDateCheck(String expDateCheck) {
+        this.expDateCheck = expDateCheck;
+    }
+
+    public String getOccurDateCheck() {
+        return occurDateCheck;
+    }
+
+    public void setOccurDateCheck(String occurDateCheck) {
+        this.occurDateCheck = occurDateCheck;
+    }
+
+    public String getEndDateCheck() {
+        return endDateCheck;
+    }
+
+    public void setEndDateCheck(String endDateCheck) {
+        this.endDateCheck = endDateCheck;
     }
     
 }

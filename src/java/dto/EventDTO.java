@@ -93,6 +93,7 @@ public class EventDTO implements Serializable{
 
     public void setEnddate(String endDate) {
         this.endDate = endDate;
+      
     }
 
     public String getRegisterDate() {
