@@ -32,7 +32,7 @@ public class MainController extends HttpServlet {
     private static final String CREATE = "CreateEventController";
     private static final String ERROR = "invalid.jsp";
     private static final String LOGOUT = "LogoutController";
-    private static final String SEARCH = "NotiController";
+    private static final String SEARCH = "SearchEventController";
     private static final String DETAIL = "DetailController";
     private static final String LIKE = "LikeController";
     private static final String DISLIKE = "DislikeController";
@@ -56,7 +56,7 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if (action.equals("Create")) {
                 url = CREATE;
-            } else if (action.equals("Search article")) {
+            } else if (action.equals("Search event") || action.equals("Search")) {
                 url = SEARCH;
             } else if (action.equals("Detail")) {
                 url = DETAIL;
