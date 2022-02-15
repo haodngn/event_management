@@ -84,11 +84,107 @@ public class EventDAO implements Serializable{
             System.out.println("sql: "+ sql);
             while(rs.next()){
                 int Id = rs.getInt("ID");
-                String speaker = rs.getString("EventName");
-                String name = rs.getString("Speaker");
+                String speaker = rs.getString("Speaker");
+                String name = rs.getString("EventName");
                 String location = rs.getString("Location");
                 
                 EventDTO dto = new EventDTO(Id, speaker, name, location);
+                if(this.listEvent == null){
+                    this.listEvent = new ArrayList<>();
+                }
+                this.listEvent.add(dto);
+            }
+            
+        }finally {
+            if(rs != null){
+                rs.close();
+            }
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+    }
+    
+    public int countSearchEvent(String name) 
+            throws ClassNotFoundException, NamingException, SQLException{
+        Connection con = null;
+        PreparedStatement stm =null;
+        ResultSet rs = null;
+        
+        if(name.equals("")){
+            name = null;
+        }else{
+            name = "%"+name+"%";
+        }
+        
+        int countPage = 0;
+        try {
+            String sql = "select count(ID) as row "
+                    + "from Event "
+                    + "where status=1 "
+                    + "and EventName like ISNULL(?,EventName)";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, name);
+            rs = stm.executeQuery();
+            while(rs.next()){
+                int total = rs.getInt("row");
+                countPage = total / 5;
+                if(total % 5 != 0){
+                    countPage++;
+                }
+            }
+        }finally {
+            if (rs != null){
+                rs.close();
+            }
+            if (stm != null){
+                stm.close();
+            }
+            if (con != null){
+                con.close();
+            }
+        }
+        
+        return countPage;
+    }
+    
+    public void getEventBySearch(int index, String name) 
+            throws ClassNotFoundException, NamingException, SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        this.listEvent = new ArrayList<>();
+        
+        if(name.equals("")){
+            name = null;
+        }else{
+            name = "%"+name+"%";
+        }
+        
+        try {
+            String sql = "select ID, Speaker, EventName, Location "
+                    + "from Event "
+                    + "where status=1 "
+                    + "and EventName like ISNULL(?,EventName) "
+                    + "order by OccurDate "
+                    + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, name);
+            stm.setInt(2, (index - 1) * 5);
+            rs = stm.executeQuery();
+
+            while(rs.next()){
+                int Id = rs.getInt("ID");
+                String Eventname = rs.getString("EventName");
+                String speaker = rs.getString("Speaker");
+                String location = rs.getString("Location");
+                
+                EventDTO dto = new EventDTO(Id, speaker, Eventname, location);
                 if(this.listEvent == null){
                     this.listEvent = new ArrayList<>();
                 }

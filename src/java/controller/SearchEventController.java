@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Priority;
 
 /**
  *
@@ -45,6 +46,12 @@ public class SearchEventController extends HttpServlet {
         
         int pageIndex = 1;
         String index = request.getParameter("index");
+        String searchName = request.getParameter("txtSearchValue");
+        
+        if(searchName == null){
+            searchName = "";
+        }
+        
         if("".equals(index)){
             index = null;
         }
@@ -59,22 +66,27 @@ public class SearchEventController extends HttpServlet {
             EventDAO eventDAO = new EventDAO();
             List<EventDTO> listEvent = null;
             
-            countPage = eventDAO.countAllEvent();
-            eventDAO.getAllEvent(pageIndex);
-            listEvent = eventDAO.getListEvent();
+            if(searchName.equals("")){
+                countPage = eventDAO.countAllEvent();
+                eventDAO.getAllEvent(pageIndex);
+                listEvent = eventDAO.getListEvent();
+            }else{
+                countPage = eventDAO.countSearchEvent(searchName);
+                eventDAO.getEventBySearch(pageIndex, searchName);
+                listEvent = eventDAO.getListEvent();
+            }
             
-            System.out.println("events: "+ listEvent);
             
             request.setAttribute("listEvent", listEvent);//list Event
             request.setAttribute("page", countPage);//number of page 
             request.setAttribute("index", pageIndex);//current page
             
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            LOGGER.error("SQLException at SearchEventController: "+ex);
         } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
+            LOGGER.error("ClassNotFoundException at SearchEventController: "+ex);
         } catch (NamingException ex) {
-            ex.printStackTrace();
+            LOGGER.error("NamingException at SearchEventController: "+ex);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

@@ -26,7 +26,10 @@
         <br><a href="${logout}">Logout |</a>
         <a href="create_event.jsp"> Create</a>
         <br>
-
+        <form action="MainController">
+            <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" placeholder="search name event..."/>
+            <input type="submit" name="btnAction" value="Search event" />
+        </form>
         <table border="1">
             <thead>
                 <tr>
