@@ -41,6 +41,7 @@
             </thead>
             <tbody>
                 <c:forEach var="event" items="${requestScope.listEvent}">
+                <form action="MainController">
                     <tr>
                         <td>${event.id}</td>
                         <td>
@@ -54,18 +55,28 @@
                         </td>
                         <td>${event.speaker}</td>
                         <td>${event.loaction}</td>
+                        <td>
+                            <input type="hidden" name="id" value="${event.id}" />
+                            <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
+                            <input type="hidden" name="index" value="${param.index}" />
+                            
+                            <input type="submit" value="Edit" name="btnAction" />
+                            <input type="submit" value="Delete" name="btnAction" />
+
+                        </td>
                     </tr>
-                </c:forEach>
+                </form>
+            </c:forEach>
 
-            </tbody>
-        </table>
-        <c:forEach begin="1" end="${requestScope.page}" var="i">
-            <c:url value="SearchEventController" var="paging">
-                <c:param name="index" value="${i}"/>
+        </tbody>
+    </table>
+    <c:forEach begin="1" end="${requestScope.page}" var="i">
+        <c:url value="SearchEventController" var="paging">
+            <c:param name="index" value="${i}"/>
 
-            </c:url>
-            <a href="${paging}">${i}</a>
-        </c:forEach>
+        </c:url>
+        <a href="${paging}">${i}</a>
+    </c:forEach>
 
-    </body>
+</body>
 </html>

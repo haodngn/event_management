@@ -14,9 +14,10 @@
     </head>
     <body>
         <h1>Event</h1>
-    <c:set value="${requestScope.CREATE_ERR}" var="err"/>
+    <c:set value="${requestScope.UPDATE_ERR}" var="err"/>
     <c:set value="${requestScope.EVENT}" var="event"/>
     <form action="MainController" method="POST">
+        <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
         speaker 
         <input type="text" name="txtSpeaker" value="${event.speaker}" placeholder="Speaker"/></br>
         <c:if test="${not empty err.speakerLength}">
@@ -74,7 +75,9 @@
             ${err.locationLength}<br/>
             </font>
         </c:if>
-
-        <input type="submit" value="Edit" name="btnAction" />
+            
+        <input type="submit" value="Edit Event" name="btnAction" />
+        <input type="submit" value="Back to home" name="btnAction" />
+    </form>
     </body>
 </html>

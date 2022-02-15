@@ -29,19 +29,21 @@ public class MainController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String LOGIN = "LoginController";
-    private static final String CREATE = "CreateEventController";
-    private static final String ERROR = "invalid.jsp";
     private static final String LOGOUT = "LogoutController";
-    private static final String SEARCH = "SearchEventController";
+    private static final String ERROR = "invalid.jsp";
+    
+    private static final String SEARCH_EVENT = "SearchEventController";
+    private static final String CREATE_EVENT = "CreateEventController";
+    private static final String DETAIL_EVENT = "GetDetailEventController";
+    private static final String UPDATE_EVENT = "UpdateEventController";
+    private static final String DELETE_EVENT = "DeleteEventController";
+    
     private static final String LIKE = "LikeController";
-    private static final String DISLIKE = "DislikeController";
-    private static final String DELETE = "DeleteController";
+    private static final String DISLIKE = "DislikeController";  
     private static final String COMMENT = "CommentController";
     private static final String DEL_CMT = "DelCommentController";
     private static final String POST = "PostController";
     private static final String NOTI_DETAIL = "NotiDetailController";
-    private static final String DETAIL_EVENT = "GetDetailEventController";
-    private static final String UPDATE_EVENT = "UpdateEventController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,15 +58,13 @@ public class MainController extends HttpServlet {
             } else if (action.equals("Logout")) {
                 url = LOGOUT;
             } else if (action.equals("Create")) {
-                url = CREATE;
-            } else if (action.equals("Search event") || action.equals("Search")) {
-                url = SEARCH;
+                url = CREATE_EVENT;
+            } else if (action.equals("Search event") || action.equals("Search") || action.equals("Back to home")) {
+                url = SEARCH_EVENT;
             } else if (action.equals("Like")) {
                 url = LIKE;
             } else if (action.equals("Dislike")) {
                 url = DISLIKE;
-            } else if (action.equals("Delete")) {
-                url = DELETE;
             } else if (action.equals("Comment")) {
                 url = COMMENT;
             } else if (action.equals("Delete cmt")) {
@@ -73,10 +73,12 @@ public class MainController extends HttpServlet {
                 url = POST;
             } else if (action.equals("Noti detail")) {
                 url = NOTI_DETAIL;
-            } else if (action.equals("detail event")){
+            } else if (action.equals("detail event") || action.equals("Edit")){
                 url = DETAIL_EVENT;
-            } else if (action.equals("Edit")){
+            } else if (action.equals("Edit Event")){
                 url = UPDATE_EVENT;
+            } else if(action.equals("Delete")){
+                url = DELETE_EVENT;
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
