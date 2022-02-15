@@ -167,6 +167,22 @@ public class EventDTO implements Serializable{
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
     
     
     
