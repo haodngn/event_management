@@ -34,8 +34,8 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Speaker</th>
                     <th>Name</th>
+                    <th>Speaker</th>
                     <th>Location</th>
                 </tr>
             </thead>
@@ -43,8 +43,16 @@
                 <c:forEach var="event" items="${requestScope.listEvent}">
                     <tr>
                         <td>${event.id}</td>
+                        <td>
+                            <c:url var="getDetail" value="MainController">
+                                <c:param name="btnAction" value="detail event"/>
+                                <c:param name="id" value="${event.id}"/>
+                                <c:param name="lastSearchValue" value="${param.txtSearchValue}"/>
+                                <c:param name="index" value="${param.index}"/>
+                            </c:url>
+                            <a href="${getDetail}">${event.eventName}</a>
+                        </td>
                         <td>${event.speaker}</td>
-                        <td>${event.eventName}</td>
                         <td>${event.loaction}</td>
                     </tr>
                 </c:forEach>

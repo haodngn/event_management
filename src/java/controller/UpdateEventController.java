@@ -9,7 +9,6 @@ import dao.EventDAO;
 import dto.EventDTO;
 import dto.EventErrorDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -136,7 +135,6 @@ public class UpdateEventController extends HttpServlet {
             } else {
                 url = UPDATE_PAGE;
             }
-
             
         } catch (Exception e) {
             e.printStackTrace();

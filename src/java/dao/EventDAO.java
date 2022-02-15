@@ -12,7 +12,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
@@ -29,6 +31,61 @@ public class EventDAO implements Serializable{
         return listEvent;
     }
      
+    public EventDTO getEventByID(int id) 
+            throws SQLException, ClassNotFoundException, NamingException{
+        Connection con = null;
+        PreparedStatement stm =null;
+        ResultSet rs = null;
+        
+        EventDTO dto = null;
+        
+        try {
+            String sql = "select ID, EventName, Speaker, EndDate, RegisterDate, ExpirationDate, OccurDate, Description, Location "
+                    + "from Event "
+                    + "where id=?";
+            
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, id);
+            rs = stm.executeQuery();
+            if(rs.next()){
+                
+                DateFormat df = new SimpleDateFormat("YYYY-MM-dd");//convert date to String with format dd//MM//YYYY
+                
+                String speaker = rs.getString("Speaker");
+                String name = rs.getString("EventName");
+                String location = rs.getString("Location");
+                String des = rs.getString("Description");
+                
+                Date EndDate = rs.getDate("EndDate");
+                Date RegisterDate = rs.getDate("RegisterDate");
+                Date ExpirationDate = rs.getDate("ExpirationDate");
+                Date OccurDate = rs.getDate("OccurDate");
+                
+                //convert Date to String to store in dto
+                String end = df.format(EndDate);
+                String register = df.format(RegisterDate);
+                String exp = df.format(ExpirationDate);
+                String occur = df.format(OccurDate);
+                
+                dto = new EventDTO(speaker, name, occur, end, register, exp, des, location);
+            }
+            
+        } finally {
+            if (rs != null){
+                rs.close();
+            }
+            if (stm != null){
+                stm.close();
+            }
+            if (con != null){
+                con.close();
+            }
+        }
+        
+        return dto;
+    }
+    
     public int countAllEvent() 
             throws SQLException, ClassNotFoundException, NamingException{
         Connection con = null;

@@ -10,7 +10,6 @@ import dto.EventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,16 +17,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "SearchEventController", urlPatterns = {"/SearchEventController"})
-public class SearchEventController extends HttpServlet {
-    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(SearchEventController.class);
+@WebServlet(name = "GetDetailEventController", urlPatterns = {"/GetDetailEventController"})
+public class GetDetailEventController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(GetDetailEventController.class);
     
-    private final String HOME_PAGE = "home_page.jsp";
+    private final String UPDATE_PAGE = "update_event.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,49 +44,23 @@ public class SearchEventController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        int pageIndex = 1;
-        String index = request.getParameter("index");
-        String searchName = request.getParameter("txtSearchValue");
-        
-        if(searchName == null){
-            searchName = "";
-        }
-        
-        if("".equals(index)){
-            index = null;
-        }
-        if(index != null){
-            pageIndex = Integer.parseInt(index);
-        }
-        int countPage = 1;
-        
-        String url = HOME_PAGE;
+        String url = UPDATE_PAGE;
         
         try {
-            EventDAO eventDAO = new EventDAO();
-            List<EventDTO> listEvent = null;
+            int id = Integer.parseInt(request.getParameter("id"));
             
-            if(searchName.equals("")){
-                countPage = eventDAO.countAllEvent();
-                eventDAO.getAllEvent(pageIndex);
-                listEvent = eventDAO.getListEvent();
-            }else{
-                countPage = eventDAO.countSearchEvent(searchName);
-                eventDAO.getEventBySearch(pageIndex, searchName);
-                listEvent = eventDAO.getListEvent();
+            EventDAO dao = new EventDAO();
+            EventDTO dto =  dao.getEventByID(id);
+            if(dto != null){
+                request.setAttribute("EVENT", dto);// Detai Event
             }
-            
-            
-            request.setAttribute("listEvent", listEvent);//list Event
-            request.setAttribute("page", countPage);//number of page 
-            request.setAttribute("index", pageIndex);//current page
-            
+          
         } catch (SQLException ex) {
-            LOGGER.error("SQLException at SearchEventController: "+ex);
+            LOGGER.error("SQLException at GetDetailEventController: "+ex);
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at SearchEventController: "+ex);
+            LOGGER.error("ClassNotFoundException at GetDetailEventController: "+ex);
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at SearchEventController: "+ex);
+            LOGGER.error("NamingException at GetDetailEventController: "+ex);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

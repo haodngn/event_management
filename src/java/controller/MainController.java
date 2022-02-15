@@ -33,7 +33,6 @@ public class MainController extends HttpServlet {
     private static final String ERROR = "invalid.jsp";
     private static final String LOGOUT = "LogoutController";
     private static final String SEARCH = "SearchEventController";
-    private static final String DETAIL = "DetailController";
     private static final String LIKE = "LikeController";
     private static final String DISLIKE = "DislikeController";
     private static final String DELETE = "DeleteController";
@@ -41,6 +40,8 @@ public class MainController extends HttpServlet {
     private static final String DEL_CMT = "DelCommentController";
     private static final String POST = "PostController";
     private static final String NOTI_DETAIL = "NotiDetailController";
+    private static final String DETAIL_EVENT = "GetDetailEventController";
+    private static final String UPDATE_EVENT = "UpdateEventController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,8 +59,6 @@ public class MainController extends HttpServlet {
                 url = CREATE;
             } else if (action.equals("Search event") || action.equals("Search")) {
                 url = SEARCH;
-            } else if (action.equals("Detail")) {
-                url = DETAIL;
             } else if (action.equals("Like")) {
                 url = LIKE;
             } else if (action.equals("Dislike")) {
@@ -74,6 +73,10 @@ public class MainController extends HttpServlet {
                 url = POST;
             } else if (action.equals("Noti detail")) {
                 url = NOTI_DETAIL;
+            } else if (action.equals("detail event")){
+                url = DETAIL_EVENT;
+            } else if (action.equals("Edit")){
+                url = UPDATE_EVENT;
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
