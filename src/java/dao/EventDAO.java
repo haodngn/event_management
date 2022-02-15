@@ -202,7 +202,6 @@ public class EventDAO implements Serializable{
             stm.setString(6, dto.getExpirationDate());
             stm.setString(7, dto.getDescription());
             stm.setString(8, dto.getLoaction());
-            stm.setInt(9, dto.getId());
             update = stm.executeUpdate()>0;
         } finally{
             if(stm != null){
