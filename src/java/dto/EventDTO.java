@@ -22,7 +22,7 @@ public class EventDTO implements Serializable{
     private String expirationDate;
     private int studentCount;
     private String description;
-    private String loaction;
+    private String location;
     private int prosted_by;
     private int postId;
     private boolean status;
@@ -30,7 +30,7 @@ public class EventDTO implements Serializable{
     public EventDTO() {
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String loaction, int prosted_by, int postId, boolean status) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, int postId, boolean status) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -40,7 +40,7 @@ public class EventDTO implements Serializable{
         this.expirationDate = expirationDate;
         this.studentCount = studentCount;
         this.description = description;
-        this.loaction = loaction;
+        this.location = location;
         this.prosted_by = prosted_by;
         this.postId = postId;
         this.status = status;
@@ -50,10 +50,19 @@ public class EventDTO implements Serializable{
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
-        this.loaction = loaction;
+        this.location = loaction;
     }
-    
-    
+
+    public EventDTO(String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location) {
+        this.speaker = speaker;
+        this.eventName = eventName;
+        this.occurDate = occurDate;
+        this.endDate = endDate;
+        this.registerDate = registerDate;
+        this.expirationDate = expirationDate;
+        this.description = description;
+        this.location = location;
+    }
 
     public int getId() {
         return id;
@@ -129,11 +138,11 @@ public class EventDTO implements Serializable{
     }
 
     public String getLoaction() {
-        return loaction;
+        return location;
     }
 
     public void setLoaction(String loaction) {
-        this.loaction = loaction;
+        this.location = loaction;
     }
 
     public int getProsted_by() {

@@ -22,6 +22,22 @@ public class EventErrorDTO implements Serializable{
     private String occurDateCheck;
     private String endDateCheck;
 
+
+    public EventErrorDTO(String isEmpty, String speakerLength, String nameLength, String desLength, String locationLength, String registerDateCheck, String expDateCheck, String occurDateCheck, String endDateCheck) {
+        this.isEmpty = isEmpty;
+        this.speakerLength = speakerLength;
+        this.nameLength = nameLength;
+        this.desLength = desLength;
+        this.locationLength = locationLength;
+        this.registerDateCheck = registerDateCheck;
+        this.expDateCheck = expDateCheck;
+        this.occurDateCheck = occurDateCheck;
+        this.endDateCheck = endDateCheck;
+    }
+
+    public EventErrorDTO() {
+    }
+    
     public String getIsEmpty() {
         return isEmpty;
     }
