@@ -338,11 +338,16 @@ public class EventDAO implements Serializable{
         return check;
     }
     
-    public boolean updateEvent(EventDTO dto) throws ClassNotFoundException, SQLException, NamingException {
+    public boolean updateEvent(EventDTO dto, int id) throws ClassNotFoundException, SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean update = false;
-        String sql = "update Event set  Speaker = ?, EventName = ?, OccurDate = ?, EndDate = ?, RegisterDate = ?, ExpirationDate = ?, Description = ?, Location = ? where ID = ?  ";
+        String sql = "update Event "
+                + "set Speaker = ?, EventName = ?, "
+                + "OccurDate = ?, EndDate = ?, "
+                + "RegisterDate = ?, ExpirationDate = ?, "
+                + "Description = ?, Location = ? "
+                + "where ID = ?  ";
         try {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
@@ -355,7 +360,11 @@ public class EventDAO implements Serializable{
             stm.setString(6, dto.getExpirationDate());
             stm.setString(7, dto.getDescription());
             stm.setString(8, dto.getLoaction());
-            update = stm.executeUpdate()>0;
+            stm.setInt(9, id);
+            
+            if(stm.executeUpdate()>0){
+                update = true ;
+            }
         } finally{
             if(stm != null){
                 stm.close();
@@ -365,6 +374,31 @@ public class EventDAO implements Serializable{
             }
         }
         return update;
+    }
+    
+    public boolean deleteEvent(int id) throws ClassNotFoundException, NamingException, SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        String sql = "update Event set status=0 where id=?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            
+            stm.setInt(1, id);
+            
+            if(stm.executeUpdate()>0){
+                check = true ;
+            }
+        } finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return check;
     }
     
 }

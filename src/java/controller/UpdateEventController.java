@@ -9,20 +9,25 @@ import dao.EventDAO;
 import dto.EventDTO;
 import dto.EventErrorDTO;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author HAO
  */
 public class UpdateEventController extends HttpServlet {
-    private final String HOME_PAGE = "home_page.jsp";
+    private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(UpdateEventController.class);
+    
+    private final String HOME_PAGE = "SearchEventController";
     private final String UPDATE_PAGE = "update_event.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,43 +43,34 @@ public class UpdateEventController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = UPDATE_PAGE;
         try {
-            boolean checkErr = true;
-            EventErrorDTO errorDTO = new EventErrorDTO();
-            
+            int id = Integer.parseInt(request.getParameter("txtId"));
             String speaker = request.getParameter("txtSpeaker");
-            if (speaker.isEmpty()) {
-                checkErr = false;
-                errorDTO.setIsEmpty("Speaker can not be empty");
-            }
-            if (speaker.length() <= 6) {
-                checkErr = false;
-                errorDTO.setSpeakerLength("Speaker can not be less than 6 characters");
-            }
-            
             String eventName = request.getParameter("txtEventName");
-            if (eventName.isEmpty()) {
-                checkErr = false;
-                errorDTO.setIsEmpty("Name can not be empty");
-            }
-            if (eventName.length() <= 6) {
-                checkErr = false;
-                errorDTO.setNameLength("Name can not be less than 6 characters");
-            }
-            
             String description = request.getParameter("txtDescription");
-            if (description.isEmpty()) {
-                checkErr = false;
-                errorDTO.setIsEmpty("Description can not be empty");
-            }
-            if (description.length() <= 6) {
-                checkErr = false;
-                errorDTO.setDesLength("Description can not be less than 20 characters");
+            String location = request.getParameter("txtLocation");
+            
+            boolean foundErr = false;
+            EventErrorDTO err = new EventErrorDTO();
+            
+            
+            if(speaker.length() < 2 || speaker.length() > 50){
+                foundErr = true;
+                err.setSpeakerLength("Field is required 2 - 50 character !!");
             }
             
-            String location = request.getParameter("txtLocation");
-            if (location.isEmpty()) {
-                checkErr = false;
-                errorDTO.setIsEmpty("Location can not be empty");
+            if(eventName.length() < 3 || eventName.length() > 30){
+                foundErr = true;
+                err.setNameLength("Field is required 3 - 30 character !!");
+            }
+            
+            if(description.length() < 3 || description.length() > 50){
+                foundErr = true;
+                err.setDesLength("Field is required 3 - 50 charater !!");
+            }
+            
+            if(location.length() < 2 || location.length() > 20){
+                foundErr = true;
+                err.setLocationLength("Field is required 2 - 20 character !!");
             }
             
             //conver string to date(util) to compare
@@ -90,54 +86,61 @@ public class UpdateEventController extends HttpServlet {
             
             //expirationDate < RegisterDate
             if(exp.before(regist)){ 
-                checkErr = false;
-                errorDTO.setExpDateCheck("Expiration date must after Register date !!");
+                foundErr = true;
+                err.setExpDateCheck("Expiration date must after Register date !!");
             }
             
             //RegisterDate > ExpirationDate
             if(regist.after(exp)){
-                checkErr = false;
-                errorDTO.setRegisterDateCheck("Register date must before Expiration date !!");
+                foundErr = true;
+                err.setRegisterDateCheck("Register date must before Expiration date !!");
             }
             
             //Occur Date > End date
             if(occur.after(end)){
-                checkErr = false;
-                errorDTO.setOccurDateCheck("Occur date must before End date !!");
+                foundErr = true;
+                err.setOccurDateCheck("Occur date must before End date !!");
             }
             
             //End date < Occur Date
             if(end.before(occur)){
-                checkErr = false;
-                errorDTO.setEndDateCheck("End date must after Occur date !!");
+                foundErr = true;
+                err.setEndDateCheck("End date must after Occur date !!");
             }
             
             //Occur Date < Exp Date
             if(occur.before(exp)){
-                checkErr = false;
-                errorDTO.setOccurDateCheck("Occur date must after Expiration date !!");
+                foundErr = true;
+                err.setOccurDateCheck("Occur date must after Expiration date !!");
             }
             
             //Exp Date > Occur Date
             if(exp.after(occur)){
-                checkErr = false;
-                errorDTO.setExpDateCheck("Expiration date must before Occur date !!");
+                foundErr = true;
+                err.setExpDateCheck("Expiration date must before Occur date !!");
             }
-            
-            EventDAO eventDAO = new EventDAO();
-            if (checkErr) {
-                HttpSession session = request.getSession();
-                session.removeAttribute("IMG");
-                EventDTO eventDTO = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location);
-                if (eventDAO.updateEvent(eventDTO)) {
+            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location);
+            if(foundErr){
+                request.setAttribute("UPDATE_ERR", err);
+                request.setAttribute("EVENT", dto);// Detai Event
+                request.setAttribute("EVENT_ID", id);
+            }else{
+                EventDAO dao = new EventDAO();
+                
+                boolean check = dao.updateEvent(dto, id);
+                if(check){
                     url = HOME_PAGE;
                 }
-            } else {
-                url = UPDATE_PAGE;
             }
             
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            LOGGER.error("ClassNotFoundException at UpdateEventController: "+ex.getMessage());
+        } catch (SQLException ex) {
+            LOGGER.error("SQLException at UpdateEventController: "+ex.getMessage());
+        } catch (NamingException ex) {
+            LOGGER.error("NamingException at UpdateEventController: "+ex.getMessage());
+        } catch (ParseException ex) {
+            LOGGER.error("ParseException at UpdateEventController: "+ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

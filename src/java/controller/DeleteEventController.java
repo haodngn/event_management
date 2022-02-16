@@ -6,12 +6,10 @@
 package controller;
 
 import dao.EventDAO;
-import dto.EventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,11 +21,11 @@ import org.apache.log4j.Logger;
  *
  * @author Admin
  */
-@WebServlet(name = "GetDetailEventController", urlPatterns = {"/GetDetailEventController"})
-public class GetDetailEventController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(GetDetailEventController.class);
+@WebServlet(name = "DeleteEventController", urlPatterns = {"/DeleteEventController"})
+public class DeleteEventController extends HttpServlet {
+    private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateEventController.class);
     
-    private final String UPDATE_PAGE = "update_event.jsp";
+    private final String ERROR = "invalid.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,27 +41,39 @@ public class GetDetailEventController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String url = UPDATE_PAGE;
+        String url = ERROR;
         
         try {
+            String index = request.getParameter("index");
+            int pageIndex = 1;
+            if("".equals(index)){
+                index = null;
+            }
+            if(index != null){
+                pageIndex = Integer.parseInt(index);
+            }
+            
+            String searchValue = request.getParameter("lastSearchValue");
             int id = Integer.parseInt(request.getParameter("id"));
             
             EventDAO dao = new EventDAO();
-            EventDTO dto =  dao.getEventByID(id);
-            if(dto != null){
-                request.setAttribute("EVENT", dto);// Detai Event
-                request.setAttribute("EVENT_ID", id);
+            boolean check = dao.deleteEvent(id);
+            if(check){
+                url = "MainController"
+                        + "?btnAction=Search"
+                        + "&txtSearchValue="+searchValue
+                        + "&index="+pageIndex;
             }
-          
-        } catch (SQLException ex) {
-            LOGGER.error("SQLException at GetDetailEventController: "+ex);
+            
+            response.sendRedirect(url);
+            
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at GetDetailEventController: "+ex);
+            LOGGER.error("ClassNotFoundException at DeleteEventController: "+ex.getMessage());
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at GetDetailEventController: "+ex);
+            LOGGER.error("NamingException at DeleteEventController: "+ex.getMessage());
+        } catch (SQLException ex) {
+            LOGGER.error("SQLException at DeleteEventController: "+ex.getMessage());
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
             out.close();
         }
     }

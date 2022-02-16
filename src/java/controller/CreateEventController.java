@@ -128,9 +128,6 @@ public class CreateEventController extends HttpServlet {
                 request.setAttribute("CREATE_ERR", err);
             }else{
                 EventDAO dao = new EventDAO();
-//                int maxid = dao.getMaxId();
-//                int id = maxid + 1;
-//                System.out.println("id: " +id);
                 boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location, post_by, postId);
                 if(result){
                     request.setAttribute("CREATE_SUCCESS", "Create success !");
