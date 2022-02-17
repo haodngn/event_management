@@ -7,6 +7,7 @@ package controller;
 
 import dao.EventDAO;
 import dto.EventDTO;
+import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,6 +30,7 @@ public class SearchEventController extends HttpServlet {
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(SearchEventController.class);
     
     private final String HOME_PAGE = "home_page.jsp";
+    private final String STUDENT_HOME_PAGE = "student_home_page.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,6 +65,7 @@ public class SearchEventController extends HttpServlet {
         String url = HOME_PAGE;
         
         try {
+            HttpSession ses = request.getSession();
             EventDAO eventDAO = new EventDAO();
             List<EventDTO> listEvent = null;
             
@@ -74,8 +78,13 @@ public class SearchEventController extends HttpServlet {
                 eventDAO.getEventBySearch(pageIndex, searchName);
                 listEvent = eventDAO.getListEvent();
             }
-            
-            
+            UserDTO dto = (UserDTO) ses.getAttribute("USER");
+            if(dto.getRoleID() ==  1 ){
+                url = STUDENT_HOME_PAGE; //student home
+            } else if (dto.getRoleID() == 2){
+                url = HOME_PAGE; //dep event
+            }
+               
             request.setAttribute("listEvent", listEvent);//list Event
             request.setAttribute("page", countPage);//number of page 
             request.setAttribute("index", pageIndex);//current page
