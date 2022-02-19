@@ -24,9 +24,8 @@ import utils.JavaMailUtils;
  */
 public class UserDAO {
     
-    public UserDTO checkLogin(String userID, String password) throws NoSuchAlgorithmException, SQLException, NamingException {
-        String fullName = "";
-        String email = "";
+    public UserDTO checkLogin(String email, String password) throws NoSuchAlgorithmException, SQLException, NamingException {
+        String fullName = "";       
         int roleID;
         String status = "";
         Connection conn = null;
@@ -37,7 +36,7 @@ public class UserDAO {
             if (conn != null) {
                 String sql = "SELECT Name, Role_id, Status FROM Account WHERE Email=? AND Password=? AND Status!=?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, userID);
+                stm.setString(1, email);
                 stm.setString(2, password);
                 stm.setString(3, "disable");
                 rs = stm.executeQuery();
@@ -98,6 +97,78 @@ public class UserDAO {
             }
         }
         return check;
+    }
+    public UserDTO getUserByEmail(String email) 
+            throws SQLException, ClassNotFoundException, NamingException{
+        Connection con = null;
+        PreparedStatement stm =null;
+        ResultSet rs = null;
+        
+        UserDTO dto = null;
+        
+        try {
+            String sql = "select ID, Name, PhoneNumber, Gender, ProfilePicture "
+                    + "from Account "
+                    + "where Email=? ";
+            
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, email);
+            rs = stm.executeQuery();
+            if(rs.next()){
+                String id = rs.getString("ID");
+                String name = rs.getString("Name");
+                String phone = rs.getString("PhoneNumber");
+                String gender = rs.getString("Gender");
+                String profilePicture = rs.getString("ProfilePicture");
+                Boolean gender1 = gender.equals("1");
+                System.out.println(gender1);
+                dto = new UserDTO(Integer.parseInt(id), name, email, phone, gender1, profilePicture);
+            }
+            
+        } finally {
+            if (rs != null){
+                rs.close();
+            }
+            if (stm != null){
+                stm.close();
+            }
+            if (con != null){
+                con.close();
+            }
+        }
+        
+        return dto;
+    }
+    
+    public boolean updateUser(String newName ,String newPhone, Boolean newGender, String email ) throws ClassNotFoundException, SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean update = false;
+        String sql = "update Account "
+                + "set Name = ?, phoneNumber = ?, gender = ? "
+                + "where Email = ?  ";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            
+            stm.setString(1, newName);
+            stm.setString(2, newPhone);
+            stm.setBoolean(3, newGender);
+            stm.setString(4, email);
+            
+            if(stm.executeUpdate()>0){
+                update = true ;
+            }
+        } finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return update;
     }
     
 }

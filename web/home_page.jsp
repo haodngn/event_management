@@ -23,6 +23,7 @@
         <c:url var="logout" value="MainController">
             <c:param name="btnAction" value="Logout"></c:param>
         </c:url>
+        <a href="profile_page.jsp">Profile</a>
         <br><a href="${logout}">Logout |</a>
         <a href="create_event.jsp"> Create</a>
         <br>

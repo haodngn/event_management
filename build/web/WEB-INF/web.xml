@@ -12,6 +12,26 @@
         <servlet-name>LoginGoogleServlet</servlet-name>
         <servlet-class>controller.LoginGoogleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchEventController</servlet-name>
+        <servlet-class>controller.SearchEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateEventController</servlet-name>
+        <servlet-class>controller.CreateEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateEventController</servlet-name>
+        <servlet-class>controller.UpdateEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>controller.ProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -23,6 +43,26 @@
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchEventController</servlet-name>
+        <url-pattern>/SearchEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateEventController</servlet-name>
+        <url-pattern>/CreateEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEventController</servlet-name>
+        <url-pattern>/UpdateEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/ProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -38,4 +78,8 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>log4j-config-location</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+    </context-param>
 </web-app>
