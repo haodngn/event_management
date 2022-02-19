@@ -28,6 +28,10 @@
         <servlet-name>UpdateEventController</servlet-name>
         <servlet-class>controller.UpdateEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateFeedbackController</servlet-name>
+        <servlet-class>controller.CreateFeedbackController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>UpdateEventController</servlet-name>
         <url-pattern>/UpdateEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateFeedbackController</servlet-name>
+        <url-pattern>/CreateFeedbackController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
