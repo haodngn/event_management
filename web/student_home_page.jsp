@@ -49,7 +49,7 @@
                         <td>
                             <c:url var="getDetail" value="MainController">
                                 <c:param name="btnAction" value="detail event"/>
-                                <c:param name="id" value="${event.id}"/>
+                                <c:param name="txtId" value="${event.id}"/>
                                 <c:param name="lastSearchValue" value="${param.txtSearchValue}"/>
                                 <c:param name="index" value="${param.index}"/>
                             </c:url>

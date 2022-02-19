@@ -29,6 +29,10 @@
         <servlet-class>controller.UpdateEventController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateFeedbackController</servlet-name>
+        <servlet-class>controller.CreateFeedbackController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>controller.ProfileController</servlet-class>
     </servlet>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>UpdateEventController</servlet-name>
         <url-pattern>/UpdateEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateFeedbackController</servlet-name>
+        <url-pattern>/CreateFeedbackController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>

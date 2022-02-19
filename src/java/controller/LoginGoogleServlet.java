@@ -77,7 +77,7 @@ public class LoginGoogleServlet extends HttpServlet {
                     dao.createAccount(name, email, password, 1, picture);
                 }
                 session.setAttribute("USER", user);
-                
+               
                 url = SUCCESS;
 
             }
