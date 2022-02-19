@@ -30,8 +30,12 @@ public class MainController extends HttpServlet {
      */
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogoutController";
-    private static final String ERROR = "invalid.jsp";
     private static final String CREATE_FEEDBACK = "CreateFeedbackController";
+    private static final String ERROR = "invalid.jsp";
+
+    private static final String PROFILE = "ProfileController";
+    private static final String ENTER_EDIT_PROFILE = "edit_profile.jsp";
+    private static final String EDIT_PROFILE = "EditProfileController";
     
     private static final String SEARCH_EVENT = "SearchEventController";
     private static final String CREATE_EVENT = "CreateEventController";
@@ -82,6 +86,12 @@ public class MainController extends HttpServlet {
                 url = DELETE_EVENT;
             } else if(action.equals("Feedback")){
                 url = CREATE_FEEDBACK;
+            } else if(action.equals("Profile")){
+                url = PROFILE;
+            } else if(action.equals("Edit Profile")){
+                url = ENTER_EDIT_PROFILE;
+            } else if(action.equals("Save Profile")){
+                url = EDIT_PROFILE;
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);

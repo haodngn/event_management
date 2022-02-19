@@ -13,13 +13,16 @@
         <title>Home</title>
     </head>
     <body>
-
         <c:if test="${ not empty sessionScope.USER}">
             <font color="red">
-            <h1>${sessionScope.USER.name}</h1>
+            <h1>${sessionScope.USER.email}</h1>
             </font>  
-        </c:if>
-        <h1>Home</h1>
+        </c:if>    
+        <h1>This is home page for STUDENT</h1>
+        <form method="POST" action="MainController">
+            <input type="hidden" name="email" value="${sessionScope.USER.email}" />
+            <input type="submit" name="btnAction" value="Profile"/>
+        </form>
         <c:url var="logout" value="MainController">
             <c:param name="btnAction" value="Logout"></c:param>
         </c:url>

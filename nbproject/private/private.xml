@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU/JavaWeb/ex/event_manage/web/index.html</file>
-            <file>file:/D:/FPTU/JavaWeb/ex/event_manage/src/java/utils/DBHelper.java</file>
-            <file>file:/D:/FPTU/JavaWeb/ex/event_manage/src/java/utils/MyUtils.java</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/src/java/controller/MainController.java</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/src/java/dao/EventDAO.java</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/src/java/controller/ProfileController.java</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/src/java/dao/UserDAO.java</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/web/script/profileScript.js</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/web/edit_profile.jsp</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/web/profile_page.jsp</file>
+            <file>file:/E:/UNI/SEM8/SE%20EVENT/event_management/src/java/controller/EditProfileController.java</file>
         </group>
     </open-files>
 </project-private>

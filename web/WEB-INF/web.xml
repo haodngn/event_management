@@ -32,6 +32,10 @@
         <servlet-name>CreateFeedbackController</servlet-name>
         <servlet-class>controller.CreateFeedbackController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>controller.ProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>CreateFeedbackController</servlet-name>
         <url-pattern>/CreateFeedbackController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/ProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

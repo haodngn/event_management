@@ -39,10 +39,18 @@ public class UserDTO {
         this.roleID = roleID;
         this.ProfilePicture = ProfilePicture;
     }
-    
-    
-    
 
+    public UserDTO(int userID, String name, String email, String phoneNumber, Boolean gender, String ProfilePicture) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.ProfilePicture = ProfilePicture;
+    }
+
+    
+    
     public int getUserID() {
         return userID;
     }
