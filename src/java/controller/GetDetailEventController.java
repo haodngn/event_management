@@ -7,6 +7,7 @@ package controller;
 
 import dao.EventDAO;
 import dto.EventDTO;
+import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 /**
@@ -25,9 +27,11 @@ import org.apache.log4j.Logger;
  */
 @WebServlet(name = "GetDetailEventController", urlPatterns = {"/GetDetailEventController"})
 public class GetDetailEventController extends HttpServlet {
+
     private static final Logger LOGGER = Logger.getLogger(GetDetailEventController.class);
-    
+
     private final String UPDATE_PAGE = "update_event.jsp";
+    private final String STUDENT_EVENT_DETAIL = "detail_event.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,25 +46,32 @@ public class GetDetailEventController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         String url = UPDATE_PAGE;
-        
+
         try {
+            HttpSession ses = request.getSession();
             int id = Integer.parseInt(request.getParameter("id"));
-            
+
             EventDAO dao = new EventDAO();
-            EventDTO dto =  dao.getEventByID(id);
-            if(dto != null){
+            EventDTO dto = dao.getEventByID(id);
+            if (dto != null) {
+                UserDTO user = (UserDTO) ses.getAttribute("USER");
+                if (user.getRoleID() == 1) {
+                    url = STUDENT_EVENT_DETAIL; //student home
+                } else if (user.getRoleID() == 2) {
+                    url = UPDATE_PAGE; //dep event
+                }
                 request.setAttribute("EVENT", dto);// Detai Event
                 request.setAttribute("EVENT_ID", id);
             }
-          
+
         } catch (SQLException ex) {
-            LOGGER.error("SQLException at GetDetailEventController: "+ex);
+            LOGGER.error("SQLException at GetDetailEventController: " + ex);
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at GetDetailEventController: "+ex);
+            LOGGER.error("ClassNotFoundException at GetDetailEventController: " + ex);
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at GetDetailEventController: "+ex);
+            LOGGER.error("NamingException at GetDetailEventController: " + ex);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
