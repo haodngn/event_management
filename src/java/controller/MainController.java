@@ -32,7 +32,7 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "LogoutController";
     private static final String CREATE_FEEDBACK = "CreateFeedbackController";
     private static final String ERROR = "invalid.jsp";
-
+  
     private static final String PROFILE = "ProfileController";
     private static final String ENTER_EDIT_PROFILE = "edit_profile.jsp";
     private static final String EDIT_PROFILE = "EditProfileController";
