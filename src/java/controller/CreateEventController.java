@@ -28,7 +28,7 @@ import dto.EventErrorDTO;
  */
 public class CreateEventController extends HttpServlet {
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateEventController.class);
-    private final String ADD_PAGE = "create_event.jsp";
+    private final String ADD_PAGE = "detail_event.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
