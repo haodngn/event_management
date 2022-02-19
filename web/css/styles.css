@@ -75,7 +75,7 @@ h2 {
 }
 
 h3 {
-	color: #2f8d01;
+	color: #f60;
 	font: 700 1.75rem/2.375rem "Open Sans", sans-serif;
 }
 
@@ -110,7 +110,8 @@ h6 {
 
 a {
 	color: #555;
-	text-decoration: underline;
+	      text-decoration: none;
+
 }
 #linkBreadcrumbs{
 	color:#fff;
@@ -2174,6 +2175,7 @@ a:hover.back-to-top {
 	/* end of download */
 
 
+ 
 	/* Footer */
 	.footer .footer-col.first {
 		display: inline-block;

@@ -104,12 +104,15 @@
                         </li>
 
                     </ul>
-                    <li class="nav-item dropdown" style="list-style-type: none;">
-                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a>
+                   <li class="nav-item dropdown" style="list-style-type: none;">
+                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Nguyễn Văn Lưng</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a  class="dropdown-item" href="#"><span class="item-text">LOGOUT</span></a>
-                            
-                            
+                            <c:url var="logout" value="MainController">
+                                <c:param name="btnAction" value="Logout"></c:param>
+                            </c:url>
+                            <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
+
+
                         </div>
                     </li>
                 </div>
@@ -156,24 +159,23 @@
                                 alt="alternative">
                         </div> <!-- end of image-container-large -->
                         <div class="text-container">
-                            <h3>FPT Students with the desire to start up F
-                                -Shark</h3>
-
+                            <h3>${event.eventName}</h3>
+                            <h4>Với sự tham gia của: ${event.speaker}</h4>
                             <div class="location_time" style="width: 50%;
                                 float:left">
 
                                 <p class="location_time_p">Location</p>
                                 <i class="fas fa-map-marker"></i>
-                                <p>Đại học FPT Đà Nẵng</p>
+                                <p>${event.location}</p>
                             </div>
                             <div class="location_time" style="width: 50%;
                                 float:right">
                                 <p class="location_time_p">Time</p>
                                 <i class="fas fa-calendar-alt"></i>
-                                <p>16/4 - 20/5/202</p>
+                                <p>${event.occurDate} - ${event.endDate}</p>
                             </div>
 
-                            <p style="width: 50%;float: left;">F-Shark Contest - FPT University Danang:</p>
+                            <p style="width: 50%;float: left;"> ${event.description}</p>
                             <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -232,8 +234,8 @@
                             </div> <!-- end of row -->
                         </div> <!-- end of text-container-->
 
-                        <a class="btn-solid-reg" href="#">Register</a>
-                        <a class="btn-solid-reg" href="#">Follow</a>
+                        <a  class="btn-solid-reg" href="#" type="submit">Register</a>
+                        <a  class="btn-solid-reg" href="#" type="submit">Follow</a>
                         
                     </div> <!-- end of col-->
                 </div> <!-- end of row -->

@@ -6,91 +6,17 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
-
-    </head>
-    <body>
-        <c:if test="${not empty requestScope.email}">
-            <font color="red">
-            ${requestScope.email}
-            </font>
-        </c:if>
-        <h1>Home</h1>
-        <c:url var="logout" value="MainController">
-            <c:param name="btnAction" value="Logout"></c:param>
-        </c:url>
-        <br><a href="${logout}">Logout |</a>
-        <a href="create_event.jsp"> Create</a>
-        <br>
-        <form action="MainController">
-            <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" placeholder="search name event..."/>
-            <input type="submit" name="btnAction" value="Search event" />
-        </form>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Speaker</th>
-                    <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="event" items="${requestScope.listEvent}">
-                <form action="MainController">
-                    <tr>
-                        <td>${event.id}</td>
-                        <td>
-                            <c:url var="getDetail" value="MainController">
-                                <c:param name="btnAction" value="detail event"/>
-                                <c:param name="id" value="${event.id}"/>
-                                <c:param name="lastSearchValue" value="${param.txtSearchValue}"/>
-                                <c:param name="index" value="${param.index}"/>
-                            </c:url>
-                            <a href="${getDetail}">${event.eventName}</a>
-                        </td>
-                        <td>${event.speaker}</td>
-                        <td>${event.loaction}</td>
-                        <td>
-                            <input type="hidden" name="id" value="${event.id}" />
-                            <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
-                            <input type="hidden" name="index" value="${param.index}" />
-                            
-                            <input type="submit" value="Edit" name="btnAction" />
-                            <input type="submit" value="Delete" name="btnAction" />
-
-                        </td>
-                    </tr>
-                </form>
-            </c:forEach>
-
-        </tbody>
-    </table>
-    <c:forEach begin="1" end="${requestScope.page}" var="i">
-        <c:url value="SearchEventController" var="paging">
-            <c:param name="index" value="${i}"/>
-
-        </c:url>
-        <a href="${paging}">${i}</a>
-    </c:forEach>
-
-</body>
-</html>-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1,
-            shrink-to-fit=no">
+              shrink-to-fit=no">
 
         <!-- SEO Meta Tags -->
         <meta name="description" content="Sync is a landing page HTML template
-            built with Bootstrap 4 for presenting mobile apps to the online
-            audience and for getting visitors to become users.">
+              built with Bootstrap 4 for presenting mobile apps to the online
+              audience and for getting visitors to become users.">
         <meta name="author" content="Inovatik">
 
         <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
@@ -114,10 +40,11 @@
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
+        <link href="css/search.css" rel="stylesheet">
 
         <!-- Favicon  -->
         <link rel="icon"
-            href="https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/271593937_1664244880583377_2174091405254032054_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=730e14&_nc_ohc=KZvQUUTXTt8AX8ezGc5&_nc_ht=scontent.fsgn8-2.fna&oh=00_AT8zmh_8x3msFpgytr2Yvszp1KfUnB9vuZ_2S8CzCxqHmQ&oe=61ED85A9">
+              href="https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/271593937_1664244880583377_2174091405254032054_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=730e14&_nc_ohc=KZvQUUTXTt8AX8ezGc5&_nc_ht=scontent.fsgn8-2.fna&oh=00_AT8zmh_8x3msFpgytr2Yvszp1KfUnB9vuZ_2S8CzCxqHmQ&oe=61ED85A9">
     </head>
     <body data-spy="scroll" data-target=".fixed-top">
 
@@ -134,31 +61,31 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom
-            fixed-top">
+             fixed-top">
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
             <!-- Image Logo -->
-            <a href="#"><img style="height: 73px;width: 259px;"
-                    src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
-                    alt="alternative"></a>
-            <a href="#"><img style="height: 65px; width: 200px; margin-left:
-                    30px;"
-                    src="images/logo.jpg"
-                    alt="alternative"></a>
+            <a href="home_page.jsp"><img style="height: 73px;width: 259px;"
+                             src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                             alt="alternative"></a>
+            <a href="home_page.jsp"><img style="height: 65px; width: 200px; margin-left:
+                             30px;"
+                             src="images/logo.jpg"
+                             alt="alternative"></a>
             <div class="container">
 
                 <!-- Mobile Menu Toggle Button -->
                 <button class="navbar-toggler" type="button"
-                    data-toggle="collapse" data-target="#navbarsExampleDefault"
-                    aria-controls="navbarsExampleDefault" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                        data-toggle="collapse" data-target="#navbarsExampleDefault"
+                        aria-controls="navbarsExampleDefault" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-awesome fas fa-bars"></span>
                     <span class="navbar-toggler-awesome fas fa-times"></span>
                 </button>
                 <!-- end of mobile menu toggle button -->
 
                 <div class="collapse navbar-collapse"
-                    id="navbarsExampleDefault">
+                     id="navbarsExampleDefault">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
@@ -168,23 +95,26 @@
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                                href="create_event_page.jsp">EVENTS<span
+                               href="create_event_page.jsp">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                                href="#">CONTACT<span
+                               href="detail_event.jsp">CONTACT<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
                     </ul>
                     <li class="nav-item dropdown" style="list-style-type: none;">
-                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a>
+                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Nguyễn Văn Lưng</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a  class="dropdown-item" href="#"><span class="item-text">LOGOUT</span></a>
-                            
-                            
+                            <c:url var="logout" value="MainController">
+                                <c:param name="btnAction" value="Logout"></c:param>
+                            </c:url>
+                            <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
+
+
                         </div>
                     </li>
                     <!-- <span class="nav-item avt-account">
@@ -213,9 +143,21 @@
 
 
 
-        
+
         <!-- Header -->
         <header id="header" class="ex-header">
+            
+            <div>
+                <form action="MainController" method="get" class="search">
+
+                    <div class="form__field">
+                        <input type="search" name="txtSearchValue" placeholder="What are you looking for?" value="${param.txtSearchValue}" required class="form__input">
+                        <input type="submit" value="Search" name="btnAction" class="button">
+                    </div>
+
+                </form>  
+            </div>
+            
             <div class="container">
                 <!-- Breadcrumbs -->
                 <div class="ex-basic-1">
@@ -238,8 +180,8 @@
                     <div class="col-lg-12">
                         <div class="image-container">
                             <img style="margin-top: 1rem; margin-bottom: 1rem" class="img-fluid"
-                                src="https://uni.fpt.edu.vn/Data/Sites/1/Banner/b%E1%BA%A3n-ta.jpg"
-                                alt="alternative">
+                                 src="https://uni.fpt.edu.vn/Data/Sites/1/Banner/b%E1%BA%A3n-ta.jpg"
+                                 alt="alternative">
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
@@ -262,24 +204,11 @@
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="event_details_page.jsp" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img style="height: 355px; width: 187px" class="img-fluid"
                                                  src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
-                                                                                        <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
-
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                     <div class="swiper-slide">
-                                        <a href="event_details_page.jsp" class="popup-link"
-                                            data-effect="fadeIn">
-                                            <img style="height: 355px; width: 187px" class="img-fluid"
-                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
-                                                                                        <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
+                                                 alt="alternative">
+                                            <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
 
                                         </a>
                                     </div>
@@ -288,60 +217,73 @@
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="event_details_page.jsp" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img style="height: 355px; width: 187px" class="img-fluid"
                                                  src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
-                                                                                        <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
-
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                     <div class="swiper-slide">
-                                        <a href="event_details_page.jsp" class="popup-link"
-                                            data-effect="fadeIn">
-                                            <img style="height: 355px; width: 187px" class="img-fluid"
-                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
-                                                                                        <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
-
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                     <div class="swiper-slide">
-                                        <a href="event_details_page.jsp" class="popup-link"
-                                            data-effect="fadeIn">
-                                            <img style="height: 355px; width: 187px" class="img-fluid"
-                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
-                                                                                        <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
-
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                     <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
-                                            <img style="height: 355px; width: 187px" class="img-fluid"
-                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
+                                                 alt="alternative">
                                             <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
-                                           
+
+                                        </a>
+                                    </div>
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <a href="event_details_page.jsp" class="popup-link"
+                                           data-effect="fadeIn">
+                                            <img style="height: 355px; width: 187px" class="img-fluid"
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
+                                                 alt="alternative">
+                                            <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
+
+                                        </a>
+                                    </div>
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <a href="event_details_page.jsp" class="popup-link"
+                                           data-effect="fadeIn">
+                                            <img style="height: 355px; width: 187px" class="img-fluid"
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
+                                                 alt="alternative">
+                                            <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
+
                                         </a>
                                     </div>
                                     <!-- end of slide -->
                                     <!-- Slide -->
-                                     <div class="swiper-slide">
+                                    <div class="swiper-slide">
                                         <a href="event_details_page.jsp" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img style="height: 355px; width: 187px" class="img-fluid"
                                                  src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                alt="alternative">
-                                                                                        <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
+                                                 alt="alternative">
+                                            <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
+
+                                        </a>
+                                    </div>
+                                    <!-- end of slide -->
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <a href="#" class="popup-link"
+                                           data-effect="fadeIn">
+                                            <img style="height: 355px; width: 187px" class="img-fluid"
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
+                                                 alt="alternative">
+                                            <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
+
+                                        </a>
+                                    </div>
+                                    <!-- end of slide -->
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <a href="event_details_page.jsp" class="popup-link"
+                                           data-effect="fadeIn">
+                                            <img style="height: 355px; width: 187px" class="img-fluid"
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
+                                                 alt="alternative">
+                                            <a style="margin-top: 4rem; text-decoration: none" href="event_details_page.jsp"><h5>FShark</h5></a>
 
                                         </a>
                                     </div>
@@ -377,10 +319,10 @@
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
@@ -388,10 +330,10 @@
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
@@ -399,10 +341,10 @@
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
@@ -410,40 +352,40 @@
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
                                     <!-- Slide -->
                                     <div class="swiper-slide">
                                         <a href="#" class="popup-link"
-                                            data-effect="fadeIn">
+                                           data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="images/event1.jpg"
-                                                alt="alternative">
+                                                 src="images/event1.jpg"
+                                                 alt="alternative">
                                         </a>
                                     </div>
                                     <!-- end of slide -->
