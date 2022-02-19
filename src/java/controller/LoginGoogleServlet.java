@@ -40,7 +40,7 @@ public class LoginGoogleServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SUCCESS = "student_home_page.jsp";
+    private static final String SUCCESS = "SearchEventController";
     private static final String ERROR = "login.jsp";
     
     private final String DEFAULT_PASSWORD = "123456";
