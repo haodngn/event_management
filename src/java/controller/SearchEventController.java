@@ -70,12 +70,11 @@ public class SearchEventController extends HttpServlet {
             List<EventDTO> listEvent = null;
             
             if(searchName.equals("")){
-                countPage = eventDAO.countAllEvent();
-                eventDAO.getAllEvent(pageIndex);
+                
+                eventDAO.getAll();
                 listEvent = eventDAO.getListEvent();
             }else{
-                countPage = eventDAO.countSearchEvent(searchName);
-                eventDAO.getEventBySearch(pageIndex, searchName);
+                eventDAO.getBySearch(searchName);
                 listEvent = eventDAO.getListEvent();
             }
             UserDTO dto = (UserDTO) ses.getAttribute("USER");

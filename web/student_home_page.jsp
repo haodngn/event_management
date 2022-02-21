@@ -63,13 +63,7 @@
 
         </tbody>
     </table>
-    <c:forEach begin="1" end="${requestScope.page}" var="i">
-        <c:url value="SearchEventController" var="paging">
-            <c:param name="index" value="${i}"/>
-
-        </c:url>
-        <a href="${paging}">${i}</a>
-    </c:forEach>
+    
 
     <h1>This is home page for STUDENT</h1>
 </body>

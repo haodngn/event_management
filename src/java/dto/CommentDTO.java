@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author HAO
  */
-public class FeedbackDTO implements Serializable {
+public class CommentDTO implements Serializable {
     private int id;
     private int event_id;
     private int posted_by;
@@ -19,9 +19,14 @@ public class FeedbackDTO implements Serializable {
     private int rating;
     private String post_time;
 
-    public FeedbackDTO(int posted_by, String description_fb, int rating, String post_time) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CommentDTO(int posted_by, String description_fb, int rating, String post_time) {
+        this.posted_by = posted_by;
+        this.description_fb = description_fb;
+        this.rating = rating;
+        this.post_time = post_time;
     }
+
+    
 
     public int getId() {
         return id;
@@ -38,8 +43,6 @@ public class FeedbackDTO implements Serializable {
     public void setPosted_by(int posted_by) {
         this.posted_by = posted_by;
     }
-    
-    
 
     public String getDescription_fb() {
         return description_fb;
@@ -60,8 +63,6 @@ public class FeedbackDTO implements Serializable {
     public void setEvent_id(int event_id) {
         this.event_id = event_id;
     }
-
-    
 
     public void setDescription_fb(String description_fb) {
         this.description_fb = description_fb;

@@ -46,6 +46,7 @@
         <link rel="icon"
               href="https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/271593937_1664244880583377_2174091405254032054_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=730e14&_nc_ohc=KZvQUUTXTt8AX8ezGc5&_nc_ht=scontent.fsgn8-2.fna&oh=00_AT8zmh_8x3msFpgytr2Yvszp1KfUnB9vuZ_2S8CzCxqHmQ&oe=61ED85A9">
     </head>
+
     <body data-spy="scroll" data-target=".fixed-top">
 
         <!-- Preloader -->
@@ -429,3 +430,65 @@
         <script src="js/scripts.js"></script> <!-- Custom scripts -->
     </body>
 </html>
+=======
+   <!-- <body>
+        <c:if test="${not empty requestScope.email}">
+            <font color="red">
+            ${requestScope.email}
+            </font>
+        </c:if>
+        <h1>Home</h1>
+        <c:url var="logout" value="MainController">
+            <c:param name="btnAction" value="Logout"></c:param>
+        </c:url>
+        <a href="profile_page.jsp">Profile</a>
+        <br><a href="${logout}">Logout |</a>
+        <a href="create_event.jsp"> Create</a>
+        <br>
+        <form action="MainController">
+            <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" placeholder="search name event..."/>
+            <input type="submit" name="btnAction" value="Search event" />
+        </form>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Speaker</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="event" items="${requestScope.listEvent}">
+                <form action="MainController">
+                    <tr>
+                        <td>${event.id}</td>
+                        <td>
+                            <c:url var="getDetail" value="MainController">
+                                <c:param name="btnAction" value="detail event"/>
+                                <c:param name="txtId" value="${event.id}"/>
+                                <c:param name="lastSearchValue" value="${param.txtSearchValue}"/>
+                                <c:param name="index" value="${param.index}"/>
+                            </c:url>
+                            <a href="${getDetail}">${event.eventName}</a>
+                        </td>
+                        <td>${event.speaker}</td>
+                        <td>${event.loaction}</td>
+                        <td>
+                            <input type="hidden" name="id" value="${event.id}" />
+                            <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
+                            
+                            <input type="submit" value="Edit" name="btnAction" />
+                            <input type="submit" value="Delete" name="btnAction" />
+
+                        </td>
+                    </tr>
+                </form>
+            </c:forEach>
+
+        </tbody>
+    </table>
+
+</body>
+</html>-->
+

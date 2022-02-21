@@ -6,9 +6,9 @@
 package controller;
 
 import dao.EventDAO;
-import dao.FeedbackDAO;
+import dao.CommentDAO;
 import dto.EventDTO;
-import dto.FeedbackDTO;
+import dto.CommentDTO;
 import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -55,34 +55,29 @@ public class GetDetailEventController extends HttpServlet {
         try {
             HttpSession ses = request.getSession();
             int id = Integer.parseInt(request.getParameter("txtId"));
-            int pageIndex = 1;
-            int countPage = 1;
-            String index = request.getParameter("index");
-            if ("".equals(index)) {
-                index = null;
-            }
-            if (index != null) {
-                pageIndex = Integer.parseInt(index);
-            }
-            List<FeedbackDTO> listFeedback = null;
+ 
+            List<CommentDTO> listComment;
 
             EventDAO dao = new EventDAO();
             EventDTO dto = dao.getEventByID(id);
             
             if (dto != null) {
-                FeedbackDAO fdao = new FeedbackDAO();
-                countPage = fdao.countAllFeedback(id);
-                fdao.getAllFeedback(pageIndex, id);
-                listFeedback = fdao.getListFeedback();
+                //get all feedback
+                CommentDAO fdao = new CommentDAO();
+                fdao.getAllFeedback(id);
+                listComment = fdao.getListComment();
+                
+                //check role user
                 UserDTO user = (UserDTO) ses.getAttribute("USER");
                 if (user.getRoleID() == 1) {
                     url = STUDENT_EVENT_DETAIL;//student home
                 } else if (user.getRoleID() == 2) {
                     url = UPDATE_PAGE; //dep event
                 }
+                
                 request.setAttribute("EVENT", dto);// Detai Event
                 request.setAttribute("EVENT_ID", id);
-                request.setAttribute("ListFeedbacks", listFeedback);
+                request.setAttribute("ListFeedbacks", listComment);
             }
 
         } catch (SQLException ex) {
