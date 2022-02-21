@@ -87,42 +87,8 @@ public class EventDAO implements Serializable {
         return dto;
     }
 
-    public int countAllEvent()
-            throws SQLException, ClassNotFoundException, NamingException {
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        int countPage = 0;
-        try {
-            String sql = "select count(ID) as row "
-                    + "from Event "
-                    + "where status=1";
-            con = DBHelper.makeConnection();
-            stm = con.prepareStatement(sql);
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                int total = rs.getInt("row");
-                countPage = total / 5;
-                if (total % 5 != 0) {
-                    countPage++;
-                }
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-
-        return countPage;
-    }
-
-    public void getAllEvent(int index)
+    //get all event WITHOUT paging
+    public void getAll()
             throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -132,12 +98,9 @@ public class EventDAO implements Serializable {
         try {
             String sql = "select ID, Speaker, EventName, Location "
                     + "from Event "
-                    + "where status=1 "
-                    + "order by OccurDate "
-                    + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
+                    + "where status=1 ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
-            stm.setInt(1, (index - 1) * 5);
             rs = stm.executeQuery();
             System.out.println("sql: " + sql);
             while (rs.next()) {
@@ -166,51 +129,8 @@ public class EventDAO implements Serializable {
         }
     }
 
-    public int countSearchEvent(String name)
-            throws ClassNotFoundException, NamingException, SQLException {
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-
-        if (name.equals("")) {
-            name = null;
-        } else {
-            name = "%" + name + "%";
-        }
-
-        int countPage = 0;
-        try {
-            String sql = "select count(ID) as row "
-                    + "from Event "
-                    + "where status=1 "
-                    + "and EventName like ISNULL(?,EventName)";
-            con = DBHelper.makeConnection();
-            stm = con.prepareStatement(sql);
-            stm.setString(1, name);
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                int total = rs.getInt("row");
-                countPage = total / 5;
-                if (total % 5 != 0) {
-                    countPage++;
-                }
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-
-        return countPage;
-    }
-
-    public void getEventBySearch(int index, String name)
+    //get all search WITHOUT paging
+    public void getBySearch(String name)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -227,13 +147,10 @@ public class EventDAO implements Serializable {
             String sql = "select ID, Speaker, EventName, Location "
                     + "from Event "
                     + "where status=1 "
-                    + "and EventName like ISNULL(?,EventName) "
-                    + "order by OccurDate "
-                    + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
+                    + "and EventName like ISNULL(?,EventName) ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, name);
-            stm.setInt(2, (index - 1) * 5);
             rs = stm.executeQuery();
 
             while (rs.next()) {

@@ -5,8 +5,8 @@
  */
 package dao;
 
+import dto.CommentDTO;
 import dto.EventDTO;
-import dto.FeedbackDTO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
@@ -25,12 +25,12 @@ import utils.DBHelper;
  *
  * @author HAO
  */
-public class FeedbackDAO implements Serializable{
+public class CommentDAO implements Serializable{
     
-    List<FeedbackDTO> listFeedback;
+    List<CommentDTO> listComment;
 
-    public List<FeedbackDTO> getListFeedback() {
-        return listFeedback;
+    public List<CommentDTO> getListComment() {
+        return listComment;
     }
     
     public boolean createFeedback(int event_id, int posted_by, String description_fb, int rating, String post_time) throws SQLException, ClassNotFoundException, NamingException, ParseException {
@@ -40,7 +40,7 @@ public class FeedbackDAO implements Serializable{
         boolean check = false;
         
         try {
-            String sql = "insert into Feedback(Event_id,Posted_by ,DescriptionFB, Rating,"
+            String sql = "insert into Comment(Event_id,Posted_by ,DescriptionFB, Rating,"
                     + "PostTime) "
                     + "values(?,?,?,?,?)";
             con = DBHelper.makeConnection();
@@ -67,38 +67,35 @@ public class FeedbackDAO implements Serializable{
         return check;
     }
     
-    public void getAllFeedback(int index, int event_id)
+    public void getAllFeedback(int event_id)
             throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        this.listFeedback = new ArrayList<>();
+        this.listComment = new ArrayList<>();
 
         try {
             String sql = "select Posted_by, DescriptionFB, Rating, PostTime "
-                    + "from Feedback "
-                    + "where Event_id=? "
-                    + "order by PostTime "
-                    + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
+                    + "from Comment "
+                    + "where Event_id=? ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, event_id);
-            stm.setInt(2, (index - 1) * 5);
             rs = stm.executeQuery();
-            System.out.println("sql: " + sql);
+           
             while (rs.next()) {
                 int posted_by = rs.getInt("Posted_by");
-                String description_fb = rs.getString("Description_FB");
+                String description_fb = rs.getString("DescriptionFB");
                 int rating = rs.getInt("Rating");
                 
                 DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-                String post_time = rs.getString("Post_time");
+                String post_time = rs.getString("PostTime");
 
-                FeedbackDTO dto = new FeedbackDTO(posted_by, description_fb, rating, post_time);
-                if (this.listFeedback == null) {
-                    this.listFeedback = new ArrayList<>();
+                CommentDTO dto = new CommentDTO(posted_by, description_fb, rating, post_time);
+                if (this.listComment == null) {
+                    this.listComment = new ArrayList<>();
                 }
-                this.listFeedback.add(dto);
+                this.listComment.add(dto);
             }
 
         } finally {
@@ -114,39 +111,5 @@ public class FeedbackDAO implements Serializable{
         }
     }
     
-    public int countAllFeedback(int event_id)
-            throws SQLException, ClassNotFoundException, NamingException {
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        int countPage = 0;
-        try {
-            String sql = "select count(ID) as row "
-                    + "from Feedback "
-                    + "where Event_id=?";
-            con = DBHelper.makeConnection();
-            stm = con.prepareStatement(sql);
-            stm.setInt(1, event_id);
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                int total = rs.getInt("row");
-                countPage = total / 5;
-                if (total % 5 != 0) {
-                    countPage++;
-                }
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-
-        return countPage;
-    }
+    
 }

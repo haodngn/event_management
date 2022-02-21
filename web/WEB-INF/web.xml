@@ -30,7 +30,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateFeedbackController</servlet-name>
-        <servlet-class>controller.CreateFeedbackController</servlet-class>
+        <servlet-class>controller.CreateCommentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProfileController</servlet-name>

@@ -48,7 +48,7 @@
                         <td>
                             <c:url var="getDetail" value="MainController">
                                 <c:param name="btnAction" value="detail event"/>
-                                <c:param name="id" value="${event.id}"/>
+                                <c:param name="txtId" value="${event.id}"/>
                                 <c:param name="lastSearchValue" value="${param.txtSearchValue}"/>
                                 <c:param name="index" value="${param.index}"/>
                             </c:url>
@@ -59,7 +59,6 @@
                         <td>
                             <input type="hidden" name="id" value="${event.id}" />
                             <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
-                            <input type="hidden" name="index" value="${param.index}" />
                             
                             <input type="submit" value="Edit" name="btnAction" />
                             <input type="submit" value="Delete" name="btnAction" />
@@ -71,13 +70,6 @@
 
         </tbody>
     </table>
-    <c:forEach begin="1" end="${requestScope.page}" var="i">
-        <c:url value="SearchEventController" var="paging">
-            <c:param name="index" value="${i}"/>
-
-        </c:url>
-        <a href="${paging}">${i}</a>
-    </c:forEach>
 
 </body>
 </html>
