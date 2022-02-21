@@ -69,7 +69,7 @@
                              alt="alternative"></a>
             <a href="#"><img style="height: 65px; width: 200px; margin-left:
                              30px;"
-                             src="images/logo.jpg" alt="alternative"></a>
+                             src="assets/images/logo.jpg" alt="alternative"></a>
             <div class="container">
 
                 <!-- Mobile Menu Toggle Button -->
