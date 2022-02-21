@@ -5,28 +5,29 @@
  */
 package controller;
 
-import dao.FeedbackDAO;
+import dao.CommentDAO;
+import dao.UserDAO;
 import dto.FeedbackErrorDTO;
+import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HAO
  */
-public class CreateFeedbackController extends HttpServlet {
+public class CreateCommentController extends HttpServlet {
 
-    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateFeedbackController.class);
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateCommentController.class);
 
     private final String DETAIL_EVENT = "GetDetailEventController";
     private final String FAIL = "invalid.jsp";
@@ -50,13 +51,19 @@ public class CreateFeedbackController extends HttpServlet {
         String description_fb = request.getParameter("txtDescription_FB");
         String post_time = request.getParameter("txtPostTime");
         int event_id = Integer.parseInt(request.getParameter("txtId"));
-        int posted_by = Integer.parseInt(request.getParameter("txtPostedBy"));
+//        int posted_by = Integer.parseInt(request.getParameter("txtPostedBy"));
         int rating = Integer.parseInt(request.getParameter("txtRating"));
 
         FeedbackErrorDTO err = new FeedbackErrorDTO();
         boolean foundErr = false;
 
         try {
+            HttpSession session = request.getSession();
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            UserDAO udao = new UserDAO();
+            user = udao.getUserByEmail(user.getEmail());
+            System.out.println("user: "+user);
+            
             if (rating <= 0 || rating > 5) {
                 foundErr = true;
                 err.setRatingError("Field is required 1-5 star  !!");
@@ -65,8 +72,8 @@ public class CreateFeedbackController extends HttpServlet {
             if (foundErr) {
                 request.setAttribute("CREATE_ERR", err);
             } else {
-                FeedbackDAO dao = new FeedbackDAO();
-                boolean result = dao.createFeedback(event_id, posted_by, description_fb, rating, post_time);
+                CommentDAO dao = new CommentDAO();
+                boolean result = dao.createFeedback(event_id, user.getUserID(), description_fb, rating, post_time);
                 if (result) {
                     request.setAttribute("CREATE_SUCCESS", "Create success !");
                     url = DETAIL_EVENT;

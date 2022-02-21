@@ -37,7 +37,7 @@
 
             <input type="text" name="txtDescription_FB" value="${param.txtDescription_FB}"placeholder="Description" />
             <input type="number" name="txtRating" value="${param.txtRating}" placeholder="Rating" />
-            <input type="number" name="txtPostedBy" value="${param.txtPostedBy}" placeholder="PostedBy"/>
+
             <input type="submit" value="Feedback" name="btnAction" /> <br/>
 
             <input type="submit" value="Back to home" name="btnAction" />
@@ -48,7 +48,7 @@
                     <th>User ID</th>
                     <th>Description</th>
                     <th>Rating</th>
-                    <th>PostTime</th>
+                    <th>Post Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +62,13 @@
                 </c:forEach>
             </tbody>
         </table>
+        <c:forEach begin="1" end="${requestScope.page}" var="i">
+            <c:url value="GetDetailEventController" var="paging">
+                <c:param name="index" value="${i}"/>
+
+            </c:url>
+            <a href="${paging}">${i}</a>
+        </c:forEach>
 
     </body>
 </html>
