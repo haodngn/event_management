@@ -246,9 +246,9 @@ textarea {
   line-height: inherit;
 }
 
-button,
-input {
+button, input {
   overflow: visible;
+  
 }
 
 button,
@@ -258,6 +258,7 @@ select {
 
 select {
   word-wrap: normal;
+  border-radius: 5px;
 }
 
 button,
@@ -477,6 +478,7 @@ mark,
 }
 
 .img-fluid {
+  
   max-width: 100%;
   height: auto;
 }
@@ -1240,6 +1242,10 @@ pre code {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
+
+  }
+  .col-lg-12 h2{
+    text-align: center;
   }
   .order-lg-first {
     -ms-flex-order: -1;
@@ -3056,7 +3062,7 @@ input[type="button"].btn-block {
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: 70%;
   left: 0;
   z-index: 1000;
   display: none;
@@ -8132,6 +8138,7 @@ button.bg-dark:focus {
 
 .p-3 {
   padding: 1rem !important;
+  margin-bottom: 1rem;
 }
 
 .pt-3,
