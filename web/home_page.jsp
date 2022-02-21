@@ -71,7 +71,7 @@
                                          alt="alternative"></a>
             <a href="home_page.jsp"><img style="height: 65px; width: 200px; margin-left:
                                          30px;"
-                                         src="images/logo.jpg"
+                                         src="assets/images/logo.jpg"
                                          alt="alternative"></a>
             <div class="container">
 
