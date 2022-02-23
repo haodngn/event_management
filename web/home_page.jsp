@@ -41,6 +41,7 @@
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <link href="css/search.css" rel="stylesheet">
+        <link href="css/home_style.css" rel="stylesheet">
 
         <!-- Favicon  -->
         <link rel="icon"
@@ -66,10 +67,10 @@
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
             <!-- Image Logo -->
-            <a href="home_page.jsp"><img style="height: 73px;width: 259px;"
+            <a href="SearchEventController"><img style="height: 73px;width: 259px;"
                                          src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
                                          alt="alternative"></a>
-            <a href="home_page.jsp"><img style="height: 65px; width: 200px; margin-left:
+            <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
                                          30px;"
                                          src="assets/images/logo.jpg"
                                          alt="alternative"></a>
@@ -90,13 +91,13 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                               href="home_page.jsp">HOME<span
+                               href="SearchEventController">HOME<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                               href="create_event.jsp">EVENTS<span
+                               href="event_dev.jsp">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -206,14 +207,13 @@
                                         <div class="swiper-slide">
                                             <a href="detail_event.jsp" class="popup-link"
                                                data-effect="fadeIn">
-                                                <img style="height: 355px; width: 187px" class="img-fluid"
+                                                <img style="height: 355px; width: 100%" class="img-fluid"
                                                      src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
                                                      alt="alternative">
-                                                <div class="event-infos" style="text-decoration: none;">
+                                                <div class="event-infos">
                                                     <h5>${item.eventName}</h5>
                                                     <h6>${item.speaker}</h6>
                                                     <h6>${item.location}</h6>
-                                                    <h6>${item.occurDate}</h6>
                                                 </div>
                                             </a>
                                         </div>
@@ -430,65 +430,3 @@
         <script src="js/scripts.js"></script> <!-- Custom scripts -->
     </body>
 </html>
-=======
-   <!-- <body>
-        <c:if test="${not empty requestScope.email}">
-            <font color="red">
-            ${requestScope.email}
-            </font>
-        </c:if>
-        <h1>Home</h1>
-        <c:url var="logout" value="MainController">
-            <c:param name="btnAction" value="Logout"></c:param>
-        </c:url>
-        <a href="profile_page.jsp">Profile</a>
-        <br><a href="${logout}">Logout |</a>
-        <a href="create_event.jsp"> Create</a>
-        <br>
-        <form action="MainController">
-            <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" placeholder="search name event..."/>
-            <input type="submit" name="btnAction" value="Search event" />
-        </form>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Speaker</th>
-                    <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="event" items="${requestScope.listEvent}">
-                <form action="MainController">
-                    <tr>
-                        <td>${event.id}</td>
-                        <td>
-                            <c:url var="getDetail" value="MainController">
-                                <c:param name="btnAction" value="detail event"/>
-                                <c:param name="txtId" value="${event.id}"/>
-                                <c:param name="lastSearchValue" value="${param.txtSearchValue}"/>
-                                <c:param name="index" value="${param.index}"/>
-                            </c:url>
-                            <a href="${getDetail}">${event.eventName}</a>
-                        </td>
-                        <td>${event.speaker}</td>
-                        <td>${event.loaction}</td>
-                        <td>
-                            <input type="hidden" name="id" value="${event.id}" />
-                            <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
-                            
-                            <input type="submit" value="Edit" name="btnAction" />
-                            <input type="submit" value="Delete" name="btnAction" />
-
-                        </td>
-                    </tr>
-                </form>
-            </c:forEach>
-
-        </tbody>
-    </table>
-
-</body>
-</html>-->
-
