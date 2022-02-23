@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 23, 2022, 3:01:14 PM
+    Author     : By Van Lung, IDStudent: SE140193
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.event-infos {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    width: 100%;
+    background-color: #fff;
+    text-decoration: none;
+    min-height: 8rem;
+    align-items: flex-start;
+    padding-left: 5px;
+    word-wrap: break-word;
+}
+
+.event-infos h5 {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #2f8d01;
+    align-self: center;
+}
+
+.event-infos h6 {
+    font-size: 12px;
+}
