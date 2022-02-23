@@ -36,7 +36,8 @@
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-
+        <link href="css/search.css" rel="stylesheet">
+        <link href="css/detail_event.css" rel="stylesheet">
         <!-- Favicon  -->
         <link rel="icon"
               href="https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/271593937_1664244880583377_2174091405254032054_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=730e14&_nc_ohc=KZvQUUTXTt8AX8ezGc5&_nc_ht=scontent.fsgn8-2.fna&oh=00_AT8zmh_8x3msFpgytr2Yvszp1KfUnB9vuZ_2S8CzCxqHmQ&oe=61ED85A9">
@@ -64,12 +65,12 @@
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
             <!-- Image Logo -->
-            <a href="#"><img style="height: 73px;width: 259px;"
-                             src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
-                             alt="alternative"></a>
-            <a href="#"><img style="height: 65px; width: 200px; margin-left:
-                             30px;"
-                             src="assets/images/logo.jpg" alt="alternative"></a>
+            <a href="SearchEventController"><img style="height: 73px;width: 259px;"
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                 alt="alternative"></a>
+            <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
+                                                 30px;"
+                                                 src="assets/images/logo.jpg" alt="alternative"></a>
             <div class="container">
 
                 <!-- Mobile Menu Toggle Button -->
@@ -87,13 +88,13 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                               href="home_page.jsp">HOME<span
+                               href="SearchEventController">HOME<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                               href="create_event_page.jsp">EVENTS<span
+                               href="#">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -105,7 +106,7 @@
 
                     </ul>
                     <li class="nav-item dropdown" style="list-style-type: none;">
-                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Nguyễn Văn Lưng</a>
+                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
@@ -147,9 +148,8 @@
 
 
 
-
         <!-- Privacy Content -->
-        <div class="ex-basic-2">
+        <div class="ex-basic-2" >
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12" >
@@ -168,6 +168,10 @@
                                 <p class="location_time_p">Location</p>
                                 <i class="fas fa-map-marker"></i>
                                 <p>${event.location}</p>
+                                
+                                <p class="location_time_p">Fee : 5$</p>
+                                <i class="fas fa-money-bill"></i>
+                                
                             </div>
                             <div class="location_time" style="width: 50%;
                                  float:right">
@@ -176,67 +180,70 @@
                                 <p>${event.occurDate} - ${event.endDate}</p>
                             </div>
 
-                            <p style="width: 50%;float: left;"> ${event.description}</p>
-                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul class="list-unstyled li-space-lg">
-                                        <li class="media">
-                                            <div class="media-body">
-                                                ❤ Time to open idea round
-                                                application: April 16, 2021 -
-                                                May 20, 2021
-
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-body">❤ The Board
-                                                of Directors scores the ideas:
-                                                May 21, 2021 - May 23, 2021
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-body"> ❤ Time of
-                                                result announcement: May 24,
-                                                2021
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-body">Registration link:
-                                                <a href="https://bom.to/WWHnJmUbKbNEG">https://bom.to/WWHnJmUbKbNEG</a></div>
-                                        </li>
-
-                                    </ul>
-                                </div> <!-- end of col -->
-
-                                <div class="col-md-6">
-                                    <ul class="list-unstyled li-space-lg">
-                                        <li class="media">
-                                            <i class="fas fa-square"></i>
-                                            <div class="media-body">🎪 ADDRESS: FPT Urban Area Da Nang, Hoa Hai Ward, Ngu Hanh Son District, Da Nang City.
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <i class="fas fa-square"></i>
-                                            <div class="media-body">🌏 FANPAGE: https://www.facebook.com/daihocfptdanang
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <i class="fas fa-square"></i>
-                                            <div class="media-body">📞 HOTLINE: 0236 7300 999
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <i class="fas fa-square"></i>
-                                            <div class="media-body">🌐 WEBSITE:<a href="https://dnuni.fpt.edu.vn/">https://dnuni.fpt.edu.vn/</a></div>
-                                        </li>
-                                    </ul>
-                                </div> <!-- end of col -->
-                            </div> <!-- end of row -->
+                            <div style="width: 50%;float: left;"> ${event.description}</div>
+                            <!--                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <ul class="list-unstyled li-space-lg">
+                                                                    <li class="media">
+                                                                        <div class="media-body">
+                                                                            ❤ Time to open idea round
+                                                                            application: April 16, 2021 -
+                                                                            May 20, 2021
+                            
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="media">
+                                                                        <div class="media-body">❤ The Board
+                                                                            of Directors scores the ideas:
+                                                                            May 21, 2021 - May 23, 2021
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="media">
+                                                                        <div class="media-body"> ❤ Time of
+                                                                            result announcement: May 24,
+                                                                            2021
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="media">
+                                                                        <div class="media-body">Registration link:
+                                                                            <a href="https://bom.to/WWHnJmUbKbNEG">https://bom.to/WWHnJmUbKbNEG</a></div>
+                                                                    </li>
+                            
+                                                                </ul>
+                                                            </div>  end of col 
+                            
+                                                            <div class="col-md-6">
+                                                                <ul class="list-unstyled li-space-lg">
+                                                                    <li class="media">
+                                                                        <i class="fas fa-square"></i>
+                                                                        <div class="media-body">🎪 ADDRESS: FPT Urban Area Da Nang, Hoa Hai Ward, Ngu Hanh Son District, Da Nang City.
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="media">
+                                                                        <i class="fas fa-square"></i>
+                                                                        <div class="media-body">🌏 FANPAGE: https://www.facebook.com/daihocfptdanang
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="media">
+                                                                        <i class="fas fa-square"></i>
+                                                                        <div class="media-body">📞 HOTLINE: 0236 7300 999
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="media">
+                                                                        <i class="fas fa-square"></i>
+                                                                        <div class="media-body">🌐 WEBSITE:<a href="https://dnuni.fpt.edu.vn/">https://dnuni.fpt.edu.vn/</a></div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>  end of col 
+                                                        </div>  end of row -->
+                            <div class="login-box">
+                                <input
+                                    style="font-size: 20px; background-color: #f60;" type="submit" required="" name="btnAction" value="Register"  />
+                            </div> 
                         </div> <!-- end of text-container-->
 
-                        <a  class="btn-solid-reg" href="#" type="submit">Register</a>
-                        <a  class="btn-solid-reg" href="#" type="submit">Follow</a>
+
 
                     </div> <!-- end of col-->
                 </div> <!-- end of row -->
@@ -244,200 +251,293 @@
         </div> <!-- end of ex-basic-2 -->
         <!-- end of privacy content -->
 
-        <!-- Discuss -->
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
-                <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5>Comments</h5>
 
-                </div>
-                <small class="font-weight-bold text-primary">FPT University</small>
-                <div class="bg-light p-2">
-                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" ><textarea class="form-control ml-1 shadow-none textarea">Comment here!</textarea></div>
-                    <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
-                </div>
-                <div class="card p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center"><span><small class="font-weight-bold text-primary">james_olesenn</small> <small class="font-weight-bold"><br>Hmm, This poster looks cool</small></span> </div> <small>2 days ago</small>
-                    </div>
-                    <div class="action d-flex justify-content-between mt-2 align-items-center">
-                        <div class="reply px-4"> <small>Remove</small> <span class="dots"></span> <small style="color: #2f8d01;">Reply</small> <span class="dots"></div>
-                        <div class="icons align-items-center">  <i class="fa fa-check-circle-o check-icon"></i> </div>
-                    </div>
-                </div>
-                <div class="bg-light p-2">
-                    <div class="d-flex flex-row align-items-start"> <img class="rounded-circle" ><textarea class="form-control ml-1 shadow-none textarea" >Reply here!</textarea></div>
-                    <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
-                </div>
 
-                <div class="card p-3 mt-2">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center"> <span><small class="font-weight-bold text-primary">olan_sams</small> <small class="font-weight-bold"><br>Loving your work and profile! </small></span> </div> <small>3 days ago</small>
-                    </div>
-                    <div class="action d-flex justify-content-between mt-2 align-items-center">
-                        <div class="reply px-4"> <small>Remove</small> <span class="dots"></span> <small>Reply</small> <span class="dots"></span>  </div>
-                        <div class="icons align-items-center"> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>
+        <div class="container" >
+            <div id="reviews" class="review-section">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h4 class="m-0">37 Reviews</h4>
+
+                    <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
+                        <span class="selection">
+                            <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
+                                <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+                            </span>
+                        </span>
+                        <span class="dropdown-wrapper" aria-hidden="true"></span>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="stars-counters">
+                            <tbody>
+                                <tr class="">
+                                    <td>
+                                        <span>
+                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                        </span>
+                                    </td>
+                                    <td class="progress-bar-container">
+                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                            <div class="fit-progressbar-background">
+                                                <span class="progress-fill" style="width: 97.2973%;"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="star-num">(36)</td>
+                                </tr>
+                                <tr class="">
+                                    <td>
+                                        <span>
+                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
+                                        </span>
+                                    </td>
+                                    <td class="progress-bar-container">
+                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                            <div class="fit-progressbar-background">
+                                                <span class="progress-fill" style="width: 2.2973%;"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="star-num">(2)</td>
+                                </tr>
+                                <tr class="">
+                                    <td>
+                                        <span>
+                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
+                                        </span>
+                                    </td>
+                                    <td class="progress-bar-container">
+                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                            <div class="fit-progressbar-background">
+                                                <span class="progress-fill" style="width: 0;"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="star-num">(0)</td>
+                                </tr>
+                                <tr class="">
+                                    <td>
+                                        <span>
+                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
+                                        </span>
+                                    </td>
+                                    <td class="progress-bar-container">
+                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                            <div class="fit-progressbar-background">
+                                                <span class="progress-fill" style="width: 0;"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="star-num">(0)</td>
+                                </tr>
+                                <tr class="">
+                                    <td>
+                                        <span>
+                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
+                                        </span>
+                                    </td>
+                                    <td class="progress-bar-container">
+                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                            <div class="fit-progressbar-background">
+                                                <span class="progress-fill" style="width: 0;"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="star-num">(0)</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="card p-3 mt-2">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center">  <span><small class="font-weight-bold text-primary">rashida_jones</small> <small class="font-weight-bold"><br>Really cool Which filter are you using? </small></span> </div> <small>3 days ago</small>
-                    </div>
-                    <div class="action d-flex justify-content-between mt-2 align-items-center">
-                        <div class="reply px-4"> <small>Remove</small> <span class="dots"></span> <small>Reply</small> <span class="dots"></span></div>
-                        <div class="icons align-items-center">  <i class="fa fa-star-o text-muted"></i> <i class="fa fa-check-circle-o check-icon text-primary"></i> </div>
-                    </div>
-                </div>
+            </div>
+
+
+
+            <!--
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-8">
+            -->
+
+
+            <div class="headings d-flex justify-content-between align-items-center mb-3">
+                <h3>Comments</h3>
 
             </div>
+            <h5 class="font-weight-bold text-primary">${sessionScope.USER.name}</h5>
+            <div class="bg-light p-2">
+                <div class="d-flex flex-row align-items-start">
+                    <img class="rounded-circle" >
+                    <textarea  class="form-control ml-1 shadow-none textarea" placeholder="Comment here!"></textarea>
+                </div>
+                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                    <div class="reply px-4">
+                        <button class="btn"><i class="fa fa-star text-warning"> 1</i></button>  
+                        <button class="btn"><i class="fa fa-star text-warning"> 2</i></button>  
+                        <button class="btn"><i class="fa fa-star text-warning"> 3</i></button>  
+                        <button class="btn"><i class="fa fa-star text-warning"> 4</i></button>  
+                        <button class="btn"><i class="fa fa-star text-warning"> 5</i></button>  
+                    </div>
+                </div>
+                <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+            </div>
+        </div>
+        <div class="review-list" >
+            <ul style="    margin-left: auto;
+                margin-right: auto;
+                max-width: 1140px;">
+                <li>
+                    <div class="d-flex">
+                        <div class="left">
+                            <span>
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
+                            </span>
+                        </div>
+                        <div class="right" >
+                            <h4>
+                                FPT University
+                                <span class="gig-rating text-body-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
+                                    <path
+                                        fill="currentColor"
+                                        d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                                        ></path>
+                                    </svg>
+                                    5.0
+                                </span>
+                            </h4>
+                            <div class="review-description">
+                                <p>
+                                    The process was smooth, after providing the required info, Pragyesh sent me an outstanding packet of wireframes. Thank you a lot!
+                                </p>
+                            </div>
+
+                        </div >
+                    </div>
+                </li>
+                 <li>
+                    <div class="d-flex">
+                        <div class="left">
+                            <span>
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
+                            </span>
+                        </div>
+                        <div class="right" >
+                            <h4>
+                                FPT University
+                                <span class="gig-rating text-body-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
+                                    <path
+                                        fill="currentColor"
+                                        d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                                        ></path>
+                                    </svg>
+                                    5.0
+                                </span>
+                            </h4>
+                            <div class="review-description">
+                                <p>
+                                    The process was smooth, after providing the required info, Pragyesh sent me an outstanding packet of wireframes. Thank you a lot!
+                                </p>
+                            </div>
+
+                        </div >
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <!-- end of discuss -->
+</div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-col first">
-                        <h5>About Us</h5>
-                        <p class="p-small">Management SE Event in FPT
-                            University HCM</p>
-                    </div> <!-- end of footer-col -->
-                    <div class="footer-col second">
-                        <h5>Contact Info</h5>
-                        <ul class="list-unstyled li-space-lg p-small">
-                            <li class="media">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="media-body">Lot E2a-7, D1
-                                    Street, Hi-Tech Park, Long Thanh My, Thu
-                                    Duc City, Ho Chi Minh City</div>
-                            </li>
-                            <li class="media">
-                                <i class="fas fa-envelope"></i>
-                                <div class="media-body"><a
-                                        href="#your-link">seevent@fpt.com.vn</a></div>
-                            </li>
-                            <li class="media">
-                                <i class="fas fa-phone-alt"></i>
-                                <div class="media-body"><a
-                                        href="#your-link">+84 376 945 23</a></div>
-                            </li>
-                        </ul>
-                    </div> <!-- end of footer-col -->
-                    <div class="footer-col fifth">
-                        <span class="fa-stack">
-                            <a href="https://www.facebook.com/FPTU.HCM">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-facebook-f fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-pinterest-p fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-instagram fa-stack-1x"></i>
-                            </a>
-                        </span>
-                    </div> <!-- end of footer-col -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of footer -->
-    <!-- end of footer -->
-    <!-- Copyright -->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="p-small">Copyright © 2022 <a href="#">SE Event</a>
-                        - All rights reserved</p>
-                </div> <!-- end of col -->
-            </div> <!-- enf of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of copyright -->
-    <!-- end of copyright -->
+<!-- end of discuss -->
+
+<!-- Footer -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer-col first">
+                    <h5>About Us</h5>
+                    <p class="p-small">Management SE Event in FPT
+                        University HCM</p>
+                </div> <!-- end of footer-col -->
+                <div class="footer-col second">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled li-space-lg p-small">
+                        <li class="media">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="media-body">Lot E2a-7, D1
+                                Street, Hi-Tech Park, Long Thanh My, Thu
+                                Duc City, Ho Chi Minh City</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-envelope"></i>
+                            <div class="media-body"><a
+                                    href="#your-link">seevent@fpt.com.vn</a></div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="media-body"><a
+                                    href="#your-link">+84 376 945 23</a></div>
+                        </li>
+                    </ul>
+                </div> <!-- end of footer-col -->
+                <div class="footer-col fifth">
+                    <span class="fa-stack">
+                        <a href="https://www.facebook.com/FPTU.HCM">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-facebook-f fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-twitter fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-instagram fa-stack-1x"></i>
+                        </a>
+                    </span>
+                </div> <!-- end of footer-col -->
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of footer -->
+<!-- end of footer -->
+<!-- Copyright -->
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="p-small">Copyright © 2022 <a href="#">SE Event</a>
+                    - All rights reserved</p>
+            </div> <!-- end of col -->
+        </div> <!-- enf of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of copyright -->
+<!-- end of copyright -->
 
 
 
 
-    <!-- Scripts -->
-    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
-    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
-    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
-    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+<!-- Scripts -->
+<script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+<script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+<script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+<script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+<script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+<script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+<script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+<script src="js/scripts.js"></script> <!-- Custom scripts -->
 </body>
 </html>
-     <!--   <form action="MainController" method="POST">
-            <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
-
-            speaker: ${event.speaker} <br/>
-
-            Event name: ${event.eventName} <br/>
-
-            Occur Date: ${event.occurDate} <br/>
-
-            End Date: <a> ${event.endDate}</a> <br/>
-
-            register Date: ${event.registerDate} <br/>
-
-            Expiration Date: ${event.expirationDate} <br/>
-
-            Description: ${event.description} <br/>
-
-            Location: ${event.location} <br/>
-
-            <input type="text" name="txtDescription_FB" value="${param.txtDescription_FB}"placeholder="Description" />
-            <input type="number" name="txtRating" value="${param.txtRating}" placeholder="Rating" />
-
-            <input type="submit" value="Feedback" name="btnAction" /> <br/>
-
-            <input type="submit" value="Back to home" name="btnAction" />
-        </form>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Description</th>
-                    <th>Rating</th>
-                    <th>Post Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var= "Feedback" items="${requestScope.ListFeedbacks}">
-                    <tr>
-                        <td>${Feedback.posted_by}</td>
-                        <td>${Feedback.description_fb}</td>
-                        <td>${Feedback.rating}</td>
-                        <td>${Feedback.post_time}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <c:forEach begin="1" end="${requestScope.page}" var="i">
-            <c:url value="GetDetailEventController" var="paging">
-                <c:param name="index" value="${i}"/>
-
-            </c:url>
-            <a href="${paging}">${i}</a>
-        </c:forEach>
-
-    </body>
-</html>-->
-
