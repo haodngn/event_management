@@ -108,14 +108,21 @@
                         </li>
 
                     </ul>
+                    
                     <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <c:url var="profile" value="MainController">
+                                <c:param name="btnAction" value="Profile"></c:param>
+                                 <c:param name="email" value="${sessionScope.USER.email}"/>
+                            </c:url>
+                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+                            
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
+                               
                             </c:url>
                             <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
-
 
                         </div>
                     </li>
@@ -205,7 +212,11 @@
                                     <c:forEach items="${requestScope.listEvent}" var="item">
                                         <!-- Slide -->
                                         <div class="swiper-slide">
-                                            <a href="detail_event.jsp" class="popup-link"
+                                            <c:url var="update" value="MainController">
+                                                <c:param name="btnAction" value="Edit"/>
+                                                <c:param name="txtId" value="${item.id}"/>
+                                            </c:url>
+                                            <a href="${update}" class="popup-link"
                                                data-effect="fadeIn">
                                                 <img style="height: 355px; width: 100%" class="img-fluid"
                                                      src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"

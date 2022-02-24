@@ -83,6 +83,7 @@ public class SearchEventController extends HttpServlet {
             } else if (dto.getRoleID() == 2){
                 url = HOME_PAGE; //dep event
             }
+            System.out.println("url: "+url);
                
             request.setAttribute("listEvent", listEvent);//list Event
             request.setAttribute("page", countPage);//number of page 

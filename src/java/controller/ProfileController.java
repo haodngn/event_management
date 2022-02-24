@@ -44,6 +44,7 @@ public class ProfileController extends HttpServlet {
             System.out.println(email);
             UserDAO dao = new UserDAO();
             UserDTO dto = dao.getUserByEmail(email);
+            System.out.println("user: "+dto.getEmail());
             ses.setAttribute("userInfo", dto);
         } catch (ClassNotFoundException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
