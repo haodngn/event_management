@@ -12,6 +12,6 @@
         <title>Home</title>
     </head>
     <body>
-        <h1>This is home page for ADMIN</h1>
+        <h1>This is home page for admin</h1>
     </body>
 </html>
