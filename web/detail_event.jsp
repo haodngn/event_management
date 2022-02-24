@@ -370,16 +370,16 @@
             <div class="bg-light p-2">
                 <div class="d-flex flex-row align-items-start">
                     <img class="rounded-circle" >
-                    
+
                     <textarea  class="form-control ml-1 shadow-none textarea" name="des" value="${param.des}" placeholder="Comment here!"></textarea>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="reply px-4">
-                        <button type="radio" class="btn" name="rate" value="1"><i class="fa fa-star text-warning"> 1</i></button>  
-                        <button type="radio" class="btn" name="rate" value="2"><i class="fa fa-star text-warning"> 2</i></button>  
-                        <button type="radio" class="btn" name="rate" value="3"><i class="fa fa-star text-warning"> 3</i></button>  
-                        <button type="radio" class="btn" name="rate" value="4"><i class="fa fa-star text-warning"> 4</i></button>  
-                        <button type="radio" class="btn" name="rate" value="5"><i class="fa fa-star text-warning"> 5</i></button>  
+                        1<input type="radio" class="btn fa fa-star text-warning"/>  
+                        2<input type="radio" class="btn fa fa-star text-warning"/>  
+                        3<input type="radio" class="btn fa fa-star text-warning"/>  
+                        4<input type="radio" class="btn fa fa-star text-warning"/>  
+                        5<input type="radio" class="btn fa fa-star text-warning"/>  
                     </div>
                 </div>
                 <form action="MainController">
