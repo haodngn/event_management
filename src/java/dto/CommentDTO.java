@@ -14,12 +14,12 @@ import java.io.Serializable;
 public class CommentDTO implements Serializable {
     private int id;
     private int event_id;
-    private int posted_by;
+    private String posted_by;
     private String description_fb;
     private int rating;
     private String post_time;
 
-    public CommentDTO(int posted_by, String description_fb, int rating, String post_time) {
+    public CommentDTO(String posted_by, String description_fb, int rating, String post_time) {
         this.posted_by = posted_by;
         this.description_fb = description_fb;
         this.rating = rating;
@@ -36,13 +36,14 @@ public class CommentDTO implements Serializable {
         return event_id;
     }
 
-    public int getPosted_by() {
+    public String getPosted_by() {
         return posted_by;
     }
 
-    public void setPosted_by(int posted_by) {
+    public void setPosted_by(String posted_by) {
         this.posted_by = posted_by;
     }
+
 
     public String getDescription_fb() {
         return description_fb;

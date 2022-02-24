@@ -171,4 +171,39 @@ public class UserDAO {
         return update;
     }
     
+    public String getNameUserByID(int id) 
+            throws SQLException, ClassNotFoundException, NamingException{
+        Connection con = null;
+        PreparedStatement stm =null;
+        ResultSet rs = null;
+        
+        String name = "";
+        
+        try {
+            String sql = "select Name "
+                    + "from Account "
+                    + "where ID=? ";
+            
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, id);
+            rs = stm.executeQuery();
+            if(rs.next()){
+                name = rs.getString("Name");
+            }
+            
+        } finally {
+            if (rs != null){
+                rs.close();
+            }
+            if (stm != null){
+                stm.close();
+            }
+            if (con != null){
+                con.close();
+            }
+        }
+        
+        return name;
+    }
 }

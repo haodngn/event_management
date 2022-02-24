@@ -49,9 +49,11 @@ public class CreateCommentController extends HttpServlet {
         String url = FAIL;
 
         String description_fb = request.getParameter("txtDescription_FB");
+        System.out.println("cmt: "+description_fb);
         String post_time = request.getParameter("txtPostTime");
         int event_id = Integer.parseInt(request.getParameter("txtId"));
-//        int posted_by = Integer.parseInt(request.getParameter("txtPostedBy"));
+        System.out.println("event id: "+ event_id);
+        System.out.println("reate: "+ request.getParameter("txtRating"));
         int rating = Integer.parseInt(request.getParameter("txtRating"));
 
         FeedbackErrorDTO err = new FeedbackErrorDTO();
@@ -59,7 +61,7 @@ public class CreateCommentController extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("USER");
+            UserDTO user = (UserDTO) session.getAttribute("USER");//get current user
             UserDAO udao = new UserDAO();
             user = udao.getUserByEmail(user.getEmail());
             System.out.println("user: "+user);

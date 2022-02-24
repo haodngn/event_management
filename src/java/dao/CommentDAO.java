@@ -90,8 +90,11 @@ public class CommentDAO implements Serializable{
                 
                 DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
                 String post_time = rs.getString("PostTime");
+                
+                UserDAO udao = new UserDAO();
+                String name = udao.getNameUserByID(posted_by);
 
-                CommentDTO dto = new CommentDTO(posted_by, description_fb, rating, post_time);
+                CommentDTO dto = new CommentDTO(name, description_fb, rating, post_time);
                 if (this.listComment == null) {
                     this.listComment = new ArrayList<>();
                 }

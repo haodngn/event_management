@@ -65,7 +65,7 @@ public class GetDetailEventController extends HttpServlet {
                 //get all feedback
                 CommentDAO fdao = new CommentDAO();
                 fdao.getAllFeedback(id);
-                listComment = fdao.getListComment();
+                listComment = fdao.getListComment();                
                 
                 //check role user
                 UserDTO user = (UserDTO) ses.getAttribute("USER");
