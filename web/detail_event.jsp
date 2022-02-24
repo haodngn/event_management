@@ -368,25 +368,28 @@
             <h5 class="font-weight-bold text-primary">${sessionScope.USER.name}</h5>
 
             <div class="bg-light p-2">
-                <div class="d-flex flex-row align-items-start">
-                    <img class="rounded-circle" >
-                    
-                    <textarea  class="form-control ml-1 shadow-none textarea" name="des" value="${param.des}" placeholder="Comment here!"></textarea>
-                </div>
-                <div class="action d-flex justify-content-between mt-2 align-items-center">
-                    <div class="reply px-4">
-                        <button type="radio" class="btn" name="rate" value="1"><i class="fa fa-star text-warning"> 1</i></button>  
-                        <button type="radio" class="btn" name="rate" value="2"><i class="fa fa-star text-warning"> 2</i></button>  
-                        <button type="radio" class="btn" name="rate" value="3"><i class="fa fa-star text-warning"> 3</i></button>  
-                        <button type="radio" class="btn" name="rate" value="4"><i class="fa fa-star text-warning"> 4</i></button>  
-                        <button type="radio" class="btn" name="rate" value="5"><i class="fa fa-star text-warning"> 5</i></button>  
-                    </div>
-                </div>
                 <form action="MainController">
+                    <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
+                    <div class="d-flex flex-row align-items-start">
+                        <img class="rounded-circle" >
+
+                        <textarea  class="form-control ml-1 shadow-none textarea" name="txtDescription_FB" value="${param.txtDescription_FB}" placeholder="Comment here!"></textarea>
+                    </div>
+                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                        <div class="reply px-4">
+                            1<input type="radio" name="txtRating" value="1" class="btn fa fa-star text-warning"/>  
+                            2<input type="radio" name="txtRating" value="2" class="btn fa fa-star text-warning"/>  
+                            3<input type="radio" name="txtRating" value="3" class="btn fa fa-star text-warning"/>  
+                            4<input type="radio" name="txtRating" value="4" class="btn fa fa-star text-warning"/>  
+                            5<input type="radio" name="txtRating" value="5" class="btn fa fa-star text-warning"/>
+                        </div>
+                    </div>
+                        <c:if test="${not empty requestScope.CREAT_CMT_ERR}">
+                            <font color="red">${requestScope.CREAT_CMT_ERR.ratingError}</font>
+                        </c:if>
+
                     <div class="mt-2 text-right">
-                        <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
-                        <input type="hidden" name="txtDescription_FB" value="${param.des}" />
-                        <input type="hidden" name="txtRating" value="${param.rate}" />
+
                         <button class="btn btn-primary btn-sm shadow-none" type="submit" name="btnAction" value="Feedback">Post comment</button>
                         <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button>
                     </div>

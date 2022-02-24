@@ -49,12 +49,21 @@ public class CreateCommentController extends HttpServlet {
         String url = FAIL;
 
         String description_fb = request.getParameter("txtDescription_FB");
-        System.out.println("cmt: "+description_fb);
+        
+        if(description_fb == null){
+            description_fb = "No comment";
+        }
+
         String post_time = request.getParameter("txtPostTime");
         int event_id = Integer.parseInt(request.getParameter("txtId"));
-        System.out.println("event id: "+ event_id);
-        System.out.println("reate: "+ request.getParameter("txtRating"));
-        int rating = Integer.parseInt(request.getParameter("txtRating"));
+
+        String rate = request.getParameter("txtRating");
+        int rating;
+        if(rate == null){
+            rating = 0;
+        }else{
+            rating = Integer.parseInt(rate);
+        }
 
         FeedbackErrorDTO err = new FeedbackErrorDTO();
         boolean foundErr = false;
@@ -64,15 +73,16 @@ public class CreateCommentController extends HttpServlet {
             UserDTO user = (UserDTO) session.getAttribute("USER");//get current user
             UserDAO udao = new UserDAO();
             user = udao.getUserByEmail(user.getEmail());
-            System.out.println("user: "+user);
+           
             
             if (rating <= 0 || rating > 5) {
                 foundErr = true;
-                err.setRatingError("Field is required 1-5 star  !!");
+                err.setRatingError("PLease rating event !!");
+                url = DETAIL_EVENT;
             }
 
             if (foundErr) {
-                request.setAttribute("CREATE_ERR", err);
+                request.setAttribute("CREAT_CMT_ERR", err);
             } else {
                 CommentDAO dao = new CommentDAO();
                 boolean result = dao.createFeedback(event_id, user.getUserID(), description_fb, rating, post_time);
