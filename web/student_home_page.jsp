@@ -212,7 +212,11 @@
                                     <c:forEach items="${requestScope.listEvent}" var="item">
                                         <!-- Slide -->
                                         <div class="swiper-slide">
-                                            <a href="detail_event.jsp" class="popup-link"
+                                            <c:url var="detail" value="MainController">
+                                                <c:param name="btnAction" value="detail event"/>
+                                                <c:param name="txtId" value="${item.id}"/>
+                                            </c:url>
+                                            <a href="${detail}" class="popup-link"
                                                data-effect="fadeIn">
                                                 <img style="height: 355px; width: 187px" class="img-fluid"
                                                      src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"

@@ -168,10 +168,10 @@
                                 <p class="location_time_p">Location</p>
                                 <i class="fas fa-map-marker"></i>
                                 <p>${event.location}</p>
-                                
+
                                 <p class="location_time_p">Fee : 5$</p>
                                 <i class="fas fa-money-bill"></i>
-                                
+
                             </div>
                             <div class="location_time" style="width: 50%;
                                  float:right">
@@ -366,85 +366,72 @@
 
             </div>
             <h5 class="font-weight-bold text-primary">${sessionScope.USER.name}</h5>
+
             <div class="bg-light p-2">
                 <div class="d-flex flex-row align-items-start">
                     <img class="rounded-circle" >
-                    <textarea  class="form-control ml-1 shadow-none textarea" placeholder="Comment here!"></textarea>
+                    
+                    <textarea  class="form-control ml-1 shadow-none textarea" name="des" value="${param.des}" placeholder="Comment here!"></textarea>
                 </div>
                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                     <div class="reply px-4">
-                        <button class="btn"><i class="fa fa-star text-warning"> 1</i></button>  
-                        <button class="btn"><i class="fa fa-star text-warning"> 2</i></button>  
-                        <button class="btn"><i class="fa fa-star text-warning"> 3</i></button>  
-                        <button class="btn"><i class="fa fa-star text-warning"> 4</i></button>  
-                        <button class="btn"><i class="fa fa-star text-warning"> 5</i></button>  
+                        <button type="radio" class="btn" name="rate" value="1"><i class="fa fa-star text-warning"> 1</i></button>  
+                        <button type="radio" class="btn" name="rate" value="2"><i class="fa fa-star text-warning"> 2</i></button>  
+                        <button type="radio" class="btn" name="rate" value="3"><i class="fa fa-star text-warning"> 3</i></button>  
+                        <button type="radio" class="btn" name="rate" value="4"><i class="fa fa-star text-warning"> 4</i></button>  
+                        <button type="radio" class="btn" name="rate" value="5"><i class="fa fa-star text-warning"> 5</i></button>  
                     </div>
                 </div>
-                <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+                <form action="MainController">
+                    <div class="mt-2 text-right">
+                        <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
+                        <input type="hidden" name="txtDescription_FB" value="${param.des}" />
+                        <input type="hidden" name="txtRating" value="${param.rate}" />
+                        <button class="btn btn-primary btn-sm shadow-none" type="submit" name="btnAction" value="Feedback">Post comment</button>
+                        <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button>
+                    </div>
+                </form>
             </div>
+
+
         </div>
         <div class="review-list" >
             <ul style="    margin-left: auto;
                 margin-right: auto;
                 max-width: 1140px;">
-                <li>
-                    <div class="d-flex">
-                        <div class="left">
-                            <span>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
-                            </span>
-                        </div>
-                        <div class="right" >
-                            <h4>
-                                FPT University
-                                <span class="gig-rating text-body-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                    <path
-                                        fill="currentColor"
-                                        d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                                        ></path>
-                                    </svg>
-                                    5.0
+                <c:forEach items="${requestScope.ListFeedbacks}" var="cmt">
+                    <li>
+                        <div class="d-flex">
+                            <div class="left">
+                                <span>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
                                 </span>
-                            </h4>
-                            <div class="review-description">
-                                <p>
-                                    The process was smooth, after providing the required info, Pragyesh sent me an outstanding packet of wireframes. Thank you a lot!
-                                </p>
                             </div>
+                            <div class="right" >
+                                <h4>
+                                    ${cmt.posted_by}
+                                    <span class="gig-rating text-body-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
+                                        <path
+                                            fill="currentColor"
+                                            d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                                            ></path>
+                                        </svg>
+                                        ${cmt.rating}
+                                    </span>
+                                </h4>
+                                <div class="review-description">
+                                    <p>
+                                        ${cmt.description_fb}
+                                    </p>
+                                </div>
 
-                        </div >
-                    </div>
-                </li>
-                 <li>
-                    <div class="d-flex">
-                        <div class="left">
-                            <span>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
-                            </span>
+                            </div >
                         </div>
-                        <div class="right" >
-                            <h4>
-                                FPT University
-                                <span class="gig-rating text-body-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                    <path
-                                        fill="currentColor"
-                                        d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                                        ></path>
-                                    </svg>
-                                    5.0
-                                </span>
-                            </h4>
-                            <div class="review-description">
-                                <p>
-                                    The process was smooth, after providing the required info, Pragyesh sent me an outstanding packet of wireframes. Thank you a lot!
-                                </p>
-                            </div>
+                    </li>
+                </c:forEach>
 
-                        </div >
-                    </div>
-                </li>
+
             </ul>
         </div>
     </div>
