@@ -73,8 +73,8 @@ public class UserDAO {
         PreparedStatement stm = null;
         boolean check = false;
         try {
-            String sql = "insert into Account(Name, Email, Password, ProfilePicture, Role_id, Status) "
-                    + "values(?, ?, ?, ?, ?, 'active')";
+            String sql = "insert into Account(Name, Email, Password, ProfilePicture, Role_id, Status, PhoneNumber, Gender) "
+                    + "values(?, ?, ?, ?, ?, 'active', 'null', 1)";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, name);
