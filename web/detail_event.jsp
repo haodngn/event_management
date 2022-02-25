@@ -159,8 +159,7 @@
                                  alt="alternative">
                         </div> <!-- end of image-container-large -->
                         <div class="text-container">
-                            <!--<h3>${event.eventName}</h3>-->
-                            <h3>${param.name}</h3>
+                            <h3>${event.eventName}</h3>
                             <h4>Với sự tham gia của: ${event.speaker}</h4>
                             <div class="location_time" style="width: 50%;
                                  float:left">
@@ -377,11 +376,11 @@
                     </div>
                     <div class="action d-flex justify-content-between mt-2 align-items-center">
                         <div class="reply px-4">
-                            1<input type="radio" name="txtRating" value="1" class="btn fa fa-star text-warning"/>  
-                            2<input type="radio" name="txtRating" value="2" class="btn fa fa-star text-warning"/>  
-                            3<input type="radio" name="txtRating" value="3" class="btn fa fa-star text-warning"/>  
-                            4<input type="radio" name="txtRating" value="4" class="btn fa fa-star text-warning"/>  
-                            5<input type="radio" name="txtRating" value="5" class="btn fa fa-star text-warning"/>
+                            1<input type="radio" name="txtRating" value="1" required="" class="btn fa fa-star text-warning"/>  
+                            2<input type="radio" name="txtRating" value="2" required="" class="btn fa fa-star text-warning"/>  
+                            3<input type="radio" name="txtRating" value="3" required="" class="btn fa fa-star text-warning"/>  
+                            4<input type="radio" name="txtRating" value="4" required="" class="btn fa fa-star text-warning"/>  
+                            5<input type="radio" name="txtRating" value="5" required="" class="btn fa fa-star text-warning"/>
                         </div>
                     </div>
                         <c:if test="${not empty requestScope.CREAT_CMT_ERR}">
