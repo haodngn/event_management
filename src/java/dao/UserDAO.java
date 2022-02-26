@@ -25,7 +25,6 @@ import utils.JavaMailUtils;
 public class UserDAO {
     
     public UserDTO checkLogin(String email, String password) throws NoSuchAlgorithmException, SQLException, NamingException {
-        int id;
         String fullName = "";       
         int roleID;
         String status = "";
@@ -35,18 +34,17 @@ public class UserDAO {
         try {
             conn = DBHelper.makeConnection();
             if (conn != null) {
-                String sql = "SELECT ID, Name, Role_id, Status FROM Account WHERE Email=? AND Password=? AND Status!=?";
+                String sql = "SELECT Name, Role_id, Status FROM Account WHERE Email=? AND Password=? AND Status!=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, email);
                 stm.setString(2, password);
                 stm.setString(3, "disable");
                 rs = stm.executeQuery();
                 if (rs.next()) {
-                    id = rs.getInt("ID");
                     fullName = rs.getString("Name");
                     roleID = rs.getInt("Role_id");
                     status = rs.getString("Status");
-                    return new UserDTO(id, fullName, email, roleID, status);
+                    return new UserDTO(fullName, email, roleID, status);
                 }
             }
         } catch (ClassNotFoundException | SQLException | NamingException e) {

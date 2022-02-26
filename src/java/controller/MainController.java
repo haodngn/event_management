@@ -49,7 +49,6 @@ public class MainController extends HttpServlet {
     private static final String DEL_CMT = "DelCommentController";
     private static final String POST = "PostController";
     private static final String NOTI_DETAIL = "NotiDetailController";
-    private static final String REGISTER_EVENT = "RegisterEventController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -93,8 +92,6 @@ public class MainController extends HttpServlet {
                 url = ENTER_EDIT_PROFILE;
             } else if(action.equals("Save Profile")){
                 url = EDIT_PROFILE;
-            } else if(action.equals("Register")) {
-                url = REGISTER_EVENT;
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);

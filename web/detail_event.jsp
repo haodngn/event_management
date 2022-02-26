@@ -237,16 +237,9 @@
                                                             </div>  end of col 
                                                         </div>  end of row -->
                             <div class="login-box">
-                                <form action="MainController" method="POST">
-                                    <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
-                                    <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
-                                    <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
-                                </form>
-                                <div class="register-message">
-                                    ${requestScope.message}
-                                </div>
-                            </div>
-
+                                <input
+                                    style="font-size: 20px; background-color: #f60;" type="submit" required="" name="btnAction" value="Register"  />
+                            </div> 
                         </div> <!-- end of text-container-->
 
 
@@ -390,9 +383,9 @@
                             5<input type="radio" name="txtRating" value="5" required="" class="btn fa fa-star text-warning"/>
                         </div>
                     </div>
-                    <c:if test="${not empty requestScope.CREAT_CMT_ERR}">
-                        <font color="red">${requestScope.CREAT_CMT_ERR.ratingError}</font>
-                    </c:if>
+                        <c:if test="${not empty requestScope.CREAT_CMT_ERR}">
+                            <font color="red">${requestScope.CREAT_CMT_ERR.ratingError}</font>
+                        </c:if>
 
                     <div class="mt-2 text-right">
 
