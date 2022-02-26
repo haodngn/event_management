@@ -40,6 +40,15 @@ public class UserDTO {
         this.ProfilePicture = ProfilePicture;
     }
 
+    public UserDTO(int userID, String name, String email, int roleID, String ProfilePicture) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.roleID = roleID;
+        this.ProfilePicture = ProfilePicture;
+    }
+    
+
     public UserDTO(int userID, String name, String email, String phoneNumber, Boolean gender, String ProfilePicture) {
         this.userID = userID;
         this.name = name;
