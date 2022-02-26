@@ -237,9 +237,15 @@
                                                             </div>  end of col 
                                                         </div>  end of row -->
                             <div class="login-box">
-                                <input
-                                    style="font-size: 20px; background-color: #f60;" type="submit" required="" name="btnAction" value="Register"  />
-                            </div> 
+                                    <form action="MainController" method="POST">
+                                    <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
+                                    <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
+                                    <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
+                                </form>
+                                <div class="register-message">
+                                    ${requestScope.message}
+                                </div>
+                            </div>
                         </div> <!-- end of text-container-->
 
 
