@@ -188,7 +188,7 @@
             <form class="form_create_event" action="MainController" method="POST">
 
                 <label for="speaker">Speaker</label>
-                <input id="speaker" type="text" name="txtSpeaker" value="${param.txtSpeaker}" required=""/></br>
+                <input id="speaker" type="text" name="txtSpeaker" value="${param.txtSpeaker}"/></br>
                 <c:if test="${not empty err.speakerLength}">
                     <font color="red">
                     ${err.speakerLength}<br/>
@@ -197,7 +197,7 @@
 
 
                 <label for="eName">Event Name</label>
-                <input id="eName" type="text" name="txtEventName" value="${param.txtEventName}" required=""/></br>
+                <input id="eName" type="text" name="txtEventName" value="${param.txtEventName}"/></br>
                 <c:if test="${not empty err.nameLength}">
                     <font color="red">
                     ${err.nameLength}<br/>
@@ -206,7 +206,7 @@
 
 
                 <label for="oDate">Occur Date</label>
-                <input id="oDate" type="date" name="txtOccurDate" value="${param.txtOccurDate}" required=""/></br>
+                <input id="oDate" type="date" name="txtOccurDate" value="${param.txtOccurDate}"/></br>
                 <c:if test="${not empty err.occurDateCheck}">
                     <font color="red">
                     ${err.occurDateCheck}<br/>
@@ -215,7 +215,7 @@
 
 
                 <label for="eDate">End Date</label>
-                <input id="eDate" type="date" name="txtEndDate" value="${param.txtEndDate}" required=""/></br>
+                <input id="eDate" type="date" name="txtEndDate" value="${param.txtEndDate}"/></br>
                 <c:if test="${not empty err.endDateCheck}">
                     <font color="red">
                     ${err.endDateCheck}<br/>
@@ -224,7 +224,7 @@
 
 
                 <label for="rDate">Register Date</label>
-                <input id="rDate" type="date" name="registerDate" value="${param.registerDate}" required=""/></br>
+                <input id="rDate" type="date" name="registerDate" value="${param.registerDate}"/></br>
                 <c:if test="${not empty err.registerDateCheck}">
                     <font color="red">
                     ${err.registerDateCheck}<br/>
@@ -233,7 +233,7 @@
 
 
                 <label for="exDate">Expiration Date</label>
-                <input id="exDate" type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" required=""/></br>
+                <input id="exDate" type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" /></br>
                 <c:if test="${not empty err.expDateCheck}">
                     <font color="red">
                     ${err.expDateCheck}<br/>
@@ -242,7 +242,7 @@
 
 
                 <label for="description">Description</label>
-                <textarea id="description" type="text" name="txtDescription" value="${param.txtDescription}" required=""></textarea></br>
+                <textarea id="description" type="text" name="txtDescription" value="${param.txtDescription}"></textarea></br>
                 <c:if test="${not empty err.desLength}">
                     <font color="red">
                     ${err.desLength}<br/>
@@ -251,7 +251,7 @@
 
 
                 <label for="location">Location</label>
-                <input id="location" type="text" name="txtLocation" value="${param.txtLocation}" required=""/></br>
+                <input id="location" type="text" name="txtLocation" value="${param.txtLocation}"/></br>
                 <c:if test="${not empty err.locationLength}">
                     <font color="red">
                     ${err.locationLength}<br/>
@@ -260,11 +260,11 @@
 
 
                 <label for="postBy">Posted by</label>
-                <input id="postBy" type="number" name="txtPostedBy" value="${param.txtPostedBy}" required=""/></br>
+                <input id="postBy" type="number" name="txtPostedBy" value="${param.txtPostedBy}"/></br>
 
 
                 <label for="postID">Posted ID</label>
-                <input id="postID" type="number" name="txtPostId" value="${param.txtPostId}" required=""/></br>
+                <input id="postID" type="number" name="txtPostId" value="${param.txtPostId}"/></br>
 
                 <div class="btn-action">
                     <input type="submit" value="Edit Event" name="btnAction" />
