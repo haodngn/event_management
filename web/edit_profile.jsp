@@ -63,10 +63,27 @@
                             <li class="nav-item">
                                 <a class="nav-link page-scroll" href="#screens">CONTACT</a>
                             </li>
+                              <li class="nav-item dropdown" style="list-style-type: none;">
+                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <c:url var="profile" value="MainController">
+                                <c:param name="btnAction" value="Profile"></c:param>
+                                 <c:param name="email" value="${sessionScope.USER.email}"/>
+                            </c:url>
+                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+                            
+                            <hr/>
+                            
+                            <c:url var="logout" value="MainController">
+                                <c:param name="btnAction" value="Logout"></c:param>
+                            </c:url>
+                            <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
+
+
+                        </div>
+                    </li>
                         </ul>
-                        <span class="nav-item">
-                            <img src=${sessionScope.userInfo.profilePicture} alt="Avatar" class="profile-avatar">
-                        </span>
+                        
                     </div>
                 </div> <!-- end of container -->
             </nav> <!-- end of navbar -->

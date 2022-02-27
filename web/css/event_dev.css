@@ -129,17 +129,14 @@ h2{
 
 .table-wrapper > .create-button{
     float: right;
-    
+
 }
 
 .create-button {
     padding: 5px;
-}
-
-.fl-table .create-button {
     margin: auto 8px;
 }
-
-.fl-table .create-button input {
-    background-color: #fff;
+button{
+    background-color: #f7f7f9;
+    border-radius: 5px;
 }

@@ -34,6 +34,8 @@ and open the template in the editor.
     font-size: 14px;
     color: #2f8d01;
     align-self: center;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .event-infos h6 {
