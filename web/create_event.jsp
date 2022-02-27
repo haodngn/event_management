@@ -6,85 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<!--<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create</title>
-    </head>
-    <body>
-<c:set value="${requestScope.CREATE_ERR}" var="err"/>
-<form action="MainController" method="POST">
-    speaker 
-    <input type="text" name="txtSpeaker" value="${param.txtSpeaker}" placeholder="Speaker"/></br>
-<c:if test="${not empty err.speakerLength}">
-    <font color="red">
-    ${err.speakerLength}<br/>
-</font>
-</c:if>
-Event name 
-<input type="text" name="txtEventName" value="${param.txtEventName}" placeholder="EventName"/></br>
-<c:if test="${not empty err.nameLength}">
-    <font color="red">
-    ${err.nameLength}<br/>
-</font>
-</c:if>
-Occur Date 
-<input type="date" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/></br>
-<c:if test="${not empty err.occurDateCheck}">
-    <font color="red">
-    ${err.occurDateCheck}<br/>
-</font>
-</c:if>
-End Date 
-<input type="date" name="txtEndDate" value="${param.txtEndDate}" placeholder="txtEndDate"/></br>
-<c:if test="${not empty err.endDateCheck}">
-    <font color="red">
-    ${err.endDateCheck}<br/>
-</font>
-</c:if>
-register Date 
-<input type="date" name="registerDate" value="${param.registerDate}" placeholder="registerDate"/></br>
-<c:if test="${not empty err.registerDateCheck}">
-    <font color="red">
-    ${err.registerDateCheck}<br/>
-</font>
-</c:if>
-Expiration Date 
-<input type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" placeholder="txtExpirationDate"/></br>
-<c:if test="${not empty err.expDateCheck}">
-    <font color="red">
-    ${err.expDateCheck}<br/>
-</font>
-</c:if>
 
-Description
-<input type="text" name="txtDescription" value="${param.txtDescription}" placeholder="txtDescription"/></br>
-<c:if test="${not empty err.desLength}">
-    <font color="red">
-    ${err.desLength}<br/>
-</font>
-</c:if>
-Location
-<input type="text" name="txtLocation" value="${param.txtLocation}" placeholder="txtLocation"/></br>
-<c:if test="${not empty err.locationLength}">
-    <font color="red">
-    ${err.locationLength}<br/>
-</font>
-</c:if>
-Posted By 
-<input type="number" name="txtPostedBy" value="${param.txtPostedBy}" placeholder="txtPostedBy"/></br>
-Post Id 
-<input type="number" name="txtPostId" value="${param.txtPostId}" placeholder="txtPostId"/></br>
-
-<input type="submit" value="Create" name="btnAction" />
-</form>
-
-<c:if test="${not empty CREATE_SUCCESS}">
-    <h1>${CREATE_SUCCESS}</h1>
-</c:if>
-</body>
-</html>-->
 
 <%-- 
     Document   : event_details_page
@@ -127,9 +49,10 @@ Post Id
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/search.css" rel="stylesheet"
+        <link href="css/search.css" rel="stylesheet">
+        <link href="css/create_event_dev.css" rel="stylesheet">
 
-              <!-- Favicon  -->
+        <!-- Favicon  -->
         <link rel="icon"
               href="https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/271593937_1664244880583377_2174091405254032054_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=730e14&_nc_ohc=KZvQUUTXTt8AX8ezGc5&_nc_ht=scontent.fsgn8-2.fna&oh=00_AT8zmh_8x3msFpgytr2Yvszp1KfUnB9vuZ_2S8CzCxqHmQ&oe=61ED85A9">
     </head>
@@ -183,7 +106,7 @@ Post Id
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                               href="create_event.jsp">EVENTS<span
+                               href="event_dev.jsp">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -197,6 +120,14 @@ Post Id
                     <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <c:url var="profile" value="MainController">
+                                <c:param name="btnAction" value="Profile"></c:param>
+                                <c:param name="email" value="${sessionScope.USER.email}"/>
+                            </c:url>
+                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+
+                            <hr/>
+
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
@@ -254,71 +185,94 @@ Post Id
 
         <!--content-->
         <h3 style="text-align: center">EVENT REGISTRATION FORM</h3>
-        <form action="MainController" method="POST">
+        <div class="container_form_create">
+            <form class="form_create_event" action="MainController" method="POST">
 
-            <input type="text" name="txtSpeaker" value="${param.txtSpeaker}" placeholder="Speaker"/></br>
-            <c:if test="${not empty err.speakerLength}">
-                <font color="red">
-                ${err.speakerLength}<br/>
-                </font>
-            </c:if>
-            Event name 
-            <input type="text" name="txtEventName" value="${param.txtEventName}" placeholder="EventName"/></br>
-            <c:if test="${not empty err.nameLength}">
-                <font color="red">
-                ${err.nameLength}<br/>
-                </font>
-            </c:if>
-            Occur Date 
-            <input type="date" name="txtOccurDate" value="${param.txtOccurDate}" placeholder="txtOccurDate"/></br>
-            <c:if test="${not empty err.occurDateCheck}">
-                <font color="red">
-                ${err.occurDateCheck}<br/>
-                </font>
-            </c:if>
-            End Date 
-            <input type="date" name="txtEndDate" value="${param.txtEndDate}" placeholder="txtEndDate"/></br>
-            <c:if test="${not empty err.endDateCheck}">
-                <font color="red">
-                ${err.endDateCheck}<br/>
-                </font>
-            </c:if>
-            register Date 
-            <input type="date" name="registerDate" value="${param.registerDate}" placeholder="registerDate"/></br>
-            <c:if test="${not empty err.registerDateCheck}">
-                <font color="red">
-                ${err.registerDateCheck}<br/>
-                </font>
-            </c:if>
-            Expiration Date 
-            <input type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" placeholder="txtExpirationDate"/></br>
-            <c:if test="${not empty err.expDateCheck}">
-                <font color="red">
-                ${err.expDateCheck}<br/>
-                </font>
-            </c:if>
+                <label for="speaker">Speaker</label>
+                <input id="speaker" type="text" name="txtSpeaker" value="${param.txtSpeaker}" required=""/></br>
+                <c:if test="${not empty err.speakerLength}">
+                    <font color="red">
+                    ${err.speakerLength}<br/>
+                    </font>
+                </c:if>
 
-            Description
-            <input type="text" name="txtDescription" value="${param.txtDescription}" placeholder="txtDescription"/></br>
-            <c:if test="${not empty err.desLength}">
-                <font color="red">
-                ${err.desLength}<br/>
-                </font>
-            </c:if>
-            Location
-            <input type="text" name="txtLocation" value="${param.txtLocation}" placeholder="txtLocation"/></br>
-            <c:if test="${not empty err.locationLength}">
-                <font color="red">
-                ${err.locationLength}<br/>
-                </font>
-            </c:if>
-            Posted By 
-            <input type="number" name="txtPostedBy" value="${param.txtPostedBy}" placeholder="txtPostedBy"/></br>
-            Post Id 
-            <input type="number" name="txtPostId" value="${param.txtPostId}" placeholder="txtPostId"/></br>
 
-            <input type="submit" value="Create" name="btnAction" />
-        </form>
+                <label for="eName">Event Name</label>
+                <input id="eName" type="text" name="txtEventName" value="${param.txtEventName}" required=""/></br>
+                <c:if test="${not empty err.nameLength}">
+                    <font color="red">
+                    ${err.nameLength}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="oDate">Occur Date</label>
+                <input id="oDate" type="date" name="txtOccurDate" value="${param.txtOccurDate}" required=""/></br>
+                <c:if test="${not empty err.occurDateCheck}">
+                    <font color="red">
+                    ${err.occurDateCheck}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="eDate">End Date</label>
+                <input id="eDate" type="date" name="txtEndDate" value="${param.txtEndDate}" required=""/></br>
+                <c:if test="${not empty err.endDateCheck}">
+                    <font color="red">
+                    ${err.endDateCheck}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="rDate">Register Date</label>
+                <input id="rDate" type="date" name="registerDate" value="${param.registerDate}" required=""/></br>
+                <c:if test="${not empty err.registerDateCheck}">
+                    <font color="red">
+                    ${err.registerDateCheck}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="exDate">Expiration Date</label>
+                <input id="exDate" type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" required=""/></br>
+                <c:if test="${not empty err.expDateCheck}">
+                    <font color="red">
+                    ${err.expDateCheck}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="description">Description</label>
+                <textarea id="description" type="text" name="txtDescription" value="${param.txtDescription}" required=""></textarea></br>
+                <c:if test="${not empty err.desLength}">
+                    <font color="red">
+                    ${err.desLength}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="location">Location</label>
+                <input id="location" type="text" name="txtLocation" value="${param.txtLocation}" required=""/></br>
+                <c:if test="${not empty err.locationLength}">
+                    <font color="red">
+                    ${err.locationLength}<br/>
+                    </font>
+                </c:if>
+
+
+                <label for="postBy">Posted by</label>
+                <input id="postBy" type="number" name="txtPostedBy" value="${param.txtPostedBy}" required=""/></br>
+
+
+                <label for="postID">Posted ID</label>
+                <input id="postID" type="number" name="txtPostId" value="${param.txtPostId}" required=""/></br>
+                <div class="btn-action">
+                    <input type="submit" value="Create" name="btnAction" />
+
+                </div>
+            </form>
+
+        </div>
 
 
         <!--end of content-->
