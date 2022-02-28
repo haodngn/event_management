@@ -96,8 +96,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <c:url var="event_dev" value="MainController">
+                                <c:param name="btnAction" value="manage"></c:param>
+                                <c:param name="btnEventDev" value="eventDev"></c:param>
+                            </c:url>
                             <a class="nav-link page-scroll"
-                               href="event_dev.jsp">EVENTS<span
+                               href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -214,11 +218,11 @@
                                     <c:forEach items="${requestScope.listEvent}" var="item">
                                         <!-- Slide -->
                                         <div class="swiper-slide">
-                                            <c:url var="update" value="MainController">
-                                                <c:param name="btnAction" value="Edit"/>
+                                            <c:url var="detail" value="MainController">
+                                                <c:param name="btnAction" value="detail event"/>
                                                 <c:param name="txtId" value="${item.id}"/>
                                             </c:url>
-                                            <a href="${update}" class="popup-link"
+                                            <a href="${detail}" class="popup-link"
                                                data-effect="fadeIn">
                                                 <img style="height: 355px; width: 100%" class="img-fluid"
                                                      src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"

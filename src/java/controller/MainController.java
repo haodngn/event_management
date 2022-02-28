@@ -43,13 +43,8 @@ public class MainController extends HttpServlet {
     private static final String DETAIL_EVENT = "GetDetailEventController";
     private static final String UPDATE_EVENT = "UpdateEventController";
     private static final String DELETE_EVENT = "DeleteEventController";
+    
 
-    private static final String LIKE = "LikeController";
-    private static final String DISLIKE = "DislikeController";
-    private static final String COMMENT = "CommentController";
-    private static final String DEL_CMT = "DelCommentController";
-    private static final String POST = "PostController";
-    private static final String NOTI_DETAIL = "NotiDetailController";
     private static final String REGISTER_EVENT = "RegisterEventController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -66,21 +61,9 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if (action.equals("Create")) {
                 url = CREATE_EVENT;
-            } else if (action.equals("Search event") || action.equals("Search") || action.equals("Back to home")) {
+            } else if (action.equals("Search event") || action.equals("Search") || action.equals("Back to home") || action.equals("manage"))  {
                 url = SEARCH_EVENT;
-            } else if (action.equals("Like")) {
-                url = LIKE;
-            } else if (action.equals("Dislike")) {
-                url = DISLIKE;
-            } else if (action.equals("Comment")) {
-                url = COMMENT;
-            } else if (action.equals("Delete cmt")) {
-                url = DEL_CMT;
-            } else if (action.equals("Post")) {
-                url = POST;
-            } else if (action.equals("Noti detail")) {
-                url = NOTI_DETAIL;
-            } else if (action.equals("detail event") || action.equals("Edit")) {
+            }  else if (action.equals("detail event") || action.equals("Edit")) {
                 url = DETAIL_EVENT;
             } else if (action.equals("Edit Event")) {
                 url = UPDATE_EVENT;
