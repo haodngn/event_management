@@ -6,6 +6,7 @@
 package controller;
 
 import dao.EventDAO;
+import dao.PaymentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -58,6 +59,7 @@ public class CreateEventController extends HttpServlet {
         
         String description = request.getParameter("txtDescription");
         String location = request.getParameter("txtLocation");
+        boolean isFree = true;
 //        int post_by = Integer.parseInt(request.getParameter("txtPostedBy"));
 //        int postId = Integer.parseInt(request.getParameter("txtPostId"));
         
@@ -132,13 +134,15 @@ public class CreateEventController extends HttpServlet {
             }else{
                 HttpSession sess = request.getSession();
                 UserDTO user = (UserDTO) sess.getAttribute("USER");
-                
                 System.out.println("user id: "+user.getUserID());
                 System.out.println("des: "+description);
-                
+                            
                 EventDAO dao = new EventDAO();
                 boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location, user.getUserID());
                 if(result){
+                    PaymentDAO pdao = new PaymentDAO();
+                    
+                    
                     url = ADD_PAGE;
                     request.setAttribute("CREATE_SUCCESS", "Create success !");
                 }
