@@ -32,6 +32,7 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "LogoutController";
     private static final String CREATE_FEEDBACK = "CreateFeedbackController";
     private static final String ERROR = "invalid.jsp";
+    private static final String PAYMENT = "AuthorizePaymentServlet";
 
     private static final String PROFILE = "ProfileController";
     private static final String ENTER_EDIT_PROFILE = "edit_profile.jsp";
@@ -93,8 +94,11 @@ public class MainController extends HttpServlet {
                 url = ENTER_EDIT_PROFILE;
             } else if (action.equals("Save Profile")) {
                 url = EDIT_PROFILE;
+            } else if(action.equals("Checkout")){
+                url = PAYMENT;
             } else if (action.equals("Register")) {
                 url = REGISTER_EVENT;
+
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
