@@ -17,8 +17,8 @@ import dto.OrderDetail;
 
 public class PaymentServices {
 
-    private static final String CLIENT_ID = "AdJGhDfHPWG3KTSgVN6J1xQv_iTrI_r1w5IEXyZpKao_fmr2W27OFKb7uXG6Wjl5Yw-9vfNc61xr28Ou";
-    private static final String CLIENT_SECRET = "EPy0dRxrNRV4L2N2fuGLIrWEOUyDuBQGOrJ4EI6KlksFwl6cw62sSFCYbU6Y_EgLfknWb6dol4fFfwho";
+    private static final String CLIENT_ID = "";
+    private static final String CLIENT_SECRET = "";
     private static final String MODE = "sandbox";
 
     public String authorizePayment(OrderDetail orderDetail)
