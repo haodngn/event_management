@@ -23,13 +23,12 @@ public class EventDTO implements Serializable{
     private String description;
     private String location;
     private int prosted_by;
-    private int postId;
     private boolean status;
 
     public EventDTO() {
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, int postId, boolean status) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, boolean status) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -41,7 +40,7 @@ public class EventDTO implements Serializable{
         this.description = description;
         this.location = location;
         this.prosted_by = prosted_by;
-        this.postId = postId;
+       
         this.status = status;
     }
 
@@ -150,14 +149,6 @@ public class EventDTO implements Serializable{
 
     public void setProsted_by(int prosted_by) {
         this.prosted_by = prosted_by;
-    }
-
-    public int getPostId() {
-        return postId;
-    }
-
-    public void setPostId(int postId) {
-        this.postId = postId;
     }
 
     public boolean isStatus() {

@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 //import tinnt.error.CreateEventError;
 import dto.EventErrorDTO;
+import dto.UserDTO;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,7 +30,8 @@ import dto.EventErrorDTO;
  */
 public class CreateEventController extends HttpServlet {
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateEventController.class);
-    private final String ADD_PAGE = "detail_event.jsp";
+    private final String ADD_PAGE = "SearchEventController";
+    private final String ERROR = "create_event.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,7 +46,7 @@ public class CreateEventController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String url = ADD_PAGE;
+        String url = ERROR;
         
 //        String carID = request.getParameter("txtID");
         String speaker = request.getParameter("txtSpeaker");
@@ -55,8 +58,8 @@ public class CreateEventController extends HttpServlet {
         
         String description = request.getParameter("txtDescription");
         String location = request.getParameter("txtLocation");
-        int post_by = Integer.parseInt(request.getParameter("txtPostedBy"));
-        int postId = Integer.parseInt(request.getParameter("txtPostId"));
+//        int post_by = Integer.parseInt(request.getParameter("txtPostedBy"));
+//        int postId = Integer.parseInt(request.getParameter("txtPostId"));
         
         EventErrorDTO err = new EventErrorDTO();
         boolean foundErr = false;
@@ -127,9 +130,16 @@ public class CreateEventController extends HttpServlet {
             if(foundErr){
                 request.setAttribute("CREATE_ERR", err);
             }else{
+                HttpSession sess = request.getSession();
+                UserDTO user = (UserDTO) sess.getAttribute("USER");
+                
+                System.out.println("user id: "+user.getUserID());
+                System.out.println("des: "+description);
+                
                 EventDAO dao = new EventDAO();
-                boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location, post_by, postId);
+                boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location, user.getUserID());
                 if(result){
+                    url = ADD_PAGE;
                     request.setAttribute("CREATE_SUCCESS", "Create success !");
                 }
             }
