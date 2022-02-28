@@ -211,15 +211,15 @@ public class EventDAO implements Serializable {
     public boolean createEvent(String speaker, String eventName,
             String occurDate, String enddate, String registerDate,
             String expirationDate, int studentCount, String description,
-            String loaction, int prosted_by, int postId) throws SQLException, ClassNotFoundException, NamingException, ParseException {
+            String loaction, int prosted_by) throws SQLException, ClassNotFoundException, NamingException, ParseException {
 
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
         try {
-            String sql = "insert into Event(Speaker, EventName, Description, EndDate, ExpirationDate, Location, OccurDate, Post_id,"
+            String sql = "insert into Event(Speaker, EventName, Description, EndDate, ExpirationDate, Location, OccurDate, "
                     + "Posted_by, RegisterDate, StudentCount, Status) "
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,1)";
+                    + "values(?,?,?,?,?,?,?,?,?,?,1)";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
 
@@ -236,9 +236,8 @@ public class EventDAO implements Serializable {
             stm.setString(6, loaction);
             stm.setDate(7, occur);
             stm.setInt(8, prosted_by);
-            stm.setInt(9, postId);
-            stm.setDate(10, register);
-            stm.setInt(11, studentCount);
+            stm.setDate(9, register);
+            stm.setInt(10, studentCount);
 
             int row = stm.executeUpdate();
             if (row > 0) {
