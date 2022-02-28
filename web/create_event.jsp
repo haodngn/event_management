@@ -259,14 +259,9 @@
                     ${err.locationLength}<br/>
                     </font>
                 </c:if>
-
-
-                <label for="postBy">Posted by</label>
-                <input id="postBy" type="number" name="txtPostedBy" value="${param.txtPostedBy}"/></br>
-
-
-                <label for="postID">Posted ID</label>
-                <input id="postID" type="number" name="txtPostId" value="${param.txtPostId}" /></br>
+                <label for="price">Price $</label>
+                <input id="location" type="number" name="txtPrice" value="${param.txtPrice}" /></br>
+                
                 <div class="btn-action">
                     <input type="submit" value="Create" name="btnAction" />
 
