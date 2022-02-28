@@ -7,7 +7,9 @@ and open the template in the editor.
     Created on : Feb 21, 2022, 10:27:48 PM
     Author     : By Van Lung, IDStudent: SE140193
 */
-
+h3{
+    background-color: #f7fafd;
+}
 
 
 .review-list ul li .left span {

@@ -185,7 +185,7 @@
                                  float:right">
                                 <p class="location_time_p">Time</p>
                                 <i class="fas fa-calendar-alt"></i>
-                                <p>${event.occurDate} - ${event.endDate}</p>
+                                <p>${event.occurDate} ~  ${event.endDate}</p>
                             </div>
 
                             <div style="width: 50%;float: left;"> ${event.description}</div>
@@ -246,7 +246,7 @@
                                                             </div>  end of col 
                                                     </div>  end of row -->
                             <c:if test="${user.roleID == '1'}">
-                                <div class="login-box">
+                                <div class="loginx-box">
                                     <form action="MainController" method="POST">
                                         <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
                                         <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
@@ -258,11 +258,11 @@
                                 </div>
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
-                                <div class="login-box">
+                                <div class="logins-box">
                                     <form action="MainController" method="POST">
                                         <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
                                         <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
-                                        <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Edit Event"/>
+                                        <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="EDIT"/>
                                     </form>
                                     <div class="register-message">
                                         ${requestScope.message}

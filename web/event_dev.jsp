@@ -101,8 +101,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <c:url var="event_dev" value="MainController">
+                                <c:param name="btnAction" value="manage"></c:param>
+                                <c:param name="btnEventDev" value="eventDev"></c:param>
+                            </c:url>
                             <a class="nav-link page-scroll"
-                               href="create_event.jsp">EVENTS<span
+                               href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
