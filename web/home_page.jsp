@@ -116,7 +116,7 @@
                                 <c:param name="btnAction" value="Profile"></c:param>
                                  <c:param name="email" value="${sessionScope.USER.email}"/>
                             </c:url>
-                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+                            <a  class="dropdown-item" href="profile_dev.jsp"><span class="item-text">Profile</span></a>
                             
                             <hr/>
                             
