@@ -1663,7 +1663,6 @@ a:hover.back-to-top {
 
     .navbar-custom .nav-item .nav-link {
         padding: 2rem 2rem;
-        margin-right: 3rem;
     }
 
     .navbar-custom.top-nav-collapse {
@@ -2237,8 +2236,9 @@ a:hover.back-to-top {
 
 
     /* Discuss */
+   
     body {
-        background-color: #f7fafd
+        background-color: #fff;
     }
 
     .card {

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : home_page
-    Created on : Jan 19, 2022, 8:20:31 PM
-    Author     : VanLungFE,HaoBE
+    Document   : profileDev
+    Created on : Feb 27, 2022, 10:54:44 PM
+    Author     : By Van Lung, IDStudent: SE140193
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -41,6 +42,9 @@
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <link href="css/search.css" rel="stylesheet">
+        <link href="css/home_style.css" rel="stylesheet">
+        <link href="css/profile_dev.css" rel="stylesheet">
+        <title>Event Department Profile Page</title>
 
         <!-- Favicon  -->
         <link rel="icon"
@@ -96,7 +100,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
-                               href="#">EVENTS<span
+                               href="event_dev.jsp">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -105,14 +109,9 @@
                                href="#">CONTACT<span
                                     class="sr-only">(current)</span></a>
                         </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link page-scroll"
-                               href="Checkout.html">CHECKOUT<span
-                                    class="sr-only">(current)</span></a>
-                        </li>
 
                     </ul>
+
                     <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -161,18 +160,6 @@
 
         <!-- Header -->
         <header id="header" class="ex-header">
-
-            <div>
-                <form action="MainController" method="post" class="search">
-
-                    <div class="form__field">
-                        <input type="text" name="txtSearchValue" placeholder="What are you looking for?" value="${param.txtSearchValue}" class="form__input">
-                        <input type="submit" value="Search" name="btnAction" class="button">
-                    </div>
-
-                </form>  
-            </div>
-
             <div class="container">
                 <!-- Breadcrumbs -->
                 <div class="ex-basic-1">
@@ -183,179 +170,77 @@
                                     <a id="linkBreadcrumbs" href="#">Home</a><i
                                         id="linkBreadcrumbs" class="fa
                                         fa-angle-double-right"></i><span
-                                        id="linkBreadcrumbs"></span>
+                                        id="linkBreadcrumbs">Profile</span>
                                 </div> <!-- end of breadcrumbs -->
                             </div> <!-- end of col -->
                         </div> <!-- end of row -->
                     </div> <!-- end of container -->
                 </div> <!-- end of ex-basic-1 -->
                 <!-- end of breadcrumbs -->
+            </div>
+        </header>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="image-container">
-                            <img style="margin-top: 1rem; margin-bottom: 1rem" class="img-fluid"
-                                 src="https://uni.fpt.edu.vn/Data/Sites/1/Banner/b%E1%BA%A3n-ta.jpg"
-                                 alt="alternative">
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </header> <!-- end of ex-header -->
-        <!-- end of header -->
+        <div>
+            <c:if test="${not empty sessionScope.userInfo}">
+                <!-- Navigation -->
 
-        <!-- Slider Event -->
-        <div id="screens" class="slider">
-            <div class="container">
-                <div class="row">
-                    <h1>Events</h1>
-                    <div class="col-lg-12">
+                <div class="main">
+                    <div class="left-margin"></div>
+                    <div class="main-content">
+                       
 
-                        <!-- Image Slider -->
-                        <div class="slider-container">
-                            <div class="swiper-container image-slider">
-                                <div class="swiper-wrapper">
-                                    <c:forEach items="${requestScope.listEvent}" var="item">
-                                        <!-- Slide -->
-                                        <div class="swiper-slide">
-                                            <c:url var="detail" value="MainController">
-                                                <c:param name="btnAction" value="detail event"/>
-                                                <c:param name="txtId" value="${item.id}"/>
-                                            </c:url>
-                                            <a href="${detail}" class="popup-link"
-                                               data-effect="fadeIn">
-                                                <img style="height: 355px; width: 187px" class="img-fluid"
-                                                     src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                     alt="alternative">
-                                                <div class="event-infos" style="text-decoration: none;">
-                                                    <h5>${item.eventName}</h5>
-                                                    <h6>${item.speaker}</h6>
-                                                    <h6>${item.location}</h6>
-                                                    <h6>${item.occurDate}</h6>
-                                                </div>
-                                            </a>
+                        <div class="body">
+                            <div>
+                                <div class="avatar-box">
+                                    <img src=${sessionScope.userInfo.profilePicture} alt="Avatar" class="avatar">
+                                    <p>${sessionScope.userInfo.name}</p>
+                                    <p>Developer</p>
+                                </div>
+                                <form method="POST" action="MainController">
+                                    <div class="info">
+                                        <div class="info-row">
+                                            <span>Name: </span>
+                                            <input type="text" class="input-field" name="name" value="${sessionScope.userInfo.name}"/>
                                         </div>
-                                    </c:forEach>
-                                    <!-- end of slide -->
-
-
-                                </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
-                            </div> <!-- end of swiper-container -->
-                        </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of slider -->
-
-        <!-- Slider News -->
-        <div id="screens" class="slider">
-            <div class="container">
-                <div class="row">
-                    <h1>News</h1>
-                    <div class="col-lg-12">
-
-                        <!-- Image Slider -->
-                        <div class="slider-container">
-                            <div class="swiper-container image-slider">
-                                <div class="swiper-wrapper">
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
+                                        <div class="horizontal-line"></div>
+                                        <div class="info-row">
+                                            <span>Email: </span>
+                                            <input type="text" class="input-field" name="email" value="${sessionScope.userInfo.email}" readOnly/>
+                                        </div>
+                                        <div class="horizontal-line"></div>
+                                        <div class="horizontal-line"></div>
+                                        <div class="info-row">
+                                            <span>Phone: </span>
+                                            <input class="input-field" type="text" name="phoneNumber" value="${sessionScope.userInfo.phoneNumber}"/>
+                                            <font color="red">
+                                            ${sessionScope.phoneNumberInvalid}
+                                            </font>                                        
+                                        </div>
+                                        <div class="horizontal-line"></div>
+                                        <div class="info-row">
+                                            <span>Gender: </span>
+                                            <span>
+                                                <input type="radio" id="male" name="genderRadio" value="Male" <c:if test="${sessionScope.userInfo.gender == true}">checked</c:if> >
+                                                      <label for="male">Male</label><br>
+                                                      <input type="radio" id="female" name="genderRadio" value="Female" <c:if test="${sessionScope.userInfo.gender == false}">checked</c:if>>
+                                                      <label for="female">Female</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="btn-list">
+                                                <input type="hidden" name="email" value="${sessionScope.userInfo.email}" />
+                                            <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Save Profile"/>
+                                        </div>
                                     </div>
-                                    <!-- end of slide -->
+                                </form>
+                            </div>
+                           
+                        </div>
 
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
-                            </div> <!-- end of swiper-container -->
-                        </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of slider -->
-        <!-- end of slider news -->
+                    </div>
+                    <div class="right-margin"></div>
+                </div>
+            </c:if>
+        </div>
 
         <!-- end of discuss -->
 
@@ -438,6 +323,7 @@
 
 
         <!-- Scripts -->
+        <script src="script/profileScript.js" defer></script>
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
         <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
         <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
@@ -448,5 +334,3 @@
         <script src="js/scripts.js"></script> <!-- Custom scripts -->
     </body>
 </html>
-
-
