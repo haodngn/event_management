@@ -36,6 +36,10 @@
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>controller.ProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AuthorizePaymentServlet</servlet-name>
+        <servlet-class>controller.AuthorizePaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/ProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthorizePaymentServlet</servlet-name>
+        <url-pattern>/AuthorizePaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

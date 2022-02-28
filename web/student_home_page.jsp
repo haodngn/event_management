@@ -105,6 +105,12 @@
                                href="#">CONTACT<span
                                     class="sr-only">(current)</span></a>
                         </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll"
+                               href="Checkout.html">Checkout<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
 
                     </ul>
                     <li class="nav-item dropdown" style="list-style-type: none;">
