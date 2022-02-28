@@ -32,26 +32,26 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "LogoutController";
     private static final String CREATE_FEEDBACK = "CreateFeedbackController";
     private static final String ERROR = "invalid.jsp";
-    
     private static final String PAYMENT = "AuthorizePaymentServlet";
-  
+
     private static final String PROFILE = "ProfileController";
     private static final String ENTER_EDIT_PROFILE = "edit_profile.jsp";
     private static final String EDIT_PROFILE = "EditProfileController";
-    
+
     private static final String SEARCH_EVENT = "SearchEventController";
     private static final String CREATE_EVENT = "CreateEventController";
     private static final String DETAIL_EVENT = "GetDetailEventController";
     private static final String UPDATE_EVENT = "UpdateEventController";
     private static final String DELETE_EVENT = "DeleteEventController";
-    
+
     private static final String LIKE = "LikeController";
-    private static final String DISLIKE = "DislikeController";  
+    private static final String DISLIKE = "DislikeController";
     private static final String COMMENT = "CommentController";
     private static final String DEL_CMT = "DelCommentController";
     private static final String POST = "PostController";
     private static final String NOTI_DETAIL = "NotiDetailController";
-    
+    private static final String REGISTER_EVENT = "RegisterEventController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -80,22 +80,25 @@ public class MainController extends HttpServlet {
                 url = POST;
             } else if (action.equals("Noti detail")) {
                 url = NOTI_DETAIL;
-            } else if (action.equals("detail event") || action.equals("Edit")){
+            } else if (action.equals("detail event") || action.equals("Edit")) {
                 url = DETAIL_EVENT;
-            } else if (action.equals("Edit Event")){
+            } else if (action.equals("Edit Event")) {
                 url = UPDATE_EVENT;
-            } else if(action.equals("Delete")){
+            } else if (action.equals("Delete")) {
                 url = DELETE_EVENT;
-            } else if(action.equals("Feedback")){
+            } else if (action.equals("Feedback")) {
                 url = CREATE_FEEDBACK;
-            } else if(action.equals("Profile")){
+            } else if (action.equals("Profile")) {
                 url = PROFILE;
-            } else if(action.equals("Edit Profile")){
+            } else if (action.equals("Edit Profile")) {
                 url = ENTER_EDIT_PROFILE;
-            } else if(action.equals("Save Profile")){
+            } else if (action.equals("Save Profile")) {
                 url = EDIT_PROFILE;
             } else if(action.equals("Checkout")){
                 url = PAYMENT;
+            } else if (action.equals("Register")) {
+                url = REGISTER_EVENT;
+
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);

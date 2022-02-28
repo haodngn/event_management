@@ -76,6 +76,10 @@ h2 {
 h3 {
     color: #f60;
     font: 700 1.75rem/2.375rem "Open Sans", sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 h4 {
@@ -1466,10 +1470,10 @@ a:hover.back-to-top {
 /***************************/
 .ex-header {
     padding-top: 8rem;
-    background-color: #f7fafd;
-
 }
-
+.ex-header{
+    background-color: #fff;
+}
 .ex-basic-1 {
     padding-top: 1rem;
     background-color: #2f8d01;
@@ -1489,7 +1493,7 @@ a:hover.back-to-top {
     height: 900px;
     padding-top: 1.5rem;
     background-color: #f7fafd;
-        border-bottom: 1px solid #dadbdd;
+    border-bottom: 1px solid #dadbdd;
 
 
 }

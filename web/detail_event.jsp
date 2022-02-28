@@ -105,9 +105,17 @@
                         </li>
 
                     </ul>
-                    <li class="nav-item dropdown" style="list-style-type: none;">
+                   <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <c:url var="profile" value="MainController">
+                                <c:param name="btnAction" value="Profile"></c:param>
+                                 <c:param name="email" value="${sessionScope.USER.email}"/>
+                            </c:url>
+                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+                            
+                            <hr/>
+                            
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
@@ -237,9 +245,15 @@
                                                             </div>  end of col 
                                                         </div>  end of row -->
                             <div class="login-box">
-                                <input
-                                    style="font-size: 20px; background-color: #f60;" type="submit" required="" name="btnAction" value="Register"  />
-                            </div> 
+                                    <form action="MainController" method="POST">
+                                    <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
+                                    <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
+                                    <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
+                                </form>
+                                <div class="register-message">
+                                    ${requestScope.message}
+                                </div>
+                            </div>
                         </div> <!-- end of text-container-->
 
 
