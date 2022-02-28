@@ -162,7 +162,7 @@
         <!-- Header -->
         <header id="header" class="ex-header">
 
-            <div>
+            <div class="search-form">
                 <form action="MainController" method="post" class="search">
 
                     <div class="form__field">

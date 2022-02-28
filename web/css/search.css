@@ -149,13 +149,18 @@ input[type="submit"] {
 }
 
 .search {
+    margin-bottom: 1rem;
     max-width: 1110px;
-    margin-left: 8rem;
-    margin-bottom: 0.5rem;
-  background-color: var(--searchBackgroundColor);
-  border-radius: var(--searchBorderRadius);
-  font-size: var(--searchFontSize);
-  padding: var(--searchPadding);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--searchBackgroundColor);
+    font-size: var(--searchFontSize);
+    border-radius: var(--searchBorderRadius);
+    padding: var(--searchPadding);
+}
+.search-form{
+    box-sizing: border-box;
+    justify-content: center;
 }
 
 .search input[type="search"],
