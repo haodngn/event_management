@@ -40,6 +40,10 @@
         <servlet-name>AuthorizePaymentServlet</servlet-name>
         <servlet-class>controller.AuthorizePaymentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterEventController</servlet-name>
+        <servlet-class>controller.RegisterEventController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>AuthorizePaymentServlet</servlet-name>
         <url-pattern>/AuthorizePaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterEventController</servlet-name>
+        <url-pattern>/RegisterEventController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
