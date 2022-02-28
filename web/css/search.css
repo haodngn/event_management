@@ -184,7 +184,7 @@ input[type="submit"] {
   background: #f60;
   box-sizing: border-box;
   border-radius: 10px;
-  top: 52rem;
+  /*top: 52rem;*/
 }
 
 .login-box h2 {

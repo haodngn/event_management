@@ -27,10 +27,12 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "SearchEventController", urlPatterns = {"/SearchEventController"})
 public class SearchEventController extends HttpServlet {
+
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(SearchEventController.class);
-    
+
     private final String HOME_PAGE = "home_page.jsp";
     private final String STUDENT_HOME_PAGE = "student_home_page.jsp";
+    private final String EVENT_DEV = "event_dev.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,56 +47,63 @@ public class SearchEventController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         int pageIndex = 1;
         String index = request.getParameter("index");
         String searchName = request.getParameter("txtSearchValue");
-        
-        if(searchName == null){
+        String eventDev = request.getParameter("btnEventDev");
+
+        if (searchName == null) {
             searchName = "";
         }
-        
-        if("".equals(index)){
+        if (eventDev == null) {
+            eventDev = "";
+        }
+        if ("".equals(index)) {
             index = null;
         }
-        if(index != null){
+        if (index != null) {
             pageIndex = Integer.parseInt(index);
         }
         int countPage = 1;
-        
+
         String url = HOME_PAGE;
-        
+
         try {
             HttpSession ses = request.getSession();
             EventDAO eventDAO = new EventDAO();
             List<EventDTO> listEvent = null;
-            
-            if(searchName.equals("")){
-                
+
+            if (searchName.equals("")) {
+
                 eventDAO.getAll();
                 listEvent = eventDAO.getListEvent();
-            }else{
+            } else {
                 eventDAO.getBySearch(searchName);
                 listEvent = eventDAO.getListEvent();
             }
             UserDTO dto = (UserDTO) ses.getAttribute("USER");
-            if(dto.getRoleID() ==  1 ){
+            if (dto.getRoleID() == 1) {
                 url = STUDENT_HOME_PAGE; //student home
-            } else if (dto.getRoleID() == 2){
-                url = HOME_PAGE; //dep event
+            } else if (dto.getRoleID() == 2) {
+                if (eventDev.equals("eventDev")) {
+                    url = EVENT_DEV;
+                } else {
+                    url = HOME_PAGE;
+                }
             }
-            System.out.println("url: "+url);
-               
+            System.out.println("url: " + url);
+
             request.setAttribute("listEvent", listEvent);//list Event
             request.setAttribute("page", countPage);//number of page 
             request.setAttribute("index", pageIndex);//current page
-            
+
         } catch (SQLException ex) {
-            LOGGER.error("SQLException at SearchEventController: "+ex);
+            LOGGER.error("SQLException at SearchEventController: " + ex);
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at SearchEventController: "+ex);
+            LOGGER.error("ClassNotFoundException at SearchEventController: " + ex);
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at SearchEventController: "+ex);
+            LOGGER.error("NamingException at SearchEventController: " + ex);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
