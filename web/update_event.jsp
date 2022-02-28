@@ -170,7 +170,7 @@
                                     <a id="linkBreadcrumbs" href="#">Home</a><i
                                         id="linkBreadcrumbs" class="fa
                                         fa-angle-double-right"></i><span
-                                        id="linkBreadcrumbs">Create New Event</span>
+                                        id="linkBreadcrumbs">Update Event</span>
                                 </div> <!-- end of breadcrumbs -->
                             </div> <!-- end of col -->
                         </div> <!-- end of row -->
@@ -184,96 +184,94 @@
 
         <!--content-->
         <h3 style="text-align: center">EVENT UPDATE FORM</h3>
-        <div class="container_form_create">
-            <form class="form_create_event" action="MainController" method="POST">
 
-                <label for="speaker">Speaker</label>
-                <input id="speaker" type="text" name="txtSpeaker" value="${param.txtSpeaker}"/></br>
-                <c:if test="${not empty err.speakerLength}">
-                    <font color="red">
-                    ${err.speakerLength}<br/>
-                    </font>
-                </c:if>
+        <c:set value="${requestScope.CREATE_ERR}" var="err"/>
+        <c:set value="${requestScope.EVENT}" var="event"/>
+        <form action="MainController" method="POST">
+            <div class="container_form_create">
+                <form class="form_create_event" action="MainController" method="POST">
 
-
-                <label for="eName">Event Name</label>
-                <input id="eName" type="text" name="txtEventName" value="${param.txtEventName}"/></br>
-                <c:if test="${not empty err.nameLength}">
-                    <font color="red">
-                    ${err.nameLength}<br/>
-                    </font>
-                </c:if>
+                    <label for="speaker">Speaker</label>
+                    <input id="speaker" type="text" name="txtSpeaker"  value="${event.speaker}"/></br>
+                    <c:if test="${not empty err.speakerLength}">
+                        <font color="red">
+                        ${err.speakerLength}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="oDate">Occur Date</label>
-                <input id="oDate" type="date" name="txtOccurDate" value="${param.txtOccurDate}"/></br>
-                <c:if test="${not empty err.occurDateCheck}">
-                    <font color="red">
-                    ${err.occurDateCheck}<br/>
-                    </font>
-                </c:if>
+                    <label for="eName">Event Name</label>
+                    <input id="eName" type="text" name="txtEventName" value="${event.eventName}"/></br>
+                    <c:if test="${not empty err.nameLength}">
+                        <font color="red">
+                        ${err.nameLength}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="eDate">End Date</label>
-                <input id="eDate" type="date" name="txtEndDate" value="${param.txtEndDate}"/></br>
-                <c:if test="${not empty err.endDateCheck}">
-                    <font color="red">
-                    ${err.endDateCheck}<br/>
-                    </font>
-                </c:if>
+                    <label for="oDate">Occur Date</label>
+                    <input id="oDate" type="date" name="txtOccurDate" value="${event.occurDate}"/></br>
+                    <c:if test="${not empty err.occurDateCheck}">
+                        <font color="red">
+                        ${err.occurDateCheck}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="rDate">Register Date</label>
-                <input id="rDate" type="date" name="registerDate" value="${param.registerDate}"/></br>
-                <c:if test="${not empty err.registerDateCheck}">
-                    <font color="red">
-                    ${err.registerDateCheck}<br/>
-                    </font>
-                </c:if>
+                    <label for="eDate">End Date</label>
+                    <input id="eDate" type="date" name="txtEndDate" value="${event.endDate}""/></br>
+                    <c:if test="${not empty err.endDateCheck}">
+                        <font color="red">
+                        ${err.endDateCheck}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="exDate">Expiration Date</label>
-                <input id="exDate" type="date" name="txtExpirationDate" value="${param.txtExpirationDate}" /></br>
-                <c:if test="${not empty err.expDateCheck}">
-                    <font color="red">
-                    ${err.expDateCheck}<br/>
-                    </font>
-                </c:if>
+                    <label for="rDate">Register Date</label>
+                    <input id="rDate" type="date" name="registerDate" value="${event.registerDate}"/></br>
+                    <c:if test="${not empty err.registerDateCheck}">
+                        <font color="red">
+                        ${err.registerDateCheck}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="description">Description</label>
-                <textarea id="description" type="text" name="txtDescription" value="${param.txtDescription}"></textarea></br>
-                <c:if test="${not empty err.desLength}">
-                    <font color="red">
-                    ${err.desLength}<br/>
-                    </font>
-                </c:if>
+                    <label for="exDate">Expiration Date</label>
+                    <input id="exDate" type="date" name="txtExpirationDate" value="${event.expirationDate}" /></br>
+                    <c:if test="${not empty err.expDateCheck}">
+                        <font color="red">
+                        ${err.expDateCheck}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="location">Location</label>
-                <input id="location" type="text" name="txtLocation" value="${param.txtLocation}"/></br>
-                <c:if test="${not empty err.locationLength}">
-                    <font color="red">
-                    ${err.locationLength}<br/>
-                    </font>
-                </c:if>
+                    <label for="description">Description</label>
+                    <textarea id="description" type="text" name="txtDescription"  value="${event.description}">${event.description}</textarea></br>
+                    <c:if test="${not empty err.desLength}">
+                        <font color="red">
+                        ${err.desLength}<br/>
+                        </font>
+                    </c:if>
 
 
-                <label for="postBy">Posted by</label>
-                <input id="postBy" type="number" name="txtPostedBy" value="${param.txtPostedBy}"/></br>
+                    <label for="location">Location</label>
+                    <input id="location" type="text" name="txtLocation" value="${event.location}""/></br>
+                    <c:if test="${not empty err.locationLength}">
+                        <font color="red">
+                        ${err.locationLength}<br/>
+                        </font>
+                    </c:if>
 
+                    <div class="btn-action">
+                        <input type="submit" value="Edit Event" name="btnAction" />
+                        <input type="submit" value="Back to home" name="btnAction" />
+                    </div>
 
-                <label for="postID">Posted ID</label>
-                <input id="postID" type="number" name="txtPostId" value="${param.txtPostId}"/></br>
+                </form>
 
-                <div class="btn-action">
-                    <input type="submit" value="Edit Event" name="btnAction" />
-                    <input type="submit" value="Back to home" name="btnAction" />
-                </div>
+            </div>
+        </form>
 
-            </form>
-
-        </div>
 
 
         <!--end of content-->
