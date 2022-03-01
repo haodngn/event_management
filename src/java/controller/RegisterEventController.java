@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class RegisterEventController extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(LoginGoogleServlet.class);
+    private static final Logger LOGGER = Logger.getLogger(RegisterEventController.class);
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,8 +37,6 @@ public class RegisterEventController extends HttpServlet {
         try {
             int userID = Integer.parseInt(request.getParameter("txtUserID"));
             int eventID = Integer.parseInt(request.getParameter("txtEventID"));
-            Date registerDate = Date.valueOf(request.getParameter("txtRegisterDate"));
-            Date expirationDate = Date.valueOf(request.getParameter("txtExpirationDate"));
             long millis = System.currentTimeMillis();
             String message = null;
             Date date = new Date(millis);
