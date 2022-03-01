@@ -56,7 +56,6 @@ public class CreateEventController extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String url = ERROR;
-
 //        String carID = request.getParameter("txtID");
         String speaker = request.getParameter("txtSpeaker");
         String eventName = request.getParameter("txtEventName");
@@ -67,13 +66,12 @@ public class CreateEventController extends HttpServlet {
 
         String description = request.getParameter("txtDescription");
         String location = request.getParameter("txtLocation");
-//        int post_by = Integer.parseInt(request.getParameter("txtPostedBy"));
-//        int postId = Integer.parseInt(request.getParameter("txtPostId"));
+
         float price = -1;
         if (!request.getParameter("txtPrice").equals("")) {
             price = Float.parseFloat(request.getParameter("txtPrice"));
         }
-//        //image
+      //image
         String appPath = request.getServletContext().getRealPath("");
             appPath = appPath.substring(0, appPath.indexOf("build")) + "web\\";
             appPath = appPath.replace('\\', '/');
@@ -193,7 +191,6 @@ public class CreateEventController extends HttpServlet {
                     EventDAO edao = new EventDAO();
                     int eventID = edao.getMaxId();
                     System.out.println("eventid: " + eventID);
-//                    System.out.println("price: " + price);
 
                     if (price == -1) {
                         boolean isFree = true;

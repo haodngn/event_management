@@ -55,7 +55,7 @@
     <body data-spy="scroll" data-target=".fixed-top">
 
 
-
+        <c:set value="${requestScope.EVENT}" var="event"/>
         <!-- Preloader -->
         <div class="spinner-wrapper">
             <div class="spinner">
@@ -101,8 +101,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <c:url var="event_dev" value="MainController">
+                                <c:param name="btnAction" value="manage"></c:param>
+                                <c:param name="btnEventDev" value="eventDev"></c:param>
+                            </c:url>
                             <a class="nav-link page-scroll"
-                               href="create_event.jsp">EVENTS<span
+                               href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -113,17 +117,17 @@
                         </li>
 
                     </ul>
-                     <li class="nav-item dropdown" style="list-style-type: none;">
+                    <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <c:url var="profile" value="MainController">
                                 <c:param name="btnAction" value="Profile"></c:param>
-                                 <c:param name="email" value="${sessionScope.USER.email}"/>
+                                <c:param name="email" value="${sessionScope.USER.email}"/>
                             </c:url>
                             <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
-                            
+
                             <hr/>
-                            
+
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
@@ -206,29 +210,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>Content 1</td>
-                        <td>
-                            <form action="MainController" method="POST">
-                                <input type="submit" name="btnAction" value="Edit Event"/>
-                                <input type="submit" name="btnAction" value="Delete"/>
-                            </form>
+                    <c:forEach items="${requestScope.listEvent}" var="item">
+                        <tr>
+                            <td>${item.id}</td>
+                            <td>${item.speaker}</td>
 
-                        </td>
+                            <c:url var="detail" value="MainController">
+                                <c:param name="btnAction" value="detail event"/>
+                                <c:param name="txtId" value="${item.id}"/>
+                            </c:url>
+                            <td>
+                                <a href="${detail}">${item.eventName}</a>
+                            </td>
 
-                    </tr>
-                     
-                     
+                            <td>${item.occurDate}</td>
+                            <td>${item.endDate}</td>
+                            <td>${item.registerDate}</td>
+                            <td>${item.expirationDate}</td>
+                            <td>${item.studentCount}</td>
+                            <td>${item.description}</td>
+                            <td>${item.location}</td>
+                            <td>${item.registerDate}</td>
+
+                            <td>
+                                <form action="MainController" method="POST">
+                                    <input type="submit" name="btnAction" value="Edit Event"/>
+                                    <input type="submit" name="btnAction" value="Delete"/>
+                                </form>
+
+                            </td>
+                        </tr>
+                    </c:forEach>
                 <tbody>
             </table>
         </div>
