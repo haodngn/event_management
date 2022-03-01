@@ -56,7 +56,7 @@ public class PaymentDAO {
         PaymentDTO dto = null;
 
         try {
-            String sql = "select ID, isFree, Price, Event_Id"
+            String sql = "select ID, isFree, Price, Event_Id "
                     + "from Payment "
                     + "where Event_Id=?";
 
