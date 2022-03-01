@@ -187,7 +187,7 @@
         <h3 style="text-align: center">EVENT REGISTRATION FORM</h3>
         <div class="container_form_create">
             <c:set var="err" value="${requestScope.CREATE_ERR}"/>
-            <form class="form_create_event" action="MainController" method="POST">
+            <form class="form_create_event" action="MainController" method="POST" enctype="multipart/form-data">
 
                 <label for="speaker">Speaker</label>
                 <input id="speaker" type="text" name="txtSpeaker" value="${param.txtSpeaker}"/></br>
@@ -260,6 +260,13 @@
                     </font>
                 </c:if>
 
+                <label for="price">Price</label>
+                <input id="price" type="number" name="txtPrice" value="${param.txtPrice}" /></br>
+
+                <img id="blah" src="assets/images/upload_icon.png" alt="Choose your image:" /><br>
+                <br />
+                <input type="file" name="file" onchange="readURL(this);"/>
+                <br />
 
                 <label for="postBy">Posted by</label>
                 <input id="postBy" type="number" name="txtPostedBy" value="${param.txtPostedBy}"/></br>
@@ -272,7 +279,7 @@
 
                 </div>
             </form>
-
+            
         </div>
 
 
@@ -369,7 +376,21 @@
         <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
         <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
         <script src="js/scripts.js"></script> <!-- Custom scripts -->
+        <script>
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
 
+                        reader.onload = function (e) {
+                            $('#blah')
+                                    .attr('src', e.target.result)
+                                    .height(400);
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
 
     </body>
 </html>
