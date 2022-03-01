@@ -256,6 +256,13 @@
                                         ${requestScope.message}
                                     </div>
                                 </div>
+                                <td colspan="2" align="center">
+                                    <form action="MainController">
+                                        <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}" />
+                                        <input type="submit" name="btnAction" value="Checkout" />
+                                        
+                                    </form>                             
+                                </td>
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
                                 <div class="logins-box">

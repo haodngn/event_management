@@ -5,9 +5,11 @@
  */
 package dao;
 
+import dto.PaymentDTO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import utils.DBHelper;
@@ -45,5 +47,47 @@ public class PaymentDAO {
         }
         return check;
     }
-    
+    public PaymentDTO getPaymentByEventID(int id)
+            throws SQLException, ClassNotFoundException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        PaymentDTO dto = null;
+
+        try {
+            String sql = "select ID, isFree, Price, Event_Id"
+                    + "from Payment "
+                    + "where Event_Id=?";
+
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, id);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+
+
+                int payment_id = rs.getInt("ID");
+                boolean isFree = rs.getBoolean("isFree");
+                float price = rs.getFloat("Price");        
+
+                dto = new PaymentDTO(payment_id,  isFree,  price,  id);
+               
+
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return dto;
+    }
 }

@@ -14,19 +14,20 @@ import java.util.*;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.*;
 import dto.OrderDetail;
+import dto.PaymentDTO;
 
 public class PaymentServices {
 
-    private static final String CLIENT_ID = "";
-    private static final String CLIENT_SECRET = "";
+    private static final String CLIENT_ID = "AdJGhDfHPWG3KTSgVN6J1xQv_iTrI_r1w5IEXyZpKao_fmr2W27OFKb7uXG6Wjl5Yw-9vfNc61xr28Ou";
+    private static final String CLIENT_SECRET = "EPy0dRxrNRV4L2N2fuGLIrWEOUyDuBQGOrJ4EI6KlksFwl6cw62sSFCYbU6Y_EgLfknWb6dol4fFfwho";
     private static final String MODE = "sandbox";
 
-    public String authorizePayment(OrderDetail orderDetail)
+    public String authorizePayment(PaymentDTO payment)
             throws PayPalRESTException {
 
         Payer payer = getPayerInformation();
         RedirectUrls redirectUrls = getRedirectURLs();
-        List<Transaction> listTransaction = getTransactionInformation(orderDetail);
+        List<Transaction> listTransaction = getTransactionInformation(payment);
 
         Payment requestPayment = new Payment();
         requestPayment.setTransactions(listTransaction);
@@ -65,29 +66,34 @@ public class PaymentServices {
 
     }
 
-    private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
-        Details details = new Details();
-        details.setShipping(orderDetail.getShipping());
-        details.setSubtotal(orderDetail.getSubtotal());
-        details.setTax(orderDetail.getTax());
+    private List<Transaction> getTransactionInformation(PaymentDTO payment) {
+//        Details details = new Details();
+//        String s = String.valueOf(payment.getPrice());
+//        details.setFee(s);
+//        details.setShipping(orderDetail.getShipping());
+//        details.setSubtotal(orderDetail.getSubtotal());
+//        details.setTax(orderDetail.getTax());
 
         Amount amount = new Amount();
+        String s = String.valueOf(payment.getPrice());
         amount.setCurrency("USD");
-        amount.setTotal(orderDetail.getTotal());
-        amount.setDetails(details);
+        amount.setTotal(s);
+//        amount.setTotal(orderDetail.getTotal());
+//        amount.setDetails(details);
 
         Transaction transaction = new Transaction();
-        transaction.setAmount(amount);
-        transaction.setDescription(orderDetail.getProductName());
+//        transaction.setAmount(amount);
+//        transaction.setDescription(orderDetail.getProductName());
 
         ItemList itemList = new ItemList();
         List<Item> items = new ArrayList<>();
 
         Item item = new Item();
         item.setCurrency("USD");
-        item.setName(orderDetail.getProductName());
-        item.setPrice(orderDetail.getSubtotal());
-        item.setTax(orderDetail.getTax());
+//        item.setName(orderDetail.getProductName());
+//        item.setPrice(orderDetail.getSubtotal());
+//        item.setTax(orderDetail.getTax());
+        item.setPrice(s);
         item.setQuantity("1");
 
         items.add(item);
