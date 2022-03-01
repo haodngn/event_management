@@ -14,11 +14,12 @@ import java.util.*;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.*;
 import dto.OrderDetail;
+import dto.PaymentDTO;
 
 public class PaymentServices {
 
-    private static final String CLIENT_ID = "";
-    private static final String CLIENT_SECRET = "";
+    private static final String CLIENT_ID = "AdJGhDfHPWG3KTSgVN6J1xQv_iTrI_r1w5IEXyZpKao_fmr2W27OFKb7uXG6Wjl5Yw-9vfNc61xr28Ou";
+    private static final String CLIENT_SECRET = "EPy0dRxrNRV4L2N2fuGLIrWEOUyDuBQGOrJ4EI6KlksFwl6cw62sSFCYbU6Y_EgLfknWb6dol4fFfwho";
     private static final String MODE = "sandbox";
 
     public String authorizePayment(OrderDetail orderDetail)
@@ -49,7 +50,7 @@ public class PaymentServices {
         PayerInfo payerInfo = new PayerInfo();
         payerInfo.setFirstName("John")
                 .setLastName("Doe")
-                .setEmail("sb-mmgvi8302164@personal.example.com");
+                .setEmail("sb-zfsme14125443@personal.example.com");
 
         payer.setPayerInfo(payerInfo);
 
@@ -59,47 +60,46 @@ public class PaymentServices {
     private RedirectUrls getRedirectURLs() {
         RedirectUrls redirectUrls = new RedirectUrls();
         redirectUrls.setCancelUrl("http://localhost:8084/PaypalTest/cancel.html");
-        redirectUrls.setReturnUrl("http://localhost:8084/event_manage/successfull.jsp");
+        redirectUrls.setReturnUrl("http://localhost:8084/event_manage/receipt.jsp");
 
         return redirectUrls;
 
     }
 
     private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
-        Details details = new Details();
-        details.setShipping(orderDetail.getShipping());
-        details.setSubtotal(orderDetail.getSubtotal());
-        details.setTax(orderDetail.getTax());
-
-        Amount amount = new Amount();
-        amount.setCurrency("USD");
-        amount.setTotal(orderDetail.getTotal());
-        amount.setDetails(details);
-
-        Transaction transaction = new Transaction();
-        transaction.setAmount(amount);
-        transaction.setDescription(orderDetail.getProductName());
-
-        ItemList itemList = new ItemList();
-        List<Item> items = new ArrayList<>();
-
-        Item item = new Item();
-        item.setCurrency("USD");
-        item.setName(orderDetail.getProductName());
-        item.setPrice(orderDetail.getSubtotal());
-        item.setTax(orderDetail.getTax());
-        item.setQuantity("1");
-
-        items.add(item);
-        itemList.setItems(items);
-        transaction.setItemList(itemList);
-
-        List<Transaction> listTransaction = new ArrayList<>();
-        listTransaction.add(transaction);
-
-        return listTransaction;
-
-    }
+    Details details = new Details();
+    details.setShipping(orderDetail.getShipping());
+    details.setSubtotal(orderDetail.getSubtotal());
+    details.setTax(orderDetail.getTax());
+ 
+    Amount amount = new Amount();
+    amount.setCurrency("USD");
+    amount.setTotal(orderDetail.getTotal());
+    amount.setDetails(details);
+ 
+    Transaction transaction = new Transaction();
+    transaction.setAmount(amount);
+    transaction.setDescription(orderDetail.getProductName());
+     
+    ItemList itemList = new ItemList();
+    List<Item> items = new ArrayList<>();
+     
+    Item item = new Item();
+    item.setCurrency("USD");
+    item.setName(orderDetail.getProductName());
+    item.setPrice(orderDetail.getSubtotal());
+    item.setTax(orderDetail.getTax());
+    item.setQuantity("1");
+     
+    items.add(item);
+    itemList.setItems(items);
+    transaction.setItemList(itemList);
+ 
+    List<Transaction> listTransaction = new ArrayList<>();
+    listTransaction.add(transaction);  
+     
+    return listTransaction;
+}
 
     private String getApprovalLink(Payment approvedPayment) {
         List<Links> links = approvedPayment.getLinks();

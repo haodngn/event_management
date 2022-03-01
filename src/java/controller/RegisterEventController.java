@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class RegisterEventController extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(LoginGoogleServlet.class);
+    private static final Logger LOGGER = Logger.getLogger(RegisterEventController.class);
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +38,14 @@ public class RegisterEventController extends HttpServlet {
             int userID = Integer.parseInt(request.getParameter("txtUserID"));
             int eventID = Integer.parseInt(request.getParameter("txtEventID"));
             long millis = System.currentTimeMillis();
-            String message = "";
+            String message = null;
             Date date = new Date(millis);
             EventDAO eventDAO = new EventDAO();
             if (!eventDAO.checkRegistedEvent(userID, eventID)) {
                 if (eventDAO.registerEvent(userID, eventID, date)) {
                     message = "Register successfully";
                 }
-            } else {
-                message = "You already registed this event";
             }
-            
             request.setAttribute("EVENT_ID", eventID);
             request.setAttribute("message", message);
         } catch (Exception e) {

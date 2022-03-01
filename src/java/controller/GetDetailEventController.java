@@ -12,6 +12,7 @@ import dto.CommentDTO;
 import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import javax.naming.NamingException;
@@ -52,30 +53,45 @@ public class GetDetailEventController extends HttpServlet {
 
         String url = STUDENT_EVENT_DETAIL;
 
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        String isUpdate = request.getParameter("isUpdate");
+
+        if (isUpdate == null) {
+            isUpdate = "";
+        }
+
         try {
             HttpSession ses = request.getSession();
-            int id = Integer.parseInt(request.getParameter("txtId"));
-//            String action = request.getParameter("btnAction");
- 
+            UserDTO userDTO = (UserDTO) ses.getAttribute("USER");
+            int userID = userDTO.getUserID();
+
             List<CommentDTO> listComment;
 
             EventDAO dao = new EventDAO();
             EventDTO dto = dao.getEventByID(id);
-            
+            System.out.println(userID);
             if (dto != null) {
                 //get all feedback
                 CommentDAO fdao = new CommentDAO();
                 fdao.getAllFeedback(id);
-                listComment = fdao.getListComment();                
-                
-//                //check role user
-//                UserDTO user = (UserDTO) ses.getAttribute("USER");
-//                if (user.getRoleID() == 1) {
-//                    url = STUDENT_EVENT_DETAIL;//student home
-//                } else if (user.getRoleID() == 2) {
-//                    url = UPDATE_PAGE; //dep event
-//                }
-                
+                listComment = fdao.getListComment();
+                Date currentDate = new Date(System.currentTimeMillis());
+                System.out.println(dto.getId());
+                if (!dao.checkRegisterEventValidation(currentDate, dto.getId())) {
+                    System.out.println("I'm hereeee");
+                    request.setAttribute("isOverDate", true);
+                }
+                if (dao.checkRegistedEvent(userID, id)) {
+                    System.out.println("I'm also hereeee");
+                    request.setAttribute("isOverDate", true);
+                }
+
+                if (isUpdate.equals("updateEV")) {
+                    url = UPDATE_PAGE;
+                } else {
+                    url = STUDENT_EVENT_DETAIL;
+                }
+
                 request.setAttribute("EVENT", dto);// Detai Event
                 request.setAttribute("EVENT_ID", id);
                 request.setAttribute("ListFeedbacks", listComment);

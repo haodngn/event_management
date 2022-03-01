@@ -69,7 +69,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                dto = new EventDTO(speaker, name, occur, end, register, exp, des, location);
+                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location);
             }
 
         } finally {
@@ -110,6 +110,64 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
 
                 EventDTO dto = new EventDTO(Id, speaker, name, location);
+                if (this.listEvent == null) {
+                    this.listEvent = new ArrayList<>();
+                }
+                this.listEvent.add(dto);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public void getAllForDep()
+            throws SQLException, ClassNotFoundException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        this.listEvent = new ArrayList<>();
+
+        try {
+            String sql = "select ID, EventName, Speaker, EndDate, RegisterDate, ExpirationDate, OccurDate, Description, Location, StudentCount, Posted_by, Image  "
+                    + "from Event "
+                    + "where Status=1";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+            System.out.println("sql: "+sql);
+            while (rs.next()) {
+                DateFormat df = new SimpleDateFormat("YYYY-MM-dd");//convert date to String with format dd//MM//YYYY
+
+                int id = rs.getInt("ID");
+                String speaker = rs.getString("Speaker");
+                String name = rs.getString("EventName");
+                String location = rs.getString("Location");
+                String des = rs.getString("Description");
+                int postBy = rs.getInt("Posted_by");
+                int count = rs.getInt("StudentCount");
+                
+
+                Date EndDate = rs.getDate("EndDate");
+                Date RegisterDate = rs.getDate("RegisterDate");
+                Date ExpirationDate = rs.getDate("ExpirationDate");
+                Date OccurDate = rs.getDate("OccurDate");
+
+                //convert Date to String to store in dto
+                String end = df.format(EndDate);
+                String register = df.format(RegisterDate);
+                String exp = df.format(ExpirationDate);
+                String occur = df.format(OccurDate);
+
+                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -359,6 +417,34 @@ public class EventDAO implements Serializable {
 
             stm.setInt(1, eventID);
             stm.setInt(2, userID);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                check = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+    
+    public boolean checkRegisterEventValidation(Date currentDate, int eventID) throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs;
+        boolean check = false;
+        String sql = "Select ID from Event Where ID = ? and registerDate < ? and expirationDate > ?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, eventID);
+            stm.setDate(2, currentDate);
+            stm.setDate(3, currentDate);
             rs = stm.executeQuery();
 
             if (rs.next()) {
