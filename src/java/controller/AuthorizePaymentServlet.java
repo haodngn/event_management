@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,26 +45,35 @@ public class AuthorizePaymentServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
-        String product = request.getParameter("product");
-        String subtotal = request.getParameter("subtotal");
-        String shipping = request.getParameter("shipping");
-        String tax = request.getParameter("tax");
-        String total = request.getParameter("total");
+        // paypal bug
         int id = Integer.parseInt(request.getParameter("EventID"));
-
+        PaymentDAO paymentd = new PaymentDAO();
+        PaymentDTO payment = paymentd.getPaymentByEventID(id);
+        
+        HttpSession ses = request.getSession();
+        ses.setAttribute("payment_Id", payment.getPaymentID());
+        
+        float pricef = payment.getPrice();
+        String prices = String.valueOf(pricef);
+        String product = String.valueOf(id);
+        String subtotal = prices;
+        String shipping = "0";
+        String tax = "0";
+        
+        float shippingf = Float.valueOf(shipping);
+        float taxf = Float.valueOf(tax);
+        float totalf = shippingf + taxf + pricef;
+        
+        String totals = String.valueOf(totalf);
+              
+        OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, totals);
         try {
 
-            PaymentDAO paymentd = new PaymentDAO();
-            PaymentDTO payment = paymentd.getPaymentByEventID(id);
 
-            if (payment == null) {
-                System.out.println("payment is null !!");
-            } else {
                 PaymentServices paymentServices = new PaymentServices();
-                String approvalLink = paymentServices.authorizePayment(payment);
-
+                String approvalLink = paymentServices.authorizePayment(orderDetail);    
                 response.sendRedirect(approvalLink);
-            }
+
 
         } catch (PayPalRESTException ex) {
             request.setAttribute("errorMessage", ex.getMessage());
@@ -95,36 +105,5 @@ public class AuthorizePaymentServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AuthorizePaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AuthorizePaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
-            Logger.getLogger(AuthorizePaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

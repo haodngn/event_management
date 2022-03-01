@@ -44,6 +44,10 @@
         <servlet-name>RegisterEventController</servlet-name>
         <servlet-class>controller.RegisterEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreatePaymentAccountController</servlet-name>
+        <servlet-class>controller.CreatePaymentAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>RegisterEventController</servlet-name>
         <url-pattern>/RegisterEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreatePaymentAccountController</servlet-name>
+        <url-pattern>/CreatePaymentAccountController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -90,4 +90,33 @@ public class PaymentDAO {
 
         return dto;
     }
+    
+    public boolean createPaymentAccount(int paymentID, int accountID, String status) throws ClassNotFoundException, NamingException, SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        String sql = "insert into Payment_Account (Account_id, Payment_Id, Status) "
+                + "values(?, ?, ?)";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            
+            stm.setInt(1, accountID);
+            stm.setInt(2, paymentID);
+            stm.setString(3, status);
+            
+            if(stm.executeUpdate()>0){
+                result = true ;
+            }
+        } finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return result;
+        
+    }
 }
