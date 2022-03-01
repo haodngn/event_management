@@ -20,15 +20,18 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+
 /**
  *
  * @author HAO
  */
 public class AuthorizePaymentServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
- 
+
     public AuthorizePaymentServlet() {
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,18 +50,21 @@ public class AuthorizePaymentServlet extends HttpServlet {
         String tax = request.getParameter("tax");
         String total = request.getParameter("total");
         int id = Integer.parseInt(request.getParameter("EventID"));
-        
-        PaymentDAO paymentd = new PaymentDAO();
-        PaymentDTO payment = paymentd.getPaymentByEventID(id);
-         
-//        OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, total);
- 
+
         try {
-            PaymentServices paymentServices = new PaymentServices();
-            String approvalLink = paymentServices.authorizePayment(payment);
- 
-            response.sendRedirect(approvalLink);
-             
+
+            PaymentDAO paymentd = new PaymentDAO();
+            PaymentDTO payment = paymentd.getPaymentByEventID(id);
+
+            if (payment == null) {
+                System.out.println("payment is null !!");
+            } else {
+                PaymentServices paymentServices = new PaymentServices();
+                String approvalLink = paymentServices.authorizePayment(payment);
+
+                response.sendRedirect(approvalLink);
+            }
+
         } catch (PayPalRESTException ex) {
             request.setAttribute("errorMessage", ex.getMessage());
             ex.printStackTrace();
