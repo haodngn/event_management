@@ -37,18 +37,17 @@ public class RegisterEventController extends HttpServlet {
         try {
             int userID = Integer.parseInt(request.getParameter("txtUserID"));
             int eventID = Integer.parseInt(request.getParameter("txtEventID"));
+            Date registerDate = Date.valueOf(request.getParameter("txtRegisterDate"));
+            Date expirationDate = Date.valueOf(request.getParameter("txtExpirationDate"));
             long millis = System.currentTimeMillis();
-            String message = "";
+            String message = null;
             Date date = new Date(millis);
             EventDAO eventDAO = new EventDAO();
             if (!eventDAO.checkRegistedEvent(userID, eventID)) {
-                if (eventDAO.registerEvent(userID, eventID, date)) {                    
+                if (eventDAO.registerEvent(userID, eventID, date)) {
                     message = "Register successfully";
                 }
-            } else {
-                message = "You already registed this event";
             }
-
             request.setAttribute("EVENT_ID", eventID);
             request.setAttribute("message", message);
         } catch (Exception e) {

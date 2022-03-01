@@ -69,7 +69,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                dto = new EventDTO(speaker, name, occur, end, register, exp, des, location);
+                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location);
             }
 
         } finally {
@@ -417,6 +417,34 @@ public class EventDAO implements Serializable {
 
             stm.setInt(1, eventID);
             stm.setInt(2, userID);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                check = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+    
+    public boolean checkRegisterEventValidation(Date currentDate, int eventID) throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs;
+        boolean check = false;
+        String sql = "Select ID from Event Where ID = ? and registerDate < ? and expirationDate > ?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, eventID);
+            stm.setDate(2, currentDate);
+            stm.setDate(3, currentDate);
             rs = stm.executeQuery();
 
             if (rs.next()) {

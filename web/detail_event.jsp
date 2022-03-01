@@ -246,21 +246,26 @@
                                                             </div>  end of col 
                                                     </div>  end of row -->
                             <c:if test="${user.roleID == '1'}">
-                                <div class="loginx-box">
-                                    <form action="MainController" method="POST">
-                                        <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
-                                        <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
-                                        <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
-                                    </form>
-                                    <div class="register-message">
-                                        ${requestScope.message}
+                                <c:if test="${!requestScope.isOverDate == true}">
+                                    <div class="loginx-box">
+                                        <form action="MainController" method="POST">
+                                            <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
+                                            <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
+                                            <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
+                                        </form>
                                     </div>
-                                </div>
+                                </c:if>
+                                <script type="text/javascript">
+                                    var Msg = '<%=request.getAttribute("message")%>';
+                                    if (Msg !== "null") {
+                                        alert(Msg);
+                                    }
+                                </script>
                                 <td colspan="2" align="center">
                                     <form action="MainController">
                                         <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}" />
                                         <input type="submit" name="btnAction" value="Checkout" />
-                                        
+
                                     </form>                             
                                 </td>
                             </c:if>
