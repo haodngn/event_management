@@ -10,8 +10,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
+        <link rel="stylesheet" href="css/adminStyle.css"/>
     </head>
     <body>
-        <h1>This is home page for admin</h1>
+        <jsp:include page="adminCommon.jsp"></jsp:include>
+        <div class="container">
+            <div class="content">
+                <div class="cards">
+                    <div class="card">
+                        <div class="box">
+                            <h1>173</h1>
+                            <h3>Students Joined</h3>
+                        </div>
+                        <div class="icon-case">
+                            <img src="assets/images/adminImages/students.png" alt="">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="box">
+                            <h1>10</h1>
+                            <h3>Events Ongoing</h3>
+                        </div>
+                        <div class="icon-case">
+                            <img src="assets/images/adminImages/calendar.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
