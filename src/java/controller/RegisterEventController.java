@@ -42,13 +42,13 @@ public class RegisterEventController extends HttpServlet {
             Date date = new Date(millis);
             EventDAO eventDAO = new EventDAO();
             if (!eventDAO.checkRegistedEvent(userID, eventID)) {
-                if (eventDAO.registerEvent(userID, eventID, date)) {
+                if (eventDAO.registerEvent(userID, eventID, date)) {                    
                     message = "Register successfully";
                 }
             } else {
                 message = "You already registed this event";
             }
-            
+
             request.setAttribute("EVENT_ID", eventID);
             request.setAttribute("message", message);
         } catch (Exception e) {
