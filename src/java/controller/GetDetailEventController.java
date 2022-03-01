@@ -51,11 +51,16 @@ public class GetDetailEventController extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String url = STUDENT_EVENT_DETAIL;
+        
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        String isUpdate = request.getParameter("isUpdate");
+        
+        if(isUpdate == null){
+            isUpdate = "";
+        }
 
         try {
             HttpSession ses = request.getSession();
-            int id = Integer.parseInt(request.getParameter("txtId"));
-//            String action = request.getParameter("btnAction");
  
             List<CommentDTO> listComment;
 
@@ -68,13 +73,11 @@ public class GetDetailEventController extends HttpServlet {
                 fdao.getAllFeedback(id);
                 listComment = fdao.getListComment();                
                 
-//                //check role user
-//                UserDTO user = (UserDTO) ses.getAttribute("USER");
-//                if (user.getRoleID() == 1) {
-//                    url = STUDENT_EVENT_DETAIL;//student home
-//                } else if (user.getRoleID() == 2) {
-//                    url = UPDATE_PAGE; //dep event
-//                }
+                if(isUpdate.equals("updateEV")){
+                    url = UPDATE_PAGE;
+                }else{
+                    url = STUDENT_EVENT_DETAIL;
+                }
                 
                 request.setAttribute("EVENT", dto);// Detai Event
                 request.setAttribute("EVENT_ID", id);

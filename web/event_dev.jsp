@@ -55,7 +55,7 @@
     <body data-spy="scroll" data-target=".fixed-top">
 
 
-        <c:set value="${requestScope.EVENT}" var="event"/>
+        <c:set value="${requestScope.listEvent}" var="event"/>
         <!-- Preloader -->
         <div class="spinner-wrapper">
             <div class="spinner">
