@@ -74,11 +74,14 @@ public class SearchEventController extends HttpServlet {
             EventDAO eventDAO = new EventDAO();
             List<EventDTO> listEvent = null;
 
-            if (searchName.equals("")) {
+            if (searchName.equals("") && eventDev.equals("")) {
 
                 eventDAO.getAll();
                 listEvent = eventDAO.getListEvent();
-            } else {
+            } else if(eventDev.equals("eventDev")) {
+                eventDAO.getAllForDep();
+                listEvent = eventDAO.getListEvent();
+            } else{
                 eventDAO.getBySearch(searchName);
                 listEvent = eventDAO.getListEvent();
             }

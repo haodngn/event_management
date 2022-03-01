@@ -96,7 +96,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <c:url var="event_dev" value="MainController">
+                            <c:url var="event_dev" value="SearchEventController">
                                 <c:param name="btnAction" value="manage"></c:param>
                                 <c:param name="btnEventDev" value="eventDev"></c:param>
                             </c:url>

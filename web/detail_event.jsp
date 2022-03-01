@@ -259,8 +259,9 @@
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
                                 <div class="logins-box">
-                                    <form action="MainController" method="POST">
-                                        <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
+                                    <form action="GetDetailEventController" method="POST">
+                                        <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}"/>
+                                        <input type="hidden" name="isUpdate" value="updateEV" />
                                         <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
                                         <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="EDIT"/>
                                     </form>
@@ -272,7 +273,7 @@
                                     <form action="MainController" method="POST">
                                         <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
                                         <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
-                                        <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Delete"/>
+                                        <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="CLOSE"/>
                                     </form>
                                     <div class="register-message">
                                         ${requestScope.message}
