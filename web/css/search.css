@@ -325,6 +325,17 @@ input[type="submit"] {
     letter-spacing: 4px
 }
 
+.loginx-box button {
+    border: none;
+}
+
+.loginx-box button:hover {
+    text-decoration: none;
+    background: #f60;
+    color: #fff;
+    border-radius: 5px;
+}
+
 .login-box input:hover {
     text-decoration: none;
     background: #f60;

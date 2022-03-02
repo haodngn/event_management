@@ -248,10 +248,16 @@
                             <c:if test="${user.roleID == '1'}">
                                 <c:if test="${!requestScope.isOverDate == true}">
                                     <div class="loginx-box">
-                                        <form action="MainController" method="POST">
+                                        <form action="MainController">
                                             <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
+                                            <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}"/>
                                             <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
-                                            <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
+                                            <c:if test="${requestScope.isPayEvent}">
+                                                <button style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Checkout">Register</button>
+                                            </c:if>
+                                            <c:if test="${requestScope.isPayEvent == false}">
+                                                <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Register"/>
+                                            </c:if>
                                         </form>
                                     </div>
                                 </c:if>
@@ -261,13 +267,12 @@
                                         alert(Msg);
                                     }
                                 </script>
-                                <td colspan="2" align="center">
+<!--                                <td colspan="2" align="center">
                                     <form action="MainController">
                                         <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}" />
                                         <input type="submit" name="btnAction" value="Checkout" />
-
                                     </form>                             
-                                </td>
+                                </td>-->
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
                                 <div class="logins-box">
