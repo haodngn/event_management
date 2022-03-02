@@ -124,7 +124,7 @@
                                 <c:param name="btnAction" value="Profile"></c:param>
                                 <c:param name="email" value="${sessionScope.USER.email}"/>
                             </c:url>
-                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+                            <a  class="dropdown-item" href="profile_dev.jsp"><span class="item-text">Profile</span></a>
 
                             <hr/>
 
@@ -204,7 +204,7 @@
                         <th>Student count</th>
                         <th>Description</th>
                         <th>Location</th>
-                        <th>Image</th>
+                        <th>Price</th>
                         <th>Action</th>
 
                     </tr>
@@ -230,12 +230,19 @@
                             <td>${item.studentCount}</td>
                             <td>${item.description}</td>
                             <td>${item.location}</td>
-                            <td>${item.registerDate}</td>
+                            <td>$ ${requestScope.FEE.price}</td>
 
                             <td>
+                                <form action="GetDetailEventController" method="POST">
+                                    <input type="hidden" name="txtId" value="${item.id}"/>
+                                    <input type="hidden" name="isUpdate" value="updateEV" />
+                                    <input   type="submit" name="btnAction" value="EDIT"/>
+                                </form>
+                                <div class="register-message">
+                                    ${requestScope.message}
+                                </div>
                                 <form action="MainController" method="POST">
-                                    <input type="submit" name="btnAction" value="Edit Event"/>
-                                    <input type="submit" name="btnAction" value="Delete"/>
+                                    <input type="submit" name="btnAction" value="Delete" style="text-transform: uppercase"/>
                                 </form>
 
                             </td>

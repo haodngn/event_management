@@ -25,10 +25,12 @@ import org.apache.log4j.Logger;
  * @author HAO
  */
 public class UpdateEventController extends HttpServlet {
+
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(UpdateEventController.class);
-    
+
     private final String HOME_PAGE = "SearchEventController";
     private final String UPDATE_PAGE = "update_event.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,99 +50,99 @@ public class UpdateEventController extends HttpServlet {
             String eventName = request.getParameter("txtEventName");
             String description = request.getParameter("txtDescription");
             String location = request.getParameter("txtLocation");
-            
+            String image = request.getParameter("txtImage");
+
             boolean foundErr = false;
             EventErrorDTO err = new EventErrorDTO();
-            
-            
-            if(speaker.length() < 2 || speaker.length() > 50){
+
+            if (speaker.length() < 2 || speaker.length() > 50) {
                 foundErr = true;
                 err.setSpeakerLength("Field is required 2 - 50 character !!");
             }
-            
-            if(eventName.length() < 3 || eventName.length() > 30){
+
+            if (eventName.length() < 3 || eventName.length() > 30) {
                 foundErr = true;
                 err.setNameLength("Field is required 3 - 30 character !!");
             }
-            
-            if(description.length() < 3 || description.length() > 50){
+
+            if (description.length() < 3 || description.length() > 50) {
                 foundErr = true;
                 err.setDesLength("Field is required 3 - 50 charater !!");
             }
-            
-            if(location.length() < 2 || location.length() > 20){
+
+            if (location.length() < 2 || location.length() > 20) {
                 foundErr = true;
                 err.setLocationLength("Field is required 2 - 20 character !!");
             }
-            
+
             //conver string to date(util) to compare
             String occurDate = request.getParameter("txtOccurDate");
             String endDate = request.getParameter("txtEndDate");
             String registerDate = request.getParameter("registerDate");
             String expirationDate = request.getParameter("txtExpirationDate");
-            
+
             Date occur = new SimpleDateFormat("MM-dd-yyyy").parse(occurDate);
             Date exp = new SimpleDateFormat("MM-dd-yyyy").parse(expirationDate);
             Date regist = new SimpleDateFormat("MM-dd-yyyy").parse(registerDate);
             Date end = new SimpleDateFormat("MM-dd-yyyy").parse(endDate);
-            
+
             //expirationDate < RegisterDate
-            if(exp.before(regist)){ 
+            if (exp.before(regist)) {
                 foundErr = true;
                 err.setExpDateCheck("Expiration date must after Register date !!");
             }
-            
+
             //RegisterDate > ExpirationDate
-            if(regist.after(exp)){
+            if (regist.after(exp)) {
                 foundErr = true;
                 err.setRegisterDateCheck("Register date must before Expiration date !!");
             }
-            
+
             //Occur Date > End date
-            if(occur.after(end)){
+            if (occur.after(end)) {
                 foundErr = true;
                 err.setOccurDateCheck("Occur date must before End date !!");
             }
-            
+
             //End date < Occur Date
-            if(end.before(occur)){
+            if (end.before(occur)) {
                 foundErr = true;
                 err.setEndDateCheck("End date must after Occur date !!");
             }
-            
+
             //Occur Date < Exp Date
-            if(occur.before(exp)){
+            if (occur.before(exp)) {
                 foundErr = true;
                 err.setOccurDateCheck("Occur date must after Expiration date !!");
             }
-            
+
             //Exp Date > Occur Date
-            if(exp.after(occur)){
+            if (exp.after(occur)) {
                 foundErr = true;
                 err.setExpDateCheck("Expiration date must before Occur date !!");
             }
-            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location);
-            if(foundErr){
+            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location, image);
+            if (foundErr) {
                 request.setAttribute("UPDATE_ERR", err);
                 request.setAttribute("EVENT", dto);// Detai Event
                 request.setAttribute("EVENT_ID", id);
-            }else{
+            } else {
                 EventDAO dao = new EventDAO();
-                
+
                 boolean check = dao.updateEvent(dto, id);
-                if(check){
+                if (check) {
                     url = HOME_PAGE;
                 }
             }
-            
+
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at UpdateEventController: "+ex.getMessage());
+            LOGGER.error("ClassNotFoundException at UpdateEventController: " + ex.getMessage());
         } catch (SQLException ex) {
-            LOGGER.error("SQLException at UpdateEventController: "+ex.getMessage());
+            LOGGER.error("SQLException at UpdateEventController: " + ex.getMessage());
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at UpdateEventController: "+ex.getMessage());
+            LOGGER.error("NamingException at UpdateEventController: " + ex.getMessage());
         } catch (ParseException ex) {
-            LOGGER.error("ParseException at UpdateEventController: "+ex.getMessage());
+            LOGGER.error("ParseException at UpdateEventController: " + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

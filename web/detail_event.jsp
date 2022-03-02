@@ -170,8 +170,7 @@
                     <div class="col-lg-12" >
                         <div class="image-container-large">
                             <img class="img-fluid"
-                                 src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                 alt="alternative">
+                                 src="${event.image}" alt="alternative">
                         </div> <!-- end of image-container-large -->
                         <div class="text-container">
                             <h3>${event.eventName}</h3>
@@ -183,7 +182,7 @@
                                 <i class="fas fa-map-marker"></i>
                                 <p>${event.location}</p>
 
-                                <p class="location_time_p">Fee : ${requestScope.FEE.price} $</p>
+                                <p class="location_time_p">Fee :$ ${requestScope.FEE.price} </p>
                                 <i class="fas fa-money-bill"></i>
 
                             </div>
