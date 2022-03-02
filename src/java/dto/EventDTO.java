@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author Admin
  */
-public class EventDTO implements Serializable{
+public class EventDTO implements Serializable {
+
     private int id;
     private String speaker;
     private String eventName;
@@ -24,11 +25,12 @@ public class EventDTO implements Serializable{
     private String location;
     private int prosted_by;
     private boolean status;
+    private String image;
 
     public EventDTO() {
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, boolean status) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, boolean status, String image) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -40,18 +42,19 @@ public class EventDTO implements Serializable{
         this.description = description;
         this.location = location;
         this.prosted_by = prosted_by;
-       
         this.status = status;
+        this.image = image;
     }
 
-    public EventDTO(int id, String speaker, String eventName, String loaction) {
+    public EventDTO(int id, String speaker, String eventName, String loaction, String image) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
         this.location = loaction;
+        this.image = image;
     }
 
-    public EventDTO(String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location) {
+    public EventDTO(String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location, String image) {
         this.speaker = speaker;
         this.eventName = eventName;
         this.occurDate = occurDate;
@@ -60,9 +63,10 @@ public class EventDTO implements Serializable{
         this.expirationDate = expirationDate;
         this.description = description;
         this.location = location;
+        this.image = image;
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location, String image) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -72,11 +76,10 @@ public class EventDTO implements Serializable{
         this.expirationDate = expirationDate;
         this.description = description;
         this.location = location;
+        this.image = image;
     }
-    
-    
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, String image) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -88,9 +91,20 @@ public class EventDTO implements Serializable{
         this.description = description;
         this.location = location;
         this.prosted_by = prosted_by;
+        this.image = image;
     }
-    
-    
+
+    public EventDTO(int id, String speaker, String name, String occur, String end, String register, String exp, String des, String location) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;
@@ -130,7 +144,7 @@ public class EventDTO implements Serializable{
 
     public void setEnddate(String endDate) {
         this.endDate = endDate;
-      
+
     }
 
     public String getRegisterDate() {
@@ -204,7 +218,4 @@ public class EventDTO implements Serializable{
     public void setLocation(String location) {
         this.location = location;
     }
-    
-    
-    
 }

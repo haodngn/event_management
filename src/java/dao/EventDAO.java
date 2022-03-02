@@ -41,7 +41,7 @@ public class EventDAO implements Serializable {
         EventDTO dto = null;
 
         try {
-            String sql = "select ID, EventName, Speaker, EndDate, RegisterDate, ExpirationDate, OccurDate, Description, Location "
+            String sql = "select ID, EventName, Speaker, EndDate, RegisterDate, ExpirationDate, OccurDate, Description, Location, Image "
                     + "from Event "
                     + "where id=?";
 
@@ -57,6 +57,7 @@ public class EventDAO implements Serializable {
                 String name = rs.getString("EventName");
                 String location = rs.getString("Location");
                 String des = rs.getString("Description");
+                String image = rs.getString("Image");
 
                 Date EndDate = rs.getDate("EndDate");
                 Date RegisterDate = rs.getDate("RegisterDate");
@@ -69,7 +70,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location);
+                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location, image);
             }
 
         } finally {
@@ -96,7 +97,7 @@ public class EventDAO implements Serializable {
         this.listEvent = new ArrayList<>();
 
         try {
-            String sql = "select ID, Speaker, EventName, Location "
+            String sql = "select ID, Speaker, EventName, Location, Image "
                     + "from Event "
                     + "where status=1 ";
             con = DBHelper.makeConnection();
@@ -108,8 +109,9 @@ public class EventDAO implements Serializable {
                 String speaker = rs.getString("Speaker");
                 String name = rs.getString("EventName");
                 String location = rs.getString("Location");
+                String image = rs.getString("Image");
 
-                EventDTO dto = new EventDTO(Id, speaker, name, location);
+                EventDTO dto = new EventDTO(Id, speaker, name, location, image);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -128,7 +130,7 @@ public class EventDAO implements Serializable {
             }
         }
     }
-    
+
     public void getAllForDep()
             throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
@@ -143,7 +145,7 @@ public class EventDAO implements Serializable {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             rs = stm.executeQuery();
-            System.out.println("sql: "+sql);
+            System.out.println("sql: " + sql);
             while (rs.next()) {
                 DateFormat df = new SimpleDateFormat("YYYY-MM-dd");//convert date to String with format dd//MM//YYYY
 
@@ -154,7 +156,7 @@ public class EventDAO implements Serializable {
                 String des = rs.getString("Description");
                 int postBy = rs.getInt("Posted_by");
                 int count = rs.getInt("StudentCount");
-                
+                String image = rs.getString("Image");
 
                 Date EndDate = rs.getDate("EndDate");
                 Date RegisterDate = rs.getDate("RegisterDate");
@@ -167,7 +169,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy);
+                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -202,7 +204,7 @@ public class EventDAO implements Serializable {
         }
 
         try {
-            String sql = "select ID, Speaker, EventName, Location "
+            String sql = "select ID, Speaker, EventName, Location, Image "
                     + "from Event "
                     + "where status=1 "
                     + "and EventName like ISNULL(?,EventName) ";
@@ -216,8 +218,9 @@ public class EventDAO implements Serializable {
                 String Eventname = rs.getString("EventName");
                 String speaker = rs.getString("Speaker");
                 String location = rs.getString("Location");
+                String image = rs.getString("Image");
 
-                EventDTO dto = new EventDTO(Id, speaker, Eventname, location);
+                EventDTO dto = new EventDTO(Id, speaker, Eventname, location, image);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -265,8 +268,7 @@ public class EventDAO implements Serializable {
             }
         }
     }
-    
-    
+
     public boolean createEvent(String speaker, String eventName,
             String occurDate, String enddate, String registerDate,
             String expirationDate, int studentCount, String description,
@@ -322,7 +324,7 @@ public class EventDAO implements Serializable {
                 + "set Speaker = ?, EventName = ?, "
                 + "OccurDate = ?, EndDate = ?, "
                 + "RegisterDate = ?, ExpirationDate = ?, "
-                + "Description = ?, Location = ? "
+                + "Description = ?, Location = ? , Image = ?"
                 + "where ID = ?  ";
         try {
             con = DBHelper.makeConnection();
@@ -336,7 +338,9 @@ public class EventDAO implements Serializable {
             stm.setString(6, dto.getExpirationDate());
             stm.setString(7, dto.getDescription());
             stm.setString(8, dto.getLoaction());
-            stm.setInt(9, id);
+            stm.setString(9, dto.getImage());
+
+            stm.setInt(10, id);
 
             if (stm.executeUpdate() > 0) {
                 update = true;
@@ -432,7 +436,7 @@ public class EventDAO implements Serializable {
         }
         return check;
     }
-    
+
     public boolean checkRegisterEventValidation(Date currentDate, int eventID) throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
