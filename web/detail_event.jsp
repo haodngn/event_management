@@ -92,12 +92,18 @@
                                href="SearchEventController">HOME<span
                                     class="sr-only">(current)</span></a>
                         </li>
-
-                        <li class="nav-item">
+                        <c:if test="${sessionScope.USER.roleID == '2'}">
+                            <li class="nav-item">
+                                <c:url var="event_dev" value="SearchEventController">
+                                <c:param name="btnAction" value="manage"></c:param>
+                                <c:param name="btnEventDev" value="eventDev"></c:param>
+                            </c:url>
                             <a class="nav-link page-scroll"
-                               href="#">EVENTS<span
+                               href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
-                        </li>
+                            </li>
+                        </c:if>
+
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"

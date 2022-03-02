@@ -94,11 +94,11 @@
                                     class="sr-only">(current)</span></a>
                         </li>
 
-                        <li class="nav-item">
+<!--                        <li class="nav-item">
                             <a class="nav-link page-scroll"
                                href="#">EVENTS<span
                                     class="sr-only">(current)</span></a>
-                        </li>
+                        </li>-->
 
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
