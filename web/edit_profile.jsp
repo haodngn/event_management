@@ -39,9 +39,9 @@
                     <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
 
                     <!-- Image Logo -->
-                    <a class="navbar-brand logo-image" href="index.html"><img src="assets/images/0001.jpg" alt="alternative"></a> 
+                    <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/0001.jpg" alt="alternative"></a> 
 
-                    <a class="navbar-brand logo-image" href="index.html"><img src="assets/images/logo.jpg" alt="alternative"></a> 
+                    <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/logo.jpg" alt="alternative"></a> 
 
 
 
@@ -55,7 +55,7 @@
                     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#description">HOME <span class="sr-only">(current)</span></a>
+                                <a class="nav-link page-scroll" href="SearchEventController">HOME <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link page-scroll" href="#screens">EVENTS</a>
@@ -116,11 +116,6 @@
                                         <div class="info-row">
                                             <span>Email: </span>
                                             <input type="text" class="input-field" name="email" value="${sessionScope.userInfo.email}" readOnly/>
-                                        </div>
-                                        <div class="horizontal-line"></div>
-                                        <div class="info-row">
-                                            <span>Address: </span>
-                                            <span>Bo sung sau</span>
                                         </div>
                                         <div class="horizontal-line"></div>
                                         <div class="info-row">

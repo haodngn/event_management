@@ -7,8 +7,10 @@ package controller;
 
 import dao.EventDAO;
 import dao.CommentDAO;
+import dao.PaymentDAO;
 import dto.EventDTO;
 import dto.CommentDTO;
+import dto.PaymentDTO;
 import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -69,6 +71,8 @@ public class GetDetailEventController extends HttpServlet {
 
             EventDAO dao = new EventDAO();
             EventDTO dto = dao.getEventByID(id);
+            PaymentDAO pdao = new PaymentDAO();
+            PaymentDTO pdto = pdao.getPaymentByEventID(id);
             System.out.println(userID);
             if (dto != null) {
                 //get all feedback
@@ -94,6 +98,7 @@ public class GetDetailEventController extends HttpServlet {
 
                 request.setAttribute("EVENT", dto);// Detai Event
                 request.setAttribute("EVENT_ID", id);
+                request.setAttribute("FEE", pdto);
                 request.setAttribute("ListFeedbacks", listComment);
             }
 
