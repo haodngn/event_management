@@ -73,21 +73,23 @@ public class GetDetailEventController extends HttpServlet {
             EventDTO dto = dao.getEventByID(id);
             PaymentDAO pdao = new PaymentDAO();
             PaymentDTO pdto = pdao.getPaymentByEventID(id);
-            System.out.println(userID);
             if (dto != null) {
                 //get all feedback
                 CommentDAO fdao = new CommentDAO();
                 fdao.getAllFeedback(id);
                 listComment = fdao.getListComment();
                 Date currentDate = new Date(System.currentTimeMillis());
-                System.out.println(dto.getId());
                 if (!dao.checkRegisterEventValidation(currentDate, dto.getId())) {
-                    System.out.println("I'm hereeee");
                     request.setAttribute("isOverDate", true);
                 }
                 if (dao.checkRegistedEvent(userID, id)) {
-                    System.out.println("I'm also hereeee");
                     request.setAttribute("isOverDate", true);
+                }
+                
+                if(pdao.checkPayEventByEventID(id)) {
+                    request.setAttribute("isPayEvent", true);
+                } else {
+                    request.setAttribute("isPayEvent", false);
                 }
 
                 if (isUpdate.equals("updateEV")) {

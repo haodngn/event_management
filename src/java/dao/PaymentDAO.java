@@ -119,4 +119,33 @@ public class PaymentDAO {
         return result;
         
     }
+    
+    public boolean checkPayEventByEventID(int eventID) throws ClassNotFoundException, NamingException, SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        ResultSet rs = null;
+        String sql = "Select ID from Payment where Event_id = ? and isFree = ?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            
+            stm.setInt(1, eventID);
+            stm.setBoolean(2, true);
+            
+            rs = stm.executeQuery();
+            if(rs.next()) {
+                result = true;
+            }
+        } finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return result;
+        
+    }
 }
