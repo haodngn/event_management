@@ -177,7 +177,7 @@
                                 <i class="fas fa-map-marker"></i>
                                 <p>${event.location}</p>
 
-                                <p class="location_time_p">Fee : 5$</p>
+                                <p class="location_time_p">Fee : ${requestScope.FEE.price} $</p>
                                 <i class="fas fa-money-bill"></i>
 
                             </div>
