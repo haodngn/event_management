@@ -21,6 +21,8 @@ import org.apache.log4j.Logger;
 public class RegisterEventController extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(RegisterEventController.class);
+    private final String DETAIL_CONTROLLER = "GetDetailEventController";
+    private final String ERROR = "error.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +36,9 @@ public class RegisterEventController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        String url = DETAIL_CONTROLLER;
+        
         try {
             int userID = Integer.parseInt(request.getParameter("txtUserID"));
             int eventID = Integer.parseInt(request.getParameter("txtEventID"));
@@ -44,6 +49,7 @@ public class RegisterEventController extends HttpServlet {
             if (!eventDAO.checkRegistedEvent(userID, eventID)) {
                 if (eventDAO.registerEvent(userID, eventID, date)) {
                     message = "Register successfully";
+                    url = "GetDetailEventController?txtId="+eventID;
                 }
             }
             request.setAttribute("EVENT_ID", eventID);
@@ -51,7 +57,7 @@ public class RegisterEventController extends HttpServlet {
         } catch (Exception e) {
             LOGGER.error("Error at RegisterEventController: " + e);
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher("detail_event.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
     }

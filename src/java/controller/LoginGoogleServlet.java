@@ -75,6 +75,8 @@ public class LoginGoogleServlet extends HttpServlet {
                 
                 if(user == null){
                     dao.createAccount(name, email, password, 1, picture);
+                    user = dao.checkLogin(email, password);
+                    
                 }
                 session.setAttribute("USER", user);
                

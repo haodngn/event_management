@@ -131,7 +131,7 @@ public class PaymentDAO {
             stm = con.prepareStatement(sql);
             
             stm.setInt(1, eventID);
-            stm.setBoolean(2, true);
+            stm.setBoolean(2, false);
             
             rs = stm.executeQuery();
             if(rs.next()) {
