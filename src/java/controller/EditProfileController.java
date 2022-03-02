@@ -49,7 +49,7 @@ public class EditProfileController extends HttpServlet {
             String name = request.getParameter("name");
             String phoneNumber = request.getParameter("phoneNumber");
             String gender = request.getParameter("genderRadio");
-            String reg = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+            String reg = "/(84|0[3|5|7|8|9])+([0-9]{8})\\b/g";
             if (!phoneNumber.matches(reg)) {
                 check = false;
             }
