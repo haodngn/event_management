@@ -263,6 +263,7 @@
                     </c:if>
 
                     <div class="btn-action">
+                        <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
                         <input type="submit" value="Edit Event" name="btnAction" />
                         <input type="submit" value="Back to home" name="btnAction" />
                     </div>
