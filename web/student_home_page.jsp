@@ -225,7 +225,7 @@
                                             <a href="${detail}" class="popup-link"
                                                data-effect="fadeIn">
                                                 <img style="height: 355px; width: 187px" class="img-fluid"
-                                                     src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
+                                                     src="${item.image}"
                                                      alt="alternative">
                                                 <div class="event-infos" style="text-decoration: none;">
                                                     <h5>${item.eventName}</h5>
