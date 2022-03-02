@@ -32,73 +32,81 @@
             <!-- end of preloader -->
 
             <c:if test="${not empty sessionScope.userInfo}">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="nav">
-                <div class="container">
-                    <!-- Text Logo - Use this if you don't have a graphic logo -->
-                    <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
+                <!-- Navigation -->
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="nav">
+                    <div class="container">
+                        <!-- Text Logo - Use this if you don't have a graphic logo -->
+                        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
 
-                    <!-- Image Logo -->
-                    <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/0001.jpg" alt="alternative"></a> 
+                        <!-- Image Logo -->
+                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/0001.jpg" alt="alternative"></a> 
 
-                    <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/logo.jpg" alt="alternative"></a> 
+                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/logo.jpg" alt="alternative"></a> 
 
 
 
-                    <!-- Mobile Menu Toggle Button -->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-awesome fas fa-bars"></span>
-                        <span class="navbar-toggler-awesome fas fa-times"></span>
-                    </button>
-                    <!-- end of mobile menu toggle button -->
+                        <!-- Mobile Menu Toggle Button -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-awesome fas fa-bars"></span>
+                            <span class="navbar-toggler-awesome fas fa-times"></span>
+                        </button>
+                        <!-- end of mobile menu toggle button -->
 
-                    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="SearchEventController">HOME <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#screens">EVENTS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#screens">CONTACT</a>
-                            </li>
-                              <li class="nav-item dropdown" style="list-style-type: none;">
-                        <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <c:url var="profile" value="MainController">
-                                <c:param name="btnAction" value="Profile"></c:param>
-                                 <c:param name="email" value="${sessionScope.USER.email}"/>
-                            </c:url>
-                            <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
-                            
-                            <hr/>
-                            
-                            <c:url var="logout" value="MainController">
-                                <c:param name="btnAction" value="Logout"></c:param>
-                            </c:url>
-                            <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
+                        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link page-scroll" href="SearchEventController">HOME <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link page-scroll" href="#screens">EVENTS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link page-scroll" href="#screens">CONTACT</a>
+                                </li>
+                                <li class="nav-item dropdown" style="list-style-type: none;">
+                                    <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <c:url var="profile" value="MainController">
+                                            <c:param name="btnAction" value="Profile"></c:param>
+                                            <c:param name="email" value="${sessionScope.USER.email}"/>
+                                        </c:url>
+                                        <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
 
+                                        <hr/>
+
+                                        <c:url var="logout" value="MainController">
+                                            <c:param name="btnAction" value="Logout"></c:param>
+                                        </c:url>
+                                        <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
+
+
+                                    </div>
+                                </li>
+                            </ul>
 
                         </div>
-                    </li>
-                        </ul>
-                        
-                    </div>
-                </div> <!-- end of container -->
-            </nav> <!-- end of navbar -->
-            <!-- end of navigation -->
-            <div class="main">
-                <div class="left-margin"></div>
-                <div class="main-content">
-                    <div class="direct-bar">
-                        <div class="breadcrumbs">
-                            <a id="linkBreadcrumbs" href="#">Profile</a>
-                            <i id="linkBreadcrumbs" class="fa fa-angle-double-right"></i>
-                            <span id="linkBreadcrumbs">Student Profile</span>
+                    </div> <!-- end of container -->
+                </nav> <!-- end of navbar -->
+                <!-- end of navigation -->
+                <div class="main">
+                    <div class="left-margin"></div>
+                    <div class="main-content">
+                        <div class="direct-bar">
+                            <div class="breadcrumbs">
+                                <a id="linkBreadcrumbs" href="#">Profile</a>
+                                <i id="linkBreadcrumbs" class="fa fa-angle-double-right"></i>
+                                <c:if test="${sessionScope.USER.userID == '1'}">
+                                    <span id="linkBreadcrumbs">Student Profile</span>
+                                </c:if>
+                                <c:if test="${sessionScope.USER.userID == '2'}">
+                                    <span id="linkBreadcrumbs">Event Department Profile</span>
+                                </c:if>
+                                <c:if test="${sessionScope.USER.userID == '3'}">
+                                    <span id="linkBreadcrumbs">Admin Profile</span>
+                                </c:if>
+                            </div>
                         </div>
-                    </div>
-                    
+
                         <div class="body">
                             <div class="left-bar">
                                 <div class="avatar-box">
@@ -120,23 +128,31 @@
                                         <div class="horizontal-line"></div>
                                         <div class="info-row">
                                             <span>Phone: </span>
-                                            <input class="input-field" type="text" name="phoneNumber" value="${sessionScope.userInfo.phoneNumber}"/>
+                                            <input class="input-field" type="text" name="phoneNumber" 
+                                                   <c:if test="${sessionScope.userInfo.phoneNumber != 'null'}">
+                                                       value="${sessionScope.userInfo.phoneNumber}"
+                                                   </c:if>
+                                                   <c:if test="${sessionScope.userInfo.phoneNumber == 'null'}">
+                                                       value=""
+                                                   </c:if>
+                                                   />
                                             <font color="red">
-                                                ${sessionScope.phoneNumberInvalid}
+                                            ${sessionScope.phoneNumberInvalid}
                                             </font>                                        
                                         </div>
                                         <div class="horizontal-line"></div>
                                         <div class="info-row">
                                             <span>Gender: </span>
                                             <span>
-                                                  <input type="radio" id="male" name="genderRadio" value="Male" <c:if test="${sessionScope.userInfo.gender == true}">checked</c:if> >
-                                                  <label for="male">Male</label><br>
-                                                  <input type="radio" id="female" name="genderRadio" value="Female" <c:if test="${sessionScope.userInfo.gender == false}">checked</c:if>>
-                                                  <label for="female">Female</label><br>
-                                            </span>
-                                        </div>
-                                        <div class="btn-list">
-                                            <input type="hidden" name="email" value="${sessionScope.userInfo.email}" />
+                                                <input type="radio" id="male" name="genderRadio" value="Male" <c:if test="${sessionScope.userInfo.gender == true}">checked</c:if> >
+                                                      <label for="male">Male</label><br>
+                                                      <input type="radio" id="female" name="genderRadio" value="Female" <c:if test="${sessionScope.userInfo.gender == false}">checked</c:if>>
+                                                      <label for="female">Female</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="btn-list">
+                                                <input type="hidden" name="email" value="${sessionScope.userInfo.email}" />
+                                            <button type="submit" class="btn-edit btn-span-all" name="btnAction" value="Cancel">Cancel</button>
                                             <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Save Profile"/>
                                         </div>
                                     </div>
@@ -149,10 +165,10 @@
                                 </div>
                             </div>
                         </div>
-                    
+
+                    </div>
+                    <div class="right-margin"></div>
                 </div>
-                <div class="right-margin"></div>
-            </div>
             </c:if>
             <div class="footer">
                 <div class="container">

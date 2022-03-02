@@ -119,7 +119,13 @@
                                     <div class="horizontal-line"></div>
                                     <div class="info-row">
                                         <span>Phone: </span>
-                                        <span>${sessionScope.userInfo.phoneNumber}</span>
+                                        <c:if test="${sessionScope.userInfo.phoneNumber == 'null' || sessionScope.userInfo.phoneNumber == ''}">
+                                            <span>No data </span>
+                                        </c:if>
+                                        <c:if test="${sessionScope.userInfo.phoneNumber != 'null' && sessionScope.userInfo.phoneNumber != ''}">
+                                            <span>${sessionScope.userInfo.phoneNumber}</span>
+                                        </c:if>
+                                        
                                     </div>
                                     <div class="horizontal-line"></div>
                                     <div class="info-row">

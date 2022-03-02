@@ -32,74 +32,75 @@ and open the template in the editor.
 
 #container {
     position: absolute;
-    width: 1728px;
-    height: 1117px;
+    width: 100vw;
+    height: 100vh;
     top: 70px;
 }
 
 .btn-outline-sm {
-	display: inline-block;
-	padding: 1rem 1.5rem 1rem 1.5rem;
-	border: 0.125rem solid #333;
-	border-radius: 2rem;
-	background-color: transparent;
-	color: #333;
-	font: 700 0.875rem/0 "Open Sans", sans-serif;
-	text-decoration: none;
-	transition: all 0.2s;
+    display: inline-block;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border: 0.125rem solid #333;
+    border-radius: 2rem;
+    background-color: transparent;
+    color: #333;
+    font: 700 0.875rem/0 "Open Sans", sans-serif;
+    text-decoration: none;
+    transition: all 0.2s;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0.625rem;
 }
 
 .btn-outline-sm:hover {
-	border: 0.125rem solid #333;
-	background-color: #333;
-	color: #007f00;
-	text-decoration: none;
+    border: 0.125rem solid #333;
+    background-color: #333;
+    color: #007f00;
+    text-decoration: none;
 }
 
 /* Nav bar */
 .navbar-custom {
-	background-color: #f7fafd;
-	box-shadow: 0 0.0625rem 0.375rem 0 rgba(0, 0, 0, 0.1);
-	font: 700 0.875rem/0.875rem "Open Sans", sans-serif;
-	transition: all 0.2s;
+    background-color: #f7fafd;
+    box-shadow: 0 0.0625rem 0.375rem 0 rgba(0, 0, 0, 0.1);
+    font: 700 0.875rem/0.875rem "Open Sans", sans-serif;
+    transition: all 0.2s;
+    height: 7%;
 }
 
 .navbar-custom .navbar-brand.logo-image img {
     width: 6.6875rem;
-	height: 2.25rem;
+    height: 2.25rem;
 }
 
 .navbar-custom .navbar-brand.logo-text {
-	font: 700 2rem/1rem "Open Sans", sans-serif;
-	color: #333;
-	text-decoration: none;
+    font: 700 2rem/1rem "Open Sans", sans-serif;
+    color: #333;
+    text-decoration: none;
 }
 
 .navbar-custom .navbar-nav {
-	margin-top: 0.75rem;
-	margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .navbar-custom .nav-item .nav-link {
-	padding: 0.625rem 0.75rem;
-	color: #333;
-	text-decoration: none;
-	transition: all 0.2s ease;
+    padding: 0.625rem 0.75rem;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 .navbar-custom .nav-item .nav-link:hover,
 .navbar-custom .nav-item .nav-link.active {
-	color: #377f2a;
+    color: #377f2a;
 }
 
 /* Dropdown Menu */
 .navbar-custom .dropdown:hover > .dropdown-menu {
-	display: block; /* this makes the dropdown menu stay open while hovering it */
-	min-width: auto;
-	animation: fadeDropdown 0.2s; /* required for the fade animation */
+    display: block; /* this makes the dropdown menu stay open while hovering it */
+    min-width: auto;
+    animation: fadeDropdown 0.2s; /* required for the fade animation */
 }
 
 @keyframes fadeDropdown {
@@ -113,44 +114,44 @@ and open the template in the editor.
 }
 
 .navbar-custom .dropdown-toggle {
-	cursor: default;
+    cursor: default;
 }
 
 .navbar-custom .dropdown-toggle:focus { /* removes dropdown outline on focus */
-	outline: 0;
+    outline: 0;
 }
 
 .navbar-custom .dropdown-menu {
-	margin-top: 0;
-	border: none;
-	border-radius: 0.25rem;
-	background-color: #f7fafd;
+    margin-top: 0;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #f7fafd;
 }
 
 .navbar-custom .dropdown-item {
-	color: #333;
-	text-decoration: none;
+    color: #333;
+    text-decoration: none;
 }
 
 .navbar-custom .dropdown-item:hover {
-	background-color: #f7fafd;
+    background-color: #f7fafd;
 }
 
 .navbar-custom .dropdown-item .item-text {
-	font: 700 0.875rem/0.875rem "Open Sans", sans-serif;
+    font: 700 0.875rem/0.875rem "Open Sans", sans-serif;
 }
 
 .navbar-custom .dropdown-item:hover .item-text {
-	color: #377f2a;
+    color: #377f2a;
 }
 
 .navbar-custom .dropdown-divider {
-	width: 100%;
-	height: 1px;
-	margin: 0.75rem auto 0.725rem auto;
-	border: none;
-	background-color: #c4d8dc;
-	opacity: 0.2;
+    width: 100%;
+    height: 1px;
+    margin: 0.75rem auto 0.725rem auto;
+    border: none;
+    background-color: #c4d8dc;
+    opacity: 0.2;
 }
 /* end of dropdown menu */
 
@@ -163,27 +164,27 @@ and open the template in the editor.
 }
 
 .navbar-custom .navbar-toggler {
-	padding: 0;
-	border: none;
-	color: #333;
-	font-size: 2rem;
+    padding: 0;
+    border: none;
+    color: #333;
+    font-size: 2rem;
 }
 
 .navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-times{
-	display: none;
+    display: none;
 }
 
 .navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-bars{
-	display: inline-block;
+    display: inline-block;
 }
 
 .navbar-custom button[aria-expanded='true'] .navbar-toggler-awesome.fas.fa-bars{
-	display: none;
+    display: none;
 }
 
 .navbar-custom button[aria-expanded='true'] .navbar-toggler-awesome.fas.fa-times{
-	display: inline-block;
-	margin-right: 0.125rem;
+    display: inline-block;
+    margin-right: 0.125rem;
 }
 
 /* End nav bar */
@@ -195,20 +196,21 @@ and open the template in the editor.
 }
 
 .left-margin, .right-margin {
-    width: 165px;
+    width: 8%;
+    height: 93%;
     background-color: #C4C4C4;
 }
 
 .main-content {
     flex: 1;
     display: flex;
-    width: 1398px;
+    width: 70%;
     flex-direction: column;
 }
 
 .direct-bar {
     min-height: 57px;
-    width: 1398px;
+    width: 100%;
     background-color: #2F8D01;
     display: flex;
     flex-direction: row;
@@ -216,19 +218,19 @@ and open the template in the editor.
 }
 
 .breadcrumbs {
-	margin-left: 24px;
+    margin-left: 24px;
     font-size: 24px;
 }
 
 .breadcrumbs .fa {
-	margin-right: 16px;
-	margin-left: 16px;
-	font-size: 24px;
+    margin-right: 16px;
+    margin-left: 16px;
+    font-size: 24px;
 }
 
 #linkBreadcrumbs{
-	color:#fff;
-	text-decoration: none;
+    color:#fff;
+    text-decoration: none;
 }
 
 .body {
@@ -236,13 +238,14 @@ and open the template in the editor.
 }
 
 .left-bar {
-    margin: 36px;
+    width: 30%;
+    margin: 24px;
     margin-bottom: 0;
 }
 
 .avatar-box {
-    max-width: 430px;
-    margin-bottom: 36px;
+    max-width: 100%;
+    margin-bottom: 12px;
     background-color: #CCFFC3;
     display: flex;
     flex-direction: column;
@@ -269,7 +272,8 @@ and open the template in the editor.
 }
 
 .info {
-    max-width: 430px;
+    width: 100%;
+    max-width: 455px;
     margin-bottom: 36px;
     background-color: #CCFFC3;
     display: flex;
@@ -319,7 +323,7 @@ and open the template in the editor.
 }
 
 .horizontal-line {
-    width: 430px;
+    width: 100%;
     height: 1px;
     background-color: #000;
     opacity: .5;
@@ -331,9 +335,9 @@ and open the template in the editor.
 }
 
 .right-bar {
-    width: 855px;
+    width: 70%;
     background-color: #CCFFC3;
-    margin: 36px 36px 36px 0;
+    margin: 24px;
     border-radius: 5px;
 }
 
@@ -356,69 +360,69 @@ and open the template in the editor.
 /* Footer */
 
 .footer {
-	padding-top: 4rem;
-	padding-bottom: 1rem;
-	border-top: 1px solid #c8d4d6;
-	background-color: #f7fafd;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid #c8d4d6;
+    background-color: #f7fafd;
 }
 
 .footer p,
 .footer h5,
 .footer ul,
 .footer a {
-	color: #999;
+    color: #999;
 }
 
 .footer a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .footer .footer-col {
-	display: inline-block;
-	width: 14.5rem;
+    display: inline-block;
+    width: 14.5rem;
     margin-right: 1rem;
-	margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
     vertical-align: top;
 }
 
 .footer h5 {
-	margin-bottom: 0.625rem;
+    margin-bottom: 0.625rem;
 }
 
 .footer .li-space-lg li {
-	margin-bottom: 0.375rem;
+    margin-bottom: 0.375rem;
 }
 
 .footer .list-unstyled .fab,
 .footer .list-unstyled .fas {
-	width: 0.875rem;
-	font-size: 0.875rem;
-	line-height: 1.5rem;
+    width: 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
 }
 
 .footer .list-unstyled .media-body {
-	margin-left: 0.625rem;
+    margin-left: 0.625rem;
 }
 
 .footer .fa-stack {
-	width: 2em;
-	margin-bottom: 0.75rem;
-	margin-right: 0.375rem;
-	font-size: 1.25rem;
+    width: 2em;
+    margin-bottom: 0.75rem;
+    margin-right: 0.375rem;
+    font-size: 1.25rem;
 }
 
 .footer .fa-stack .fa-stack-1x {
     color: #fff;
-	transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .footer .fa-stack .fa-stack-2x {
-	color: #999;
-	transition: all 0.2s ease;
+    color: #999;
+    transition: all 0.2s ease;
 }
 
 .footer .fa-stack:hover .fa-stack-1x {
-	color: #fff;
+    color: #fff;
 }
 
 .footer .fa-stack:hover .fa-stack-2x {
@@ -432,18 +436,18 @@ and open the template in the editor.
 /*     15. Copyright     */
 /*************************/
 .copyright {
-	padding-bottom: 0.75rem;
-	background-color: #f7fafd;
-	text-align: center;
+    padding-bottom: 0.75rem;
+    background-color: #f7fafd;
+    text-align: center;
 }
 
 .copyright p,
 .copyright a {
-	color: #999;
+    color: #999;
 }
 
 .copyright a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 @media screen and (max-width : 960px) {
@@ -471,9 +475,18 @@ and open the template in the editor.
         align-items: center;
         justify-content: center;
     }
-
+    
+    .left-bar {
+        width: 80%;
+        margin: 36px;
+        margin-top: 0;
+        background-color: #CCFFC3;
+        flex-direction: column;
+        border-radius: 5px;
+    }
+    
     .right-bar {
-        max-width: 430px;
+        width: 80%;
         margin: 36px;
         margin-top: 0;
         background-color: #CCFFC3;
