@@ -18,7 +18,7 @@
 </head>
 <body>
 <div align="center">
-    <h1>Payment Done. Thank you for purchasing our products</h1>
+    <h1>Payment Done. Thank you for joining our event</h1>
     <br/>
     <h2>Receipt Details:</h2>
     <table>
@@ -28,32 +28,24 @@
         </tr>
         <tr>
             <td><b>Payer:</b></td>
-            <td>${payer.firstName} ${payer.lastName}</td>      
+            <td>${sessionScope.USER.name}</td>      
         </tr>
         <tr>
-            <td><b>Description:</b></td>
-            <td>Đã Thanh Toán</td>
+            <td><b>Payment Status:</b></td>
+            <td>Completed</td>
         </tr>
         <tr>
-            <td><b>Subtotal:</b></td>
-            <td>${transaction.amount.details.subtotal} USD</td>
-        </tr>
-        <tr>
-            <td><b>Shipping:</b></td>
-            <td>${transaction.amount.details.shipping} USD</td>
-        </tr>
-        <tr>
-            <td><b>Tax:</b></td>
-            <td>${transaction.amount.details.tax} USD</td>
+            <td><b>Price</b></td>
+            <td>${sessionScope.price} USD</td>
         </tr>
         <tr>
             <td><b>Total:</b></td>
-            <td>${transaction.amount.total} USD</td>
+            <td>${sessionScope.price} USD</td>
         </tr>
         <form action="MainController">
             <tr>
             <td colspan="2" align="center">
-                <input type="submit" value="Payment Account" name="btnAction" />
+                <input type="submit" value="Return Home" name="btnAction" />
             </td>
         </tr> 
         </form>

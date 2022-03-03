@@ -50,7 +50,7 @@ public class UpdateEventController extends HttpServlet {
             String eventName = request.getParameter("txtEventName");
             String description = request.getParameter("txtDescription");
             String location = request.getParameter("txtLocation");
-            String image = request.getParameter("txtImage");
+//            String image = request.getParameter("txtImage");
 
             boolean foundErr = false;
             EventErrorDTO err = new EventErrorDTO();
@@ -121,7 +121,8 @@ public class UpdateEventController extends HttpServlet {
                 foundErr = true;
                 err.setExpDateCheck("Expiration date must before Occur date !!");
             }
-            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location, image);
+//            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location, image);
+            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location);
             if (foundErr) {
                 request.setAttribute("UPDATE_ERR", err);
                 request.setAttribute("EVENT", dto);// Detai Event

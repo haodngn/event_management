@@ -61,8 +61,7 @@ public class DeleteEventController extends HttpServlet {
             if(check){
                 url = "MainController"
                         + "?btnAction=Search"
-                        + "&txtSearchValue="+searchValue
-                        + "&index="+pageIndex;
+                        + "&txtSearchValue="+searchValue;
             }
             
             response.sendRedirect(url);
