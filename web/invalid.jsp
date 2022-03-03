@@ -14,7 +14,7 @@
     <body>
         <h1>Opps! Something went wrong </h1>
         <div align="center">
-            <h1>Payment Error</h1>
+            <h1>Payment Error!!</h1>
             <br/>
             <h3>${errorMessage}</h3>
             <br/>
