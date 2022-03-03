@@ -261,7 +261,9 @@
                         ${err.locationLength}<br/>
                         </font>
                     </c:if>
-
+                    
+                    <label for="price">Price($)</label>
+                    <input id="location" type="text" name="txtPrice" value="${event.price}"" readonly="true"/></br>
                     <div class="btn-action">
                         <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
                         <input type="submit" value="Edit Event" name="btnAction" />

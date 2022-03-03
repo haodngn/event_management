@@ -41,9 +41,12 @@ public class EventDAO implements Serializable {
         EventDTO dto = null;
 
         try {
-            String sql = "select ID, EventName, Speaker, EndDate, RegisterDate, ExpirationDate, OccurDate, Description, Location, Image "
-                    + "from Event "
-                    + "where id=?";
+            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n" +
+                        "E.Location, E.StudentCount, E.Image, P.Price\n" +
+                        "from Event E\n" +
+                        "join Payment P\n" +
+                        "on E.ID = P.Event_Id\n" +
+                        "where E.ID =?";
 
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
@@ -58,6 +61,7 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
                 String des = rs.getString("Description");
                 String image = rs.getString("Image");
+                float  price = rs.getFloat("Price");
 
                 Date EndDate = rs.getDate("EndDate");
                 Date RegisterDate = rs.getDate("RegisterDate");
@@ -70,7 +74,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location, image);
+                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location, image,price);
             }
 
         } finally {
@@ -139,9 +143,12 @@ public class EventDAO implements Serializable {
         this.listEvent = new ArrayList<>();
 
         try {
-            String sql = "select ID, EventName, Speaker, EndDate, RegisterDate, ExpirationDate, OccurDate, Description, Location, StudentCount, Posted_by, Image  "
-                    + "from Event "
-                    + "where Status=1";
+            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n" +
+                         "E.Location, E.StudentCount, E.Posted_by, E.Image, P.Price\n" +
+                         "from Event E\n" +
+                         "join Payment P\n" +
+                         "on E.ID = P.Event_Id\n" +
+                         "where E.Status=1 ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             rs = stm.executeQuery();
@@ -157,6 +164,7 @@ public class EventDAO implements Serializable {
                 int postBy = rs.getInt("Posted_by");
                 int count = rs.getInt("StudentCount");
                 String image = rs.getString("Image");
+                float price = rs.getFloat("Price");
 
                 Date EndDate = rs.getDate("EndDate");
                 Date RegisterDate = rs.getDate("RegisterDate");
@@ -169,7 +177,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image);
+                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image,price);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }

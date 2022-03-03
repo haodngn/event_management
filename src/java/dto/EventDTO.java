@@ -26,6 +26,7 @@ public class EventDTO implements Serializable {
     private int prosted_by;
     private boolean status;
     private String image;
+    private float price;
 
     public EventDTO() {
     }
@@ -66,7 +67,7 @@ public class EventDTO implements Serializable {
         this.image = image;
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location, String image) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, String description, String location, String image, float price) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -77,6 +78,7 @@ public class EventDTO implements Serializable {
         this.description = description;
         this.location = location;
         this.image = image;
+        this.price = price;
     }
 
     public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, String image) {
@@ -107,8 +109,23 @@ public class EventDTO implements Serializable {
         this.location = location;
         this.image = image;
     }
-    
-    
+
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, String image, float price) {
+        this.id = id;
+        this.speaker = speaker;
+        this.eventName = eventName;
+        this.occurDate = occurDate;
+        this.endDate = endDate;
+        this.registerDate = registerDate;
+        this.expirationDate = expirationDate;
+        this.studentCount = studentCount;
+        this.description = description;
+        this.location = location;
+        this.prosted_by = prosted_by;
+        this.image = image;
+        this.price = price;
+        
+    }
 
     public EventDTO(int id, String speaker, String name, String occur, String end, String register, String exp, String des, String location) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -124,6 +141,7 @@ public class EventDTO implements Serializable {
         this.description = description;
         this.location = location;
     }
+    
     
     
 
@@ -247,4 +265,13 @@ public class EventDTO implements Serializable {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
 }

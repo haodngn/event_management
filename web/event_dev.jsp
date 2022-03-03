@@ -230,7 +230,7 @@
                             <td>${item.studentCount}</td>
                             <td>${item.description}</td>
                             <td>${item.location}</td>
-                            <td>$ ${requestScope.FEE.price}</td>
+                            <td>${item.price} $ </td>
 
                             <td>
                                 <form action="GetDetailEventController" method="POST">
