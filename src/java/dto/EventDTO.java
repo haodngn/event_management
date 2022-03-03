@@ -94,6 +94,22 @@ public class EventDTO implements Serializable {
         this.image = image;
     }
 
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, String image) {
+        this.id = id;
+        this.speaker = speaker;
+        this.eventName = eventName;
+        this.occurDate = occurDate;
+        this.endDate = endDate;
+        this.registerDate = registerDate;
+        this.expirationDate = expirationDate;
+        this.studentCount = studentCount;
+        this.description = description;
+        this.location = location;
+        this.image = image;
+    }
+    
+    
+
     public EventDTO(int id, String speaker, String name, String occur, String end, String register, String exp, String des, String location) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

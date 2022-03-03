@@ -64,7 +64,7 @@ td {
 
 .side-menu {
     position: fixed;
-    background: #f05462;
+    background: #238fc1;
     width: 20vw;
     min-height: 100vh;
     display: flex;
@@ -108,7 +108,7 @@ td {
     right: 0;
     width: 80vw;
     height: 100vh;
-    background: #f1f1f1;
+    background: #e9f1fa;
 }
 
 .container .header {
@@ -137,14 +137,19 @@ td {
     justify-content: center;
 }
 
-.container .header .nav .search input[type=text] {
+.container .header .nav .search form {
+    width: 70%;
+    display: flex;
+}
+
+.container .header .nav .search form input[type=text] {
     border: none;
     background: #f1f1f1;
     padding: 10px;
     width: 50%;
 }
 
-.container .header .nav .search button {
+.container .header .nav .search form button {
     width: 40px;
     height: 40px;
     border: none;
@@ -153,7 +158,7 @@ td {
     justify-content: center;
 }
 
-.container .header .nav .search button img {
+.container .header .nav .search form button img {
     width: 30px;
     height: 30px;
 }
@@ -184,7 +189,7 @@ td {
     position: relative;
     margin-top: 20vh;
     min-height: 90vh;
-    background: #f1f1f1;
+    background: #e9f1fa;
 }
 
 .container .content .cards {

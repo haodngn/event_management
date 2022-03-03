@@ -239,6 +239,56 @@ public class EventDAO implements Serializable {
             }
         }
     }
+    
+    public void getEventByName(String name)
+            throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        this.listEvent = new ArrayList<>();
+
+        try {
+            String sql = "Select ID, Speaker, EventName, OccurDate,"
+                    + " EndDate, RegisterDate, ExpirationDate, StudentCount, "
+                    + "Description, Location, Image from Event where status=1 and  EventName like ?"
+                    + "order by OccurDate";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, "%" + name + "%");
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String eventName = rs.getString("EventName");
+                String speaker = rs.getString("Speaker");
+                String occurDate = rs.getString("OccurDate");
+                String endDate = rs.getString("EndDate");
+                String registerDate = rs.getString("RegisterDate");
+                String expirationDate = rs.getString("ExpirationDate");
+                int studentCount = rs.getInt("StudentCount");
+                String description = rs.getString("Description");
+                String location = rs.getString("Location");
+                String image = rs.getString("Image");
+
+                EventDTO dto = new EventDTO(id, eventName, speaker, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
+                if (this.listEvent == null) {
+                    this.listEvent = new ArrayList<>();
+                }
+                this.listEvent.add(dto);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
     public int getMaxId() throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
@@ -462,5 +512,54 @@ public class EventDAO implements Serializable {
             }
         }
         return check;
+    }
+
+    public void get5FirstEvent()
+            throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        this.listEvent = new ArrayList<>();
+
+        try {
+            String sql = "Select Top 5 ID, Speaker, EventName, OccurDate,"
+                    + " EndDate, RegisterDate, ExpirationDate, StudentCount, "
+                    + "Description, Location, Image from Event where status=1 "
+                    + "order by OccurDate";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String eventName = rs.getString("EventName");
+                String speaker = rs.getString("Speaker");
+                String occurDate = rs.getString("OccurDate");
+                String endDate = rs.getString("EndDate");
+                String registerDate = rs.getString("RegisterDate");
+                String expirationDate = rs.getString("ExpirationDate");
+                int studentCount = rs.getInt("StudentCount");
+                String description = rs.getString("Description");
+                String location = rs.getString("Location");
+                String image = rs.getString("Image");
+
+                EventDTO dto = new EventDTO(id, eventName, speaker, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
+                if (this.listEvent == null) {
+                    this.listEvent = new ArrayList<>();
+                }
+                this.listEvent.add(dto);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }
