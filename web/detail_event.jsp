@@ -174,7 +174,7 @@
                         </div> <!-- end of image-container-large -->
                         <div class="text-container">
                             <h3>${event.eventName}</h3>
-                            <h4>Với sự tham gia của: ${event.speaker}</h4>
+                            <h4>Speaker: ${event.speaker}</h4>
                             <div class="location_time" style="width: 50%;
                                  float:left">
 
@@ -193,7 +193,7 @@
                                 <p>${event.occurDate} ~  ${event.endDate}</p>
                             </div>
 
-                            <div style="width: 50%;float: left;"> ${event.description}</div>
+                            <div style="width: 50%;float: left;">Description: ${event.description}</div>
                             <!--                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -319,7 +319,7 @@
 
 
         <div class="container" >
-            <div id="reviews" class="review-section">
+<!--            <div id="reviews" class="review-section">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="m-0">37 Reviews</h4>
 
@@ -415,7 +415,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
 
 
