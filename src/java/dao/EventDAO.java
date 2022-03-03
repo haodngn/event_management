@@ -570,4 +570,29 @@ public class EventDAO implements Serializable {
             }
         }
     }
+    
+    public int countTotalEvent() throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs;
+        int eventCount = 0;
+        String sql = "Select count(ID) as totalEvent from Event";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                eventCount = rs.getInt("totalEvent");
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return eventCount;
+    }
 }

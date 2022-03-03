@@ -276,4 +276,28 @@ public class UserDAO {
             }
         }
     }
+    public int countTotalUser() throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs;
+        int userCount = 0;
+        String sql = "Select count(ID) as totalUser from Account";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                userCount = rs.getInt("totalUser");
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return userCount;
+    }
 }
