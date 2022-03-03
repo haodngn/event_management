@@ -87,7 +87,7 @@ public class MainController extends HttpServlet {
                 url = PAYMENT;
             } else if (action.equals("Register")) {
                 url = REGISTER_EVENT; //PAYMENT_ACCOUNT
-            } else if (action.equals("Payment Account")) {
+            } else if (action.equals("Payment Account") || action.equals("Return Home")) {
                 url = PAYMENT_ACCOUNT;
             } else if(action.equals("Cancel")) {
                 url = CANCEL_EDIT_PROFILE;

@@ -50,7 +50,7 @@ public class CreatePaymentAccountController extends HttpServlet {
             int payment_Id = (int) ses.getAttribute("payment_Id");
 
             PaymentDAO paymentd = new PaymentDAO();
-            boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Đã Thanh Toán");
+            boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Completed");
             if (check) {
                 url = DETAIL_EVENT;
             }

@@ -324,7 +324,7 @@ public class EventDAO implements Serializable {
                 + "set Speaker = ?, EventName = ?, "
                 + "OccurDate = ?, EndDate = ?, "
                 + "RegisterDate = ?, ExpirationDate = ?, "
-                + "Description = ?, Location = ? , Image = ?"
+                + "Description = ?, Location = ? "
                 + "where ID = ?  ";
         try {
             con = DBHelper.makeConnection();
@@ -338,9 +338,8 @@ public class EventDAO implements Serializable {
             stm.setString(6, dto.getExpirationDate());
             stm.setString(7, dto.getDescription());
             stm.setString(8, dto.getLoaction());
-            stm.setString(9, dto.getImage());
 
-            stm.setInt(10, id);
+            stm.setInt(9, id);
 
             if (stm.executeUpdate() > 0) {
                 update = true;

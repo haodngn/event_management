@@ -52,6 +52,7 @@ public class AuthorizePaymentServlet extends HttpServlet {
         
         HttpSession ses = request.getSession();
         ses.setAttribute("payment_Id", payment.getPaymentID());
+        ses.setAttribute("price", payment.getPrice());
         
         float pricef = payment.getPrice();
         String prices = String.valueOf(pricef);
