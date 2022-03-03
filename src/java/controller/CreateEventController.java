@@ -115,24 +115,24 @@ public class CreateEventController extends HttpServlet {
         EventErrorDTO err = new EventErrorDTO();
         boolean foundErr = false;
         try {
-            if (speaker.length() < 2 || speaker.length() > 50) {
+            if (speaker.length() < 2 || speaker.length() > 100) {
                 foundErr = true;
-                err.setSpeakerLength("Field is required 2 - 50 character !!");
+                err.setSpeakerLength("Field is required 2 - 100 character !!");
             }
 
-            if (eventName.length() < 3 || eventName.length() > 30) {
+            if (eventName.length() < 3 || eventName.length() > 100) {
                 foundErr = true;
-                err.setNameLength("Field is required 3 - 30 character !!");
+                err.setNameLength("Field is required 3 - 100 character !!");
             }
 
-            if (description.length() < 3 || description.length() > 50) {
+            if (description.length() < 3 || description.length() > 500) {
                 foundErr = true;
-                err.setDesLength("Field is required 3 - 50 charater !!");
+                err.setDesLength("Field is required 3 - 500 charater !!");
             }
 
-            if (location.length() < 2 || location.length() > 20) {
+            if (location.length() < 2 || location.length() > 200) {
                 foundErr = true;
-                err.setLocationLength("Field is required 2 - 20 character !!");
+                err.setLocationLength("Field is required 2 - 200 character !!");
             }
 
             //conver string to date(util) to compare
