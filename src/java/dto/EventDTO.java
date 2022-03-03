@@ -126,8 +126,6 @@ public class EventDTO implements Serializable {
         this.price = price;
         
     }
-    
-    
 
     public EventDTO(int id, String speaker, String name, String occur, String end, String register, String exp, String des, String location) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
