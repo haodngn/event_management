@@ -53,6 +53,7 @@ public class AuthorizePaymentServlet extends HttpServlet {
         HttpSession ses = request.getSession();
         ses.setAttribute("payment_Id", payment.getPaymentID());
         ses.setAttribute("price", payment.getPrice());
+        ses.setAttribute("currentEventID", id);
         
         float pricef = payment.getPrice();
         String prices = String.valueOf(pricef);
@@ -70,9 +71,9 @@ public class AuthorizePaymentServlet extends HttpServlet {
         OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, totals);
         try {
 
-
+            
                 PaymentServices paymentServices = new PaymentServices();
-                String approvalLink = paymentServices.authorizePayment(orderDetail);    
+                String approvalLink = paymentServices.authorizePayment(orderDetail);
                 response.sendRedirect(approvalLink);
 
 

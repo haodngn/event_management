@@ -5,10 +5,12 @@
  */
 package controller;
 
+import dao.EventDAO;
 import dao.PaymentDAO;
 import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import javax.naming.NamingException;
@@ -45,12 +47,14 @@ public class CreatePaymentAccountController extends HttpServlet {
         String url = FAIL;
         try {
             HttpSession ses = request.getSession();
-//        int account_Id = ses.getAttribute("USER");
+            EventDAO eventDAO = new EventDAO();
             UserDTO dto = (UserDTO) ses.getAttribute("USER");
             int payment_Id = (int) ses.getAttribute("payment_Id");
-
+            int currentEventID = (int) ses.getAttribute("currentEventID");
+            long millis = System.currentTimeMillis();
+            Date currentDate = new Date(millis);
             PaymentDAO paymentd = new PaymentDAO();
-            boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Completed");
+            boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Completed") && eventDAO.registerEvent(dto.getUserID(), currentEventID, currentDate);
             if (check) {
                 url = DETAIL_EVENT;
             }
