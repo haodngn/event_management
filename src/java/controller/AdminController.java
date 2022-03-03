@@ -53,6 +53,8 @@ public class AdminController extends HttpServlet {
                 listEventInit = eventDAO.getListEvent();
             }
 
+            ses.setAttribute("totalEvent", eventDAO.countTotalEvent());
+            ses.setAttribute("totalUser", userDAO.countTotalUser());
             ses.setAttribute("initEvent", listEventInit);
             ses.setAttribute("initUser", listUserInit);
         } catch (Exception e) {

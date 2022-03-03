@@ -19,7 +19,7 @@
                 <div class="cards">
                     <div class="card">
                         <div class="box">
-                            <h1>173</h1>
+                            <h1>${sessionScope.totalUser}</h1>
                             <h3>Students Joined</h3>
                         </div>
                         <div class="icon-case">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="card">
                         <div class="box">
-                            <h1>10</h1>
+                            <h1>${sessionScope.totalEvent}</h1>
                             <h3>Events Ongoing</h3>
                         </div>
                         <div class="icon-case">
