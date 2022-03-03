@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
@@ -207,5 +209,71 @@ public class UserDAO {
         }
         
         return name;
+    }
+    
+    public boolean deleteUser(int id) throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        String sql = "update Account set status=? where id=?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, "disable");
+            stm.setInt(2, id);
+
+            if (stm.executeUpdate() > 0) {
+                check = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+    
+    public List<UserDTO> get5FirstUser()
+            throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<UserDTO> listUser = null;
+        UserDTO userDTO = null;
+        try {
+            String sql = "Select Top 5 ID, Name, Email, PhoneNumber, "
+                    + "Gender from Account where status = ? ";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, "active");
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String name = rs.getString("Name");
+                String email = rs.getString("Email");
+                String phoneNumber = rs.getString("PhoneNumber");
+                boolean gender = rs.getBoolean("Gender");
+                userDTO = new UserDTO(id, name, email, phoneNumber, gender);
+                if (listUser == null) {
+                    listUser = new ArrayList<>();
+                }
+                listUser.add(userDTO);
+            }
+            return listUser;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }

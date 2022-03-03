@@ -209,7 +209,7 @@ and open the template in the editor.
 }
 
 .direct-bar {
-    min-height: 57px;
+    min-height: 36px;
     width: 100%;
     background-color: #2F8D01;
     display: flex;

@@ -1,68 +1,64 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
+import dao.EventDAO;
 import dao.UserDAO;
+import dto.EventDTO;
 import dto.UserDTO;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.NamingException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 /**
  *
- * @author HAO
+ * @author MSI
  */
-public class LoginController extends HttpServlet {
+public class AdminController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    private static final String EVENT_DEP_PAGE = "SearchEventController";
-    private static final String ADMIN_PAGE = "AdminController";
-    private static final String ERROR = "login.jsp";
-    
+    private static final Logger LOGGER = Logger.getLogger(AdminController.class);
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        List<UserDTO> listUserInit = null;
+        List<EventDTO> listEventInit = null;
         try {
-            String userID = request.getParameter("txtEmail");
-            String password = request.getParameter("txtPassword");
-            UserDAO dao = new UserDAO();
-            UserDTO us = dao.checkLogin(userID, password);
+            UserDAO userDAO = new UserDAO();
+            EventDAO eventDAO = new EventDAO();
             HttpSession ses = request.getSession();
-            if (us != null) {
-                if(us.getRoleID() == 2){ // if role is event_dep
-                    url = EVENT_DEP_PAGE;
-                } else if(us.getRoleID() == 3){
-                    url = ADMIN_PAGE;
-                }
-                ses.setAttribute("USER", us);
-                
+            String searchUser = request.getParameter("txtSearchUser");
+            String searchEvent = request.getParameter("txtSearchEvent");
+            if (searchUser != null) {
+
             } else {
-                ses.setAttribute("mess", "Email or Password incorrect !!");
+                // Get firts 5 Users
+                listUserInit = userDAO.get5FirstUser();
             }
-        } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+
+            if (searchEvent != null) {
+                eventDAO.getEventByName(searchEvent);
+                listEventInit = eventDAO.getListEvent();
+                System.out.println("List Event Count: " + listEventInit.size());
+            } else {
+                // Get first 5 Events
+                eventDAO.get5FirstEvent();
+                listEventInit = eventDAO.getListEvent();
+            }
+
+            ses.setAttribute("initEvent", listEventInit);
+            ses.setAttribute("initUser", listUserInit);
+        } catch (Exception e) {
+            LOGGER.error("Error at AdminController: " + e);
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher("admin_home_page.jsp").forward(request, response);
         }
     }
 
