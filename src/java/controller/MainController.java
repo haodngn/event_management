@@ -52,6 +52,7 @@ public class MainController extends HttpServlet {
 
     private static final String REGISTER_EVENT = "RegisterEventController";
     private static final String CANCEL_EDIT_PROFILE = "profile_page.jsp";
+    private static final String ADMIN = "AdminController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -91,6 +92,8 @@ public class MainController extends HttpServlet {
                 url = PAYMENT_ACCOUNT;
             } else if(action.equals("Cancel")) {
                 url = CANCEL_EDIT_PROFILE;
+            } else if(action.equals("Admin")) {
+                url = ADMIN;
             }
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
