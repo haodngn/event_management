@@ -41,6 +41,7 @@
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <link href="css/search.css" rel="stylesheet">
+        <link href="css/home_style.css" rel="stylesheet">
 
         <!-- Favicon  -->
         <link rel="icon"
@@ -204,7 +205,6 @@
         </header> <!-- end of ex-header -->
         <!-- end of header -->
 
-        <!-- Slider Event -->
         <div id="screens" class="slider">
             <div class="container">
                 <div class="row">
@@ -224,14 +224,12 @@
                                             </c:url>
                                             <a href="${detail}" class="popup-link"
                                                data-effect="fadeIn">
-                                                <img style="height: 355px; width: 187px" class="img-fluid"
-                                                     src="https://uni.fpt.edu.vn/Data/Sites/1/News/7482/172691562_4556790501014704_2647057800056739214_n-800x999.jpg"
-                                                     alt="alternative">
-                                                <div class="event-infos" style="text-decoration: none;">
+                                                <img style="height: 355px; width: 100%" class="img-fluid"
+                                                     src="${item.image}" alt="alternative">
+                                                <div class="event-infos">
                                                     <h5>${item.eventName}</h5>
                                                     <h6>${item.speaker}</h6>
                                                     <h6>${item.location}</h6>
-                                                    <h6>${item.occurDate}</h6>
                                                 </div>
                                             </a>
                                         </div>
