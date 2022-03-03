@@ -193,7 +193,12 @@
                                 <p>${event.occurDate} ~  ${event.endDate}</p>
                             </div>
 
-                            <div style="width: 50%;float: left;">Description: ${event.description}</div>
+                            <div class="location_time" style="width: 50%;
+                                 float:right">
+                                <p class="location_time_p">Description</p>
+                                <i class="fas fa-audio-description"></i>
+                                <p>${event.description}</p>
+                            </div>
                             <!--                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
                                                         <div class="row">
                                                             <div class="col-md-6">
