@@ -35,12 +35,13 @@
         <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext"
             rel="stylesheet">
-        <link href="css/bootstrap.css" rel="stylesheet">
+         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/fontawesome-all.css" rel="stylesheet">
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         <link href="css/search.css" rel="stylesheet">
+        <link href="css/home_style.css" rel="stylesheet">
 
         <!-- Favicon  -->
         <link rel="icon"
@@ -205,7 +206,7 @@
         <!-- end of header -->
 
         <!-- Slider Event -->
-        <div id="screens" class="slider">
+         <div id="screens" class="slider">
             <div class="container">
                 <div class="row">
                     <h1>Events</h1>
@@ -224,14 +225,13 @@
                                             </c:url>
                                             <a href="${detail}" class="popup-link"
                                                data-effect="fadeIn">
-                                                <img style="height: 355px; width: 187px" class="img-fluid"
+                                                <img style="height: 355px; width: 100%" class="img-fluid"
                                                      src="${item.image}"
                                                      alt="alternative">
-                                                <div class="event-infos" style="text-decoration: none;">
+                                                <div class="event-infos">
                                                     <h5>${item.eventName}</h5>
                                                     <h6>${item.speaker}</h6>
                                                     <h6>${item.location}</h6>
-                                                    <h6>${item.occurDate}</h6>
                                                 </div>
                                             </a>
                                         </div>
@@ -254,7 +254,7 @@
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of slider -->
-
+        
         <!-- Slider News -->
         <div id="screens" class="slider">
             <div class="container">
