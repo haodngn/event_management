@@ -31,12 +31,10 @@
                     </div>
                     <div class="btn-field">
                         <input type="submit" class="btn" value="Login" name="btnAction"/>
-                        <input type="reset" class="btn" value="Reset">
                     </div>
                 </form>
                 <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/event_manage/login-google&response_type=code
     &client_id=204854685230-fpsjm98drnflpsignj0bqlb2122a5h7n.apps.googleusercontent.com&approval_prompt=force" class="google-login link"><i class="fab fa-google"></i>Sign in with @fpt.edu.vn</a>
-                <a href="create.jsp" class="sign-up link">Sign up</a>
                 <br>${sessionScope.mess}
             </div>
         </div>
