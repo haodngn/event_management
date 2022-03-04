@@ -242,9 +242,10 @@
                                     ${requestScope.message}
                                 </div>
                                 <form action="MainController" method="POST">
+                                    <input type="hidden" name="id" value="${item.id}" />
+                                    <input type="hidden" name="btnEventDev" value="eventDev" />
                                     <input type="submit" name="btnAction" value="Delete" style="text-transform: uppercase"/>
                                 </form>
-
                             </td>
                         </tr>
                     </c:forEach>
