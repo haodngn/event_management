@@ -24,29 +24,36 @@ import org.apache.log4j.Logger;
 public class AdminController extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(AdminController.class);
+    private static final String ADMINDASHBOARD = "admin_home_page.jsp";
+    private static final String ADMINSTUDENT = "adminStudent.jsp";
+    private static final String ADMINEVENT = "adminEvent.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         List<UserDTO> listUserInit = null;
         List<EventDTO> listEventInit = null;
+        String url = ADMINDASHBOARD;
         try {
             UserDAO userDAO = new UserDAO();
             EventDAO eventDAO = new EventDAO();
             HttpSession ses = request.getSession();
             String searchUser = request.getParameter("txtSearchUser");
             String searchEvent = request.getParameter("txtSearchEvent");
+            System.out.println("Search User: " + searchUser);
+            System.out.println("Search Event: " + searchEvent);
             if (searchUser != null) {
-
+                url = ADMINSTUDENT;
+                listUserInit = userDAO.getEventByName(searchUser);
             } else {
                 // Get firts 5 Users
                 listUserInit = userDAO.get5FirstUser();
             }
 
             if (searchEvent != null) {
+                url = ADMINEVENT;
                 eventDAO.getEventByName(searchEvent);
                 listEventInit = eventDAO.getListEvent();
-                System.out.println("List Event Count: " + listEventInit.size());
             } else {
                 // Get first 5 Events
                 eventDAO.get5FirstEvent();
@@ -60,7 +67,7 @@ public class AdminController extends HttpServlet {
         } catch (Exception e) {
             LOGGER.error("Error at AdminController: " + e);
         } finally {
-            request.getRequestDispatcher("admin_home_page.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

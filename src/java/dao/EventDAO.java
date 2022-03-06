@@ -256,9 +256,9 @@ public class EventDAO implements Serializable {
         this.listEvent = new ArrayList<>();
 
         try {
-            String sql = "Select ID, Speaker, EventName, OccurDate,"
-                    + " EndDate, RegisterDate, ExpirationDate, StudentCount, "
-                    + "Description, Location, Image from Event where status=1 and  EventName like ?"
+            String sql = "Select ID, Speaker, EventName, OccurDate, "
+                    + "EndDate, RegisterDate, ExpirationDate, StudentCount, "
+                    + "Description, Location, Image from Event where EventName like ? "
                     + "order by OccurDate";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
