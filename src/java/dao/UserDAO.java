@@ -25,10 +25,10 @@ import utils.JavaMailUtils;
  * @author HAO
  */
 public class UserDAO {
-    
+
     public UserDTO checkLogin(String email, String password) throws NoSuchAlgorithmException, SQLException, NamingException {
         int id;
-        String fullName = "";       
+        String fullName = "";
         int roleID;
         String status = "";
         Connection conn = null;
@@ -66,13 +66,13 @@ public class UserDAO {
         }
         return null;
     }
-    
-    public boolean createAccount(String name, 
-            String email, 
-            String password, 
-            int roleID, 
-            String ProfilePicture) throws SQLException, ClassNotFoundException, NamingException, MessagingException{
-        
+
+    public boolean createAccount(String name,
+            String email,
+            String password,
+            int roleID,
+            String ProfilePicture) throws SQLException, ClassNotFoundException, NamingException, MessagingException {
+
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -86,40 +86,41 @@ public class UserDAO {
             stm.setString(3, password);
             stm.setString(4, ProfilePicture);
             stm.setInt(5, roleID);
-            
+
             int row = stm.executeUpdate();
-            if(row > 0){
+            if (row > 0) {
 //                JavaMailUtils.sendMail(email, code);
                 check = true;
             }
         } finally {
-            if(stm != null){
+            if (stm != null) {
                 stm.close();
             }
-            if(con != null){
+            if (con != null) {
                 con.close();
             }
         }
         return check;
     }
-    public UserDTO getUserByEmail(String email) 
-            throws SQLException, ClassNotFoundException, NamingException{
+
+    public UserDTO getUserByEmail(String email)
+            throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
-        PreparedStatement stm =null;
+        PreparedStatement stm = null;
         ResultSet rs = null;
-        
+
         UserDTO dto = null;
-        
+
         try {
             String sql = "select ID, Name, PhoneNumber, Gender, ProfilePicture "
                     + "from Account "
                     + "where Email=? ";
-            
+
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, email);
             rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 String id = rs.getString("ID");
                 String name = rs.getString("Name");
                 String phone = rs.getString("PhoneNumber");
@@ -129,23 +130,23 @@ public class UserDAO {
                 System.out.println(gender1);
                 dto = new UserDTO(Integer.parseInt(id), name, email, phone, gender1, profilePicture);
             }
-            
+
         } finally {
-            if (rs != null){
+            if (rs != null) {
                 rs.close();
             }
-            if (stm != null){
+            if (stm != null) {
                 stm.close();
             }
-            if (con != null){
+            if (con != null) {
                 con.close();
             }
         }
-        
+
         return dto;
     }
-    
-    public boolean updateUser(String newName ,String newPhone, Boolean newGender, String email ) throws ClassNotFoundException, SQLException, NamingException {
+
+    public boolean updateUser(String newName, String newPhone, Boolean newGender, String email) throws ClassNotFoundException, SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean update = false;
@@ -155,62 +156,62 @@ public class UserDAO {
         try {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
-            
+
             stm.setString(1, newName);
             stm.setString(2, newPhone);
             stm.setBoolean(3, newGender);
             stm.setString(4, email);
-            
-            if(stm.executeUpdate()>0){
-                update = true ;
+
+            if (stm.executeUpdate() > 0) {
+                update = true;
             }
-        } finally{
-            if(stm != null){
+        } finally {
+            if (stm != null) {
                 stm.close();
             }
-            if(con != null){
+            if (con != null) {
                 con.close();
             }
         }
         return update;
     }
-    
-    public String getNameUserByID(int id) 
-            throws SQLException, ClassNotFoundException, NamingException{
+
+    public String getNameUserByID(int id)
+            throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
-        PreparedStatement stm =null;
+        PreparedStatement stm = null;
         ResultSet rs = null;
-        
+
         String name = "";
-        
+
         try {
             String sql = "select Name "
                     + "from Account "
                     + "where ID=? ";
-            
+
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, id);
             rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 name = rs.getString("Name");
             }
-            
+
         } finally {
-            if (rs != null){
+            if (rs != null) {
                 rs.close();
             }
-            if (stm != null){
+            if (stm != null) {
                 stm.close();
             }
-            if (con != null){
+            if (con != null) {
                 con.close();
             }
         }
-        
+
         return name;
     }
-    
+
     public boolean deleteUser(int id) throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -235,7 +236,7 @@ public class UserDAO {
         }
         return check;
     }
-    
+
     public List<UserDTO> get5FirstUser()
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
@@ -276,6 +277,7 @@ public class UserDAO {
             }
         }
     }
+
     public int countTotalUser() throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -299,5 +301,48 @@ public class UserDAO {
             }
         }
         return userCount;
+    }
+
+    public List<UserDTO> getEventByName(String username)
+            throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<UserDTO> listUser = null;
+        UserDTO userDTO;
+
+        try {
+            String sql = "Select ID, Name, Email, PhoneNumber, "
+                    + "Gender from Account where Name like ? ";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, "%" + username + "%");
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String name = rs.getString("Name");
+                String email = rs.getString("Email");
+                String phoneNumber = rs.getString("PhoneNumber");
+                boolean gender = rs.getBoolean("Gender");
+
+                userDTO = new UserDTO(id, name, email, phoneNumber, gender);
+                if (listUser == null) {
+                    listUser = new ArrayList<>();
+                }
+                listUser.add(userDTO);
+            }
+            return listUser;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }
