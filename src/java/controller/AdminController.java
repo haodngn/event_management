@@ -40,24 +40,27 @@ public class AdminController extends HttpServlet {
             HttpSession ses = request.getSession();
             String searchUser = request.getParameter("txtSearchUser");
             String searchEvent = request.getParameter("txtSearchEvent");
-            System.out.println("Search User: " + searchUser);
-            System.out.println("Search Event: " + searchEvent);
-            if (searchUser != null) {
-                url = ADMINSTUDENT;
-                listUserInit = userDAO.getEventByName(searchUser);
-            } else {
-                // Get firts 5 Users
-                listUserInit = userDAO.get5FirstUser();
-            }
 
-            if (searchEvent != null) {
-                url = ADMINEVENT;
-                eventDAO.getEventByName(searchEvent);
-                listEventInit = eventDAO.getListEvent();
+            if (searchUser == null) {
+                listUserInit = userDAO.get5FirstUser();
+            } else if(searchUser.equals("")) {
+                url = ADMINSTUDENT;
+                listUserInit = userDAO.get5FirstUser();
             } else {
-                // Get first 5 Events
+                url = ADMINSTUDENT;
+                listUserInit = userDAO.getUserByName(searchUser);
+            }
+            
+            if (searchEvent == null) {
                 eventDAO.get5FirstEvent();
                 listEventInit = eventDAO.getListEvent();
+            } else if(searchEvent.equals("")) {
+                url = ADMINEVENT;
+                eventDAO.get5FirstEvent();
+                listEventInit = eventDAO.getListEvent();
+            } else {
+                url = ADMINEVENT;
+                listEventInit = eventDAO.getEventByName(searchEvent);
             }
 
             ses.setAttribute("totalEvent", eventDAO.countTotalEvent());

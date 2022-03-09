@@ -246,10 +246,9 @@ public class UserDAO {
         UserDTO userDTO = null;
         try {
             String sql = "Select Top 5 ID, Name, Email, PhoneNumber, "
-                    + "Gender from Account where status = ? ";
+                    + "Gender, Status from Account";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
-            stm.setString(1, "active");
             rs = stm.executeQuery();
 
             while (rs.next()) {
@@ -258,7 +257,8 @@ public class UserDAO {
                 String email = rs.getString("Email");
                 String phoneNumber = rs.getString("PhoneNumber");
                 boolean gender = rs.getBoolean("Gender");
-                userDTO = new UserDTO(id, name, email, phoneNumber, gender);
+                String status = rs.getString("Status");
+                userDTO = new UserDTO(id, name, email, phoneNumber, status, gender);
                 if (listUser == null) {
                     listUser = new ArrayList<>();
                 }
@@ -303,7 +303,7 @@ public class UserDAO {
         return userCount;
     }
 
-    public List<UserDTO> getEventByName(String username)
+    public List<UserDTO> getUserByName(String username)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -313,7 +313,7 @@ public class UserDAO {
 
         try {
             String sql = "Select ID, Name, Email, PhoneNumber, "
-                    + "Gender from Account where Name like ? ";
+                    + "Gender, Status from Account where Name like ? ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, "%" + username + "%");
@@ -325,8 +325,9 @@ public class UserDAO {
                 String email = rs.getString("Email");
                 String phoneNumber = rs.getString("PhoneNumber");
                 boolean gender = rs.getBoolean("Gender");
+                String status = rs.getString("Status");
 
-                userDTO = new UserDTO(id, name, email, phoneNumber, gender);
+                userDTO = new UserDTO(id, name, email, phoneNumber, status, gender);
                 if (listUser == null) {
                     listUser = new ArrayList<>();
                 }
@@ -337,6 +338,58 @@ public class UserDAO {
             if (rs != null) {
                 rs.close();
             }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public boolean banUser(String email)
+            throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+
+        try {
+            String sql = "Update Account Set Status = ? Where email like ?";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, "deactive");
+            stm.setString(2, email);
+            if(stm.executeUpdate() > 0) {
+                check = true;
+            }
+            return check;
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public boolean unbanUser(String email)
+            throws ClassNotFoundException, NamingException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+
+        try {
+            String sql = "Update Account Set Status = ? Where email like ?";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, "active");
+            stm.setString(2, email);
+            if(stm.executeUpdate() > 0) {
+                check = true;
+            }
+            return check;
+        } finally {
             if (stm != null) {
                 stm.close();
             }
