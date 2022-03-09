@@ -248,12 +248,12 @@ public class EventDAO implements Serializable {
         }
     }
     
-    public void getEventByName(String name)
+    public List<EventDTO> getEventByName(String name)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        this.listEvent = new ArrayList<>();
+        List<EventDTO> listAdminEvent = null;
 
         try {
             String sql = "Select ID, Speaker, EventName, OccurDate, "
@@ -278,12 +278,13 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
                 String image = rs.getString("Image");
 
-                EventDTO dto = new EventDTO(id, eventName, speaker, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
-                if (this.listEvent == null) {
-                    this.listEvent = new ArrayList<>();
+                EventDTO dto = new EventDTO(id, speaker, eventName, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
+                if (listAdminEvent == null) {
+                    listAdminEvent = new ArrayList<>();
                 }
-                this.listEvent.add(dto);
+                listAdminEvent.add(dto);
             }
+            return listAdminEvent;
 
         } finally {
             if (rs != null) {
@@ -551,7 +552,7 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
                 String image = rs.getString("Image");
 
-                EventDTO dto = new EventDTO(id, eventName, speaker, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
+                EventDTO dto = new EventDTO(id, speaker, eventName, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }

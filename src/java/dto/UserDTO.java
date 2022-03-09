@@ -65,6 +65,15 @@ public class UserDTO {
         this.gender = gender;
     }
     
+    public UserDTO(int userID, String name, String email, String phoneNumber, String status, Boolean gender) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.status = status;
+    }
+    
     public int getUserID() {
         return userID;
     }
@@ -127,6 +136,14 @@ public class UserDTO {
 
     public void setProfilePicture(String ProfilePicture) {
         this.ProfilePicture = ProfilePicture;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

@@ -125,7 +125,7 @@
                                         <c:if test="${sessionScope.userInfo.phoneNumber != 'null' && sessionScope.userInfo.phoneNumber != ''}">
                                             <span>${sessionScope.userInfo.phoneNumber}</span>
                                         </c:if>
-                                        
+
                                     </div>
                                     <div class="horizontal-line"></div>
                                     <div class="info-row">
@@ -140,9 +140,25 @@
                                         </span>
                                     </div>
                                     <form method="POST" action="MainController">
-                                        <div class="btn-list">
-                                            <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Edit Profile"/>
-                                        </div>
+                                        <input type="hidden" name="email" value="${sessionScope.userInfo.email}" />
+                                        <input type="hidden" name="status" value="${sessionScope.status}" />
+                                        <c:if test="${sessionScope.USER.userID == 3}">
+                                            <c:if test="${sessionScope.status == 'active'}">
+                                                <div class="btn-list">
+                                                    <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Ban User"/>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${sessionScope.status == 'deactive'}">
+                                                <div class="btn-list">
+                                                    <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Unban User"/>
+                                                </div>
+                                            </c:if>
+                                        </c:if>
+                                        <c:if test="${sessionScope.USER.userID != 3}">
+                                            <div class="btn-list">
+                                                <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Edit Profile"/>
+                                            </div>
+                                        </c:if>
                                     </form>
 
                                 </div>

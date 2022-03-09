@@ -43,6 +43,7 @@
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Gender</th>
+                                    <th>Detail</th>
                                 </tr>
                             <c:forEach items="${sessionScope.initUser}" var="user">
                                 <tr>
@@ -51,7 +52,13 @@
                                     <td>${user.phoneNumber}</td>
                                     <c:if test="${user.gender == 'true'}"><td>Male</td></c:if>
                                     <c:if test="${user.gender == 'false'}"><td>Female</td></c:if>
-                                    
+                                    <td>
+                                        <form action="MainController">
+                                            <input type="hidden" name="status" value="${user.status}" />
+                                            <input type="hidden" name="email" value="${user.email}" />
+                                            <button name="btnAction" value="Profile">Detail</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </table>

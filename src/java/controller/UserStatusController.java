@@ -1,60 +1,42 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
 import dao.UserDAO;
-import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 /**
  *
- * @author Thúy Bắc
+ * @author MSI
  */
-public class ProfileController extends HttpServlet {
+public class UserStatusController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final Logger LOGGER = Logger.getLogger(AdminController.class);
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession ses = request.getSession();
-            String email = request.getParameter("email");
             String status = request.getParameter("status");
-            System.out.println(email);
+            String email = request.getParameter("email");
             UserDAO dao = new UserDAO();
-            UserDTO dto = dao.getUserByEmail(email);
-            System.out.println("user: "+dto.getEmail());
-            if(status != null) {
-                System.out.println("Status: " + status);
-                ses.setAttribute("status", status);
+            if(status.equals("active")) {
+                dao.banUser(email);
+            } else if(status.equals("deactive")) {
+                dao.unbanUser(email);
             }
-            ses.setAttribute("userInfo", dto);
-        } catch (ClassNotFoundException | SQLException | NamingException e) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+        } catch (Exception e) {
+            LOGGER.error("Error at AdminController: " + e);
         } finally {
-            request.getRequestDispatcher("profile_page.jsp").forward(request, response);
+            response.sendRedirect("AdminController");
         }
     }
 

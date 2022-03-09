@@ -48,6 +48,7 @@
                                     <th>Student Count</th>
                                     <th>Description</th>
                                     <th>Location</th>
+                                    <th>Detail</th>
                                 </tr>
                             <c:forEach items="${sessionScope.initEvent}" var="event">
                                 <tr>
@@ -60,6 +61,7 @@
                                     <td>${event.studentCount}</td>
                                     <td>${event.description}</td>
                                     <td>${event.location}</td>
+                                    <td>Detail</td>
                                 </tr>
                             </c:forEach>
                         </table>
