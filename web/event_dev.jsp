@@ -99,7 +99,6 @@
                                href="SearchEventController">HOME<span
                                     class="sr-only">(current)</span></a>
                         </li>
-
                         <li class="nav-item">
                             <c:url var="event_dev" value="MainController">
                                 <c:param name="btnAction" value="manage"></c:param>
@@ -109,13 +108,11 @@
                                href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
                                href="#">CONTACT<span
                                     class="sr-only">(current)</span></a>
                         </li>
-
                     </ul>
                     <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
@@ -125,15 +122,11 @@
                                 <c:param name="email" value="${sessionScope.USER.email}"/>
                             </c:url>
                             <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
-
                             <hr/>
-
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
                             <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
-
-
                         </div>
                     </li>
                 </div>
@@ -165,7 +158,6 @@
                         <th>Price</th>
                         <th>Student Count</th>
                         <th>Action</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -211,11 +203,7 @@
                 <tbody>
             </table>
         </div>
-
         <!--end of content-->
-
-
-
 
         <!-- Footer -->
         <div class="footer">
@@ -293,9 +281,6 @@
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
 
-
-
-
         <!-- Scripts -->
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
         <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
@@ -305,7 +290,6 @@
         <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
         <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
         <script src="js/scripts.js"></script> <!-- Custom scripts -->
-
 
     </body>
 </html>

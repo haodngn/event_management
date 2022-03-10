@@ -76,7 +76,7 @@ public class MainController extends HttpServlet {
                 url = DETAIL_EVENT;
             } else if (action.equals("Edit Event")) {
                 url = UPDATE_EVENT;
-            } else if (action.equals("Delete")) {
+            } else if (action.equals("Delete") || action.equals("CLOSE")) {
                 url = DELETE_EVENT;
             } else if (action.equals("Feedback")) {
                 url = CREATE_FEEDBACK;

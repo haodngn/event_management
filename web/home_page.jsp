@@ -1,7 +1,7 @@
 <%-- 
     Document   : home_page
     Created on : Jan 19, 2022, 8:20:31 PM
-    Author     : VanLungFE,HaoBE
+    Author     : VanLungFE
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -68,12 +68,12 @@
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
             <!-- Image Logo -->
             <a href="SearchEventController"><img style="height: 73px;width: 259px;"
-                                         src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
-                                         alt="alternative"></a>
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                 alt="alternative"></a>
             <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
-                                         30px;"
-                                         src="assets/images/logo.jpg"
-                                         alt="alternative"></a>
+                                                 30px;"
+                                                 src="assets/images/logo.jpg"
+                                                 alt="alternative"></a>
             <div class="container">
 
                 <!-- Mobile Menu Toggle Button -->
@@ -109,56 +109,29 @@
                                href="#footer">CONTACT<span
                                     class="sr-only">(current)</span></a>
                         </li>
-
-                         
-
                     </ul>
-                    
-                      <li class="nav-item dropdown" style="list-style-type: none;">
+
+                    <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <c:url var="profile" value="MainController">
                                 <c:param name="btnAction" value="Profile"></c:param>
-                                 <c:param name="email" value="${sessionScope.USER.email}"/>
+                                <c:param name="email" value="${sessionScope.USER.email}"/>
                             </c:url>
                             <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
-                            
+
                             <hr/>
-                            
+
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
                             <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
-
-
                         </div>
                     </li>
-                    <!-- <span class="nav-item avt-account">
-                        <a
-                        style="text-decoration: none;"  href="#"><img style="
-                                vertical-align:middle;
-                                width: 40px;
-                                margin: 2px;
-                               
-                                height: 40px;
-                                border-radius: 50%;
-                                " src="images/AVT1.PNG"
-                                alt="avatar"></a>
-
-                                
-                    </span> -->
-
                 </div>
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
-
-
-
-
-
-
-
 
         <!-- Header -->
         <header id="header" class="ex-header">
@@ -220,127 +193,16 @@
                                         </div>
                                     </c:forEach>
                                     <!-- end of slide -->
-
-
                                 </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
                                 <div class="swiper-button-next"></div>
                                 <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
                             </div> <!-- end of swiper-container -->
                         </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of slider -->
 
-        <!-- Slider News -->
-        <div id="screens" class="slider">
-            <div class="container">
-                <div class="row">
-                    <h1>News</h1>
-                    <div class="col-lg-12">
-
-                        <!-- Image Slider -->
-                        <div class="slider-container">
-                            <div class="swiper-container image-slider">
-                                <div class="swiper-wrapper">
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                          src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                              src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
-                            </div> <!-- end of swiper-container -->
-                        </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of slider -->
-        <!-- end of slider news -->
-
-        <!-- end of discuss -->
 
         <!-- Footer -->
         <div class="footer" id="footer">

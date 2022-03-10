@@ -1,7 +1,7 @@
 <%-- 
     Document   : home_page
     Created on : Jan 19, 2022, 8:20:31 PM
-    Author     : VanLungFE,HaoBE
+    Author     : VanLungFE
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -117,36 +117,11 @@
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
                             <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
-
-
                         </div>
                     </li>
-                    <!-- <span class="nav-item avt-account">
-                        <a
-                        style="text-decoration: none;"  href="#"><img style="
-                                vertical-align:middle;
-                                width: 40px;
-                                margin: 2px;
-                               
-                                height: 40px;
-                                border-radius: 50%;
-                                " src="images/AVT1.PNG"
-                                alt="avatar"></a>
-
-                                
-                    </span> -->
-
                 </div>
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
-        <!-- end of navigation -->
-
-
-
-
-
-
-
 
         <!-- Header -->
         <header id="header" class="ex-header">
@@ -226,110 +201,6 @@
             </div> <!-- end of container -->
         </div> <!-- end of slider -->
         
-        <!-- Slider News -->
-        <div id="screens" class="slider">
-            <div class="container">
-                <div class="row">
-                    <h1>News</h1>
-                    <div class="col-lg-12">
-
-                        <!-- Image Slider -->
-                        <div class="slider-container">
-                            <div class="swiper-container image-slider">
-                                <div class="swiper-wrapper">
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
-                            </div> <!-- end of swiper-container -->
-                        </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of slider -->
-        <!-- end of slider news -->
-
-        <!-- end of discuss -->
-
         <!-- Footer -->
         <div class="footer" id="footer">
             <div class="container">
@@ -404,9 +275,6 @@
             </div> <!-- end of container -->
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
-
-
-
 
         <!-- Scripts -->
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->

@@ -205,63 +205,7 @@
                                 <i class="fas fa-audio-description"></i>
                                 <p>${event.description}</p>
                             </div>
-
-                            <!--                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <ul class="list-unstyled li-space-lg">
-                                                                    <li class="media">
-                                                                        <div class="media-body">
-                                                                            ❤ Time to open idea round
-                                                                            application: April 16, 2021 -
-                                                                            May 20, 2021
-                            
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <div class="media-body">❤ The Board
-                                                                            of Directors scores the ideas:
-                                                                            May 21, 2021 - May 23, 2021
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <div class="media-body"> ❤ Time of
-                                                                            result announcement: May 24,
-                                                                            2021
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <div class="media-body">Registration link:
-                                                                            <a href="https://bom.to/WWHnJmUbKbNEG">https://bom.to/WWHnJmUbKbNEG</a></div>
-                                                                    </li>
-                            
-                                                                </ul>
-                                                            </div>  end of col 
-                            
-                                                            <div class="col-md-6">
-                                                                <ul class="list-unstyled li-space-lg">
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">🎪 ADDRESS: FPT Urban Area Da Nang, Hoa Hai Ward, Ngu Hanh Son District, Da Nang City.
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">🌏 FANPAGE: https://www.facebook.com/daihocfptdanang
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">📞 HOTLINE: 0236 7300 999
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">🌐 WEBSITE:<a href="https://dnuni.fpt.edu.vn/">https://dnuni.fpt.edu.vn/</a></div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>  end of col 
-                                                    </div>  end of row -->
+ 
                             <c:if test="${user.roleID == '1'}">
                                 <c:if test="${!requestScope.isOverDate == true}">
                                     <div class="loginx-box">
@@ -285,12 +229,7 @@
                                         alert(Msg);
                                     }
                                 </script>
-                                <!--                                <td colspan="2" align="center">
-                                                                    <form action="MainController">
-                                                                        <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}" />
-                                                                        <input type="submit" name="btnAction" value="Checkout" />
-                                                                    </form>                             
-                                                                </td>-->
+                             
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
                                 <div class="logins-box">
@@ -306,8 +245,9 @@
                                 </div>
                                 <div class="login-box">
                                     <form action="MainController" method="POST">
-                                        <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
+                                        <input type="hidden" name="txtEventID" value="${requestScope.id}"/>
                                         <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
+                                        <input type="hidden" name="btnClose" value="close" />
                                         <input style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="CLOSE"/>
                                     </form>
                                     <div class="register-message">
@@ -315,130 +255,15 @@
                                     </div>
                                 </div>
                             </c:if>
-
-
-
                         </div> <!-- end of text-container-->
-
-
-
                     </div> <!-- end of col-->
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of ex-basic-2 -->
         <!-- end of privacy content -->
 
-
-
-
         <div class="container" >
-            <!--            <div id="reviews" class="review-section">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h4 class="m-0">37 Reviews</h4>
-            
-                                <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
-                                    <span class="selection">
-                                        <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
-                                            <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
-                                        </span>
-                                    </span>
-                                    <span class="dropdown-wrapper" aria-hidden="true"></span>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <table class="stars-counters">
-                                        <tbody>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 97.2973%;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(36)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 2.2973%;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(2)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 0;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(0)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 0;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(0)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 0;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(0)</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>-->
-
-
-
-            <!--
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-8">
-            -->
-
-
-            <div class="headings d-flex justify-content-between align-items-center mb-3">
+             <div class="headings d-flex justify-content-between align-items-center mb-3">
                 <h3>Comments</h3>
 
             </div>
@@ -510,8 +335,6 @@
                         </div>
                     </li>
                 </c:forEach>
-
-
             </ul>
         </div>
     </div>
@@ -593,9 +416,6 @@
     </div> <!-- end of container -->
 </div> <!-- end of copyright -->
 <!-- end of copyright -->
-
-
-
 
 <!-- Scripts -->
 <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->

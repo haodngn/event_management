@@ -1,9 +1,3 @@
-<%-- 
-    Document   : create_event
-    Created on : Feb 10, 2022, 10:25:45 PM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -137,26 +131,9 @@
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
 
-
-
-
         <!-- Header -->
         <header id="header" class="ex-header">
-
-            <!--            search
-            
-                        <div>
-                            <form action="MainController" method="get" class="search">
-            
-                                <div class="form__field">
-                                    <input type="search" name="txtSearchValue" placeholder="What are you looking for?" value="${param.txtSearchValue}" required class="form__input">
-                                    <input type="submit" value="Search" name="btnAction" class="button">
-                                </div>
-            
-                            </form>  
-                        </div>
-            
-                        end search-->
+ 
             <div class="container">
                 <!-- Breadcrumbs -->
                 <div class="ex-basic-1">
@@ -281,12 +258,6 @@
             
         </div>
 
-
-        <!--end of content-->
-
-
-
-
         <!-- Footer -->
         <div class="footer">
             <div class="container">
@@ -362,9 +333,6 @@
             </div> <!-- end of container -->
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
-
-
-
 
         <!-- Scripts -->
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->

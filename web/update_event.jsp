@@ -57,8 +57,6 @@
     </head>
     <body data-spy="scroll" data-target=".fixed-top">
 
-
-
         <!-- Preloader -->
         <div class="spinner-wrapper">
             <div class="spinner">
@@ -68,7 +66,6 @@
             </div>
         </div>
         <!-- end of preloader -->
-
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom
@@ -135,36 +132,15 @@
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
                             <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
-
-
                         </div>
                     </li>
                 </div>
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
-
-
-
-
         <!-- Header -->
         <header id="header" class="ex-header">
-
-            <!--            search
-            
-                        <div>
-                            <form action="MainController" method="get" class="search">
-            
-                                <div class="form__field">
-                                    <input type="search" name="txtSearchValue" placeholder="What are you looking for?" value="${param.txtSearchValue}" required class="form__input">
-                                    <input type="submit" value="Search" name="btnAction" class="button">
-                                </div>
-            
-                            </form>  
-                        </div>
-            
-                        end search-->
-            <div class="container">
+     <div class="container">
                 <!-- Breadcrumbs -->
                 <div class="ex-basic-1">
                     <div class="container">
@@ -184,7 +160,6 @@
             </div> <!-- end of container -->
         </header> <!-- end of ex-header -->
         <!-- end of header -->
-
 
         <!--content-->
         <h3 style="text-align: center">EVENT UPDATE FORM</h3>
@@ -212,8 +187,7 @@
                         </font>
                     </c:if>
 
-
-                    <label for="oDate">Occur Date</label>
+                        <label for="oDate">Occur Date</label>
                     <input id="oDate" type="date" name="txtOccurDate" value="${event.occurDate}"/></br>
                     <c:if test="${not empty err.occurDateCheck}">
                         <font color="red">
@@ -288,13 +262,7 @@
             </div>
         </form>
 
-
-
-        <!--end of content-->
-
-
-
-
+ 
         <!-- Footer -->
         <div class="footer">
             <div class="container">
@@ -370,9 +338,6 @@
             </div> <!-- end of container -->
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
-
-
-
 
         <!-- Scripts -->
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
