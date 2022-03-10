@@ -126,7 +126,7 @@ public class EventDTO implements Serializable {
         this.image = image;
         this.price = price;
         this.studentMax = studentMax;
-        
+
     }
 
     public EventDTO(int id, String speaker, String name, String occur, String end, String register, String exp, String des, String location) {
@@ -167,8 +167,7 @@ public class EventDTO implements Serializable {
     public void setStudentMax(int studentMax) {
         this.studentMax = studentMax;
     }
-    
-    
+
     public String getImage() {
         return image;
     }
@@ -297,5 +296,5 @@ public class EventDTO implements Serializable {
     public void setPrice(float price) {
         this.price = price;
     }
-    
+
 }

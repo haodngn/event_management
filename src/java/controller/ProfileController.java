@@ -45,8 +45,8 @@ public class ProfileController extends HttpServlet {
             System.out.println(email);
             UserDAO dao = new UserDAO();
             UserDTO dto = dao.getUserByEmail(email);
-            System.out.println("user: "+dto.getEmail());
-            if(status != null) {
+            System.out.println("user: " + dto.getEmail());
+            if (status != null) {
                 System.out.println("Status: " + status);
                 ses.setAttribute("status", status);
             }

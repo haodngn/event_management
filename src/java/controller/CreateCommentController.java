@@ -49,8 +49,8 @@ public class CreateCommentController extends HttpServlet {
         String url = FAIL;
 
         String description_fb = request.getParameter("txtDescription_FB");
-        
-        if(description_fb == null){
+
+        if (description_fb == null) {
             description_fb = "No comment";
         }
 
@@ -59,9 +59,9 @@ public class CreateCommentController extends HttpServlet {
 
         String rate = request.getParameter("txtRating");
         int rating;
-        if(rate == null){
+        if (rate == null) {
             rating = 0;
-        }else{
+        } else {
             rating = Integer.parseInt(rate);
         }
 
@@ -73,8 +73,7 @@ public class CreateCommentController extends HttpServlet {
             UserDTO user = (UserDTO) session.getAttribute("USER");//get current user
             UserDAO udao = new UserDAO();
             user = udao.getUserByEmail(user.getEmail());
-           
-            
+
             if (rating <= 0 || rating > 5) {
                 foundErr = true;
                 err.setRatingError("PLease rating event !!");

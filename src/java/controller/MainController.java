@@ -49,7 +49,6 @@ public class MainController extends HttpServlet {
     private static final String DETAIL_EVENT = "GetDetailEventController";
     private static final String UPDATE_EVENT = "UpdateEventController";
     private static final String DELETE_EVENT = "DeleteEventController";
-    
 
     private static final String REGISTER_EVENT = "RegisterEventController";
     private static final String CANCEL_EDIT_PROFILE = "profile_page.jsp";
@@ -71,9 +70,9 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if (action.equals("Create")) {
                 url = CREATE_EVENT;
-            } else if (action.equals("Search event") || action.equals("Search") || action.equals("Back to home") || action.equals("manage"))  {
+            } else if (action.equals("Search event") || action.equals("Search") || action.equals("Back to home") || action.equals("manage")) {
                 url = SEARCH_EVENT;
-            }  else if (action.equals("detail event") || action.equals("Edit")) {
+            } else if (action.equals("detail event") || action.equals("Edit")) {
                 url = DETAIL_EVENT;
             } else if (action.equals("Edit Event")) {
                 url = UPDATE_EVENT;
@@ -87,23 +86,23 @@ public class MainController extends HttpServlet {
                 url = ENTER_EDIT_PROFILE;
             } else if (action.equals("Save Profile")) {
                 url = EDIT_PROFILE;
-            } else if(action.equals("Checkout")){
+            } else if (action.equals("Checkout")) {
                 url = PAYMENT;
             } else if (action.equals("Register")) {
                 url = REGISTER_EVENT; //PAYMENT_ACCOUNT
             } else if (action.equals("Payment Account") || action.equals("Return Home")) {
                 url = PAYMENT_ACCOUNT;
-            } else if(action.equals("Cancel")) {
+            } else if (action.equals("Cancel")) {
                 url = CANCEL_EDIT_PROFILE;
-            } else if(action.equals("Admin")) {
+            } else if (action.equals("Admin")) {
                 url = ADMIN;
-            } else if(action.equals("Unban User") || action.equals("Ban User")) {
+            } else if (action.equals("Unban User") || action.equals("Ban User")) {
                 url = USERSTATUS;
-            } else if(action.equals("DeleteComment")) {
+            } else if (action.equals("DeleteComment")) {
                 url = DELETECOMMENT;
-            } else if(action.equals("EDIT")) {
+            } else if (action.equals("EDIT")) {
                 url = DEATIL_EVENT;
-            } 
+            }
 
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);

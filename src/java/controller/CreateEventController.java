@@ -28,7 +28,6 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-
 /**
  *
  * @author Admin
@@ -63,7 +62,7 @@ public class CreateEventController extends HttpServlet {
         String endDate = request.getParameter("txtEndDate");
         String registerDate = request.getParameter("registerDate");
         String expirationDate = request.getParameter("txtExpirationDate");
-        
+
         String description = request.getParameter("txtDescription");
         String location = request.getParameter("txtLocation");
 
@@ -71,61 +70,60 @@ public class CreateEventController extends HttpServlet {
         if (!request.getParameter("txtPrice").equals("") || Float.parseFloat(request.getParameter("txtPrice")) > 0) {
             price = Float.parseFloat(request.getParameter("txtPrice"));
         }
-        
+
         int amountStudent = 0;
-        if(!request.getParameter("txtAmount").equals("")){
+        if (!request.getParameter("txtAmount").equals("")) {
             amountStudent = Integer.parseInt(request.getParameter("txtAmount"));
         }
-        
-      //image
+
+        //image
         String appPath = request.getServletContext().getRealPath("");
-            appPath = appPath.substring(0, appPath.indexOf("build")) + "web\\";
-            appPath = appPath.replace('\\', '/');
+        appPath = appPath.substring(0, appPath.indexOf("build")) + "web\\";
+        appPath = appPath.replace('\\', '/');
 
-            // Thư mục để save file tải lên.
-            String fullSavePath = null;
-            if (appPath.endsWith("/")) {
-                fullSavePath = appPath + SAVE_DIRECTORY;
-            } else {
-                fullSavePath = appPath + "/" + SAVE_DIRECTORY;
-            }
+        // folder to save file
+        String fullSavePath = null;
+        if (appPath.endsWith("/")) {
+            fullSavePath = appPath + SAVE_DIRECTORY;
+        } else {
+            fullSavePath = appPath + "/" + SAVE_DIRECTORY;
+        }
 
-            // Tạo thư mục nếu nó không tồn tại.
-            File fileSaveDir = new File(fullSavePath);
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdir();
-            }
+        // create new folder folder
+        File fileSaveDir = new File(fullSavePath);
+        if (!fileSaveDir.exists()) {
+            fileSaveDir.mkdir();
+        }
 
-            String fileName = "";
-            for (Part part : request.getParts()) {
-                String fileExtension = getFileExtension(part);
-                if (fileExtension != null && fileExtension.length() > 0) {
-                    fileName = String.valueOf(System.currentTimeMillis()) + fileExtension;
-                    String filePath = fullSavePath + File.separator + fileName;
-                    System.out.println("Write attachment to file: " + filePath);
+        String fileName = "";
+        for (Part part : request.getParts()) {
+            String fileExtension = getFileExtension(part);
+            if (fileExtension != null && fileExtension.length() > 0) {
+                fileName = String.valueOf(System.currentTimeMillis()) + fileExtension;
+                String filePath = fullSavePath + File.separator + fileName;
+                System.out.println("Write attachment to file: " + filePath);
 
-                    part.write(filePath);
-                    String buildPath = request.getServletContext().getRealPath("");
-                    if (buildPath.endsWith("/")) {
-                        buildPath = buildPath + SAVE_DIRECTORY;
-                    } else {
-                        buildPath = buildPath + "/" + SAVE_DIRECTORY;
-                    }
-                    buildPath += File.separator + fileName;
-                    File finish = new File(buildPath);
-                    while (!finish.exists());
+                part.write(filePath);
+                String buildPath = request.getServletContext().getRealPath("");
+                if (buildPath.endsWith("/")) {
+                    buildPath = buildPath + SAVE_DIRECTORY;
+                } else {
+                    buildPath = buildPath + "/" + SAVE_DIRECTORY;
                 }
+                buildPath += File.separator + fileName;
+                File finish = new File(buildPath);
+                while (!finish.exists());
             }
-
+        }
 
         EventErrorDTO err = new EventErrorDTO();
         boolean foundErr = false;
         try {
-            if(amountStudent <= 0){
+            if (amountStudent <= 0) {
                 foundErr = true;
                 err.setAmountStudentErr("At least 10 student can join this event !!");
             }
-            
+
             if (speaker.length() < 2 || speaker.length() > 100) {
                 foundErr = true;
                 err.setSpeakerLength("Field is required 2 - 100 character !!");
@@ -197,11 +195,10 @@ public class CreateEventController extends HttpServlet {
                 System.out.println("des: " + description);
 
                 EventDAO dao = new EventDAO();
-                boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location,"assets/event/" + fileName ,user.getUserID(), amountStudent);
+                boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location, "assets/event/" + fileName, user.getUserID(), amountStudent);
                 if (result) {
                     EventDAO edao = new EventDAO();
                     int eventID = edao.getMaxId();
-                    
 
                     if (price == -1) {
                         boolean isFree = true;
@@ -230,6 +227,7 @@ public class CreateEventController extends HttpServlet {
             out.close();
         }
     }
+
     private String getFileExtension(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
@@ -244,7 +242,7 @@ public class CreateEventController extends HttpServlet {
         }
         return null;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

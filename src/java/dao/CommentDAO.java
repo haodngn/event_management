@@ -23,20 +23,20 @@ import utils.DBHelper;
  *
  * @author HAO
  */
-public class CommentDAO implements Serializable{
-    
+public class CommentDAO implements Serializable {
+
     List<CommentDTO> listComment;
 
     public List<CommentDTO> getListComment() {
         return listComment;
     }
-    
+
     public boolean createFeedback(int event_id, int posted_by, String description_fb, int rating, String post_time) throws SQLException, ClassNotFoundException, NamingException, ParseException {
 
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
-        
+
         try {
             String sql = "insert into Comment(Event_id,Posted_by ,DescriptionFB, Rating,"
                     + "PostTime) "
@@ -49,7 +49,7 @@ public class CommentDAO implements Serializable{
             stm.setString(3, description_fb);
             stm.setInt(4, rating);
             stm.setTimestamp(5, new java.sql.Timestamp(new java.util.Date().getTime()));
-            
+
             int row = stm.executeUpdate();
             if (row > 0) {
                 check = true;
@@ -64,7 +64,7 @@ public class CommentDAO implements Serializable{
         }
         return check;
     }
-    
+
     public void getAllFeedback(int event_id)
             throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
@@ -80,16 +80,16 @@ public class CommentDAO implements Serializable{
             stm = con.prepareStatement(sql);
             stm.setInt(1, event_id);
             rs = stm.executeQuery();
-           
+
             while (rs.next()) {
                 int id = rs.getInt("ID");
                 int posted_by = rs.getInt("Posted_by");
                 String description_fb = rs.getString("DescriptionFB");
                 int rating = rs.getInt("Rating");
-                
+
                 DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
                 String post_time = rs.getString("PostTime");
-                
+
                 UserDAO udao = new UserDAO();
                 String name = udao.getNameUserByID(posted_by);
 
@@ -112,12 +112,12 @@ public class CommentDAO implements Serializable{
             }
         }
     }
-    
+
     public boolean DeleteCommentById(int event_id) throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
-        
+
         try {
             String sql = "Delete From Comment Where ID like ? ";
             con = DBHelper.makeConnection();

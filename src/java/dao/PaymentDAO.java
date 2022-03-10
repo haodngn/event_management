@@ -7,7 +7,6 @@ package dao;
 
 import dto.PaymentDTO;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,8 @@ import utils.DBHelper;
  * @author HAO
  */
 public class PaymentDAO {
-    public boolean creatPayment(boolean isFree,float price, int eventID) throws SQLException, ClassNotFoundException, NamingException{
+
+    public boolean creatPayment(boolean isFree, float price, int eventID) throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -28,7 +28,7 @@ public class PaymentDAO {
                     + "values(?,?,?)";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
-            
+
             stm.setBoolean(1, isFree);
             stm.setFloat(2, price);
             stm.setInt(3, eventID);
@@ -47,6 +47,7 @@ public class PaymentDAO {
         }
         return check;
     }
+
     public PaymentDTO getPaymentByEventID(int id)
             throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
@@ -66,13 +67,11 @@ public class PaymentDAO {
             rs = stm.executeQuery();
             if (rs.next()) {
 
-
                 int payment_id = rs.getInt("ID");
                 boolean isFree = rs.getBoolean("isFree");
-                float price = rs.getFloat("Price");        
+                float price = rs.getFloat("Price");
 
-                dto = new PaymentDTO(payment_id,  isFree,  price,  id);
-               
+                dto = new PaymentDTO(payment_id, isFree, price, id);
 
             }
 
@@ -90,8 +89,8 @@ public class PaymentDAO {
 
         return dto;
     }
-    
-    public boolean createPaymentAccount(int paymentID, int accountID, String status) throws ClassNotFoundException, NamingException, SQLException{
+
+    public boolean createPaymentAccount(int paymentID, int accountID, String status) throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
@@ -100,27 +99,27 @@ public class PaymentDAO {
         try {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
-            
+
             stm.setInt(1, accountID);
             stm.setInt(2, paymentID);
             stm.setString(3, status);
-            
-            if(stm.executeUpdate()>0){
-                result = true ;
+
+            if (stm.executeUpdate() > 0) {
+                result = true;
             }
-        } finally{
-            if(stm != null){
+        } finally {
+            if (stm != null) {
                 stm.close();
             }
-            if(con != null){
+            if (con != null) {
                 con.close();
             }
         }
         return result;
-        
+
     }
-    
-    public boolean checkPayEventByEventID(int eventID) throws ClassNotFoundException, NamingException, SQLException{
+
+    public boolean checkPayEventByEventID(int eventID) throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
@@ -129,23 +128,23 @@ public class PaymentDAO {
         try {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
-            
+
             stm.setInt(1, eventID);
             stm.setBoolean(2, false);
-            
+
             rs = stm.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 result = true;
             }
-        } finally{
-            if(stm != null){
+        } finally {
+            if (stm != null) {
                 stm.close();
             }
-            if(con != null){
+            if (con != null) {
                 con.close();
             }
         }
         return result;
-        
+
     }
 }

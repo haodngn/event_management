@@ -43,18 +43,18 @@ public class AdminController extends HttpServlet {
 
             if (searchUser == null) {
                 listUserInit = userDAO.get5FirstUser();
-            } else if(searchUser.equals("")) {
+            } else if (searchUser.equals("")) {
                 url = ADMINSTUDENT;
                 listUserInit = userDAO.get5FirstUser();
             } else {
                 url = ADMINSTUDENT;
                 listUserInit = userDAO.getUserByName(searchUser);
             }
-            
+
             if (searchEvent == null) {
                 eventDAO.get5FirstEvent();
                 listEventInit = eventDAO.getListEvent();
-            } else if(searchEvent.equals("")) {
+            } else if (searchEvent.equals("")) {
                 url = ADMINEVENT;
                 eventDAO.get5FirstEvent();
                 listEventInit = eventDAO.getListEvent();

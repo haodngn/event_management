@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author HAO
  */
 public class CommentDTO implements Serializable {
+
     private int id;
     private int event_id;
     private String posted_by;
@@ -34,7 +35,6 @@ public class CommentDTO implements Serializable {
         this.post_time = post_time;
     }
 
-
     public int getId() {
         return id;
     }
@@ -50,7 +50,6 @@ public class CommentDTO implements Serializable {
     public void setPosted_by(String posted_by) {
         this.posted_by = posted_by;
     }
-
 
     public String getDescription_fb() {
         return description_fb;
@@ -84,7 +83,4 @@ public class CommentDTO implements Serializable {
         this.post_time = post_time;
     }
 
-    
-    
 }
-

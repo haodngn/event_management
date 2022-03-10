@@ -11,12 +11,13 @@ import java.io.Serializable;
  *
  * @author HAO
  */
-public class FeedbackErrorDTO implements Serializable{
+public class FeedbackErrorDTO implements Serializable {
+
     private String isEmpty;
     private String disscussLength;
     private String postTimeCheck;
     private String ratingError;
-    
+
     public String getIsEmpty() {
         return isEmpty;
     }
@@ -39,7 +40,7 @@ public class FeedbackErrorDTO implements Serializable{
 
     public void setPostTimeCheck(String postTimeCheck) {
         this.postTimeCheck = postTimeCheck;
-    }   
+    }
 
     public String getRatingError() {
         return ratingError;
@@ -48,6 +49,5 @@ public class FeedbackErrorDTO implements Serializable{
     public void setRatingError(String ratingError) {
         this.ratingError = ratingError;
     }
-    
-    
+
 }

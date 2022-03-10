@@ -7,14 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<%-- 
-    Document   : event_details_page
-    Created on : Feb 17, 2022, 9:37:09 PM
-    Author     : By Van Lung, IDStudent: SE140193
---%>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -117,7 +109,7 @@
                         </li>
 
                     </ul>
-                     <li class="nav-item dropdown" style="list-style-type: none;">
+                    <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <c:url var="profile" value="MainController">
@@ -259,7 +251,7 @@
 
                 <label for="price">Price</label>
                 <input id="price" type="number" name="txtPrice" value="${param.txtPrice}" /></br>
-                
+
                 <label for="count">Number of student</label>
                 <input id="count" type="number" name="txtAmount" value="${param.txtAmount}" /></br>
                 <c:if test="${not empty err.amountStudentErr}">
@@ -278,7 +270,7 @@
 
                 </div>
             </form>
-            
+
         </div>
 
 
@@ -376,20 +368,20 @@
         <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
         <script src="js/scripts.js"></script> <!-- Custom scripts -->
         <script>
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
 
-                        reader.onload = function (e) {
-                            $('#blah')
-                                    .attr('src', e.target.result)
-                                    .height(400);
-                        };
+                            reader.onload = function (e) {
+                                $('#blah')
+                                        .attr('src', e.target.result)
+                                        .height(400);
+                            };
 
-                        reader.readAsDataURL(input.files[0]);
+                            reader.readAsDataURL(input.files[0]);
+                        }
                     }
-                }
-            </script>
+        </script>
 
     </body>
 </html>
