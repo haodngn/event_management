@@ -26,7 +26,14 @@ public class CommentDTO implements Serializable {
         this.post_time = post_time;
     }
 
-    
+    public CommentDTO(int id, String posted_by, String description_fb, int rating, String post_time) {
+        this.id = id;
+        this.posted_by = posted_by;
+        this.description_fb = description_fb;
+        this.rating = rating;
+        this.post_time = post_time;
+    }
+
 
     public int getId() {
         return id;

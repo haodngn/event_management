@@ -61,7 +61,12 @@
                                     <td>${event.studentCount}</td>
                                     <td>${event.description}</td>
                                     <td>${event.location}</td>
-                                    <td>Detail</td>
+                                    <td>
+                                        <form action="MainController">
+                                            <input type="hidden" name="txtId" value="${event.id}" />
+                                            <button name="btnAction" value="detail event">Detail</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </table>

@@ -162,3 +162,10 @@ ul, ul li {
   cursor: pointer;
   margin: 10px;
 }
+
+.delete-comment {
+    margin-left: 32px;
+    color: #5c5c5c;
+    border: none;
+    background-color: #fff;
+}
