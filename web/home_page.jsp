@@ -1,7 +1,7 @@
 <%-- 
     Document   : home_page
     Created on : Jan 19, 2022, 8:20:31 PM
-    Author     : VanLungFE,HaoBE
+    Author     : HAO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -68,12 +68,12 @@
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
             <!-- Image Logo -->
             <a href="SearchEventController"><img style="height: 73px;width: 259px;"
-                                         src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
-                                         alt="alternative"></a>
+                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                 alt="alternative"></a>
             <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
-                                         30px;"
-                                         src="assets/images/logo.jpg"
-                                         alt="alternative"></a>
+                                                 30px;"
+                                                 src="assets/images/logo.jpg"
+                                                 alt="alternative"></a>
             <div class="container">
 
                 <!-- Mobile Menu Toggle Button -->
@@ -110,21 +110,21 @@
                                     class="sr-only">(current)</span></a>
                         </li>
 
-                         
+
 
                     </ul>
-                    
-                      <li class="nav-item dropdown" style="list-style-type: none;">
+
+                    <li class="nav-item dropdown" style="list-style-type: none;">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <c:url var="profile" value="MainController">
                                 <c:param name="btnAction" value="Profile"></c:param>
-                                 <c:param name="email" value="${sessionScope.USER.email}"/>
+                                <c:param name="email" value="${sessionScope.USER.email}"/>
                             </c:url>
                             <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
-                            
+
                             <hr/>
-                            
+
                             <c:url var="logout" value="MainController">
                                 <c:param name="btnAction" value="Logout"></c:param>
                             </c:url>
@@ -266,7 +266,7 @@
                                         <a href="#" class="popup-link"
                                            data-effect="fadeIn">
                                             <img class="img-fluid"
-                                          src="assets/images/event1.jpg"
+                                                 src="assets/images/event1.jpg"
                                                  alt="alternative">
                                         </a>
                                     </div>
@@ -288,7 +288,7 @@
                                         <a href="#" class="popup-link"
                                            data-effect="fadeIn">
                                             <img class="img-fluid"
-                                              src="assets/images/event1.jpg"
+                                                 src="assets/images/event1.jpg"
                                                  alt="alternative">
                                         </a>
                                     </div>
@@ -298,7 +298,7 @@
                                         <a href="#" class="popup-link"
                                            data-effect="fadeIn">
                                             <img class="img-fluid"
-                                                src="assets/images/event1.jpg"
+                                                 src="assets/images/event1.jpg"
                                                  alt="alternative">
                                         </a>
                                     </div>

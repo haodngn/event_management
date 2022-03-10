@@ -41,12 +41,12 @@ public class EventDAO implements Serializable {
         EventDTO dto = null;
 
         try {
-            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n" +
-                        "E.Location, E.StudentCount, E.Image, P.Price, E.StudentMax\n" +
-                        "from Event E\n" +
-                        "join Payment P\n" +
-                        "on E.ID = P.Event_Id\n" +
-                        "where E.ID =?";
+            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n"
+                    + "E.Location, E.StudentCount, E.Image, P.Price, E.StudentMax\n"
+                    + "from Event E\n"
+                    + "join Payment P\n"
+                    + "on E.ID = P.Event_Id\n"
+                    + "where E.ID =?";
 
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
                 String des = rs.getString("Description");
                 String image = rs.getString("Image");
-                float  price = rs.getFloat("Price");
+                float price = rs.getFloat("Price");
                 int studentCount = rs.getInt("StudentCount");
                 int studentMax = rs.getInt("StudentMax");
 
@@ -76,7 +76,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                dto = new EventDTO(id, speaker, name, occur, end, register, exp,studentCount, des, location, image,price, studentMax);
+                dto = new EventDTO(id, speaker, name, occur, end, register, exp, studentCount, des, location, image, price, studentMax);
             }
 
         } finally {
@@ -145,12 +145,12 @@ public class EventDAO implements Serializable {
         this.listEvent = new ArrayList<>();
 
         try {
-            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n" +
-                         "E.Location, E.StudentCount, E.Posted_by, E.Image, E.StudentMax, P.Price\n" +
-                         "from Event E\n" +
-                         "join Payment P\n" +
-                         "on E.ID = P.Event_Id\n" +
-                         "where E.Status=1 ";
+            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n"
+                    + "E.Location, E.StudentCount, E.Posted_by, E.Image, E.StudentMax, P.Price\n"
+                    + "from Event E\n"
+                    + "join Payment P\n"
+                    + "on E.ID = P.Event_Id\n"
+                    + "where E.Status=1 ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             rs = stm.executeQuery();
@@ -180,7 +180,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image,price,max);
+                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image, price, max);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -250,7 +250,7 @@ public class EventDAO implements Serializable {
             }
         }
     }
-    
+
     public List<EventDTO> getEventByName(String name)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
@@ -576,7 +576,7 @@ public class EventDAO implements Serializable {
             }
         }
     }
-    
+
     public int countTotalEvent() throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -601,7 +601,7 @@ public class EventDAO implements Serializable {
         }
         return eventCount;
     }
-    
+
     public boolean updateStudentCount(int id) throws ClassNotFoundException, SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;

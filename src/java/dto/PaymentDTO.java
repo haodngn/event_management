@@ -10,6 +10,7 @@ package dto;
  * @author HAO
  */
 public class PaymentDTO {
+
     private int paymentID;
     private boolean isFree;
     private float price;
@@ -22,8 +23,6 @@ public class PaymentDTO {
         this.eventID = eventID;
     }
 
-    
-    
     public int getPaymentID() {
         return paymentID;
     }
@@ -56,6 +55,4 @@ public class PaymentDTO {
         this.eventID = eventID;
     }
 
-    
-    
 }

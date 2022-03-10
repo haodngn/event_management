@@ -85,8 +85,8 @@ public class GetDetailEventController extends HttpServlet {
                 if (dao.checkRegistedEvent(userID, id)) {
                     request.setAttribute("isOverDate", true);
                 }
-                
-                if(pdao.checkPayEventByEventID(id)) {
+
+                if (pdao.checkPayEventByEventID(id)) {
                     request.setAttribute("isPayEvent", true);
                 } else {
                     request.setAttribute("isPayEvent", false);

@@ -39,9 +39,9 @@ public class RegisterEventController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = DETAIL_CONTROLLER;
-        
+
         try {
             int userID = Integer.parseInt(request.getParameter("txtUserID"));
             int eventID = Integer.parseInt(request.getParameter("txtEventID"));
@@ -57,7 +57,7 @@ public class RegisterEventController extends HttpServlet {
                     JavaMailUtils.sendMail(email, code);
                     message = "Register successfully! Check your mail to get checkin code";
 
-                    url = "GetDetailEventController?txtId="+eventID;
+                    url = "GetDetailEventController?txtId=" + eventID;
                 }
             }
             request.setAttribute("EVENT_ID", eventID);

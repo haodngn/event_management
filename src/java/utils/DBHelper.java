@@ -17,17 +17,18 @@ import javax.sql.DataSource;
  *
  * @author Admin
  */
-public class DBHelper implements Serializable{
-    public static Connection makeConnection() throws ClassNotFoundException,NamingException, SQLException{
-         //1.get current context
-      Context context = new InitialContext();
-      //2.get server context
-      Context tomcatContext = (Context) context.lookup("java:comp/env");
-      //3.get data source
-      DataSource ds = (DataSource) tomcatContext.lookup("DS02");
-      //4. make connection
-      Connection con = ds.getConnection();
-      
-      return con;
+public class DBHelper implements Serializable {
+
+    public static Connection makeConnection() throws ClassNotFoundException, NamingException, SQLException {
+        //1.get current context
+        Context context = new InitialContext();
+        //2.get server context
+        Context tomcatContext = (Context) context.lookup("java:comp/env");
+        //3.get data source
+        DataSource ds = (DataSource) tomcatContext.lookup("DS02");
+        //4. make connection
+        Connection con = ds.getConnection();
+
+        return con;
     }
 }

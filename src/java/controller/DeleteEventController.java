@@ -23,8 +23,9 @@ import org.apache.log4j.Logger;
  */
 @WebServlet(name = "DeleteEventController", urlPatterns = {"/DeleteEventController"})
 public class DeleteEventController extends HttpServlet {
+
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateEventController.class);
-    
+
     private final String ERROR = "invalid.jsp";
 
     /**
@@ -40,39 +41,39 @@ public class DeleteEventController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         String url = ERROR;
-        
+
         try {
             String index = request.getParameter("index");
             int pageIndex = 1;
-            if("".equals(index)){
+            if ("".equals(index)) {
                 index = null;
             }
-            if(index != null){
+            if (index != null) {
                 pageIndex = Integer.parseInt(index);
             }
-            
+
             String searchValue = request.getParameter("lastSearchValue");
             int id = Integer.parseInt(request.getParameter("id"));
-            
+
             EventDAO dao = new EventDAO();
             boolean check = dao.deleteEvent(id);
-            if(check){
+            if (check) {
                 url = "MainController"
                         + "?btnAction=Search"
-                        + "&txtSearchValue="+searchValue
+                        + "&txtSearchValue=" + searchValue
                         + "&btnEventDev=eventDev";
             }
-            
+
             response.sendRedirect(url);
-            
+
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at DeleteEventController: "+ex.getMessage());
+            LOGGER.error("ClassNotFoundException at DeleteEventController: " + ex.getMessage());
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at DeleteEventController: "+ex.getMessage());
+            LOGGER.error("NamingException at DeleteEventController: " + ex.getMessage());
         } catch (SQLException ex) {
-            LOGGER.error("SQLException at DeleteEventController: "+ex.getMessage());
+            LOGGER.error("SQLException at DeleteEventController: " + ex.getMessage());
         } finally {
             out.close();
         }

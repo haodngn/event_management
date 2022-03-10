@@ -49,33 +49,31 @@ public class AuthorizePaymentServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("EventID"));
         PaymentDAO paymentd = new PaymentDAO();
         PaymentDTO payment = paymentd.getPaymentByEventID(id);
-        
+
         HttpSession ses = request.getSession();
         ses.setAttribute("payment_Id", payment.getPaymentID());
         ses.setAttribute("price", payment.getPrice());
         ses.setAttribute("currentEventID", id);
-        
+
         float pricef = payment.getPrice();
         String prices = String.valueOf(pricef);
         String product = String.valueOf(id);
         String subtotal = prices;
         String shipping = "0";
         String tax = "0";
-        
+
         float shippingf = Float.valueOf(shipping);
         float taxf = Float.valueOf(tax);
         float totalf = shippingf + taxf + pricef;
-        
+
         String totals = String.valueOf(totalf);
-              
+
         OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, totals);
         try {
 
-            
-                PaymentServices paymentServices = new PaymentServices();
-                String approvalLink = paymentServices.authorizePayment(orderDetail);
-                response.sendRedirect(approvalLink);
-
+            PaymentServices paymentServices = new PaymentServices();
+            String approvalLink = paymentServices.authorizePayment(orderDetail);
+            response.sendRedirect(approvalLink);
 
         } catch (PayPalRESTException ex) {
             request.setAttribute("errorMessage", ex.getMessage());
@@ -107,5 +105,4 @@ public class AuthorizePaymentServlet extends HttpServlet {
         }
     }
 
-    
 }

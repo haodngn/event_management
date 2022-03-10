@@ -30,6 +30,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
+
     private static final Logger LOGGER = Logger.getLogger(LoginGoogleServlet.class);
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,15 +43,15 @@ public class LoginGoogleServlet extends HttpServlet {
      */
     private static final String SUCCESS = "SearchEventController";
     private static final String ERROR = "login.jsp";
-    
+
     private final String DEFAULT_PASSWORD = "123456";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        
+
         String url = ERROR;
-        
+
         try {
             String code = request.getParameter("code");
             HttpSession session = request.getSession();
@@ -66,40 +67,39 @@ public class LoginGoogleServlet extends HttpServlet {
                 String password = DEFAULT_PASSWORD;
 
                 //get name
-                if(googlePojo.getName() == null){
+                if (googlePojo.getName() == null) {
                     name = googlePojo.getEmail().split("@")[0];
                 }
 
                 UserDAO dao = new UserDAO();
                 UserDTO user = dao.checkLogin(email, password);
-                
-                if(user == null){
+
+                if (user == null) {
                     dao.createAccount(name, email, password, 1, picture);
                     user = dao.checkLogin(email, password);
-                    
+
                 }
                 session.setAttribute("USER", user);
-               
+
                 url = SUCCESS;
 
             }
         } catch (NoSuchAlgorithmException ex) {
-            LOGGER.error("NoSuchAlgorithmException at GoogleLoginServlet: "+ex);
+            LOGGER.error("NoSuchAlgorithmException at GoogleLoginServlet: " + ex);
         } catch (SQLException ex) {
-            LOGGER.error("SQLException at GoogleLoginServlet: "+ex);
+            LOGGER.error("SQLException at GoogleLoginServlet: " + ex);
         } catch (NamingException ex) {
-            LOGGER.error("NamingException at GoogleLoginServlet: "+ex);
+            LOGGER.error("NamingException at GoogleLoginServlet: " + ex);
         } catch (ClassNotFoundException ex) {
-            LOGGER.error("ClassNotFoundException at GoogleLoginServlet: "+ex);
+            LOGGER.error("ClassNotFoundException at GoogleLoginServlet: " + ex);
         } catch (MessagingException ex) {
-            LOGGER.error("MessagingException at GoogleLoginServlet: "+ex);
-        }finally{
+            LOGGER.error("MessagingException at GoogleLoginServlet: " + ex);
+        } finally {
             response.sendRedirect(url);
             out.close();
         }
-        
-    }
 
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -129,7 +129,6 @@ public class LoginGoogleServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     /**
      * Returns a short description of the servlet.
      *

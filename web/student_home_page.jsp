@@ -1,7 +1,7 @@
 <%-- 
     Document   : home_page
     Created on : Jan 19, 2022, 8:20:31 PM
-    Author     : VanLungFE,HaoBE
+    Author     : HAO
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,7 +35,7 @@
         <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext"
             rel="stylesheet">
-         <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/fontawesome-all.css" rel="stylesheet">
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
@@ -94,7 +94,7 @@
                                href="SearchEventController">HOME<span
                                     class="sr-only">(current)</span></a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link page-scroll"
                                href="#footer">CONTACT<span
@@ -177,7 +177,7 @@
         <!-- end of header -->
 
         <!-- Slider Event -->
-         <div id="screens" class="slider">
+        <div id="screens" class="slider">
             <div class="container">
                 <div class="row">
                     <h1>Events</h1>
@@ -225,7 +225,7 @@
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
         </div> <!-- end of slider -->
-        
+
         <!-- Slider News -->
         <div id="screens" class="slider">
             <div class="container">

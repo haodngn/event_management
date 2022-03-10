@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author HAO
  */
-public class EventErrorDTO implements Serializable{
+public class EventErrorDTO implements Serializable {
+
     private String isEmpty;
     private String speakerLength;
     private String nameLength;
@@ -22,7 +23,6 @@ public class EventErrorDTO implements Serializable{
     private String occurDateCheck;
     private String endDateCheck;
     private String amountStudentErr;
-
 
     public EventErrorDTO(String isEmpty, String speakerLength, String nameLength, String desLength, String locationLength, String registerDateCheck, String expDateCheck, String occurDateCheck, String endDateCheck) {
         this.isEmpty = isEmpty;
@@ -46,7 +46,7 @@ public class EventErrorDTO implements Serializable{
     public void setAmountStudentErr(String amountStudentErr) {
         this.amountStudentErr = amountStudentErr;
     }
-    
+
     public String getIsEmpty() {
         return isEmpty;
     }
@@ -118,5 +118,5 @@ public class EventErrorDTO implements Serializable{
     public void setEndDateCheck(String endDateCheck) {
         this.endDateCheck = endDateCheck;
     }
-    
+
 }

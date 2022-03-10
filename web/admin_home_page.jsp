@@ -14,12 +14,12 @@
     </head>
     <body>
         <jsp:include page="adminCommon.jsp"></jsp:include>
-        <div class="container">
-            <div class="content">
-                <div class="cards">
-                    <div class="card">
-                        <div class="box">
-                            <h1>${sessionScope.totalUser}</h1>
+            <div class="container">
+                <div class="content">
+                    <div class="cards">
+                        <div class="card">
+                            <div class="box">
+                                <h1>${sessionScope.totalUser}</h1>
                             <h3>Students Joined</h3>
                         </div>
                         <div class="icon-case">

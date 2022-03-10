@@ -18,9 +18,10 @@ import org.apache.log4j.Logger;
  * @author MSI
  */
 public class DeleteCommentController extends HttpServlet {
+
     private static final Logger LOGGER = org.apache.log4j.Logger.getLogger(CreateEventController.class);
     private static final String SUCCESS = "GetDetailEventController";
-   
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -29,7 +30,7 @@ public class DeleteCommentController extends HttpServlet {
             int cmtID = Integer.parseInt(request.getParameter("commentID"));
             CommentDAO dao = new CommentDAO();
             dao.DeleteCommentById(cmtID);
-        } catch(Exception e){
+        } catch (Exception e) {
             LOGGER.error("Error at DeleteCommentController: " + e);
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

@@ -73,7 +73,7 @@ public class CreatePaymentAccountController extends HttpServlet {
             LOGGER.error("MessagingException at CreateFeedbackController: " + ex.getMessage());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);    
+            rd.forward(request, response);
         }
 
     }

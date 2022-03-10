@@ -3,17 +3,8 @@
     Created on : Feb 14, 2022, 12:20:04 PM
     Author     : HAO
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%-- 
-    
-    Created on : Feb 17, 2022, 9:37:09 PM
-    Author     : By Van Lung, IDStudent: SE140193
---%>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>

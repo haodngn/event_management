@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMessage;
  * @author ADMIN
  */
 public class JavaMailUtils {
+
     public static void sendMail(String recepient, String verifyCode) throws MessagingException {
 
         Properties properties = System.getProperties();

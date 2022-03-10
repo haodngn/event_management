@@ -34,7 +34,7 @@
                     </div>
                 </form>
                 <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/event_manage/login-google&response_type=code
-    &client_id=204854685230-fpsjm98drnflpsignj0bqlb2122a5h7n.apps.googleusercontent.com&approval_prompt=force" class="google-login link"><i class="fab fa-google"></i>Sign in with @fpt.edu.vn</a>
+                   &client_id=204854685230-fpsjm98drnflpsignj0bqlb2122a5h7n.apps.googleusercontent.com&approval_prompt=force" class="google-login link"><i class="fab fa-google"></i>Sign in with @fpt.edu.vn</a>
                 <br>${sessionScope.mess}
             </div>
         </div>

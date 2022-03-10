@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.naming.NamingException;
 import utils.DBHelper;
-import utils.JavaMailUtils;
 
 /**
  *
@@ -346,7 +345,7 @@ public class UserDAO {
             }
         }
     }
-    
+
     public boolean banUser(String email)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
@@ -359,7 +358,7 @@ public class UserDAO {
             stm = con.prepareStatement(sql);
             stm.setString(1, "deactive");
             stm.setString(2, email);
-            if(stm.executeUpdate() > 0) {
+            if (stm.executeUpdate() > 0) {
                 check = true;
             }
             return check;
@@ -372,7 +371,7 @@ public class UserDAO {
             }
         }
     }
-    
+
     public boolean unbanUser(String email)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
@@ -385,7 +384,7 @@ public class UserDAO {
             stm = con.prepareStatement(sql);
             stm.setString(1, "active");
             stm.setString(2, email);
-            if(stm.executeUpdate() > 0) {
+            if (stm.executeUpdate() > 0) {
                 check = true;
             }
             return check;

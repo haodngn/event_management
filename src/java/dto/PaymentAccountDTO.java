@@ -10,6 +10,7 @@ package dto;
  * @author HAO
  */
 public class PaymentAccountDTO {
+
     private int paymentAccountID;
     private int Payment_Id;
     private int Account_Id;
@@ -46,6 +47,5 @@ public class PaymentAccountDTO {
     public void setStatus(String Status) {
         this.Status = Status;
     }
-    
-    
+
 }

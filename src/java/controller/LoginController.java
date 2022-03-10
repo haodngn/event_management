@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
     private static final String EVENT_DEP_PAGE = "SearchEventController";
     private static final String ADMIN_PAGE = "AdminController";
     private static final String ERROR = "login.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,13 +49,13 @@ public class LoginController extends HttpServlet {
             UserDTO us = dao.checkLogin(userID, password);
             HttpSession ses = request.getSession();
             if (us != null) {
-                if(us.getRoleID() == 2){ // if role is event_dep
+                if (us.getRoleID() == 2) { // if role is event_dep
                     url = EVENT_DEP_PAGE;
-                } else if(us.getRoleID() == 3){
+                } else if (us.getRoleID() == 3) {
                     url = ADMIN_PAGE;
                 }
                 ses.setAttribute("USER", us);
-                
+
             } else {
                 ses.setAttribute("mess", "Email or Password incorrect !!");
             }

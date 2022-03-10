@@ -28,9 +28,9 @@ public class UserStatusController extends HttpServlet {
             String status = request.getParameter("status");
             String email = request.getParameter("email");
             UserDAO dao = new UserDAO();
-            if(status.equals("active")) {
+            if (status.equals("active")) {
                 dao.banUser(email);
-            } else if(status.equals("deactive")) {
+            } else if (status.equals("deactive")) {
                 dao.unbanUser(email);
             }
         } catch (Exception e) {

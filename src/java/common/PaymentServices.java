@@ -67,39 +67,39 @@ public class PaymentServices {
     }
 
     private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
-    Details details = new Details();
-    details.setShipping(orderDetail.getShipping());
-    details.setSubtotal(orderDetail.getSubtotal());
-    details.setTax(orderDetail.getTax());
- 
-    Amount amount = new Amount();
-    amount.setCurrency("USD");
-    amount.setTotal(orderDetail.getTotal());
-    amount.setDetails(details);
- 
-    Transaction transaction = new Transaction();
-    transaction.setAmount(amount);
-    transaction.setDescription(orderDetail.getProductName());
-     
-    ItemList itemList = new ItemList();
-    List<Item> items = new ArrayList<>();
-     
-    Item item = new Item();
-    item.setCurrency("USD");
-    item.setName(orderDetail.getProductName());
-    item.setPrice(orderDetail.getSubtotal());
-    item.setTax(orderDetail.getTax());
-    item.setQuantity("1");
-     
-    items.add(item);
-    itemList.setItems(items);
-    transaction.setItemList(itemList);
- 
-    List<Transaction> listTransaction = new ArrayList<>();
-    listTransaction.add(transaction);  
-     
-    return listTransaction;
-}
+        Details details = new Details();
+        details.setShipping(orderDetail.getShipping());
+        details.setSubtotal(orderDetail.getSubtotal());
+        details.setTax(orderDetail.getTax());
+
+        Amount amount = new Amount();
+        amount.setCurrency("USD");
+        amount.setTotal(orderDetail.getTotal());
+        amount.setDetails(details);
+
+        Transaction transaction = new Transaction();
+        transaction.setAmount(amount);
+        transaction.setDescription(orderDetail.getProductName());
+
+        ItemList itemList = new ItemList();
+        List<Item> items = new ArrayList<>();
+
+        Item item = new Item();
+        item.setCurrency("USD");
+        item.setName(orderDetail.getProductName());
+        item.setPrice(orderDetail.getSubtotal());
+        item.setTax(orderDetail.getTax());
+        item.setQuantity("1");
+
+        items.add(item);
+        itemList.setItems(items);
+        transaction.setItemList(itemList);
+
+        List<Transaction> listTransaction = new ArrayList<>();
+        listTransaction.add(transaction);
+
+        return listTransaction;
+    }
 
     private String getApprovalLink(Payment approvedPayment) {
         List<Links> links = approvedPayment.getLinks();
