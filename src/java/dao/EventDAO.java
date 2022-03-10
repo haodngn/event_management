@@ -42,7 +42,7 @@ public class EventDAO implements Serializable {
 
         try {
             String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n" +
-                        "E.Location, E.StudentCount, E.Image, P.Price\n" +
+                        "E.Location, E.StudentCount, E.Image, P.Price, E.StudentMax\n" +
                         "from Event E\n" +
                         "join Payment P\n" +
                         "on E.ID = P.Event_Id\n" +
@@ -62,6 +62,8 @@ public class EventDAO implements Serializable {
                 String des = rs.getString("Description");
                 String image = rs.getString("Image");
                 float  price = rs.getFloat("Price");
+                int studentCount = rs.getInt("StudentCount");
+                int studentMax = rs.getInt("StudentMax");
 
                 Date EndDate = rs.getDate("EndDate");
                 Date RegisterDate = rs.getDate("RegisterDate");
@@ -74,7 +76,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                dto = new EventDTO(id, speaker, name, occur, end, register, exp, des, location, image,price);
+                dto = new EventDTO(id, speaker, name, occur, end, register, exp,studentCount, des, location, image,price, studentMax);
             }
 
         } finally {

@@ -192,7 +192,7 @@
                             <td>${item.price} $ </td>
                             <td>${item.studentCount}</td>
                             <td>
-                                <form action="GetDetailEventController" method="POST">
+                                <form action="MainController" method="POST">
                                     <input type="hidden" name="txtId" value="${item.id}"/>
                                     <input type="hidden" name="isUpdate" value="updateEV" />
                                     <input type="submit" name="btnAction" class="btn-event-dev" value="EDIT"/>
