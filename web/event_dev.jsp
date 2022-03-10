@@ -201,10 +201,11 @@
                         <th>End date</th>
                         <th>Register date</th>
                         <th>Expiration date</th>
-                        <th>Student count</th>
+                        <th>Student Max</th>
                         <th>Description</th>
                         <th>Location</th>
                         <th>Price</th>
+                        <th>Student Count</th>
                         <th>Action</th>
 
                     </tr>
@@ -227,11 +228,11 @@
                             <td>${item.endDate}</td>
                             <td>${item.registerDate}</td>
                             <td>${item.expirationDate}</td>
-                            <td>${item.studentCount}</td>
+                            <td>${item.studentMax}</td>
                             <td>${item.description}</td>
                             <td>${item.location}</td>
                             <td>${item.price} $ </td>
-
+                            <td>${item.studentCount}</td>
                             <td>
                                 <form action="GetDetailEventController" method="POST">
                                     <input type="hidden" name="txtId" value="${item.id}"/>
