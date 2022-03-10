@@ -144,6 +144,22 @@ public class EventDTO implements Serializable {
         this.location = location;
     }
 
+    public EventDTO(int id, String speaker, String name, String occur, String end, String register, String exp, int studentCount, String des, String location, String image, float price, int studentMax) {
+        this.id = id;
+        this.speaker = speaker;
+        this.eventName = name;
+        this.occurDate = occur;
+        this.endDate = end;
+        this.registerDate = register;
+        this.expirationDate = exp;
+        this.studentCount = studentCount;
+        this.description = des;
+        this.location = location;
+        this.image = image;
+        this.price = price;
+        this.studentMax = studentMax;
+    }
+
     public int getStudentMax() {
         return studentMax;
     }
