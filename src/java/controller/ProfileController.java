@@ -41,10 +41,15 @@ public class ProfileController extends HttpServlet {
         try {
             HttpSession ses = request.getSession();
             String email = request.getParameter("email");
+            String status = request.getParameter("status");
             System.out.println(email);
             UserDAO dao = new UserDAO();
             UserDTO dto = dao.getUserByEmail(email);
             System.out.println("user: "+dto.getEmail());
+            if(status != null) {
+                System.out.println("Status: " + status);
+                ses.setAttribute("status", status);
+            }
             ses.setAttribute("userInfo", dto);
         } catch (ClassNotFoundException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);

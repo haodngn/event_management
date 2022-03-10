@@ -4,69 +4,39 @@
  */
 package controller;
 
-import dao.EventDAO;
+import dao.UserDAO;
 import java.io.IOException;
-import java.sql.Date;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
-import utils.JavaMailUtils;
-import utils.MyUtils;
 
 /**
  *
  * @author MSI
  */
-public class RegisterEventController extends HttpServlet {
+public class UserStatusController extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(RegisterEventController.class);
-    private final String DETAIL_CONTROLLER = "GetDetailEventController";
-    private final String ERROR = "error.jsp";
+    private static final Logger LOGGER = Logger.getLogger(AdminController.class);
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String url = DETAIL_CONTROLLER;
-        
         try {
-            int userID = Integer.parseInt(request.getParameter("txtUserID"));
-            int eventID = Integer.parseInt(request.getParameter("txtEventID"));
-            String email = request.getParameter("txtEmail");
-            String code = MyUtils.getRandomCode();// get random code 6 number
-            long millis = System.currentTimeMillis();
-            String message = null;
-            Date date = new Date(millis);
-            EventDAO eventDAO = new EventDAO();
-            if (!eventDAO.checkRegistedEvent(userID, eventID)) {
-                if (eventDAO.registerEvent(userID, eventID, date, code)) {
-                    eventDAO.updateStudentCount(eventID);
-                    JavaMailUtils.sendMail(email, code);
-                    message = "Register successfully! Check your mail to get checkin code";
-
-                    url = "GetDetailEventController?txtId="+eventID;
-                }
+            String status = request.getParameter("status");
+            String email = request.getParameter("email");
+            UserDAO dao = new UserDAO();
+            if(status.equals("active")) {
+                dao.banUser(email);
+            } else if(status.equals("deactive")) {
+                dao.unbanUser(email);
             }
-            request.setAttribute("EVENT_ID", eventID);
-            request.setAttribute("message", message);
         } catch (Exception e) {
-            LOGGER.error("Error at RegisterEventController: " + e);
+            LOGGER.error("Error at AdminController: " + e);
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            response.sendRedirect("AdminController");
         }
     }
 

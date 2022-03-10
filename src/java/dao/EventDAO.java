@@ -144,7 +144,7 @@ public class EventDAO implements Serializable {
 
         try {
             String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n" +
-                         "E.Location, E.StudentCount, E.Posted_by, E.Image, P.Price\n" +
+                         "E.Location, E.StudentCount, E.Posted_by, E.Image, E.StudentMax, P.Price\n" +
                          "from Event E\n" +
                          "join Payment P\n" +
                          "on E.ID = P.Event_Id\n" +
@@ -164,6 +164,7 @@ public class EventDAO implements Serializable {
                 int postBy = rs.getInt("Posted_by");
                 int count = rs.getInt("StudentCount");
                 String image = rs.getString("Image");
+                int max = rs.getInt("StudentMax");
                 float price = rs.getFloat("Price");
 
                 Date EndDate = rs.getDate("EndDate");
@@ -177,7 +178,7 @@ public class EventDAO implements Serializable {
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
 
-                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image,price);
+                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image,price,max);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -248,12 +249,12 @@ public class EventDAO implements Serializable {
         }
     }
     
-    public void getEventByName(String name)
+    public List<EventDTO> getEventByName(String name)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        this.listEvent = new ArrayList<>();
+        List<EventDTO> listAdminEvent = null;
 
         try {
             String sql = "Select ID, Speaker, EventName, OccurDate, "
@@ -278,12 +279,13 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
                 String image = rs.getString("Image");
 
-                EventDTO dto = new EventDTO(id, eventName, speaker, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
-                if (this.listEvent == null) {
-                    this.listEvent = new ArrayList<>();
+                EventDTO dto = new EventDTO(id, speaker, eventName, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
+                if (listAdminEvent == null) {
+                    listAdminEvent = new ArrayList<>();
                 }
-                this.listEvent.add(dto);
+                listAdminEvent.add(dto);
             }
+            return listAdminEvent;
 
         } finally {
             if (rs != null) {
@@ -553,7 +555,7 @@ public class EventDAO implements Serializable {
                 String location = rs.getString("Location");
                 String image = rs.getString("Image");
 
-                EventDTO dto = new EventDTO(id, eventName, speaker, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
+                EventDTO dto = new EventDTO(id, speaker, eventName, occurDate, endDate, registerDate, expirationDate, studentCount, description, location, image);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -596,5 +598,31 @@ public class EventDAO implements Serializable {
             }
         }
         return eventCount;
+    }
+    
+    public boolean updateStudentCount(int id) throws ClassNotFoundException, SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean update = false;
+        String sql = "update Event "
+                + "set StudentCount = StudentCount + 1 "
+                + "where ID = ?  ";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, id);
+
+            if (stm.executeUpdate() > 0) {
+                update = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return update;
     }
 }
