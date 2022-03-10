@@ -48,6 +48,7 @@ public class RegisterEventController extends HttpServlet {
             EventDAO eventDAO = new EventDAO();
             if (!eventDAO.checkRegistedEvent(userID, eventID)) {
                 if (eventDAO.registerEvent(userID, eventID, date)) {
+                    eventDAO.updateStudentCount(eventID);
                     message = "Register successfully";
                     url = "GetDetailEventController?txtId="+eventID;
                 }
