@@ -104,6 +104,11 @@
                                href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll"
+                               href="#footer">CONTACT<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
 
                          
 
@@ -170,23 +175,6 @@
             </div>
 
             <div class="container">
-                <!-- Breadcrumbs -->
-                <div class="ex-basic-1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="breadcrumbs">
-                                    <a id="linkBreadcrumbs" href="#">Home</a><i
-                                        id="linkBreadcrumbs" class="fa
-                                        fa-angle-double-right"></i><span
-                                        id="linkBreadcrumbs"></span>
-                                </div> <!-- end of breadcrumbs -->
-                            </div> <!-- end of col -->
-                        </div> <!-- end of row -->
-                    </div> <!-- end of container -->
-                </div> <!-- end of ex-basic-1 -->
-                <!-- end of breadcrumbs -->
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="image-container">
@@ -355,7 +343,7 @@
         <!-- end of discuss -->
 
         <!-- Footer -->
-        <div class="footer">
+        <div class="footer" id="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

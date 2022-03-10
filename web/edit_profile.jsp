@@ -58,9 +58,6 @@
                                     <a class="nav-link page-scroll" href="SearchEventController">HOME <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link page-scroll" href="#screens">EVENTS</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link page-scroll" href="#screens">CONTACT</a>
                                 </li>
                                 <li class="nav-item dropdown" style="list-style-type: none;">

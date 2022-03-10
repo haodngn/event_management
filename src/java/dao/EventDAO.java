@@ -503,7 +503,7 @@ public class EventDAO implements Serializable {
         PreparedStatement stm = null;
         ResultSet rs;
         boolean check = false;
-        String sql = "Select ID from Event Where ID = ? and registerDate < ? and expirationDate > ?";
+        String sql = "Select ID from Event Where ID = ? and registerDate < ? and expirationDate > ? and StudentCount < StudentMax";
         try {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);

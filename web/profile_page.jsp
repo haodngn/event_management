@@ -33,56 +33,90 @@
 
             <c:if test="${not empty sessionScope.userInfo}">
                 <!-- Navigation -->
-                <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="nav">
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-custom
+                     fixed-top">
+                    <!-- Text Logo - Use this if you don't have a graphic logo -->
+                    <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
+                    <!-- Image Logo -->
+                    <a href="SearchEventController"><img style="height: 73px;width: 259px;"
+                                                         src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                         alt="alternative"></a>
+                    <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
+                                                         30px;"
+                                                         src="assets/images/logo.jpg"
+                                                         alt="alternative"></a>
                     <div class="container">
-                        <!-- Text Logo - Use this if you don't have a graphic logo -->
-                        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
-
-                        <!-- Image Logo -->
-                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/0001.jpg" alt="alternative"></a> 
-
-                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/logo.jpg" alt="alternative"></a> 
-
-
 
                         <!-- Mobile Menu Toggle Button -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button"
+                                data-toggle="collapse" data-target="#navbarsExampleDefault"
+                                aria-controls="navbarsExampleDefault" aria-expanded="false"
+                                aria-label="Toggle navigation">
                             <span class="navbar-toggler-awesome fas fa-bars"></span>
                             <span class="navbar-toggler-awesome fas fa-times"></span>
                         </button>
                         <!-- end of mobile menu toggle button -->
 
-                        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                        <div class="collapse navbar-collapse"
+                             id="navbarsExampleDefault">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link page-scroll" href="SearchEventController">HOME <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link page-scroll"
+                                       href="SearchEventController">HOME<span
+                                            class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link page-scroll" href="#screens">EVENTS</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link page-scroll" href="#screens">CONTACT</a>
-                                </li>
-                                <li class="nav-item dropdown" style="list-style-type: none;">
-                                    <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <c:url var="profile" value="MainController">
-                                            <c:param name="btnAction" value="Profile"></c:param>
-                                            <c:param name="email" value="${sessionScope.USER.email}"/>
+                                <c:if test="${sessionScope.USER.roleID == 2}">
+                                    <li class="nav-item">
+                                        <c:url var="event_dev" value="MainController">
+                                            <c:param name="btnAction" value="manage"></c:param>
+                                            <c:param name="btnEventDev" value="eventDev"></c:param>
                                         </c:url>
-                                        <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+                                        <a class="nav-link page-scroll"
+                                           href="${event_dev}">EVENTS<span
+                                                class="sr-only">(current)</span></a>
+                                    </li>
+                                </c:if>
 
-                                        <hr/>
-
-                                        <c:url var="logout" value="MainController">
-                                            <c:param name="btnAction" value="Logout"></c:param>
-                                        </c:url>
-                                        <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
-
-
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link page-scroll"
+                                       href="#footer">CONTACT<span
+                                            class="sr-only">(current)</span></a>
                                 </li>
+
                             </ul>
+                            <li class="nav-item dropdown" style="list-style-type: none;">
+                                <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <c:url var="profile" value="MainController">
+                                        <c:param name="btnAction" value="Profile"></c:param>
+                                        <c:param name="email" value="${sessionScope.USER.email}"/>
+                                    </c:url>
+                                    <a  class="dropdown-item" href="${profile}"><span class="item-text">Profile</span></a>
+
+                                    <hr/>
+
+                                    <c:url var="logout" value="MainController">
+                                        <c:param name="btnAction" value="Logout"></c:param>
+                                    </c:url>
+                                    <a  class="dropdown-item" href="${logout}"><span class="item-text">Logout</span></a>
+
+
+                                </div>
+                            </li>
+                            <!-- <span class="nav-item avt-account">
+                                <a
+                                style="text-decoration: none;"  href="#"><img style="
+                                        vertical-align:middle;
+                                        width: 40px;
+                                        margin: 2px;
+                                       
+                                        height: 40px;
+                                        border-radius: 50%;
+                                        " src="images/AVT1.PNG"
+                                        alt="avatar"></a>
+        
+                                        
+                            </span> -->
 
                         </div>
                     </div> <!-- end of container -->
@@ -95,7 +129,15 @@
                             <div class="breadcrumbs">
                                 <a id="linkBreadcrumbs" href="#">Profile</a>
                                 <i id="linkBreadcrumbs" class="fa fa-angle-double-right"></i>
-                                <span id="linkBreadcrumbs">Student Profile</span>
+                                <c:if test="${sessionScope.USER.roleID == 1}">
+                                    <span id="linkBreadcrumbs">Student Profile</span>
+                                </c:if>
+                                <c:if test="${sessionScope.USER.roleID == 2}">
+                                    <span id="linkBreadcrumbs">Department Profile</span>
+                                </c:if>
+                                <c:if test="${sessionScope.USER.roleID == 3}">
+                                    <span id="linkBreadcrumbs">Admin Profile</span>
+                                </c:if>
                             </div>
                         </div>
 
