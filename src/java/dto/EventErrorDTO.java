@@ -21,6 +21,7 @@ public class EventErrorDTO implements Serializable{
     private String expDateCheck;
     private String occurDateCheck;
     private String endDateCheck;
+    private String amountStudentErr;
 
 
     public EventErrorDTO(String isEmpty, String speakerLength, String nameLength, String desLength, String locationLength, String registerDateCheck, String expDateCheck, String occurDateCheck, String endDateCheck) {
@@ -36,6 +37,14 @@ public class EventErrorDTO implements Serializable{
     }
 
     public EventErrorDTO() {
+    }
+
+    public String getAmountStudentErr() {
+        return amountStudentErr;
+    }
+
+    public void setAmountStudentErr(String amountStudentErr) {
+        this.amountStudentErr = amountStudentErr;
     }
     
     public String getIsEmpty() {

@@ -63,14 +63,20 @@ public class CreateEventController extends HttpServlet {
         String endDate = request.getParameter("txtEndDate");
         String registerDate = request.getParameter("registerDate");
         String expirationDate = request.getParameter("txtExpirationDate");
-
+        
         String description = request.getParameter("txtDescription");
         String location = request.getParameter("txtLocation");
 
         float price = -1;
-        if (!request.getParameter("txtPrice").equals("")) {
+        if (!request.getParameter("txtPrice").equals("") || Float.parseFloat(request.getParameter("txtPrice")) > 0) {
             price = Float.parseFloat(request.getParameter("txtPrice"));
         }
+        
+        int amountStudent = 0;
+        if(!request.getParameter("txtAmount").equals("")){
+            amountStudent = Integer.parseInt(request.getParameter("txtAmount"));
+        }
+        
       //image
         String appPath = request.getServletContext().getRealPath("");
             appPath = appPath.substring(0, appPath.indexOf("build")) + "web\\";
@@ -115,6 +121,11 @@ public class CreateEventController extends HttpServlet {
         EventErrorDTO err = new EventErrorDTO();
         boolean foundErr = false;
         try {
+            if(amountStudent <= 0){
+                foundErr = true;
+                err.setAmountStudentErr("At least 10 student can join this event !!");
+            }
+            
             if (speaker.length() < 2 || speaker.length() > 100) {
                 foundErr = true;
                 err.setSpeakerLength("Field is required 2 - 100 character !!");
@@ -186,11 +197,11 @@ public class CreateEventController extends HttpServlet {
                 System.out.println("des: " + description);
 
                 EventDAO dao = new EventDAO();
-                boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location,"assets/event/" + fileName ,user.getUserID());
+                boolean result = dao.createEvent(speaker, eventName, occurDate, endDate, registerDate, expirationDate, 0, description, location,"assets/event/" + fileName ,user.getUserID(), amountStudent);
                 if (result) {
                     EventDAO edao = new EventDAO();
                     int eventID = edao.getMaxId();
-                    System.out.println("eventid: " + eventID);
+                    
 
                     if (price == -1) {
                         boolean isFree = true;

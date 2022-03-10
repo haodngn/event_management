@@ -33,4 +33,20 @@ public class MyUtils {
         }
         return sb.toString();
     }
+    
+    //random code
+    public static String getRandomCode() {
+        // chose a Character random from this String 
+        String alphaNumericString = "0123456789";
+        // create StringBuffer size of 6 
+        StringBuilder sb = new StringBuilder(6);
+        for (int i = 0; i < 6; i++) {
+            // generate a random number between 0 to AlphaNumericString variable length 
+            int index = (int) (alphaNumericString.length() * Math.random());
+
+            // add Character one by one in end of sb 
+            sb.append(alphaNumericString.charAt(index));
+        }
+        return sb.toString();
+    }
 }

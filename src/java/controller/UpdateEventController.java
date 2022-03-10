@@ -52,9 +52,19 @@ public class UpdateEventController extends HttpServlet {
             String location = request.getParameter("txtLocation");
 //            String image = request.getParameter("txtImage");
 
+            int amountStudent = 0;
+            if (!request.getParameter("txtAmount").equals("")) {
+                amountStudent = Integer.parseInt(request.getParameter("txtAmount"));
+            }
+
             boolean foundErr = false;
             EventErrorDTO err = new EventErrorDTO();
 
+            if(amountStudent <= 0){
+                foundErr = true;
+                err.setAmountStudentErr("At least 10 student can join this event !!");
+            }
+            
             if (speaker.length() < 2 || speaker.length() > 50) {
                 foundErr = true;
                 err.setSpeakerLength("Field is required 2 - 50 character !!");

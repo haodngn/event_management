@@ -330,15 +330,15 @@ public class EventDAO implements Serializable {
     public boolean createEvent(String speaker, String eventName,
             String occurDate, String enddate, String registerDate,
             String expirationDate, int studentCount, String description,
-            String loaction, String image, int prosted_by) throws SQLException, ClassNotFoundException, NamingException, ParseException {
+            String loaction, String image, int prosted_by, int amountStudent) throws SQLException, ClassNotFoundException, NamingException, ParseException {
 
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
         try {
             String sql = "insert into Event(Speaker, EventName, Description, EndDate, ExpirationDate, Location, OccurDate, "
-                    + "Posted_by, RegisterDate, StudentCount, Status,Image) "
-                    + "values(?,?,?,?,?,?,?,?,?,?,1,?)";
+                    + "Posted_by, RegisterDate, StudentCount, Status,Image, StudentMax) "
+                    + "values(?,?,?,?,?,?,?,?,?,?,1,?, ?)";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
 
@@ -358,6 +358,7 @@ public class EventDAO implements Serializable {
             stm.setDate(9, register);
             stm.setInt(10, studentCount);
             stm.setString(11, image);
+            stm.setInt(12, amountStudent);
 
             int row = stm.executeUpdate();
             if (row > 0) {
@@ -438,11 +439,11 @@ public class EventDAO implements Serializable {
         return check;
     }
 
-    public boolean registerEvent(int userID, int eventID, Date registerDate) throws ClassNotFoundException, NamingException, SQLException {
+    public boolean registerEvent(int userID, int eventID, Date registerDate, String code) throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
-        String sql = "Insert into Register(Event_id, Student_id, RegisterDate, Attendence) values (?, ?, ?, ?)";
+        String sql = "Insert into Register(Event_id, Student_id, RegisterDate, Attendence, Code) values (?, ?, ?, ?, ?)";
         try {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
@@ -451,6 +452,7 @@ public class EventDAO implements Serializable {
             stm.setInt(2, userID);
             stm.setDate(3, registerDate);
             stm.setBoolean(4, false);
+            stm.setString(5, code);
 
             if (stm.executeUpdate() > 0) {
                 check = true;

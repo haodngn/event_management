@@ -262,6 +262,7 @@
                                             <input type="hidden" name="txtEventID" value="${requestScope.EVENT_ID}"/>
                                             <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}"/>
                                             <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>
+                                            <input type="hidden" name="txtEmail" value="${user.email}" />
                                             <c:if test="${requestScope.isPayEvent}">
                                                 <button style="font-size: 20px; background-color: #f60;" type="submit" name="btnAction" value="Checkout">Register</button>
                                             </c:if>

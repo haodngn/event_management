@@ -261,9 +261,18 @@
                         ${err.locationLength}<br/>
                         </font>
                     </c:if>
-                    
+
                     <label for="price">Price($)</label>
-                    <input id="location" type="text" name="txtPrice" value="${event.price}"" readonly="true"/></br>
+                    <input id="location" type="text" name="txtPrice" value="${event.price}" readonly="true"/></br>
+
+                    <label for="count">Number of student</label>
+                    <input id="count" type="number" name="txtAmount" value="${param.txtAmount}" /></br>
+                    <c:if test="${not empty err.amountStudentErr}">
+                        <font color="red">
+                        ${err.amountStudentErr}<br/>
+                        </font>
+                    </c:if>
+
                     <div class="btn-action">
                         <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
                         <input type="submit" value="Edit Event" name="btnAction" />
