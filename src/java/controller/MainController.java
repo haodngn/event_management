@@ -42,6 +42,7 @@ public class MainController extends HttpServlet {
     private static final String PROFILE = "ProfileController";
     private static final String ENTER_EDIT_PROFILE = "edit_profile.jsp";
     private static final String EDIT_PROFILE = "EditProfileController";
+    private static final String DEATIL_EVENT = "GetDetailEventController";
 
     private static final String SEARCH_EVENT = "SearchEventController";
     private static final String CREATE_EVENT = "CreateEventController";
@@ -97,7 +98,10 @@ public class MainController extends HttpServlet {
                 url = ADMIN;
             } else if(action.equals("Unban User") || action.equals("Ban User")) {
                 url = USERSTATUS;
+            } else if(action.equals("EDIT")) {
+                url = DEATIL_EVENT;
             } 
+
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
         } finally {

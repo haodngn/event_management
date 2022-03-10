@@ -104,8 +104,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <c:url var="event_dev" value="SearchEventController">
+                                <c:param name="btnAction" value="manage"></c:param>
+                                <c:param name="btnEventDev" value="eventDev"></c:param>
+                            </c:url>
                             <a class="nav-link page-scroll"
-                               href="event_dev.jsp">EVENTS<span
+                               href="${event_dev}">EVENTS<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -266,7 +270,7 @@
                     <input id="location" type="text" name="txtPrice" value="${event.price}" readonly="true"/></br>
 
                     <label for="count">Number of student</label>
-                    <input id="count" type="number" name="txtAmount" value="${param.txtAmount}" /></br>
+                    <input id="count" type="number" name="txtAmount" value="${event.studentMax}" readonly="true" /></br>
                     <c:if test="${not empty err.amountStudentErr}">
                         <font color="red">
                         ${err.amountStudentErr}<br/>
