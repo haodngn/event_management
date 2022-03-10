@@ -56,6 +56,10 @@
         <servlet-name>UserStatusController</servlet-name>
         <servlet-class>controller.UserStatusController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCommentController</servlet-name>
+        <servlet-class>controller.DeleteCommentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>UserStatusController</servlet-name>
         <url-pattern>/UserStatusController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCommentController</servlet-name>
+        <url-pattern>/DeleteCommentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

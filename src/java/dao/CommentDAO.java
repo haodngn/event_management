@@ -73,7 +73,7 @@ public class CommentDAO implements Serializable{
         this.listComment = new ArrayList<>();
 
         try {
-            String sql = "select Posted_by, DescriptionFB, Rating, PostTime "
+            String sql = "select ID, Posted_by, DescriptionFB, Rating, PostTime "
                     + "from Comment "
                     + "where Event_id=? ";
             con = DBHelper.makeConnection();
@@ -82,6 +82,7 @@ public class CommentDAO implements Serializable{
             rs = stm.executeQuery();
            
             while (rs.next()) {
+                int id = rs.getInt("ID");
                 int posted_by = rs.getInt("Posted_by");
                 String description_fb = rs.getString("DescriptionFB");
                 int rating = rs.getInt("Rating");
@@ -92,7 +93,7 @@ public class CommentDAO implements Serializable{
                 UserDAO udao = new UserDAO();
                 String name = udao.getNameUserByID(posted_by);
 
-                CommentDTO dto = new CommentDTO(name, description_fb, rating, post_time);
+                CommentDTO dto = new CommentDTO(id, name, description_fb, rating, post_time);
                 if (this.listComment == null) {
                     this.listComment = new ArrayList<>();
                 }
@@ -112,5 +113,28 @@ public class CommentDAO implements Serializable{
         }
     }
     
-    
+    public boolean DeleteCommentById(int event_id) throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        
+        try {
+            String sql = "Delete From Comment Where ID like ? ";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, event_id);
+
+            if (stm.executeUpdate() > 0) {
+                check = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
 }

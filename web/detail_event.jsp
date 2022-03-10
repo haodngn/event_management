@@ -332,112 +332,6 @@
 
 
         <div class="container" >
-            <!--            <div id="reviews" class="review-section">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h4 class="m-0">37 Reviews</h4>
-            
-                                <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
-                                    <span class="selection">
-                                        <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
-                                            <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
-                                        </span>
-                                    </span>
-                                    <span class="dropdown-wrapper" aria-hidden="true"></span>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <table class="stars-counters">
-                                        <tbody>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 97.2973%;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(36)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 2.2973%;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(2)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 0;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(0)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 0;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(0)</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>
-                                                    <span>
-                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
-                                                    </span>
-                                                </td>
-                                                <td class="progress-bar-container">
-                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                                        <div class="fit-progressbar-background">
-                                                            <span class="progress-fill" style="width: 0;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="star-num">(0)</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>-->
-
-
-
-            <!--
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-8">
-            -->
-
-
             <div class="headings d-flex justify-content-between align-items-center mb-3">
                 <h3>Comments</h3>
 
@@ -499,6 +393,13 @@
                                         </svg>
                                         ${cmt.rating}
                                     </span>
+                                    <c:if test="${sessionScope.USER.roleID == 3}">
+                                        <form action="MainController" method="POST">
+                                            <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />
+                                            <input type="hidden" name="commentID" value="${cmt.id}" />
+                                            <button name="btnAction" class="delete-comment" value="DeleteComment">Delete</button>
+                                        </form>
+                                    </c:if>
                                 </h4>
                                 <div class="review-description">
                                     <p>
