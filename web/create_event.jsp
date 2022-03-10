@@ -240,7 +240,7 @@
 
 
                 <label for="description">Description</label>
-                <textarea id="description" type="text" name="txtDescription" value="${param.txtDescription}" ></textarea></br>
+                <textarea id="description" type="text" name="txtDescription" value="${param.txtDescription}" >${param.txtDescription}</textarea></br>
                 <c:if test="${not empty err.desLength}">
                     <font color="red">
                     ${err.desLength}<br/>
@@ -259,6 +259,14 @@
 
                 <label for="price">Price</label>
                 <input id="price" type="number" name="txtPrice" value="${param.txtPrice}" /></br>
+                
+                <label for="count">Number of student</label>
+                <input id="count" type="number" name="txtAmount" value="${param.txtAmount}" /></br>
+                <c:if test="${not empty err.amountStudentErr}">
+                    <font color="red">
+                    ${err.amountStudentErr}<br/>
+                    </font>
+                </c:if>
 
                 <img id="blah" src="assets/images/upload_icon.png" alt="Choose your image:"  style="max-width: 200px"/><br>
                 <br />

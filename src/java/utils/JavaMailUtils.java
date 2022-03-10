@@ -48,8 +48,8 @@ public class JavaMailUtils {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(myAccountEmail));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-        message.setSubject("SE Event Management Vertification Code ");
-        message.setText("Your Vertification Code: " + verifyCode);
+        message.setSubject("SE Event CheckIn Code ");
+        message.setText("Your CheckIn Code: " + verifyCode);
         return message;
     }
 }

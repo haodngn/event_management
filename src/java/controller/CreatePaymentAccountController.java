@@ -9,10 +9,9 @@ import dao.EventDAO;
 import dao.PaymentDAO;
 import dto.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
+import javax.mail.MessagingException;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import utils.JavaMailUtils;
+import utils.MyUtils;
 
 /**
  *
@@ -51,10 +52,14 @@ public class CreatePaymentAccountController extends HttpServlet {
             UserDTO dto = (UserDTO) ses.getAttribute("USER");
             int payment_Id = (int) ses.getAttribute("payment_Id");
             int currentEventID = (int) ses.getAttribute("currentEventID");
+            String code = MyUtils.getRandomCode();// get random code 6 number
+            JavaMailUtils.sendMail(dto.getEmail(), code);
             long millis = System.currentTimeMillis();
             Date currentDate = new Date(millis);
             PaymentDAO paymentd = new PaymentDAO();
+
             boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Completed") && eventDAO.registerEvent(dto.getUserID(), currentEventID, currentDate) && eventDAO.updateStudentCount(currentEventID);
+
             if (check) {
                 url = DETAIL_EVENT;
             }
@@ -64,6 +69,8 @@ public class CreatePaymentAccountController extends HttpServlet {
             LOGGER.error("ClassNotFoundException at CreateFeedbackController: " + ex.getMessage());
         } catch (NamingException ex) {
             LOGGER.error("NamingException at CreateFeedbackController: " + ex.getMessage());
+        } catch (MessagingException ex) {
+            LOGGER.error("MessagingException at CreateFeedbackController: " + ex.getMessage());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);    

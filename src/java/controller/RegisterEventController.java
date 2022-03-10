@@ -12,7 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import utils.JavaMailUtils;
+import utils.MyUtils;
 
 /**
  *
@@ -42,14 +45,18 @@ public class RegisterEventController extends HttpServlet {
         try {
             int userID = Integer.parseInt(request.getParameter("txtUserID"));
             int eventID = Integer.parseInt(request.getParameter("txtEventID"));
+            String email = request.getParameter("txtEmail");
+            String code = MyUtils.getRandomCode();// get random code 6 number
             long millis = System.currentTimeMillis();
             String message = null;
             Date date = new Date(millis);
             EventDAO eventDAO = new EventDAO();
             if (!eventDAO.checkRegistedEvent(userID, eventID)) {
-                if (eventDAO.registerEvent(userID, eventID, date)) {
+                if (eventDAO.registerEvent(userID, eventID, date, code)) {
                     eventDAO.updateStudentCount(eventID);
-                    message = "Register successfully";
+                    JavaMailUtils.sendMail(email, code);
+                    message = "Register successfully! Check your mail to get checkin code";
+
                     url = "GetDetailEventController?txtId="+eventID;
                 }
             }
