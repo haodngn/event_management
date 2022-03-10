@@ -58,7 +58,7 @@ public class CreatePaymentAccountController extends HttpServlet {
             Date currentDate = new Date(millis);
             PaymentDAO paymentd = new PaymentDAO();
 
-            boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Completed") && eventDAO.registerEvent(dto.getUserID(), currentEventID, currentDate) && eventDAO.updateStudentCount(currentEventID);
+            boolean check = paymentd.createPaymentAccount(payment_Id, dto.getUserID(), "Completed") && eventDAO.registerEvent(dto.getUserID(), currentEventID, currentDate, code) && eventDAO.updateStudentCount(currentEventID);
 
             if (check) {
                 url = DETAIL_EVENT;

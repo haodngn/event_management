@@ -95,12 +95,12 @@
                         <c:if test="${sessionScope.USER.roleID == '2'}">
                             <li class="nav-item">
                                 <c:url var="event_dev" value="SearchEventController">
-                                <c:param name="btnAction" value="manage"></c:param>
-                                <c:param name="btnEventDev" value="eventDev"></c:param>
-                            </c:url>
-                            <a class="nav-link page-scroll"
-                               href="${event_dev}">EVENTS<span
-                                    class="sr-only">(current)</span></a>
+                                    <c:param name="btnAction" value="manage"></c:param>
+                                    <c:param name="btnEventDev" value="eventDev"></c:param>
+                                </c:url>
+                                <a class="nav-link page-scroll"
+                                   href="${event_dev}">EVENTS<span
+                                        class="sr-only">(current)</span></a>
                             </li>
                         </c:if>
 
@@ -112,7 +112,7 @@
                         </li>
 
                     </ul>
-                    <li class="nav-item dropdown" style="list-style-type: none;">
+                    <li class="nav-item dropdown" style="list-style-type: none; margin-top:16px">
                         <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.USER.name}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <c:url var="profile" value="MainController">
@@ -187,6 +187,12 @@
 
                             </div>
                             <div class="location_time" style="width: 50%;
+                                 float:left">
+                                <p class="location_time_p">Seats</p>
+                                <i class="fas fa-audio-description"></i>
+                                <p>50/150</p>
+                            </div>
+                            <div class="location_time" style="width: 50%;
                                  float:right">
                                 <p class="location_time_p">Time</p>
                                 <i class="fas fa-calendar-alt"></i>
@@ -199,6 +205,7 @@
                                 <i class="fas fa-audio-description"></i>
                                 <p>${event.description}</p>
                             </div>
+
                             <!--                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -278,12 +285,12 @@
                                         alert(Msg);
                                     }
                                 </script>
-<!--                                <td colspan="2" align="center">
-                                    <form action="MainController">
-                                        <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}" />
-                                        <input type="submit" name="btnAction" value="Checkout" />
-                                    </form>                             
-                                </td>-->
+                                <!--                                <td colspan="2" align="center">
+                                                                    <form action="MainController">
+                                                                        <input type="hidden" name="EventID" value="${requestScope.EVENT_ID}" />
+                                                                        <input type="submit" name="btnAction" value="Checkout" />
+                                                                    </form>                             
+                                                                </td>-->
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
                                 <div class="logins-box">
@@ -325,103 +332,103 @@
 
 
         <div class="container" >
-<!--            <div id="reviews" class="review-section">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h4 class="m-0">37 Reviews</h4>
-
-                    <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
-                        <span class="selection">
-                            <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
-                                <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
-                            </span>
-                        </span>
-                        <span class="dropdown-wrapper" aria-hidden="true"></span>
-                    </span>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="stars-counters">
-                            <tbody>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+            <!--            <div id="reviews" class="review-section">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h4 class="m-0">37 Reviews</h4>
+            
+                                <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
+                                    <span class="selection">
+                                        <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
+                                            <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
                                         </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: 97.2973%;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(36)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: 2.2973%;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(2)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: 0;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(0)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: 0;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(0)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: 0;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(0)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>-->
+                                    </span>
+                                    <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="stars-counters">
+                                        <tbody>
+                                            <tr class="">
+                                                <td>
+                                                    <span>
+                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                                    </span>
+                                                </td>
+                                                <td class="progress-bar-container">
+                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                        <div class="fit-progressbar-background">
+                                                            <span class="progress-fill" style="width: 97.2973%;"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="star-num">(36)</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>
+                                                    <span>
+                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
+                                                    </span>
+                                                </td>
+                                                <td class="progress-bar-container">
+                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                        <div class="fit-progressbar-background">
+                                                            <span class="progress-fill" style="width: 2.2973%;"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="star-num">(2)</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>
+                                                    <span>
+                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
+                                                    </span>
+                                                </td>
+                                                <td class="progress-bar-container">
+                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                        <div class="fit-progressbar-background">
+                                                            <span class="progress-fill" style="width: 0;"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="star-num">(0)</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>
+                                                    <span>
+                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
+                                                    </span>
+                                                </td>
+                                                <td class="progress-bar-container">
+                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                        <div class="fit-progressbar-background">
+                                                            <span class="progress-fill" style="width: 0;"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="star-num">(0)</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>
+                                                    <span>
+                                                        <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
+                                                    </span>
+                                                </td>
+                                                <td class="progress-bar-container">
+                                                    <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                        <div class="fit-progressbar-background">
+                                                            <span class="progress-fill" style="width: 0;"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="star-num">(0)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>-->
 
 
 

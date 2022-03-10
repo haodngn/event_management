@@ -65,7 +65,6 @@ and open the template in the editor.
     box-shadow: 0 0.0625rem 0.375rem 0 rgba(0, 0, 0, 0.1);
     font: 700 0.875rem/0.875rem "Open Sans", sans-serif;
     transition: all 0.2s;
-    height: 7%;
 }
 
 .navbar-custom .navbar-brand.logo-image img {
@@ -193,6 +192,7 @@ and open the template in the editor.
     display: flex;
     justify-content: space-between;
     height: 991px;
+    margin-top: 16px;
 }
 
 .left-margin, .right-margin {

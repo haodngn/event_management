@@ -141,48 +141,6 @@
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
 
-
-
-
-        <!-- Header -->
-        <!--<header id="header" class="ex-header">-->
-
-        <!--            search
-        
-                    <div>
-                        <form action="MainController" method="get" class="search">
-        
-                            <div class="form__field">
-                                <input type="search" name="txtSearchValue" placeholder="What are you looking for?" value="${param.txtSearchValue}" required class="form__input">
-                                <input type="submit" value="Search" name="btnAction" class="button">
-                            </div>
-        
-                        </form>  
-                    </div>
-        
-                    end search-->
-        <!--            <div class="container">
-                         Breadcrumbs 
-                        <div class="ex-basic-1">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="breadcrumbs">
-                                            <a id="linkBreadcrumbs" href="#">Home</a><i
-                                                id="linkBreadcrumbs" class="fa
-                                                fa-angle-double-right"></i><span
-                                                id="linkBreadcrumbs">Create New Event</span>
-                                        </div>  end of breadcrumbs 
-                                    </div>  end of col 
-                                </div>  end of row 
-                            </div>  end of container 
-                        </div>  end of ex-basic-1 
-                         end of breadcrumbs 
-                    </div>  end of container -->
-        <!--</header>  end of ex-header -->
-        <!-- end of header -->
-
-
         <!--content-->
         <h2>Event table</h2>
 
@@ -237,7 +195,7 @@
                                 <form action="GetDetailEventController" method="POST">
                                     <input type="hidden" name="txtId" value="${item.id}"/>
                                     <input type="hidden" name="isUpdate" value="updateEV" />
-                                    <input   type="submit" name="btnAction" value="EDIT"/>
+                                    <input type="submit" name="btnAction" class="btn-event-dev" value="EDIT"/>
                                 </form>
                                 <div class="register-message">
                                     ${requestScope.message}
@@ -245,7 +203,7 @@
                                 <form action="MainController" method="POST">
                                     <input type="hidden" name="id" value="${item.id}" />
                                     <input type="hidden" name="btnEventDev" value="eventDev" />
-                                    <input type="submit" name="btnAction" value="Delete" style="text-transform: uppercase"/>
+                                    <input type="submit" name="btnAction" value="Delete" class="btn-event-dev" style="text-transform: uppercase"/>
                                 </form>
                             </td>
                         </tr>
