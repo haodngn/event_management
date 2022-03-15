@@ -236,7 +236,39 @@ public class UserDAO {
         return check;
     }
 
-    public List<UserDTO> get5FirstUser()
+    // dem bao nhieu trang (moi trang 5 user)
+    public int pagingUser () throws SQLException, ClassNotFoundException, NamingException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int countPage = 0;
+        
+        try {
+            String sql = "select count(ID) as row from Account";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while(rs.next()){
+                int total = rs.getInt("row");
+                countPage = total / 5;
+                if(total % 5 != 0){
+                    countPage++;
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return countPage;
+    }
+    public List<UserDTO> getAllUser(int index)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -244,10 +276,14 @@ public class UserDAO {
         List<UserDTO> listUser = null;
         UserDTO userDTO = null;
         try {
-            String sql = "Select Top 5 ID, Name, Email, PhoneNumber, "
-                    + "Gender, Status from Account";
+            String sql = "Select ID, Name, Email, PhoneNumber, "
+                    + "Gender, Status "
+                    + "from Account "
+                    + "order by ID "
+                    + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
+            stm.setInt(1, (index - 1) * 5);
             rs = stm.executeQuery();
 
             while (rs.next()) {
@@ -302,7 +338,49 @@ public class UserDAO {
         return userCount;
     }
 
-    public List<UserDTO> getUserByName(String username)
+    // dem bao nhieu trang (moi trang 5 user)
+    public int pagingUserBySearch (String searchValue) throws SQLException, ClassNotFoundException, NamingException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int countPage = 0;
+        
+        if(searchValue.equals("")){
+            searchValue = null;
+        }else{
+            searchValue = "%"+searchValue+"%";
+        }
+        
+        try {
+            String sql = "select count(ID) as row from Account where Name like ?";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, searchValue);
+            rs = stm.executeQuery();
+            while(rs.next()){
+                int total = rs.getInt("row");
+                System.out.println("row: "+total);
+                countPage = total / 5;
+                if(total % 5 != 0){
+                    countPage++;
+                }
+            }
+            System.out.println("total page: "+countPage);
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return countPage;
+    }
+    
+    public List<UserDTO> getUserByName(String username, int index)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -312,10 +390,15 @@ public class UserDAO {
 
         try {
             String sql = "Select ID, Name, Email, PhoneNumber, "
-                    + "Gender, Status from Account where Name like ? ";
+                    + "Gender, Status "
+                    + "from Account "
+                    + "where Name like ? "
+                    + "order by ID "
+                    + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, "%" + username + "%");
+            stm.setInt(2, (index - 1) * 5);
             rs = stm.executeQuery();
 
             while (rs.next()) {

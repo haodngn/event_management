@@ -5,11 +5,13 @@
  */
 package dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Admin
  */
-public class UserDTO {
+public class UserDTO implements Serializable{
 
     int userID;
     String name;

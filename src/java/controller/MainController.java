@@ -72,7 +72,7 @@ public class MainController extends HttpServlet {
                 url = CREATE_EVENT;
             } else if (action.equals("Search event") || action.equals("Search") || action.equals("Back to home") || action.equals("manage")) {
                 url = SEARCH_EVENT;
-            } else if (action.equals("detail event") || action.equals("Edit")) {
+            } else if (action.equals("detail event") || action.equals("Edit") || action.equals("EDIT")) {
                 url = DETAIL_EVENT;
             } else if (action.equals("Edit Event")) {
                 url = UPDATE_EVENT;
