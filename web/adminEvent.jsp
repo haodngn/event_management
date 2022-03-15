@@ -70,6 +70,13 @@
                                 </tr>
                             </c:forEach>
                         </table>
+                        <c:forEach begin="1" end="${sessionScope.EVENT_PAGE}" var="i">
+                            <c:url value="AdminController" var="paging">
+                                <c:param name="indexEvent" value="${i}"/>
+                                <c:param name="txtSearchEvent" value="${param.txtSearchEvent}"/>
+                            </c:url>
+                            <a href="${paging}">${i}</a>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

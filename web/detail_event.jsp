@@ -298,7 +298,7 @@
                             </c:if>
                             <c:if test="${user.roleID == '2'}">
                                 <div class="logins-box">
-                                    <form action="GetDetailEventController" method="POST">
+                                    <form action="MainController" method="POST">
                                         <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}"/>
                                         <input type="hidden" name="isUpdate" value="updateEV" />
                                         <input type="hidden" name="txtUserID" value="${sessionScope.USER.userID}"/>

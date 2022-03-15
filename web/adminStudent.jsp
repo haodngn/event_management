@@ -62,9 +62,18 @@
                                 </tr>
                             </c:forEach>
                         </table>
+                        <c:forEach begin="1" end="${sessionScope.STUDENT_PAGE}" var="i">
+                            <c:url value="AdminController" var="paging">
+                                <c:param name="indexStudent" value="${i}"/>
+                                <c:param name="txtSearchUser" value="${param.txtSearchUser}"/>
+                            </c:url>
+                            <a href="${paging}">${i}</a>
+                        </c:forEach>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </body>
 </html>

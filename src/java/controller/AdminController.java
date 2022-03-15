@@ -10,6 +10,7 @@ import dto.EventDTO;
 import dto.UserDTO;
 import java.io.IOException;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,36 +42,77 @@ public class AdminController extends HttpServlet {
             String searchUser = request.getParameter("txtSearchUser");
             String searchEvent = request.getParameter("txtSearchEvent");
 
+            //paging for user
+            int pageIndexStudent = 1;
+            String indexStudent = request.getParameter("indexStudent");
+            if ("".equals(indexStudent)) {
+                indexStudent = null;
+            }
+            if (indexStudent != null) {
+                pageIndexStudent = Integer.parseInt(indexStudent);
+            }
+            int countPageStudent = 0;
+            
+            //paging for event
+            int pageIndexEvent = 1;
+            String indexEvent = request.getParameter("indexEvent");
+            if ("".equals(indexEvent)) {
+                indexEvent = null;
+            }
+            if (indexEvent != null) {
+                pageIndexEvent = Integer.parseInt(indexEvent);
+            }
+            int countPageEvent = 0;
+
             if (searchUser == null) {
-                listUserInit = userDAO.get5FirstUser();
+                listUserInit = userDAO.getAllUser(pageIndexStudent);
+                countPageStudent = userDAO.pagingUser();
             } else if (searchUser.equals("")) {
                 url = ADMINSTUDENT;
-                listUserInit = userDAO.get5FirstUser();
+                listUserInit = userDAO.getAllUser(pageIndexStudent);
+                countPageStudent = userDAO.pagingUser();
             } else {
                 url = ADMINSTUDENT;
-                listUserInit = userDAO.getUserByName(searchUser);
+                countPageStudent = userDAO.pagingUserBySearch(searchUser);
+                listUserInit = userDAO.getUserByName(searchUser, pageIndexStudent);
             }
 
             if (searchEvent == null) {
-                eventDAO.get5FirstEvent();
+                countPageEvent = eventDAO.pagingEvent();
+                eventDAO.getAllEventForAdmin(pageIndexEvent);
                 listEventInit = eventDAO.getListEvent();
             } else if (searchEvent.equals("")) {
                 url = ADMINEVENT;
-                eventDAO.get5FirstEvent();
+                countPageEvent = eventDAO.pagingEvent();
+                eventDAO.getAllEventForAdmin(pageIndexEvent);
                 listEventInit = eventDAO.getListEvent();
             } else {
                 url = ADMINEVENT;
-                listEventInit = eventDAO.getEventByName(searchEvent);
+                countPageEvent = eventDAO.pagingEventBySearch(searchEvent);
+                listEventInit = eventDAO.getEventByName(searchEvent, pageIndexEvent);
             }
+            
+            System.out.println("pages std: "+countPageStudent);
+            System.out.println("curr std: "+pageIndexStudent);
 
             ses.setAttribute("totalEvent", eventDAO.countTotalEvent());
             ses.setAttribute("totalUser", userDAO.countTotalUser());
             ses.setAttribute("initEvent", listEventInit);
             ses.setAttribute("initUser", listUserInit);
+            
+            //paing user
+            ses.setAttribute("STUDENT_INDEX", pageIndexStudent);// current page
+            ses.setAttribute("STUDENT_PAGE", countPageStudent);// number of page
+            
+            //paing event
+            ses.setAttribute("EVENT_INDEX", pageIndexEvent);// current page
+            ses.setAttribute("EVENT_PAGE", countPageEvent);// number of page
+            
         } catch (Exception e) {
             LOGGER.error("Error at AdminController: " + e);
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
