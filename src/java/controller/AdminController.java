@@ -48,20 +48,27 @@ public class AdminController extends HttpServlet {
             if ("".equals(indexStudent)) {
                 indexStudent = null;
             }
-            if (indexStudent != null) {
+
+            if (indexStudent == null) {
+                indexStudent = "1";
+            } else {
                 pageIndexStudent = Integer.parseInt(indexStudent);
             }
             int countPageStudent = 0;
-            
+
             //paging for event
             int pageIndexEvent = 1;
             String indexEvent = request.getParameter("indexEvent");
             if ("".equals(indexEvent)) {
                 indexEvent = null;
             }
-            if (indexEvent != null) {
+
+            if (indexEvent == null) {
+                indexEvent = "1";
+            } else {
                 pageIndexEvent = Integer.parseInt(indexEvent);
             }
+
             int countPageEvent = 0;
 
             if (searchUser == null) {
@@ -91,23 +98,26 @@ public class AdminController extends HttpServlet {
                 countPageEvent = eventDAO.pagingEventBySearch(searchEvent);
                 listEventInit = eventDAO.getEventByName(searchEvent, pageIndexEvent);
             }
-            
-            System.out.println("pages std: "+countPageStudent);
-            System.out.println("curr std: "+pageIndexStudent);
+
+            ses.setAttribute("currentPage", indexEvent);
+            ses.setAttribute("currentStudent", indexStudent);
+
+            System.out.println("pages std: " + countPageStudent);
+            System.out.println("curr std: " + pageIndexStudent);
 
             ses.setAttribute("totalEvent", eventDAO.countTotalEvent());
             ses.setAttribute("totalUser", userDAO.countTotalUser());
             ses.setAttribute("initEvent", listEventInit);
             ses.setAttribute("initUser", listUserInit);
-            
+
             //paing user
             ses.setAttribute("STUDENT_INDEX", pageIndexStudent);// current page
             ses.setAttribute("STUDENT_PAGE", countPageStudent);// number of page
-            
+
             //paing event
             ses.setAttribute("EVENT_INDEX", pageIndexEvent);// current page
             ses.setAttribute("EVENT_PAGE", countPageEvent);// number of page
-            
+
         } catch (Exception e) {
             LOGGER.error("Error at AdminController: " + e);
         } finally {
