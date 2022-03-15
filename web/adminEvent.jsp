@@ -49,6 +49,7 @@
                                     <th>Description</th>
                                     <th>Location</th>
                                     <th>Detail</th>
+                                    <th>Take Attendance</th>
                                 </tr>
                             <c:forEach items="${sessionScope.initEvent}" var="event">
                                 <tr>
@@ -65,6 +66,12 @@
                                         <form action="MainController">
                                             <input type="hidden" name="txtId" value="${event.id}" />
                                             <button name="btnAction" value="detail event" class="btn-detail">Detail</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="MainController">
+                                            <input type="hidden" name="txtId" value="${event.id}" />
+                                            <button name="btnAction" value="takeAttend" class="btn-detail">Take Attendance</button>
                                         </form>
                                     </td>
                                 </tr>
