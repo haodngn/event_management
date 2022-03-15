@@ -55,6 +55,7 @@ public class MainController extends HttpServlet {
     private static final String ADMIN = "AdminController";
     private static final String USERSTATUS = "UserStatusController";
     private static final String DELETECOMMENT = "DeleteCommentController";
+    private static final String TAKEATTEND = "TakeAttendanceController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -102,6 +103,8 @@ public class MainController extends HttpServlet {
                 url = DELETECOMMENT;
             } else if (action.equals("EDIT")) {
                 url = DEATIL_EVENT;
+            } else if (action.equals("takeAttend")) {
+                url = TAKEATTEND;
             }
 
         } catch (Exception e) {

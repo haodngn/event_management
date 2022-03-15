@@ -6,6 +6,8 @@
 package dao;
 
 import dto.EventDTO;
+import dto.RegisterDTO;
+import dto.UserDTO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
@@ -251,15 +253,15 @@ public class EventDAO implements Serializable {
         }
     }
 
-    public int pagingEventBySearch (String searchValue) throws SQLException, ClassNotFoundException, NamingException{
+    public int pagingEventBySearch(String searchValue) throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         int countPage = 0;
-        if(searchValue.equals("")){
+        if (searchValue.equals("")) {
             searchValue = null;
-        }else{
-            searchValue = "%"+searchValue+"%";
+        } else {
+            searchValue = "%" + searchValue + "%";
         }
         try {
             String sql = "select count(ID) as row "
@@ -269,10 +271,10 @@ public class EventDAO implements Serializable {
             stm = con.prepareStatement(sql);
             stm.setString(1, searchValue);
             rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int total = rs.getInt("row");
                 countPage = total / 5;
-                if(total % 5 != 0){
+                if (total % 5 != 0) {
                     countPage++;
                 }
             }
@@ -289,16 +291,17 @@ public class EventDAO implements Serializable {
         }
         return countPage;
     }
+
     public List<EventDTO> getEventByName(String name, int index)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         List<EventDTO> listAdminEvent = null;
-        if(name.equals("")){
+        if (name.equals("")) {
             name = null;
-        }else{
-            name = "%"+name+"%";
+        } else {
+            name = "%" + name + "%";
         }
         try {
             String sql = "Select ID, Speaker, EventName, OccurDate, "
@@ -571,22 +574,23 @@ public class EventDAO implements Serializable {
         }
         return check;
     }
+
     // Dem bao nhieu Event (moi trang 5 event)
-    public int pagingEvent () throws SQLException, ClassNotFoundException, NamingException{
+    public int pagingEvent() throws SQLException, ClassNotFoundException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         int countPage = 0;
-        
+
         try {
             String sql = "select count(ID) as row from Event where Status=1";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int total = rs.getInt("row");
                 countPage = total / 5;
-                if(total % 5 != 0){
+                if (total % 5 != 0) {
                     countPage++;
                 }
             }
@@ -603,6 +607,7 @@ public class EventDAO implements Serializable {
         }
         return countPage;
     }
+
     public void getAllEventForAdmin(int index)
             throws ClassNotFoundException, NamingException, SQLException {
         Connection con = null;
@@ -690,6 +695,70 @@ public class EventDAO implements Serializable {
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, id);
+
+            if (stm.executeUpdate() > 0) {
+                update = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return update;
+    }
+
+    public List<RegisterDTO> getListEventStudent(int eventId) throws ClassNotFoundException, SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<RegisterDTO> listRegister = null;
+        String sql = "Select A.ID as id, A.Name as name, A.Email as email, R.Attendence as attend "
+                + "From Account A Join Register R On A.ID = R.Student_id and R.Event_id = ?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, eventId);
+            rs = stm.executeQuery();
+
+            while(rs.next()) {
+                int accountId = rs.getInt("id");
+                String accountName = rs.getString("name");
+                String accountEmail = rs.getString("email");
+                Boolean attend = rs.getBoolean("attend");
+                RegisterDTO dto = new RegisterDTO(accountId, accountName, accountEmail, attend);
+                if (listRegister == null) {
+                    listRegister = new ArrayList<>();
+                }
+                
+                listRegister.add(dto);
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return listRegister;
+    }
+    
+    public boolean checkAttendance(int code) throws ClassNotFoundException, SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean update = false;
+        String sql = "Update Register set Attendence = ? where code = ?";
+        try {
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setBoolean(1, true);
+            stm.setInt(2, code);
 
             if (stm.executeUpdate() > 0) {
                 update = true;
