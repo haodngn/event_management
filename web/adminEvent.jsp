@@ -64,19 +64,25 @@
                                     <td>
                                         <form action="MainController">
                                             <input type="hidden" name="txtId" value="${event.id}" />
-                                            <button name="btnAction" value="detail event">Detail</button>
+                                            <button name="btnAction" value="detail event" class="btn-detail">Detail</button>
                                         </form>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </table>
-                        <c:forEach begin="1" end="${sessionScope.EVENT_PAGE}" var="i">
-                            <c:url value="AdminController" var="paging">
-                                <c:param name="indexEvent" value="${i}"/>
-                                <c:param name="txtSearchEvent" value="${param.txtSearchEvent}"/>
-                            </c:url>
-                            <a href="${paging}">${i}</a>
-                        </c:forEach>
+                        <c:if test="${sessionScope.initEvent != null}">
+                            <div class="pagination">
+                                <c:forEach begin="1" end="${sessionScope.EVENT_PAGE}" var="i">
+                                    <c:url value="AdminController" var="paging">
+                                        <c:param name="indexEvent" value="${i}"/>
+                                        <c:param name="txtSearchEvent" value="${param.txtSearchEvent}"/>
+                                    </c:url>
+                                    <a href="${paging}" 
+                                       <c:if test="${sessionScope.currentPage == i}">class="active"</c:if>
+                                       >${i}</a>
+                                </c:forEach>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

@@ -56,19 +56,25 @@
                                             <form action="MainController">
                                                 <input type="hidden" name="status" value="${user.status}" />
                                             <input type="hidden" name="email" value="${user.email}" />
-                                            <button name="btnAction" value="Profile">Detail</button>
+                                            <button name="btnAction" value="Profile" class="btn-detail">Detail</button>
                                         </form>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </table>
-                        <c:forEach begin="1" end="${sessionScope.STUDENT_PAGE}" var="i">
-                            <c:url value="AdminController" var="paging">
-                                <c:param name="indexStudent" value="${i}"/>
-                                <c:param name="txtSearchUser" value="${param.txtSearchUser}"/>
-                            </c:url>
-                            <a href="${paging}">${i}</a>
-                        </c:forEach>
+                        <c:if test="${sessionScope.initUser != null}">
+                            <div class="pagination">
+                                <c:forEach begin="1" end="${sessionScope.STUDENT_PAGE}" var="i">
+                                    <c:url value="AdminController" var="paging">
+                                        <c:param name="indexStudent" value="${i}"/>
+                                        <c:param name="txtSearchUser" value="${param.txtSearchUser}"/>
+                                    </c:url>
+                                    <a href="${paging}" 
+                                       <c:if test="${sessionScope.currentStudent == i}">class="active"</c:if>
+                                       >${i}</a>
+                                </c:forEach>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
 
