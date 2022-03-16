@@ -92,9 +92,16 @@
                      id="navbarsExampleDefault">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link page-scroll"
-                               href="SearchEventController">HOME<span
-                                    class="sr-only">(current)</span></a>
+                            <c:if test="${sessionScope.USER.roleID == '1'}">
+                                <a class="nav-link page-scroll"
+                                   href="SearchEventController">HOME<span
+                                        class="sr-only">(current)</span></a>
+                            </c:if>
+                            <c:if test="${sessionScope.USER.roleID == '3'}">
+                                <a class="nav-link page-scroll"
+                                   href="AdminController">HOME<span
+                                        class="sr-only">(current)</span></a>
+                            </c:if>
                         </li>
                         <c:if test="${sessionScope.USER.roleID == '2'}">
                             <li class="nav-item">
