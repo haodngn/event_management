@@ -1,6 +1,6 @@
 # event_management
-Libraries:
--log4j-1.2.17.jar
+Libraries:<br />
+-log4j-1.2.17.jar<br />
 -commons-codec-1.7.jar
 -activation.jar
 -mssql-jdbc-6.4.0.jre8.jar
