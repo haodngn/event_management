@@ -5,12 +5,13 @@
  */
 package controller;
 
+import dao.EventDAO;
 import dao.UserDAO;
+import dto.EventDTO;
 import dto.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -45,12 +46,18 @@ public class ProfileController extends HttpServlet {
             System.out.println(email);
             UserDAO dao = new UserDAO();
             UserDTO dto = dao.getUserByEmail(email);
-            System.out.println("user: " + dto.getEmail());
+            System.out.println("user: " + dto.getUserID());
+            EventDAO edao = new EventDAO();
+            List<EventDTO> history = null;
+            edao.getEventByStudentID(dto.getUserID());
+            history = edao.getListEvent();
+            
             if (status != null) {
                 System.out.println("Status: " + status);
                 ses.setAttribute("status", status);
             }
             ses.setAttribute("userInfo", dto);
+            ses.setAttribute("history", history);
         } catch (ClassNotFoundException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         } finally {

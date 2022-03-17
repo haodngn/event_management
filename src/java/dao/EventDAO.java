@@ -201,6 +201,58 @@ public class EventDAO implements Serializable {
             }
         }
     }
+    
+    //get event by studentID
+    
+    public void getEventByStudentID(int ID)
+            throws SQLException, ClassNotFoundException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        this.listEvent = new ArrayList<>();
+
+        try {
+            String sql = "select E.ID, E.Speaker, E.EventName, E.OccurDate, E.Location, R.Attendence\n" +
+                    "from Event E\n" +
+                    "join Register R\n" +
+                    "on E.ID = R.Event_id\n" +
+                    "where R.Student_id = ?";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setInt(1, ID);
+            rs = stm.executeQuery();
+            System.out.println("sql: " + sql);
+            while (rs.next()) {
+                DateFormat df = new SimpleDateFormat("YYYY-MM-dd");//convert date to String with format dd//MM//YYYY
+                
+                int Id = rs.getInt("ID");
+                String speaker = rs.getString("Speaker");
+                String name = rs.getString("EventName");
+                String location = rs.getString("Location");
+                boolean attendence = rs.getBoolean("Attendence");
+                
+                Date OccurDate = rs.getDate("OccurDate");
+                String occur = df.format(OccurDate);
+
+                EventDTO dto = new EventDTO(Id, speaker, name, occur, location, attendence);
+                if (this.listEvent == null) {
+                    this.listEvent = new ArrayList<>();
+                }
+                this.listEvent.add(dto);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
     //get all search WITHOUT paging
     public void getBySearch(String name)

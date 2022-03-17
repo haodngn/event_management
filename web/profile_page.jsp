@@ -103,20 +103,7 @@
 
                                 </div>
                             </li>
-                            <!-- <span class="nav-item avt-account">
-                                <a
-                                style="text-decoration: none;"  href="#"><img style="
-                                        vertical-align:middle;
-                                        width: 40px;
-                                        margin: 2px;
-                                       
-                                        height: 40px;
-                                        border-radius: 50%;
-                                        " src="images/AVT1.PNG"
-                                        alt="avatar"></a>
-        
-                                        
-                            </span> -->
+
 
                         </div>
                     </div> <!-- end of container -->
@@ -207,8 +194,32 @@
                             </div>
                             <div class="right-bar">
                                 <div class="list-event">
-                                    <img src="assets/images/72_Banner-hội-thảo_1024x400px.jpg" alt="Event 1">
-                                    <img src="assets/images/cover-event-facebook-fts2021-toan-quoc-v1.1.jpg" alt="Event 2">
+<!--                                    <img src="assets/images/72_Banner-hội-thảo_1024x400px.jpg" alt="Event 1">
+                                    <img src="assets/images/cover-event-facebook-fts2021-toan-quoc-v1.1.jpg" alt="Event 2">-->
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Speaker</th>
+                                                <th>Event name</th>
+                                                <th>Occur date</th> 
+                                                <th>Location</th>
+                                                <th>Attendance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${sessionScope.history}" var="item">
+                                                <tr>
+                                                    <td>${item.id}</td>
+                                                    <td>${item.speaker}</td>
+                                                    <td>${item.eventName}</td>
+                                                    <td>${item.occurDate}</td>
+                                                    <td>${item.location}</td>
+                                                    <td>${item.attendence}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
