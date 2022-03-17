@@ -141,20 +141,7 @@
         <!-- Header -->
         <header id="header" class="ex-header">
 
-            <!--            search
             
-                        <div>
-                            <form action="MainController" method="get" class="search">
-            
-                                <div class="form__field">
-                                    <input type="search" name="txtSearchValue" placeholder="What are you looking for?" value="${param.txtSearchValue}" required class="form__input">
-                                    <input type="submit" value="Search" name="btnAction" class="button">
-                                </div>
-            
-                            </form>  
-                        </div>
-            
-                        end search-->
             <div class="container">
                 <!-- Breadcrumbs -->
                 <div class="ex-basic-1">
@@ -278,13 +265,7 @@
 
             </div>
         </form>
-
-
-
-        <!--end of content-->
-
-
-
+       <!--end of content-->
 
         <!-- Footer -->
         <div class="footer">

@@ -131,34 +131,13 @@
 
                         </div>
                     </li>
-                    <!-- <span class="nav-item avt-account">
-                        <a
-                        style="text-decoration: none;"  href="#"><img style="
-                                vertical-align:middle;
-                                width: 40px;
-                                margin: 2px;
-                               
-                                height: 40px;
-                                border-radius: 50%;
-                                " src="images/AVT1.PNG"
-                                alt="avatar"></a>
-
-                                
-                    </span> -->
-
+                    
                 </div>
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
 
-
-
-
-
-
-
-
-        <!-- Header -->
+       <!-- Header -->
         <header id="header" class="ex-header">
             <div class="container">
                 <!-- Breadcrumbs -->
@@ -318,8 +297,6 @@
             </div> <!-- end of container -->
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
-
-
 
 
         <!-- Scripts -->

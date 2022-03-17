@@ -211,10 +211,7 @@
         </div>
 
         <!--end of content-->
-
-
-
-
+ 
         <!-- Footer -->
         <div class="footer">
             <div class="container">
@@ -291,10 +288,7 @@
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
 
-
-
-
-        <!-- Scripts -->
+       <!-- Scripts -->
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
         <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
         <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
