@@ -41,3 +41,21 @@ and open the template in the editor.
 .event-infos h6 {
     font-size: 12px;
 }
+
+.ev-list{
+    box-sizing: border-box;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    max-width: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.one_third{
+    height: auto;
+    width: auto;
+    padding: 5px;
+    
+}

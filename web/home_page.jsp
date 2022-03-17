@@ -133,21 +133,6 @@
 
                         </div>
                     </li>
-                    <!-- <span class="nav-item avt-account">
-                        <a
-                        style="text-decoration: none;"  href="#"><img style="
-                                vertical-align:middle;
-                                width: 40px;
-                                margin: 2px;
-                               
-                                height: 40px;
-                                border-radius: 50%;
-                                " src="images/AVT1.PNG"
-                                alt="avatar"></a>
-
-                                
-                    </span> -->
-
                 </div>
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
@@ -188,159 +173,68 @@
         </header> <!-- end of ex-header -->
         <!-- end of header -->
 
-        <!-- Slider Event -->
-        <div id="screens" class="slider">
-            <div class="container">
-                <div class="row">
-                    <h1>Events</h1>
-                    <div class="col-lg-12">
+        <!--Slider Event--> 
+        <!--        <div id="screens" class="slider">
+                    <div class="container">
+                        <div class="row">
+                            <h1> Hot Events</h1>
+                            <div class="col-lg-12">
+                                <div class="slider-container">
+                                    <div class="swiper-container image-slider">
+                                        <div class="swiper-wrapper">
+        <c:forEach items="${requestScope.listEvent}" var="item">
+            <div class="swiper-slide">
+            <c:url var="detail" value="MainController">
+                <c:param name="btnAction" value="detail event"/>
+                <c:param name="txtId" value="${item.id}"/>
+            </c:url>
+            <a href="${detail}" class="popup-link"
+               data-effect="fadeIn">
+                <img style="height: 355px; width: 100%" class="img-fluid"
+                     src="${item.image}"
+                     alt="alternative">
+                <div class="event-infos">
+                    <h5>${item.eventName}</h5>
+                    <h6>${item.speaker}</h6>
+                    <h6>${item.location}</h6>
+                </div>
+            </a>
+        </div>
+        </c:forEach>
+    </div>   
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>   
+</div>   
+</div>   
+</div>   
+</div>   
+</div>   -->
+        <h1 style="margin-left: 8rem">Events</h1>
+        <div class="ev-list">
+            <c:forEach items="${requestScope.listEvent}" var="item">
+                <c:url var="detail" value="MainController">
+                    <c:param name="btnAction" value="detail event"/>
+                    <c:param name="txtId" value="${item.id}"/>
+                </c:url>
+                <div class="one_third">
+                    <a href="${detail}" class="popup-link" data-effect="fadeIn">
+                        <figure> 
+                            <img style="height: 355px; width: 100%" class="img-fluid"
+                                 src="${item.image}"
+                                 alt="alternative">
+                            <figcaption>
+                                <h6 class="heading">${item.eventName}</h6>
+                                <p>${item.speaker}</p>   
+                                <p>${item.location}</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            </c:forEach>
+        </div>
 
-                        <!-- Image Slider -->
-                        <div class="slider-container">
-                            <div class="swiper-container image-slider">
-                                <div class="swiper-wrapper">
-                                    <c:forEach items="${requestScope.listEvent}" var="item">
-                                        <!-- Slide -->
-                                        <div class="swiper-slide">
-                                            <c:url var="detail" value="MainController">
-                                                <c:param name="btnAction" value="detail event"/>
-                                                <c:param name="txtId" value="${item.id}"/>
-                                            </c:url>
-                                            <a href="${detail}" class="popup-link"
-                                               data-effect="fadeIn">
-                                                <img style="height: 355px; width: 100%" class="img-fluid"
-                                                     src="${item.image}"
-                                                     alt="alternative">
-                                                <div class="event-infos">
-                                                    <h5>${item.eventName}</h5>
-                                                    <h6>${item.speaker}</h6>
-                                                    <h6>${item.location}</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </c:forEach>
-                                    <!-- end of slide -->
 
-
-                                </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
-                            </div> <!-- end of swiper-container -->
-                        </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of slider -->
-
-        <!-- Slider News -->
-        <div id="screens" class="slider">
-            <div class="container">
-                <div class="row">
-                    <h1>News</h1>
-                    <div class="col-lg-12">
-
-                        <!-- Image Slider -->
-                        <div class="slider-container">
-                            <div class="swiper-container image-slider">
-                                <div class="swiper-wrapper">
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <a href="#" class="popup-link"
-                                           data-effect="fadeIn">
-                                            <img class="img-fluid"
-                                                 src="assets/images/event1.jpg"
-                                                 alt="alternative">
-                                        </a>
-                                    </div>
-                                    <!-- end of slide -->
-                                </div> <!-- end of swiper-wrapper -->
-
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                                <!-- end of add arrows -->
-
-                            </div> <!-- end of swiper-container -->
-                        </div> <!-- end of slider-container -->
-                        <!-- end of image slider -->
-
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of slider -->
-        <!-- end of slider news -->
-
-        <!-- end of discuss -->
 
         <!-- Footer -->
         <div class="footer" id="footer">
