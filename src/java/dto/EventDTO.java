@@ -28,6 +28,7 @@ public class EventDTO implements Serializable {
     private String image;
     private float price;
     private int studentMax;
+    private boolean attendence;
 
     public EventDTO() {
     }
@@ -160,6 +161,24 @@ public class EventDTO implements Serializable {
         this.studentMax = studentMax;
     }
 
+    public EventDTO(int Id, String speaker, String name, String occur, String location, boolean attendence) {
+        this.id = Id;
+        this.speaker = speaker;
+        this.eventName = name;
+        this.occurDate = occur;
+        this.location = location;
+        this.attendence = attendence;
+    }
+
+    public boolean isAttendence() {
+        return attendence;
+    }
+
+    public void setAttendence(boolean attendence) {
+        this.attendence = attendence;
+    }
+
+    
     public int getStudentMax() {
         return studentMax;
     }
