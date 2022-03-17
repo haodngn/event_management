@@ -70,12 +70,28 @@
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
             <!-- Image Logo -->
-            <a href="SearchEventController"><img style="height: 73px;width: 259px;"
-                                                 src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
-                                                 alt="alternative"></a>
-            <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
-                                                 30px;"
-                                                 src="assets/images/logo.jpg" alt="alternative"></a>
+            <c:if test="${sessionScope.USER.roleID == '1'}">
+                <a href="SearchEventController"><img style="height: 73px;width: 259px;"
+                                                     src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                     alt="alternative"></a>
+                </c:if>
+                <c:if test="${sessionScope.USER.roleID == '3'}">
+                <a href="AdminController"><img style="height: 73px;width: 259px;"
+                                               src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                               alt="alternative"></a>
+                </c:if>
+                <c:if test="${sessionScope.USER.roleID == '1'}">
+                <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
+                                                     30px;"
+                                                     src="assets/images/logo.jpg"
+                                                     alt="alternative"></a>
+                </c:if>
+                <c:if test="${sessionScope.USER.roleID == '3'}">
+                <a href="AdminController"><img style="height: 65px; width: 200px; margin-left:
+                                               30px;"
+                                               src="assets/images/logo.jpg"
+                                               alt="alternative"></a>
+                </c:if>
             <div class="container">
 
                 <!-- Mobile Menu Toggle Button -->
@@ -96,12 +112,12 @@
                                 <a class="nav-link page-scroll"
                                    href="SearchEventController">HOME<span
                                         class="sr-only">(current)</span></a>
-                            </c:if>
-                            <c:if test="${sessionScope.USER.roleID == '3'}">
+                                </c:if>
+                                <c:if test="${sessionScope.USER.roleID == '3'}">
                                 <a class="nav-link page-scroll"
                                    href="AdminController">HOME<span
                                         class="sr-only">(current)</span></a>
-                            </c:if>
+                                </c:if>
                         </li>
                         <c:if test="${sessionScope.USER.roleID == '2'}">
                             <li class="nav-item">
@@ -193,15 +209,16 @@
                                 <i class="fas fa-map-marker"></i>
                                 <p>${event.location}</p>
 
-                                <p class="location_time_p">Fee :$ ${requestScope.FEE.price} </p>
+                                <p class="location_time_p">Fee</p>
                                 <i class="fas fa-money-bill"></i>
+                                <p>$ ${requestScope.FEE.price}</p>
 
                             </div>
                             <div class="location_time" style="width: 50%;
                                  float:left">
                                 <p class="location_time_p">Seats</p>
                                 <i class="fas fa-audio-description"></i>
-                                <p>50/150</p>
+                                <p>${requestScope.EVENT.studentCount}/${requestScope.EVENT.studentMax}</p>
                             </div>
                             <div class="location_time" style="width: 50%;
                                  float:right">

@@ -27,18 +27,13 @@ import javax.servlet.http.HttpSession;
  */
 public class ProfileController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String PROFILE_PAGE = "profile_page.jsp";
+    private static final String PROFILE_DEV = "profile_dev.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        String url = PROFILE_PAGE;
         try {
             HttpSession ses = request.getSession();
             String email = request.getParameter("email");
@@ -56,12 +51,15 @@ public class ProfileController extends HttpServlet {
                 System.out.println("Status: " + status);
                 ses.setAttribute("status", status);
             }
+            if(ses.getAttribute("roleID") == "2") {
+                url = PROFILE_DEV;
+            }
             ses.setAttribute("userInfo", dto);
             ses.setAttribute("history", history);
         } catch (ClassNotFoundException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            request.getRequestDispatcher("profile_page.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

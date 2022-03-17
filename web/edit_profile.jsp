@@ -39,9 +39,9 @@
                         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
 
                         <!-- Image Logo -->
-                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/0001.jpg" alt="alternative"></a> 
+                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/0001.jpg" alt="alternative"></a>
 
-                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/logo.jpg" alt="alternative"></a> 
+                        <a class="navbar-brand logo-image" href="SearchEventController"><img src="assets/images/logo.jpg" alt="alternative"></a>
 
 
 
@@ -88,7 +88,7 @@
                 <div class="main">
                     <div class="left-margin"></div>
                     <div class="main-content">
-                        <div class="direct-bar">
+<!--                        <div class="direct-bar">
                             <div class="breadcrumbs">
                                 <a id="linkBreadcrumbs" href="#">Profile</a>
                                 <i id="linkBreadcrumbs" class="fa fa-angle-double-right"></i>
@@ -102,7 +102,7 @@
                                     <span id="linkBreadcrumbs">Admin Profile</span>
                                 </c:if>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="body">
                             <div class="left-bar">

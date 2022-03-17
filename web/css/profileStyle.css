@@ -346,7 +346,11 @@ and open the template in the editor.
     margin: 36px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+}
+
+.right-bar .list-event span {
+    font-size: 48px;
+    font-weight: 600;
 }
 
 .right-bar .list-event img {

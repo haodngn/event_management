@@ -115,10 +115,14 @@ input[type="submit"] {
 }
 
 .form__field {
-
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    width: 100%;
+}
+
+#header .container {
+    max-width: 80%;
 }
 
 .form__input {
@@ -151,7 +155,7 @@ input[type="submit"] {
 
 .search {
     margin-bottom: 1rem;
-    max-width: 1110px;
+    max-width: 78%;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--searchBackgroundColor);
