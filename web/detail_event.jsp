@@ -80,7 +80,18 @@
                                                src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
                                                alt="alternative"></a>
                 </c:if>
+                <c:if test="${sessionScope.USER.roleID == '2'}">
+                <a href="SearchEventController"><img style="height: 73px;width: 259px;"
+                                                     src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                     alt="alternative"></a>
+                </c:if>
                 <c:if test="${sessionScope.USER.roleID == '1'}">
+                <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
+                                                     30px;"
+                                                     src="assets/images/logo.jpg"
+                                                     alt="alternative"></a>
+                </c:if>
+                <c:if test="${sessionScope.USER.roleID == '2'}">
                 <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
                                                      30px;"
                                                      src="assets/images/logo.jpg"
@@ -109,6 +120,11 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <c:if test="${sessionScope.USER.roleID == '1'}">
+                                <a class="nav-link page-scroll"
+                                   href="SearchEventController">HOME<span
+                                        class="sr-only">(current)</span></a>
+                                </c:if>
+                                <c:if test="${sessionScope.USER.roleID == '2'}">
                                 <a class="nav-link page-scroll"
                                    href="SearchEventController">HOME<span
                                         class="sr-only">(current)</span></a>
@@ -202,7 +218,7 @@
                         <div class="text-container">
                             <h3>${event.eventName}</h3>
                             <h4>Speaker: ${event.speaker}</h4>
-                            <div class="location_time" style="width: 50%;
+                            <div class="location_time" style="width: 50%;margin-bottom: 0;
                                  float:left">
 
                                 <p class="location_time_p">Location</p>
@@ -214,7 +230,7 @@
                                 <p>$ ${requestScope.FEE.price}</p>
 
                             </div>
-                            <div class="location_time" style="width: 50%;
+                            <div class="location_time" style="width: 50%;margin-bottom: 0;
                                  float:left">
                                 <p class="location_time_p">Seats</p>
                                 <i class="fas fa-audio-description"></i>
@@ -234,62 +250,6 @@
                                 <p>${event.description}</p>
                             </div>
 
-                            <!--                            <p style="width: 50%;float: right;">❤ FPT UNIVERSITY DANANG</p>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <ul class="list-unstyled li-space-lg">
-                                                                    <li class="media">
-                                                                        <div class="media-body">
-                                                                            ❤ Time to open idea round
-                                                                            application: April 16, 2021 -
-                                                                            May 20, 2021
-                            
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <div class="media-body">❤ The Board
-                                                                            of Directors scores the ideas:
-                                                                            May 21, 2021 - May 23, 2021
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <div class="media-body"> ❤ Time of
-                                                                            result announcement: May 24,
-                                                                            2021
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <div class="media-body">Registration link:
-                                                                            <a href="https://bom.to/WWHnJmUbKbNEG">https://bom.to/WWHnJmUbKbNEG</a></div>
-                                                                    </li>
-                            
-                                                                </ul>
-                                                            </div>  end of col 
-                            
-                                                            <div class="col-md-6">
-                                                                <ul class="list-unstyled li-space-lg">
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">🎪 ADDRESS: FPT Urban Area Da Nang, Hoa Hai Ward, Ngu Hanh Son District, Da Nang City.
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">🌏 FANPAGE: https://www.facebook.com/daihocfptdanang
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">📞 HOTLINE: 0236 7300 999
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <i class="fas fa-square"></i>
-                                                                        <div class="media-body">🌐 WEBSITE:<a href="https://dnuni.fpt.edu.vn/">https://dnuni.fpt.edu.vn/</a></div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>  end of col 
-                                                    </div>  end of row -->
                             <c:if test="${user.roleID == '1'}">
                                 <c:if test="${!requestScope.isOverDate == true}">
                                     <div class="loginx-box">

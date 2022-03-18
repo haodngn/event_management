@@ -223,11 +223,11 @@
                             <img style="height: 355px; width: 100%" class="img-fluid"
                                  src="${item.image}"
                                  alt="alternative">
-                            <figcaption>
-                                <h6 class="heading">${item.eventName}</h6>
-                                <p>${item.speaker}</p>   
-                                <p>${item.location}</p>
-                            </figcaption>
+                            <div class="event-infos">
+                                <h5>${item.eventName}</h5>
+                                <h6>${item.speaker}</h6>
+                                <h6>${item.location}</h6>
+                            </div>
                         </figure>
                     </a>
                 </div>
