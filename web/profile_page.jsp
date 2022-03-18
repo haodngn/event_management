@@ -18,6 +18,7 @@
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/profileStyle.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/attendanceStyle.css"/>
         <script src="script/profileScript.js" defer></script>
     </head>
     <body>
@@ -38,13 +39,30 @@
                     <!-- Text Logo - Use this if you don't have a graphic logo -->
                     <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Sync</a> -->
                     <!-- Image Logo -->
+                    <c:if test="${sessionScope.USER.roleID == '1'}">
                     <a href="SearchEventController"><img style="height: 73px;width: 259px;"
                                                          src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
                                                          alt="alternative"></a>
-                    <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
+                    </c:if>
+                    <c:if test="${sessionScope.USER.roleID == '3'}">
+                        <a href="AdminController"><img style="height: 73px;width: 259px;"
+                                                         src="https://uni.fpt.edu.vn/Data/Sites/1/media/2020logoweb/0001.jpg"
+                                                         alt="alternative"></a>
+                    </c:if>
+                    <c:if test="${sessionScope.USER.roleID == '1'}">
+                        <a href="SearchEventController"><img style="height: 65px; width: 200px; margin-left:
                                                          30px;"
                                                          src="assets/images/logo.jpg"
                                                          alt="alternative"></a>
+                    </c:if>
+                    <c:if test="${sessionScope.USER.roleID == '3'}">
+                        <a href="AdminController"><img style="height: 65px; width: 200px; margin-left:
+                                                         30px;"
+                                                         src="assets/images/logo.jpg"
+                                                         alt="alternative"></a>
+                    </c:if>
+
+                    
                     <div class="container">
 
                         <!-- Mobile Menu Toggle Button -->
@@ -61,9 +79,16 @@
                              id="navbarsExampleDefault">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link page-scroll"
-                                       href="SearchEventController">HOME<span
-                                            class="sr-only">(current)</span></a>
+                                    <c:if test="${sessionScope.USER.roleID == '1'}">
+                                        <a class="nav-link page-scroll"
+                                           href="SearchEventController">HOME<span
+                                                class="sr-only">(current)</span></a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.USER.roleID == '3'}">
+                                        <a class="nav-link page-scroll"
+                                           href="AdminController">HOME<span
+                                                class="sr-only">(current)</span></a>
+                                        </c:if>
                                 </li>
                                 <c:if test="${sessionScope.USER.roleID == 2}">
                                     <li class="nav-item">
@@ -112,7 +137,7 @@
                 <div class="main">
                     <div class="left-margin"></div>
                     <div class="main-content">
-                        <div class="direct-bar">
+<!--                        <div class="direct-bar">
                             <div class="breadcrumbs">
                                 <a id="linkBreadcrumbs" href="#">Profile</a>
                                 <i id="linkBreadcrumbs" class="fa fa-angle-double-right"></i>
@@ -126,7 +151,7 @@
                                     <span id="linkBreadcrumbs">Admin Profile</span>
                                 </c:if>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="body">
                             <div class="left-bar">
@@ -194,9 +219,8 @@
                             </div>
                             <div class="right-bar">
                                 <div class="list-event">
-<!--                                    <img src="assets/images/72_Banner-hội-thảo_1024x400px.jpg" alt="Event 1">
-                                    <img src="assets/images/cover-event-facebook-fts2021-toan-quoc-v1.1.jpg" alt="Event 2">-->
-                                    <table>
+                                    <span>Registered Event</span>
+                                    <table id="customers">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
