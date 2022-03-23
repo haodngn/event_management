@@ -158,7 +158,7 @@
                         <th>Register date</th>
                         <th>Expiration date</th>
                         <th>Student Max</th>
-                        <th>Description</th>
+                        
                         <th>Location</th>
                         <th>Price</th>
                         <th>Student Count</th>
@@ -185,7 +185,7 @@
                             <td>${item.registerDate}</td>
                             <td>${item.expirationDate}</td>
                             <td>${item.studentMax}</td>
-                            <td>${item.description}</td>
+                            
                             <td>${item.location}</td>
                             <td>${item.price} $ </td>
                             <td>${item.studentCount}</td>
@@ -208,6 +208,18 @@
                     </c:forEach>
                 <tbody>
             </table>
+        </div>
+        <div class="pagination">
+            <c:forEach begin="1" end="${requestScope.page}" var="i">
+                <c:url value="SearchEventController" var="paging">
+                    <c:param name="index" value="${i}"/>
+                    <c:param name="btnEventDev" value="eventDev"/>
+                    <c:param name="txtSearchValue" value="${param.txtSearchValue}"/>
+                </c:url>
+                <a href="${paging}" 
+                   <c:if test="${requestScope.index == i}">class="active"</c:if>
+                   >${i}</a>
+            </c:forEach>
         </div>
 
         <!--end of content-->

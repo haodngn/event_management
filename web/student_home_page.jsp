@@ -177,7 +177,17 @@
                 </div>
             </c:forEach>
         </div>
-   
+        <div class="pagination">
+            <c:forEach begin="1" end="${requestScope.page}" var="i">
+                <c:url value="SearchEventController" var="paging">
+                    <c:param name="index" value="${i}"/>
+                    <c:param name="txtSearchValue" value="${param.txtSearchValue}"/>
+                </c:url>
+                <a href="${paging}" 
+                   <c:if test="${requestScope.index == i}">class="active"</c:if>
+                   >${i}</a>
+            </c:forEach>
+        </div>
         <!-- Footer -->
         <div class="footer" id="footer">
             <div class="container">

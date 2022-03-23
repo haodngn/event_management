@@ -52,7 +52,7 @@ public class SearchEventController extends HttpServlet {
         String index = request.getParameter("index");
         String searchName = request.getParameter("txtSearchValue");
         String eventDev = request.getParameter("btnEventDev");
-
+        
         if (searchName == null) {
             searchName = "";
         }
@@ -76,13 +76,16 @@ public class SearchEventController extends HttpServlet {
 
             if (searchName.equals("") && eventDev.equals("")) {
 
-                eventDAO.getAll();
+                countPage = eventDAO.pagingGetAll();
+                eventDAO.getAll(pageIndex);
                 listEvent = eventDAO.getListEvent();
             } else if(eventDev.equals("eventDev")) {
-                eventDAO.getAllForDep();
+                countPage = eventDAO.pagingGetAll();
+                eventDAO.getAllForDep(pageIndex);
                 listEvent = eventDAO.getListEvent();
             } else{
-                eventDAO.getBySearch(searchName);
+                countPage = eventDAO.pagingEventBySearch(searchName);
+                eventDAO.getBySearch(searchName, pageIndex);
                 listEvent = eventDAO.getListEvent();
             }
             UserDTO dto = (UserDTO) ses.getAttribute("USER");
@@ -95,11 +98,12 @@ public class SearchEventController extends HttpServlet {
                     url = HOME_PAGE;
                 }
             }
-            System.out.println("url: " + url);
 
             request.setAttribute("listEvent", listEvent);//list Event
             request.setAttribute("page", countPage);//number of page 
             request.setAttribute("index", pageIndex);//current page
+            
+            System.out.println("url: "+url);
 
         } catch (SQLException ex) {
             LOGGER.error("SQLException at SearchEventController: " + ex);
