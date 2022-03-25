@@ -167,7 +167,7 @@
         <!--content-->
         <h3 style="text-align: center">EVENT UPDATE FORM</h3>
 
-        <c:set value="${requestScope.CREATE_ERR}" var="err"/>
+        <c:set value="${requestScope.UPDATE_ERR}" var="err"/>
         <c:set value="${requestScope.EVENT}" var="event"/>
         <form action="MainController" method="POST">
             <div class="container_form_create">
@@ -245,10 +245,10 @@
                     </c:if>
 
                     <label for="price">Price($)</label>
-                    <input id="location" type="text" name="txtPrice" value="${event.price}" readonly="true"/></br>
+                    <input id="price" type="text" name="txtPrice" value="${event.price}" readonly="true"/></br>
 
                     <label for="count">Number of student</label>
-                    <input id="count" type="number" name="txtAmount" value="${event.studentMax}" readonly="true" /></br>
+                    <input id="count" type="number" name="txtAmount" value="${event.studentMax}" /></br>
                     <c:if test="${not empty err.amountStudentErr}">
                         <font color="red">
                         ${err.amountStudentErr}<br/>
