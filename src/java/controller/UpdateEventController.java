@@ -50,10 +50,13 @@ public class UpdateEventController extends HttpServlet {
             String eventName = request.getParameter("txtEventName");
             String description = request.getParameter("txtDescription");
             String location = request.getParameter("txtLocation");
+            int amountStudent = 0;
+            if (!request.getParameter("txtAmount").equals("")) {
+                amountStudent = Integer.parseInt(request.getParameter("txtAmount"));
+            }
 
             boolean foundErr = false;
             EventErrorDTO err = new EventErrorDTO();
-
 
             if (speaker.length() < 2 || speaker.length() > 50) {
                 foundErr = true;
@@ -74,6 +77,11 @@ public class UpdateEventController extends HttpServlet {
                 foundErr = true;
                 err.setLocationLength("Field is required 2 - 20 character !!");
             }
+            
+            if (amountStudent <= 10) {
+                foundErr = true;
+                err.setAmountStudentErr("At least 10 student can join this event !!");
+            }
 
             //conver string to date(util) to compare
             String occurDate = request.getParameter("txtOccurDate");
@@ -81,10 +89,17 @@ public class UpdateEventController extends HttpServlet {
             String registerDate = request.getParameter("registerDate");
             String expirationDate = request.getParameter("txtExpirationDate");
 
-            Date occur = new SimpleDateFormat("MM-dd-yyyy").parse(occurDate);
-            Date exp = new SimpleDateFormat("MM-dd-yyyy").parse(expirationDate);
-            Date regist = new SimpleDateFormat("MM-dd-yyyy").parse(registerDate);
-            Date end = new SimpleDateFormat("MM-dd-yyyy").parse(endDate);
+            //get current date
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = formatter.format(date);
+
+            //conver string to date(util) to compare
+            Date occur = formatter.parse(occurDate);
+            Date exp = formatter.parse(expirationDate);
+            Date regist = formatter.parse(registerDate);
+            Date end = formatter.parse(endDate);
+            Date current = formatter.parse(currentDate);
 
             //expirationDate < RegisterDate
             if (exp.before(regist)) {
@@ -102,6 +117,13 @@ public class UpdateEventController extends HttpServlet {
             if (occur.after(end)) {
                 foundErr = true;
                 err.setOccurDateCheck("Occur date must before End date !!");
+            }
+
+            //Occur date must at least 5 day since current date
+            long diffrent = occur.getDate() - current.getDate();
+            if (diffrent <= 5 && diffrent >= -5) {
+                foundErr = true;
+                err.setOccurDateCheck("Occur date must after current date at least 5 day !!");
             }
 
             //End date < Occur Date
@@ -122,7 +144,7 @@ public class UpdateEventController extends HttpServlet {
                 err.setExpDateCheck("Expiration date must before Occur date !!");
             }
 //            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location, image);
-            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location);
+            EventDTO dto = new EventDTO(speaker, eventName, occurDate, endDate, registerDate, expirationDate, description, location, amountStudent);
             if (foundErr) {
                 request.setAttribute("UPDATE_ERR", err);
                 request.setAttribute("EVENT", dto);// Detai Event

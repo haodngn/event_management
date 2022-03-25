@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import dto.EventErrorDTO;
 import dto.UserDTO;
 import java.io.File;
+import java.sql.Timestamp;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
@@ -119,7 +120,7 @@ public class CreateEventController extends HttpServlet {
         EventErrorDTO err = new EventErrorDTO();
         boolean foundErr = false;
         try {
-            if (amountStudent <= 0) {
+            if (amountStudent <= 10) {
                 foundErr = true;
                 err.setAmountStudentErr("At least 10 student can join this event !!");
             }
@@ -144,11 +145,17 @@ public class CreateEventController extends HttpServlet {
                 err.setLocationLength("Field is required 2 - 200 character !!");
             }
 
+            //get current date
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = formatter.format(date);
+
             //conver string to date(util) to compare
-            Date occur = new SimpleDateFormat("MM-dd-yyyy").parse(occurDate);
-            Date exp = new SimpleDateFormat("MM-dd-yyyy").parse(expirationDate);
-            Date regist = new SimpleDateFormat("MM-dd-yyyy").parse(registerDate);
-            Date end = new SimpleDateFormat("MM-dd-yyyy").parse(endDate);
+            Date occur = formatter.parse(occurDate);
+            Date exp = formatter.parse(expirationDate);
+            Date regist = formatter.parse(registerDate);
+            Date end = formatter.parse(endDate);
+            Date current = formatter.parse(currentDate);
 
             //expirationDate < RegisterDate
             if (exp.before(regist)) {
@@ -168,6 +175,13 @@ public class CreateEventController extends HttpServlet {
                 err.setOccurDateCheck("Occur date must before End date !!");
             }
 
+            //Occur date must at least 5 day since current date
+            long diffrent = occur.getDate() - current.getDate();
+            if(diffrent <= 5 && diffrent >= -5){
+                foundErr = true;
+                err.setOccurDateCheck("Occur date must after current date at least 5 day !!");
+            }
+            
             //End date < Occur Date
             if (end.before(occur)) {
                 foundErr = true;
