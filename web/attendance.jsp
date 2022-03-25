@@ -56,7 +56,10 @@
                             <td>${index.index + 1}</td>
                             <td>${register.studentName}</td>
                             <td>${register.studentEmail}</td>
-                            <td>${register.attendance}</td>
+                            <td>
+                                <c:if test="${register.attendance == 'true'}">Attended</c:if>
+                                <c:if test="${register.attendance == 'false'}">Absent</c:if>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
