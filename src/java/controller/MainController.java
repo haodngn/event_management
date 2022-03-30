@@ -58,6 +58,7 @@ public class MainController extends HttpServlet {
     private static final String TAKEATTEND = "TakeAttendanceController";
     private static final String CREATEADMINACCOUNT = "createAdminAccount.jsp";
     private static final String CREATEMANAGERACCOUNT = "CreateManagerAccountController";
+    private static final String CLOSEEVENT = "CloseEventController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -111,7 +112,9 @@ public class MainController extends HttpServlet {
                 url = CREATEADMINACCOUNT;
             } else if (action.equals("createManagerAccount")) {
                 url = CREATEMANAGERACCOUNT;
-            } 
+            } else if (action.equals("CLOSE")) {
+                url = CLOSEEVENT;
+            }
 
         } catch (Exception e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
