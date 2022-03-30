@@ -1,11 +1,11 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%-- 
-    Document   : event_details_page
-    Created on : Feb 17, 2022, 9:37:09 PM
+    Document   : student_register
+    Created on : Mar 30, 2022, 7:50:00 PM
     Author     : By Van Lung, IDStudent: SE140193
 --%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -53,17 +53,7 @@
     <body data-spy="scroll" data-target=".fixed-top">
 
 
-        <c:set value="${requestScope.listEvent}" var="event"/>
-        <!-- Preloader -->
-        <div class="spinner-wrapper">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div>
-        <!-- end of preloader -->
-
+        <%--<c:set value="${requestScope.listEvent}" var="event"/>--%>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom
@@ -144,74 +134,27 @@
 
         <div class="table-wrapper">
 
-            <div class="create-button">
-                <button><a href="create_event.jsp">Create</a></button>
-            </div>
+
             <table class="fl-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Speaker</th>
-                        <th>Event name</th>
-                        <th>Occur date</th>
-                        <th>End date</th>
-                        <th>Register date</th>
-                        <th>Expiration date</th>
-                        <th>Student Max</th>
-                        
-                        <th>Location</th>
-                        <th>Price</th>
-                        <th>Student Count</th>
-                        <th>Student Register</th>
-                        <th>Action</th>
-
+                        <th>Student name</th>
+                        <th>Attendance</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${requestScope.listEvent}" var="item">
                         <tr>
                             <td>${item.id}</td>
-                            <td>${item.speaker}</td>
 
                             <c:url var="detail" value="MainController">
                                 <c:param name="btnAction" value="detail event"/>
                                 <c:param name="txtId" value="${item.id}"/>
                             </c:url>
-                            <td>
-                                <a href="${detail}">${item.eventName}</a>
-                            </td>
 
-                            <td>${item.occurDate}</td>
-                            <td>${item.endDate}</td>
-                            <td>${item.registerDate}</td>
-                            <td>${item.expirationDate}</td>
-                            <td>${item.studentMax}</td>
-                            
-                            <td>${item.location}</td>
-                            <td>${item.price} $ </td>
-                            <td>${item.studentCount}</td>
-                             <td>
-                                 <form action="MainController" method="POST">
-                                      <input type="hidden" name="studentRegister" value="student_register" />
-                                    <input type="submit" name="btnAction" value="CHECK" class="btn-event-dev" style="text-transform: uppercase"/>
-                                    <button><a href="student_register.jsp">CHECK</a></button>
-                                 </form>
-                            </td>
-                            <td>
-                                <form action="MainController" method="POST">
-                                    <input type="hidden" name="txtId" value="${item.id}"/>
-                                    <input type="hidden" name="isUpdate" value="updateEV" />
-                                    <input type="submit" name="btnAction" class="btn-event-dev" value="EDIT"/>
-                                </form>
-                                <div class="register-message">
-                                    ${requestScope.message}
-                                </div>
-                                <form action="MainController" method="POST">
-                                    <input type="hidden" name="id" value="${item.id}" />
-                                    <input type="hidden" name="btnEventDev" value="eventDev" />
-                                    <input type="submit" name="btnAction" value="Delete" class="btn-event-dev" style="text-transform: uppercase"/>
-                                </form>
-                            </td>
+                            <td>${item.student_name}</td>
+                            <td>${item.Attendance}</td>
                         </tr>
                     </c:forEach>
                 <tbody>
@@ -231,7 +174,7 @@
         </div>
 
         <!--end of content-->
- 
+
         <!-- Footer -->
         <div class="footer">
             <div class="container">
@@ -308,7 +251,7 @@
         </div> <!-- end of copyright -->
         <!-- end of copyright -->
 
-       <!-- Scripts -->
+        <!-- Scripts -->
         <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
         <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
         <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
@@ -321,3 +264,4 @@
 
     </body>
 </html>
+
