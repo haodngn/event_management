@@ -5,14 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Create Account</title>
     </head>
     <style>
         input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type=email], select {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -55,18 +66,30 @@
     </style>
     <body>
         <h3>Create Manager Account</h3>
+        <c:set value="${requestScope.USER_ERR}" var="err"/>
+        
         <form action="MainController">
             <label for="fname">Name</label>
-            <input type="text" id="fname" name="txtName" placeholder="Your name.." value="" required>
+            <input type="text" id="fname" name="txtName" placeholder="Your name.." value="${param.txtName}" required>
 
-            <label for="email">Email</label>
-            <input type="text" id="email" name="txtEmail" placeholder="Your email.." value="" required>
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="txtEmail" placeholder="Your email.." value="${param.txtEmail}" required>
             
             <label for="password">Password</label>
             <input type="password" id="password" name="txtPassword" placeholder="Your password.." value="" required>
+            <c:if test="${not empty err.passwordErr}">
+                <font color="red">
+                    ${err.passwordErr}
+                </font><br/>
+            </c:if>
             
             <label for="phone">Phone Number</label>
-            <input type="text" id="phone" name="txtPhone" placeholder="Your phone number.." value="" required>
+            <input type="text" id="phone" name="txtPhone" placeholder="Your phone number.." value="${param.txtPhone}" required>
+            <c:if test="${not empty err.phoneErr}">
+                <font color="red">
+                    ${err.phoneErr}
+                </font><br/>
+            </c:if>
             
             <label for="gender">Gender</label>
             <select id="gender" name="txtGender">

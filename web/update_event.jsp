@@ -245,7 +245,7 @@
                     </c:if>
 
                     <label for="price">Price($)</label>
-                    <input id="price" type="text" name="txtPrice" value="${event.price}" readonly="true"/></br>
+                    <input id="price" type="number" name="txtPrice" value="${event.price}" required/></br>
 
                     <label for="count">Number of student</label>
                     <input id="count" type="number" name="txtAmount" value="${event.studentMax}" /></br>

@@ -6,6 +6,7 @@
 package controller;
 
 import dao.EventDAO;
+import dao.PaymentDAO;
 import dto.EventDTO;
 import dto.EventErrorDTO;
 import java.io.IOException;
@@ -55,6 +56,11 @@ public class UpdateEventController extends HttpServlet {
                 amountStudent = Integer.parseInt(request.getParameter("txtAmount"));
             }
 
+            float price = -1;
+            if (!request.getParameter("txtPrice").equals("") || Float.parseFloat(request.getParameter("txtPrice")) > 0) {
+                price = Float.parseFloat(request.getParameter("txtPrice"));
+            }
+
             boolean foundErr = false;
             EventErrorDTO err = new EventErrorDTO();
 
@@ -77,7 +83,7 @@ public class UpdateEventController extends HttpServlet {
                 foundErr = true;
                 err.setLocationLength("Field is required 2 - 20 character !!");
             }
-            
+
             if (amountStudent <= 10) {
                 foundErr = true;
                 err.setAmountStudentErr("At least 10 student can join this event !!");
@@ -154,6 +160,15 @@ public class UpdateEventController extends HttpServlet {
 
                 boolean check = dao.updateEvent(dto, id);
                 if (check) {
+                    if (price <= 0 || request.getParameter("txtPrice").equals("")) {
+                        boolean isFree = true;
+                        PaymentDAO pdao = new PaymentDAO();
+                        boolean result = pdao.updatePayment(id, isFree, 0);
+                    } else {
+                        boolean isFree = false;
+                        PaymentDAO pdao = new PaymentDAO();
+                        boolean result = pdao.updatePayment(id, isFree, price);
+                    }
                     url = HOME_PAGE;
                 }
             }

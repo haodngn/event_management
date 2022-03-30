@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 import dto.EventErrorDTO;
 import dto.UserDTO;
 import java.io.File;
-import java.sql.Timestamp;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;

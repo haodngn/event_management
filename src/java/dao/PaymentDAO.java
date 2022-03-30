@@ -147,4 +147,35 @@ public class PaymentDAO {
         return result;
 
     }
+
+    public boolean updatePayment(int eventID, boolean isFree, float price) throws SQLException, ClassNotFoundException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            String sql = "update Payment "
+                    + "set isFree = ?, Price = ? "
+                    + "where Event_Id = ?";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+
+            stm.setBoolean(1, isFree);
+            stm.setFloat(2, price);
+            stm.setInt(3, eventID);
+
+            int row = stm.executeUpdate();
+            if (row > 0) {
+                check = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
 }

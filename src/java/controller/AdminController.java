@@ -101,12 +101,10 @@ public class AdminController extends HttpServlet {
 
             ses.setAttribute("currentPage", indexEvent);
             ses.setAttribute("currentStudent", indexStudent);
-
-            System.out.println("pages std: " + countPageStudent);
-            System.out.println("curr std: " + pageIndexStudent);
-
+            
             ses.setAttribute("totalEvent", eventDAO.countTotalEvent());
             ses.setAttribute("totalUser", userDAO.countTotalUser());
+            
             ses.setAttribute("initEvent", listEventInit);
             ses.setAttribute("initUser", listUserInit);
 
