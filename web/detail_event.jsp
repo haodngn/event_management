@@ -302,6 +302,12 @@
                                         ${requestScope.message}
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                    var Msg = '<%=request.getAttribute("CloseStatus")%>';
+                                    if (Msg !== "null") {
+                                        alert(Msg);
+                                    }
+                                </script>
                             </c:if>
 
 
