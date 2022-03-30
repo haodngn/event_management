@@ -24,11 +24,6 @@
                                 <button type="submit" name="btnAction" value="Admin"><img src="assets/images/adminImages/search.png" alt=""></button>
                             </form>
                         </div>
-                        <div class="user">
-                            <div class="img-case">
-                                <img src="assets/images/avatar-among-us-9.jpg" alt="">
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="content">

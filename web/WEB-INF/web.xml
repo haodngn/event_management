@@ -64,6 +64,10 @@
         <servlet-name>TakeAttendanceController</servlet-name>
         <servlet-class>controller.TakeAttendanceController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateManagerAccountController</servlet-name>
+        <servlet-class>controller.CreateManagerAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>TakeAttendanceController</servlet-name>
         <url-pattern>/TakeAttendanceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateManagerAccountController</servlet-name>
+        <url-pattern>/CreateManagerAccountController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -24,18 +24,13 @@
                                 <button type="submit" name="btnAction" value="Admin"><img src="assets/images/adminImages/search.png" alt=""></button>
                             </form>
                         </div>
-                        <div class="user">
-                            <div class="img-case">
-                                <img src="assets/images/avatar-among-us-9.jpg" alt="">
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="content">
                     <div class="content-2">
                         <div class="recent-payments">
                             <div class="title">
-                                <h2>Users</h2>
+                                <h2>Accounts</h2>
                             </div>
                             <table>
                                 <tr>
@@ -77,9 +72,10 @@
                         </c:if>
                     </div>
                 </div>
-
+                <form action="MainController" method="POST">
+                    <button name="btnAction" value="CreateAdminAccount" class="create-admin-account">Create Manager Account</button>
+                </form>
             </div>
-
         </div>
     </body>
 </html>
