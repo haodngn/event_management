@@ -101,6 +101,44 @@ public class UserDAO {
         }
         return check;
     }
+    
+    public boolean createManagerAccount(String name,
+            String email,
+            String password,
+            int roleID,
+            String phone,
+            boolean gender) throws SQLException, ClassNotFoundException, NamingException, MessagingException {
+
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            String sql = "insert into Account(Name, Email, Password, Role_id, Status, PhoneNumber, Gender) "
+                    + "values(?, ?, ?, ?, 'active', ?, ?)";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, name);
+            stm.setString(2, email);
+            stm.setString(3, password);
+            stm.setInt(4, roleID);
+            stm.setString(5, phone);
+            stm.setBoolean(6, gender);
+
+            int row = stm.executeUpdate();
+            if (row > 0) {
+//                JavaMailUtils.sendMail(email, code);
+                check = true;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
 
     public UserDTO getUserByEmail(String email)
             throws SQLException, ClassNotFoundException, NamingException {

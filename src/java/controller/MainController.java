@@ -57,8 +57,11 @@ public class MainController extends HttpServlet {
     private static final String DELETECOMMENT = "DeleteCommentController";
     private static final String TAKEATTEND = "TakeAttendanceController";
     private static final String CREATEADMINACCOUNT = "createAdminAccount.jsp";
-    private static final String CREATEMANAGERACCOUNT = "CreateManagerAccountController";
+
+    private static final String CREATEMANAGERACCOUNT = "CreateAccountController";
+
     private static final String CLOSEEVENT = "CloseEventController";
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
