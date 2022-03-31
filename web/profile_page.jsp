@@ -196,7 +196,7 @@
                                     <form method="POST" action="MainController">
                                         <input type="hidden" name="email" value="${sessionScope.userInfo.email}" />
                                         <input type="hidden" name="status" value="${sessionScope.status}" />
-                                        <c:if test="${sessionScope.USER.userID == 3}">
+                                        <c:if test="${sessionScope.USER.roleID == 3}">
                                             <c:if test="${sessionScope.status == 'active'}">
                                                 <div class="btn-list">
                                                     <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Ban User"/>
@@ -208,7 +208,7 @@
                                                 </div>
                                             </c:if>
                                         </c:if>
-                                        <c:if test="${sessionScope.USER.userID != 3}">
+                                        <c:if test="${sessionScope.USER.roleID != 3}">
                                             <div class="btn-list">
                                                 <input type="submit" class="btn-edit btn-span-all" name="btnAction" value="Edit Profile"/>
                                             </div>

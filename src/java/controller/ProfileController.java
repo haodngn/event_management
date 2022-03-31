@@ -56,6 +56,11 @@ public class ProfileController extends HttpServlet {
             }
             ses.setAttribute("userInfo", dto);
             ses.setAttribute("history", history);
+            
+            UserDTO u = (UserDTO) ses.getAttribute("USER");
+            
+            System.out.println("user: "+u.getRoleID());
+            
         } catch (ClassNotFoundException | SQLException | NamingException e) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         } finally {
