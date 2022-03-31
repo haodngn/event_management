@@ -59,7 +59,7 @@ public class PaymentServices {
 
     private RedirectUrls getRedirectURLs() {
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8084/PaypalTest/cancel.html");
+        redirectUrls.setCancelUrl("http://localhost:8084/PaypalTest/invalid.jsp");
         redirectUrls.setReturnUrl("http://localhost:8084/event_manage/receipt.jsp");
 
         return redirectUrls;
