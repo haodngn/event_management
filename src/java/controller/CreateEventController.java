@@ -213,7 +213,7 @@ public class CreateEventController extends HttpServlet {
                     EventDAO edao = new EventDAO();
                     int eventID = edao.getMaxId();
 
-                    if (price == -1) {
+                    if (price  <= 0) {
                         boolean isFree = true;
                         PaymentDAO pdao = new PaymentDAO();
                         boolean crepayment = pdao.creatPayment(isFree, 0, eventID);

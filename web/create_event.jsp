@@ -254,10 +254,10 @@
 
 
                 <label for="price">Price</label>
-                <input id="price" type="number" name="txtPrice" value="${param.txtPrice}" /></br>
+                <input id="price" type="number" name="txtPrice" value="${param.txtPrice}" required/></br>
 
                 <label for="count">Number of student</label>
-                <input id="count" type="number" name="txtAmount" value="${param.txtAmount}" /></br>
+                <input id="count" type="number" name="txtAmount" value="${param.txtAmount}" required/></br>
                 <c:if test="${not empty err.amountStudentErr}">
                     <font color="red">
                     ${err.amountStudentErr}<br/>
