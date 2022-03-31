@@ -18,6 +18,7 @@
         <link href="css/swiper.css" rel="stylesheet">
         <link href="css/magnific-popup.css" rel="stylesheet">
         <link href="css/profileStyle.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/attendanceStyle.css"/>
         <script src="script/profileScript.js" defer></script>
     </head>
     <body>
@@ -125,7 +126,7 @@
                                         <div class="horizontal-line"></div>
                                         <div class="info-row">
                                             <span>Phone: </span>
-                                            <input class="input-field" type="text" name="phoneNumber" 
+                                            <input class="input-field" type="number" name="phoneNumber" 
                                                    <c:if test="${sessionScope.userInfo.phoneNumber != 'null'}">
                                                        value="${sessionScope.userInfo.phoneNumber}"
                                                    </c:if>
@@ -157,8 +158,34 @@
                             </div>
                             <div class="right-bar">
                                 <div class="list-event">
-                                    <img src="assets/images/72_Banner-hội-thảo_1024x400px.jpg" alt="Event 1">
-                                    <img src="assets/images/cover-event-facebook-fts2021-toan-quoc-v1.1.jpg" alt="Event 2">
+                                    <span>Registered Event</span>
+                                    <table id="customers">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Speaker</th>
+                                                <th>Event name</th>
+                                                <th>Occur date</th> 
+                                                <th>Location</th>
+                                                <th>Attendance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${sessionScope.history}" var="item">
+                                                <tr>
+                                                    <td>${item.id}</td>
+                                                    <td>${item.speaker}</td>
+                                                    <td>${item.eventName}</td>
+                                                    <td>${item.occurDate}</td>
+                                                    <td>${item.location}</td>
+                                                    <td>
+                                                        <c:if test="${item.attendence == 'true'}">Attended</c:if>
+                                                        <c:if test="${item.attendence == 'false'}">Absent</c:if>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -49,11 +49,11 @@ public class EditProfileController extends HttpServlet {
             String name = request.getParameter("name");
             String phoneNumber = request.getParameter("phoneNumber");
             String gender = request.getParameter("genderRadio");
-            String reg = "/(84|0[3|5|7|8|9])+([0-9]{8})\\b/g";
+            String reg = "^[0-9\\-\\+]{9,15}$";
             if (!phoneNumber.matches(reg)) {
                 check = false;
             }
-            if (check) {
+            if (check == false) {
                 URL = ERROR;
                 phoneNumberInvalidStr = "Your phone number is invalid";
                 ses.setAttribute("phoneNumberInvalid", phoneNumberInvalidStr);

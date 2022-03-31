@@ -72,6 +72,10 @@
         <servlet-name>CloseEventController</servlet-name>
         <servlet-class>controller.CloseEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetListStudentController</servlet-name>
+        <servlet-class>controller.GetListStudentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>CloseEventController</servlet-name>
         <url-pattern>/CloseEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetListStudentController</servlet-name>
+        <url-pattern>/GetListStudentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
