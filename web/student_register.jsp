@@ -133,28 +133,28 @@
         <h2>Event table</h2>
 
         <div class="table-wrapper">
+            <h2>List of students attending the event</h2>
 
 
             <table class="fl-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>NO</th>
                         <th>Student name</th>
+                        <th>Email</th>
                         <th>Attendance</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requestScope.listEvent}" var="item">
+                    <c:forEach items="${sessionScope.STUDENT_JOIN_E}" var="item" varStatus="index">
                         <tr>
-                            <td>${item.id}</td>
-
-                            <c:url var="detail" value="MainController">
-                                <c:param name="btnAction" value="detail event"/>
-                                <c:param name="txtId" value="${item.id}"/>
-                            </c:url>
-
-                            <td>${item.student_name}</td>
-                            <td>${item.Attendance}</td>
+                            <td>${index.index + 1}</td>
+                            <td>${item.studentName}</td>
+                            <td>${item.studentEmail}</td>
+                            <td>
+                                <c:if test="${item.attendance == 'true'}">Attended</c:if>
+                                <c:if test="${item.attendance == 'false'}">Absent</c:if>
+                            </td>
                         </tr>
                     </c:forEach>
                 <tbody>

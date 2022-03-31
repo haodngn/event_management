@@ -61,6 +61,7 @@ public class MainController extends HttpServlet {
     private static final String CREATEMANAGERACCOUNT = "CreateAccountController";
 
     private static final String CLOSEEVENT = "CloseEventController";
+    private static final String LIST_STUDENT = "GetListStudentController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -117,6 +118,8 @@ public class MainController extends HttpServlet {
                 url = CREATEMANAGERACCOUNT;
             } else if (action.equals("CLOSE")) {
                 url = CLOSEEVENT;
+            } else if (action.equals("CHECK")) {
+                url = LIST_STUDENT;
             }
 
         } catch (Exception e) {

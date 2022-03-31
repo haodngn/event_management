@@ -183,22 +183,6 @@
         <!-- Header -->
         <header id="header" class="ex-header">
             <div class="container">
-                <!-- Breadcrumbs -->
-                <div class="ex-basic-1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="breadcrumbs">
-                                    <a id="linkBreadcrumbs" href="#">Home</a><i
-                                        id="linkBreadcrumbs" class="fa
-                                        fa-angle-double-right"></i><span
-                                        id="linkBreadcrumbs">Event Details</span>
-                                </div> <!-- end of breadcrumbs -->
-                            </div> <!-- end of col -->
-                        </div> <!-- end of row -->
-                    </div> <!-- end of container -->
-                </div> <!-- end of ex-basic-1 -->
-                <!-- end of breadcrumbs -->
             </div> <!-- end of container -->
         </header> <!-- end of ex-header -->
         <!-- end of header -->

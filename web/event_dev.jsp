@@ -192,9 +192,8 @@
                             <td>${item.studentCount}</td>
                              <td>
                                  <form action="MainController" method="POST">
-                                      <input type="hidden" name="studentRegister" value="student_register" />
+                                    <input type="hidden" name="txtId" value="${item.id}"/>
                                     <input type="submit" name="btnAction" value="CHECK" class="btn-event-dev" style="text-transform: uppercase"/>
-                                    <button><a href="student_register.jsp">CHECK</a></button>
                                  </form>
                             </td>
                             <td>
