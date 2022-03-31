@@ -239,7 +239,10 @@
                                                     <td>${item.eventName}</td>
                                                     <td>${item.occurDate}</td>
                                                     <td>${item.location}</td>
-                                                    <td>${item.attendence}</td>
+                                                    <td>
+                                                        <c:if test="${item.attendence == 'true'}">Attended</c:if>
+                                                        <c:if test="${item.attendence == 'false'}">Absent</c:if>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

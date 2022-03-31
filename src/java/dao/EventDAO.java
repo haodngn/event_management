@@ -45,7 +45,7 @@ public class EventDAO implements Serializable {
             String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n"
                     + "E.Location, E.StudentCount, E.Image, P.Price, E.StudentMax\n"
                     + "from Event E\n"
-                    + "join Payment P\n"
+                    + "left join Payment P\n"
                     + "on E.ID = P.Event_Id\n"
                     + "where E.ID =?";
 
