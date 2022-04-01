@@ -57,13 +57,7 @@ public class CreateCommentController extends HttpServlet {
         String post_time = request.getParameter("txtPostTime");
         int event_id = Integer.parseInt(request.getParameter("txtId"));
 
-        String rate = request.getParameter("txtRating");
-        int rating;
-        if (rate == null) {
-            rating = 0;
-        } else {
-            rating = Integer.parseInt(rate);
-        }
+        
 
         FeedbackErrorDTO err = new FeedbackErrorDTO();
         boolean foundErr = false;
@@ -74,17 +68,11 @@ public class CreateCommentController extends HttpServlet {
             UserDAO udao = new UserDAO();
             user = udao.getUserByEmail(user.getEmail());
 
-            if (rating <= 0 || rating > 5) {
-                foundErr = true;
-                err.setRatingError("PLease rating event !!");
-                url = DETAIL_EVENT;
-            }
-
             if (foundErr) {
                 request.setAttribute("CREAT_CMT_ERR", err);
             } else {
                 CommentDAO dao = new CommentDAO();
-                boolean result = dao.createFeedback(event_id, user.getUserID(), description_fb, rating, post_time);
+                boolean result = dao.createFeedback(event_id, user.getUserID(), description_fb, 5, post_time);
                 if (result) {
                     request.setAttribute("CREATE_SUCCESS", "Create success !");
                     url = DETAIL_EVENT;

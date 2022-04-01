@@ -20,7 +20,7 @@
                         <div class="card">
                             <div class="box">
                                 <h1>${sessionScope.totalUser}</h1>
-                            <h3>Students Joined</h3>
+                            <h3>Accounts</h3>
                         </div>
                         <div class="icon-case">
                             <img src="assets/images/adminImages/students.png" alt="">
@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="box">
                             <h1>${sessionScope.totalEvent}</h1>
-                            <h3>Events Ongoing</h3>
+                            <h3>Events</h3>
                         </div>
                         <div class="icon-case">
                             <img src="assets/images/adminImages/calendar.png" alt="">

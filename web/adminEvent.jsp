@@ -30,7 +30,7 @@
                     <div class="content-2">
                         <div class="recent-payments">
                             <div class="title">
-                                <h2>Ongoing Events</h2>
+                                <h2>All Events</h2>
                             </div>
                             <table>
                                 <tr>
@@ -41,7 +41,7 @@
                                     <th>Register Date</th>
                                     <th>Expiration Date</th>
                                     <th>Student Count</th>
-                                    <th>Description</th>
+                                    
                                     <th>Location</th>
                                     <th>Detail</th>
                                     <th>Take Attendance</th>
@@ -55,7 +55,7 @@
                                     <td>${event.registerDate}</td>
                                     <td>${event.expirationDate}</td>
                                     <td>${event.studentCount}</td>
-                                    <td>${event.description}</td>
+                                    
                                     <td>${event.location}</td>
                                     <td>
                                         <form action="MainController">

@@ -112,7 +112,7 @@ public class EventDTO implements Serializable {
         this.image = image;
     }
 
-    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, String image, float price, int studentMax) {
+    public EventDTO(int id, String speaker, String eventName, String occurDate, String endDate, String registerDate, String expirationDate, int studentCount, String description, String location, int prosted_by, String image, float price, int studentMax, boolean status) {
         this.id = id;
         this.speaker = speaker;
         this.eventName = eventName;
@@ -127,6 +127,7 @@ public class EventDTO implements Serializable {
         this.image = image;
         this.price = price;
         this.studentMax = studentMax;
+        this.status = status;
 
     }
 

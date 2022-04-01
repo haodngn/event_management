@@ -80,7 +80,7 @@ public class SearchEventController extends HttpServlet {
                 eventDAO.getAll(pageIndex);
                 listEvent = eventDAO.getListEvent();
             } else if(eventDev.equals("eventDev")) {
-                countPage = eventDAO.pagingGetAll();
+                countPage = eventDAO.pagingForEventDep();
                 eventDAO.getAllForDep(pageIndex);
                 listEvent = eventDAO.getListEvent();
             } else{

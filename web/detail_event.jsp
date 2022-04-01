@@ -324,15 +324,7 @@
 
                         <textarea  class="form-control ml-1 shadow-none textarea" name="txtDescription_FB" value="${param.txtDescription_FB}" placeholder="Comment here!"></textarea>
                     </div>
-                    <div class="action d-flex justify-content-between mt-2 align-items-center">
-                        <div class="reply px-4">
-                            1<input type="radio" name="txtRating" value="1" required="" class="btn fa fa-star text-warning"/>  
-                            2<input type="radio" name="txtRating" value="2" required="" class="btn fa fa-star text-warning"/>  
-                            3<input type="radio" name="txtRating" value="3" required="" class="btn fa fa-star text-warning"/>  
-                            4<input type="radio" name="txtRating" value="4" required="" class="btn fa fa-star text-warning"/>  
-                            5<input type="radio" name="txtRating" value="5" required="" class="btn fa fa-star text-warning"/>
-                        </div>
-                    </div>
+
                     <c:if test="${not empty requestScope.CREAT_CMT_ERR}">
                         <font color="red">${requestScope.CREAT_CMT_ERR.ratingError}</font>
                     </c:if>
@@ -340,7 +332,7 @@
                     <div class="mt-2 text-right">
 
                         <button class="btn btn-primary btn-sm shadow-none" type="submit" name="btnAction" value="Feedback">Post comment</button>
-                        <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button>
+                        
                     </div>
                 </form>
             </div>
@@ -362,15 +354,7 @@
                             <div class="right" >
                                 <h4>
                                     ${cmt.posted_by}
-                                    <span class="gig-rating text-body-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                        <path
-                                            fill="currentColor"
-                                            d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                                            ></path>
-                                        </svg>
-                                        ${cmt.rating}
-                                    </span>
+                                    
                                     <c:if test="${sessionScope.USER.roleID == 3}">
                                         <form action="MainController" method="POST">
                                             <input type="hidden" name="txtId" value="${requestScope.EVENT_ID}" />

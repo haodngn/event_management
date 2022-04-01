@@ -173,6 +173,38 @@ public class EventDAO implements Serializable {
             }
         }
     }
+    
+    public int pagingForEventDep() throws ClassNotFoundException, NamingException, SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int countPage = 0;
+
+        try {
+            String sql = "select count(ID) as row from Event";
+            con = DBHelper.makeConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                int total = rs.getInt("row");
+                countPage = total / 8;
+                if (total % 8 != 0) {
+                    countPage++;
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return countPage;
+    }
     //get all for Event_dep.jsp
     public void getAllForDep(int index)
             throws SQLException, ClassNotFoundException, NamingException {
@@ -182,12 +214,11 @@ public class EventDAO implements Serializable {
         this.listEvent = new ArrayList<>();
 
         try {
-            String sql = "select E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n"
+            String sql = "select E.Status, E.ID, E.EventName, E.Speaker, E.EndDate, E.RegisterDate, E.ExpirationDate, E.OccurDate, E.Description, \n"
                     + "E.Location, E.StudentCount, E.Posted_by, E.Image, E.StudentMax, P.Price\n"
                     + "from Event E\n"
                     + "left join Payment P\n"
                     + "on E.ID = P.Event_Id\n"
-                    + "where E.Status=1 "
                     + "order by E.RegisterDate "
                     + "OFFSET ? ROWS  FETCH NEXT 8 ROWS ONLY";
             con = DBHelper.makeConnection();
@@ -218,8 +249,10 @@ public class EventDAO implements Serializable {
                 String register = df.format(RegisterDate);
                 String exp = df.format(ExpirationDate);
                 String occur = df.format(OccurDate);
+                
+                boolean status = rs.getBoolean("Status");
 
-                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image, price, max);
+                EventDTO dto = new EventDTO(id, speaker, name, occur, end, register, exp, count, des, location, postBy, image, price, max, status);
                 if (this.listEvent == null) {
                     this.listEvent = new ArrayList<>();
                 }
@@ -358,8 +391,7 @@ public class EventDAO implements Serializable {
         try {
             String sql = "select count(ID) as row "
                     + "from Event "
-                    + "where EventName like ? "
-                    + "and Status=1";
+                    + "where EventName like ? ";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, searchValue);
@@ -399,7 +431,7 @@ public class EventDAO implements Serializable {
         try {
             String sql = "Select ID, Speaker, EventName, OccurDate, "
                     + "EndDate, RegisterDate, ExpirationDate, StudentCount, "
-                    + "Description, Location, Image from Event where EventName like ? and Status=1"
+                    + "Description, Location, Image from Event where EventName like ? "
                     + "order by OccurDate "
                     + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
             con = DBHelper.makeConnection();
@@ -678,7 +710,7 @@ public class EventDAO implements Serializable {
         int countPage = 0;
 
         try {
-            String sql = "select count(ID) as row from Event where Status=1";
+            String sql = "select count(ID) as row from Event";
             con = DBHelper.makeConnection();
             stm = con.prepareStatement(sql);
             rs = stm.executeQuery();
@@ -713,7 +745,7 @@ public class EventDAO implements Serializable {
         try {
             String sql = "Select ID, Speaker, EventName, OccurDate,"
                     + " EndDate, RegisterDate, ExpirationDate, StudentCount, "
-                    + "Description, Location, Image from Event where status=1 "
+                    + "Description, Location, Image from Event "
                     + "order by OccurDate "
                     + "OFFSET ? ROWS  FETCH NEXT 5 ROWS ONLY";
             con = DBHelper.makeConnection();

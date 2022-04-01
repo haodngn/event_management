@@ -12,12 +12,9 @@
         <title>Error</title>
     </head>
     <body>
-        <h1>Opps! Something went wrong </h1>
+        
         <div align="center">
-            <h1>Payment Error!!</h1>
-            <br/>
-            <h3>${errorMessage}</h3>
-            <br/>
+            <h1>Opps! Something went wrong </h1>
         </div>
     </body>
 </html>
