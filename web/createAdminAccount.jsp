@@ -22,7 +22,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        
+
         input[type=email], select {
             width: 100%;
             padding: 12px 20px;
@@ -32,7 +32,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        
+
         input[type=password], select {
             width: 100%;
             padding: 12px 20px;
@@ -67,36 +67,36 @@
     <body>
         <h3>Create Manager Account</h3>
         <c:set value="${requestScope.USER_ERR}" var="err"/>
-        
+
         <form action="MainController">
             <label for="fname">Name</label>
             <input type="text" id="fname" name="txtName" placeholder="Your name.." value="${param.txtName}" required>
 
             <label for="femail">Email</label>
             <input type="email" id="femail" name="txtEmail" placeholder="Your email.." value="${param.txtEmail}" required>
-            
+
             <label for="password">Password</label>
             <input type="password" id="password" name="txtPassword" placeholder="Your password.." value="" required>
             <c:if test="${not empty err.passwordErr}">
                 <font color="red">
-                    ${err.passwordErr}
+                ${err.passwordErr}
                 </font><br/>
             </c:if>
-            
+
             <label for="phone">Phone Number</label>
             <input type="text" id="phone" name="txtPhone" placeholder="Your phone number.." value="${param.txtPhone}" required>
             <c:if test="${not empty err.phoneErr}">
                 <font color="red">
-                    ${err.phoneErr}
+                ${err.phoneErr}
                 </font><br/>
             </c:if>
-            
+
             <label for="gender">Gender</label>
             <select id="gender" name="txtGender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
-            
+
             <label for="role">Role</label>
             <select id="role" name="txtRole">
                 <option value="admin">Admin</option>
@@ -104,6 +104,10 @@
             </select>
 
             <button value="createManagerAccount" name="btnAction">Create</button>
+
+        </form>
+        <form action="MainController">
+            <button value="Admin" name="btnAction">Return Home</button>
         </form>
     </body>
 </html>

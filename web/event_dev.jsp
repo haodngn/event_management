@@ -152,7 +152,7 @@
                         <th>Register date</th>
                         <th>Expiration date</th>
                         <th>Student Max</th>
-                        
+                        <th>Status</th>
                         <th>Location</th>
                         <th>Price</th>
                         <th>Student Count</th>
@@ -180,6 +180,10 @@
                             <td>${item.registerDate}</td>
                             <td>${item.expirationDate}</td>
                             <td>${item.studentMax}</td>
+                            <td>
+                            <c:if test="${item.status == 'true'}"><font color="green">Open</font></c:if>
+                            <c:if test="${item.status == 'false'}"><font color="red">Closed</font></c:if>
+                            </td>
                             
                             <td>${item.location}</td>
                             <td>${item.price} $ </td>
